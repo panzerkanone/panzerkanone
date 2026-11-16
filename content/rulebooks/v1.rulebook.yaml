@@ -1,0 +1,347 @@
+# The rule book the game shows a player: a short guide to Formation Impulse in plain words.
+# The full rules are docs/rules/rules-v1.md; this is not them, and where the two disagree that
+# file is right. Read and checked by client/src/game/rulebook.ts (format rulebook/1): every key
+# required, no unknown key, nothing defaulted.
+#
+# The text types no number of its own. A value the game's data holds is named between braces and
+# put in when the book is read: {rules....} is a key of content/rulesets/v1.ruleset.yaml and
+# {game....} a fact of the game being played (its turns, who goes first, its endings, and how near
+# units stand to be shown as one group), so the book cannot drift from either. A number that is a
+# rule and not a value is written as a word.
+#
+# The book is written for the whole-side game (rules-v1 5.9, `sequence.activation: side`): a side
+# moves all of its units in its turn, and nobody gives an order to a formation. The groups it
+# speaks of are the game's way of finding units (those that stand near one another) and no rule.
+#
+# The three pages rewritten on 2026-11-13 (the turn, groups, close assault and overrun) are in the
+# style the owner asked for: second person, short sentences, American spelling, digits for values.
+# On 2026-11-14 the same style was given to what was added or changed: the short move (on the pages
+# on the turn, on moving and on firing), the active group, and ending the turn with E pressed twice
+# (one press for an hour that evening, then two again: below).
+# Also on 2026-11-14, for the lead's ruling 78 (`initiative.policy: fixed`): the page on the turn says
+# the same side goes first in every game turn, and the page on winning names the side a tie goes to.
+# And for the lead's rulings 80 and 81: a Moved unit may move on, and a close assault is made from the
+# next hex, by a unit that may first move there if it keeps movement left (the pages on the turn, on
+# moving and on close assault; `assumes` gains the two assault keys at the end of its list).
+# And for ruling 82 (the owner's "Infantry move 4"): the page on moving says what a company can do in
+# one move. A unit's move is a value of the unit file, not of the rules data, so no brace names it;
+# tests/game/rulebook.test.ts holds that sentence to the unit file and to the rules data's costs.
+# Also on 2026-11-14, the rest of the plain-English pass (the owner: "It's accurate but wordy"): the
+# pages on groups, firing, reaction fire, transport, artillery, winning, the counter and the map, and
+# the older lines of the page on moving, in the same style. Spent, Ready, Moved, Revealed and
+# Suppressed are capitalized where they name a unit's state.
+# Also on 2026-11-14, for the lead's ruling 84 (`ready.when: own-turn`): your units are Ready again when
+# your next turn begins, so a unit that fires in reaction still acts in your next turn. The pages on the
+# turn, on moving and on reaction fire say it as the owner put it, a choice with one price ("I left that
+# unit unmoved for a reason"). E was made to end the turn at one press (the owner: "E has to be pressed
+# twice for the round to end, which is kind of a pain"), and the same evening put back to two (the owner:
+# "E once was a bad call. If we do E once you end your turn accidentally early.. So E twice."): the page
+# on the turn and the table of keys speak of the second press again. `assumes` gains `rules.ready.when` at the end of its list.
+# And for ruling 85 (the owner's "machine gun teams should get 1 movement"): the heavy machine-gun platoon
+# on the pages on moving, close assault, transport and the counter. Its move is a value of the unit file;
+# tests/game/rulebook.test.ts holds the sentence to it.
+# `assumes` lists the choices of the rules data that the prose takes for granted: the book is
+# refused when one of them is otherwise.
+#
+# Original text, written for this project. Nothing here is taken from any published game.
+
+format: rulebook/1
+ruleset: v1
+title: "Rules"
+
+assumes:
+  - { path: rules.sequence.activation, is: side }
+  - { path: rules.initiative.policy, is: fixed }
+  - { path: rules.pass.rule, is: spends }
+  - { path: rules.move.alwaysOne, is: true }
+  - { path: rules.fireTable.profile, is: two-dice }
+  - { path: rules.cover.open.conceals, is: false }
+  - { path: rules.cover.field.conceals, is: false }
+  - { path: rules.cover.rough.conceals, is: false }
+  - { path: rules.cover.swamp.conceals, is: false }
+  - { path: rules.cover.woods.conceals, is: true }
+  - { path: rules.cover.town.conceals, is: true }
+  - { path: rules.cover.open.overrun, is: true }
+  - { path: rules.cover.field.overrun, is: true }
+  - { path: rules.cover.rough.overrun, is: false }
+  - { path: rules.cover.swamp.overrun, is: false }
+  - { path: rules.cover.woods.overrun, is: false }
+  - { path: rules.cover.town.overrun, is: false }
+  - { path: rules.cover.open.fire, is: 0 }
+  - { path: rules.cover.field.fire, is: 0 }
+  - { path: rules.cover.swamp.fire, is: 0 }
+  - { path: rules.assault.targets, is: hard }
+  - { path: rules.moveFire.class, is: hard }
+  - { path: rules.assault.moveShare, is: 0 }
+  - { path: rules.assault.afterMove, is: true }
+  - { path: rules.ready.when, is: own-turn }
+
+# The first nine pages are numbered in the contents; the three after them are marked with a dot.
+numbered: 9
+
+pages:
+  - id: turn
+    title: "The turn in one minute"
+    lead: "You act with all your units, then your opponent does"
+    points:
+      - "You and your opponent take turns. On your turn, each of your units can do one thing: move, fire, close assault, overrun, mount or dismount, or call in artillery."
+      - "Moving is the exception. An armored unit can make a **short move** and then fire. Infantry can move next to an enemy tank and then close assault it. The page on moving says how."
+      - "Act with your units in any order. You see the result of each action before you choose the next."
+      - "A unit that has acted is **Spent** until your next turn begins. A unit you haven't used stays **Ready**, and fires automatically at enemy units that move in its sight during your opponent's turn."
+      - "Holding a unit back costs only the action it didn't take. All your units are Ready again when your next turn begins, even one that fired."
+      - "Units can attack together. Several units can fire at one target, or close assault it, as a single attack. Choose one unit, then Ctrl-click, Cmd-click or Shift-click the others, then click the target."
+      - "Press **E** to end your turn. If some of your units can still act, the game tells you how many and asks you to press E again. Then your opponent takes a turn. You don't have to use every unit, and you can end your turn without acting. Your turn also ends automatically when none of your units can act."
+      - "A game turn is over when both sides have had their turn. Objectives change hands and both sides score. Smoke clears. Suppressed units that aren't Spent recover."
+      - "The {game.first} goes first in every game turn. The {game.second} goes second. This order never changes, so neither side ever acts twice in a row."
+    tip: "The box under the status plate always says what you can do now. Read it whenever you are unsure."
+    table:
+      title: "This scenario"
+      rows:
+        - ["Turns", "{game.turns}"]
+        - ["Goes first in every game turn", "{game.first}"]
+        - ["Goes second", "{game.second}"]
+        - ["{game.sides.0.short} units at the start", "{game.sides.0.units}"]
+        - ["{game.sides.1.short} units at the start", "{game.sides.1.units}"]
+
+  - id: groups
+    title: "Groups: finding your units"
+    lead: "A group helps you find your units. It is not a rule."
+    points:
+      - "The game shows your units in **groups**. A group is a set of units that stand close together. Each unit in a group is within {game.groupReach} hexes of another unit in that group."
+      - "A unit carried by a transport is in its transport's group. A unit with no other unit nearby forms its own group."
+      - "One of your groups is always the **active group**. Its units are highlighted on the board. The Groups folder lists them by name and shows each other group as one line."
+      - "Click any unit to choose it. Its group becomes the active group. If you choose units from different groups, the group of the first unit you chose stays active."
+      - "Groups are numbered. Press a group's number key, or click its button at the bottom of the screen, to make it the active group. The view moves to it. This doesn't choose a unit."
+      - "The active group doesn't limit what you can do. Any unit can act, whatever its group. Units from different groups can fire together or close assault together."
+      - "Groups change as units move. Units that come together form one group. A unit that moves away forms its own group."
+      - "Press Tab to choose the next unit that can still act, and Shift+Tab to go back. Tab starts with the active group. What the unit can do is shown at once, as when you click it. Press Esc to let go of the unit. Its group stays active."
+      - "If a unit has nothing it can do now, Tab shows **No valid moves** on it for a moment, and the line at the top says why. Then Tab goes on to the next unit by itself."
+      - "To play from the keyboard alone, choose a unit with Tab, then press R to step through what it can do: the enemy units it can attack first, then the hexes it can reach. Press Enter to do the one shown."
+    tip: "Bring tanks and infantry up together. Then attack with all of them on the same turn."
+    table:
+      title: "Finding your units"
+      rows:
+        - ["Units in one group", "within {game.groupReach} hexes of another unit in it"]
+        - ["Make a group active", "its number key, its button, or a click on one of its units"]
+        - ["Choose the next unit", "Tab (Shift+Tab goes back)"]
+        - ["Step through what it can do", "R, then Enter"]
+        - ["Let go of a unit", "Esc"]
+        - ["End your turn", "E, and E again if units can still act"]
+
+  - id: moving
+    title: "Moving"
+    lead: "A path of hexes, paid for hex by hex"
+    points:
+      - "Click a unit. The hexes it can reach are tinted. Point at one to see the path and its cost. Click to move there."
+      - "Each hex you enter costs **movement points**. The cost depends on the ground and on how the unit moves: tracked, wheeled, on foot or towed. Climbing onto a hilltop, crossing a ridge and entering a river hex cost extra. A hex entered along a road costs only the road's price."
+      - "A unit can always move one hex, whatever it costs, unless the hex is closed to it."
+      - "You can move through your own units, but never through the enemy's. A move cannot end in a hex that would then hold more than {rules.stack.limit|word} units of yours."
+      - "A unit that enters a hex that does not hide it (any hex but woods or a town) in sight of an enemy combat unit that is not Suppressed becomes **Revealed**. Until the end of the next turn, it can be fired at even in woods or a town."
+      - "Every hex you enter may draw **reaction fire**. Before you move, the game shows the shots the move would draw and their chances. When two paths lead to the same hex, press X to see the other one."
+      - "Armor can move and fire in the same turn. A move that costs an armored unit no more than {rules.moveFire.moveShare|share} of its movement is a **short move**. After a short move the unit is **Moved**, not Spent. It can still fire once."
+      - "Infantry can move and then close assault. A move that leaves infantry any movement also leaves it **Moved**. It can still close assault an enemy tank next to it."
+      - "An infantry company can move one hex into open ground, fields, a town, woods or rough and still close assault. Two hexes of open ground, or a climb onto a hilltop, use all its movement."
+      - "A heavy machine-gun platoon moves one hex a turn. Its crews carry the guns and their ammunition. To go farther, it rides a transport."
+      - "A Moved unit can do one more thing: fire (armor) or close assault (infantry), or move on with the movement it has left. Then it is Spent. It cannot overrun, mount or dismount."
+      - "A unit's reach is tinted. The darker hexes leave it Moved. Point at a hex before you click: the game says what the unit can still do from there."
+      - "A shot after a short move gets {rules.moveFire.steps|signed}. Standing still and firing is a little better."
+      - "A Moved armored unit that does nothing more stays Moved until your next turn begins. It can still fire once in reaction, with the same {rules.moveFire.steps|signed}. Moved infantry does not fire."
+      - "You cannot fire first and then move. A unit stopped by reaction fire is Spent, however short its move was."
+    tip: "A carried unit goes where its transport goes and cannot be fired at on the way."
+    table:
+      title: "To enter a hex: tracked · wheeled · foot · towed"
+      rows:
+        - ["Along a road", "{rules.movement.road.tracked|cost} · {rules.movement.road.wheeled|cost} · {rules.movement.road.foot|cost} · {rules.movement.road.towed|cost}"]
+        - ["Open ground", "{rules.movement.enter.open.tracked|cost} · {rules.movement.enter.open.wheeled|cost} · {rules.movement.enter.open.foot|cost} · {rules.movement.enter.open.towed|cost}"]
+        - ["Field", "{rules.movement.enter.field.tracked|cost} · {rules.movement.enter.field.wheeled|cost} · {rules.movement.enter.field.foot|cost} · {rules.movement.enter.field.towed|cost}"]
+        - ["Town", "{rules.movement.enter.town.tracked|cost} · {rules.movement.enter.town.wheeled|cost} · {rules.movement.enter.town.foot|cost} · {rules.movement.enter.town.towed|cost}"]
+        - ["Rough", "{rules.movement.enter.rough.tracked|cost} · {rules.movement.enter.rough.wheeled|cost} · {rules.movement.enter.rough.foot|cost} · {rules.movement.enter.rough.towed|cost}"]
+        - ["Woods", "{rules.movement.enter.woods.tracked|cost} · {rules.movement.enter.woods.wheeled|cost} · {rules.movement.enter.woods.foot|cost} · {rules.movement.enter.woods.towed|cost}"]
+        - ["Swamp", "{rules.movement.enter.swamp.tracked|cost} · {rules.movement.enter.swamp.wheeled|cost} · {rules.movement.enter.swamp.foot|cost} · {rules.movement.enter.swamp.towed|cost}"]
+        - ["Onto a hilltop, more", "{rules.movement.climb.tracked|cost} · {rules.movement.climb.wheeled|cost} · {rules.movement.climb.foot|cost} · {rules.movement.climb.towed|cost}"]
+        - ["Over a ridge, more", "{rules.movement.ridge.tracked|cost} · {rules.movement.ridge.wheeled|cost} · {rules.movement.ridge.foot|cost} · {rules.movement.ridge.towed|cost}"]
+        - ["Into a river hex, more", "{rules.movement.river.tracked|cost} · {rules.movement.river.wheeled|cost} · {rules.movement.river.foot|cost} · {rules.movement.river.towed|cost}"]
+
+  - id: firing
+    title: "Firing and the odds"
+    lead: "Roll {rules.fireTable.dice.count|word} dice and add the column"
+    points:
+      - "Click one of your units. The enemies it can fire at are ringed. Point at one to see each result and its chance on the notebook's Odds page. Click the enemy to fire."
+      - "Each ringed enemy carries a small card: the chance that the shot suppresses or destroys it, and under that, smaller and in red, the chance that it destroys it. A single red figure means that every hit destroys it."
+      - "Each shot has a **column**. Start with the firer's firepower against the target's type, armor or soft. Subtract the target's defense and the cover of its hex. Then add the step for the range, from the table."
+      - "Roll {rules.fireTable.dice.count|word} dice and add the column. A total of {rules.fireTable.suppress} or more **suppresses** the target; {rules.fireTable.destroy} or more **destroys** it."
+      - "A **Suppressed** unit cannot act, fire, spot hidden units or hold an objective. It recovers at the end of the turn. A Suppressed unit that is suppressed again is destroyed."
+      - "Several units can fire at one target together, from any of your groups. Click one unit. Ctrl-click, Cmd-click or Shift-click the others. Then click the target."
+      - "The best column among them counts. A second unit adds {rules.support.steps.0|signed}. A third unit adds {rules.support.steps.1|signed}. Each unit after that adds {rules.support.steps.2|signed}. Each unit's own column must be within {rules.support.within} of the best."
+      - "When a shot has a low chance, the game names the units that can join it and gives the chance with them."
+      - "A unit in woods or a town is hidden. You can fire at it only while it is **Revealed**, or while one of your combat units that is not Suppressed is within {rules.spot.distance|word} hexes and can see it."
+      - "A unit that fires becomes Spent and Revealed. You cannot fire a shot that could not suppress even on the best roll."
+    tip: "The chances on the Odds page come from the same rules that roll the dice. They are exact."
+    table:
+      title: "Column steps"
+      rows:
+        - ["Next to the target", "{rules.rangeSteps.adjacent|signed}"]
+        - ["Up to half range", "{rules.rangeSteps.half|signed}"]
+        - ["Up to full range", "{rules.rangeSteps.full|signed}"]
+        - ["Up to {rules.rangeSteps.longFactor} times range", "{rules.rangeSteps.long|signed}"]
+        - ["Firing after a short move", "{rules.moveFire.steps|signed}"]
+        - ["Target in rough", "{rules.cover.rough.fire|less}"]
+        - ["Target in woods", "{rules.cover.woods.fire|less}"]
+        - ["Target in a town", "{rules.cover.town.fire|less}"]
+        - ["Suppresses on", "{rules.fireTable.suppress} or more"]
+        - ["Destroys on", "{rules.fireTable.destroy} or more"]
+
+  - id: answering-fire
+    title: "Reaction fire"
+    lead: "Ready units fire automatically"
+    points:
+      - "Reaction fire is automatic. You are not asked anything during the enemy's turn."
+      - "When a unit moves, each enemy unit that is Ready, not Suppressed and can see it may fire at it once. A battery never does. The mover must be within {rules.rangeSteps.longFactor} times the firer's range."
+      - "The firer shoots in the hex where its chance is best. Its column is shifted by {rules.reaction.modifier|signed}."
+      - "At one move no more than {rules.reaction.cap|word} of them may fire: those with the best chances. A unit whose best chance is under {rules.reaction.floor|percent} holds its fire."
+      - "A moving unit that is suppressed stops in the hex where it was hit."
+      - "A unit that fires in reaction becomes Spent and Revealed. So the fire one unit draws can clear the way for the next."
+      - "Holding a unit back is a choice with one price: the action it doesn't take in your turn. In return it fires at enemy units that move in its sight during your opponent's turn. Whether or not it fires, it is Ready again when your next turn begins."
+      - "A unit that acted in your turn stays Spent through your opponent's turn and does not fire in reaction."
+      - "The **Reaction fire** button sets what your Ready units shoot at during the enemy's turn: any target, armor only, or hold fire. Press H on your turn to change it. It costs nothing and applies to all your units. A scenario can start some units on a different setting. The Unit page shows each unit's setting. Pressing H gives them all the same one."
+      - "An empty transport with no weapon draws no fire and blocks no one. An enemy combat unit that enters its hex destroys it."
+    tip: "Before you move, the notebook's Odds page lists every shot the move would draw."
+    table:
+      title: "Reaction fire"
+      rows:
+        - ["Column", "{rules.reaction.modifier|signed}"]
+        - ["Shots at one move, at most", "{rules.reaction.cap}"]
+        - ["No shot under a chance of", "{rules.reaction.floor|percent}"]
+
+  - id: closing
+    title: "Close assault and overrun"
+    lead: "Infantry closes with armor. Armor drives through infantry."
+    points:
+      - "**Close assault** is how infantry attacks armor. Infantry fire does little or nothing to a tank. To hurt a tank, infantry has to close assault it."
+      - "A unit must be next to the target to close assault it. Move it there first. If the unit still has movement left after that move, it can close assault the same turn."
+      - "Choose the unit. Each enemy tank it can close assault glows red. Click one to close assault it. After a move that leaves it movement, the unit stays chosen, so the tank next to it glows red at once."
+      - "You can only close assault armor. You cannot close assault infantry or guns. Fire on them instead."
+      - "A heavy machine-gun platoon never close assaults. It is a soft target, like infantry: fire on it, or overrun it."
+      - "Several units can close assault one target together. Each must be next to it. Select one unit, press C, then Ctrl-click, Cmd-click or Shift-click the others, and click the target. A single unit rarely succeeds, so send two or three."
+      - "The column of a close assault is your unit's close combat value, minus the target's close combat value, minus the cover of the target's hex. A second unit adds {rules.assault.support.0|signed}. A third unit adds {rules.assault.support.1|signed}. Each unit after that adds {rules.assault.support.2|signed}."
+      - "A suppressed target gives {rules.assault.vsSuppressed|signed}. Fire on the target first if you can."
+      - "A result of suppressed or destroyed applies to the target. If the close assault has no effect, every unit that took part is suppressed instead. If the target's hex is left empty, your units can advance into it. Press G to choose whether they advance."
+      - "**Overrun** is how armor attacks infantry and guns. A tank or an assault gun drives through a hex of open ground or fields that holds enemy infantry or guns and no armor. It attacks each unit in the hex and stops in the next hex in a straight line. That hex must be empty. Select the unit and press V."
+      - "Each attack of an overrun uses the unit's firepower against soft targets, minus the target's defense, minus cover, with {rules.overrun.steps|signed}. An overrun costs {rules.overrun.cost} movement points on top of the hexes entered."
+      - "A unit that close assaults or overruns is Spent and Revealed."
+    tip: "Infantry destroys tanks by close assault. It works best with several units together."
+    table:
+      title: "Close assault and overrun"
+      rows:
+        - ["Close assault from", "the next hex"]
+        - ["Target is suppressed", "{rules.assault.vsSuppressed|signed}"]
+        - ["Second unit in a close assault", "{rules.assault.support.0|signed}"]
+        - ["Third unit", "{rules.assault.support.1|signed}"]
+        - ["Each unit after that", "{rules.assault.support.2|signed}"]
+        - ["Overrun", "{rules.overrun.steps|signed}"]
+        - ["Overrun, extra movement points", "{rules.overrun.cost}"]
+        - ["Cover in rough · woods · town", "{rules.cover.rough.close|less} · {rules.cover.woods.close|less} · {rules.cover.town.close|less}"]
+
+  - id: transport
+    title: "Transport"
+    lead: "A transport carries one unit, again and again"
+    points:
+      - "Trucks, half-tracks and wagons are units of their own. Each carries one unit at a time: infantry, a heavy machine-gun platoon, a towed gun or a mortar."
+      - "**Mounting**: a Ready unit gets onto an empty transport in its own hex or the next hex. Click the unit and press M. The unit becomes Spent. The transport does not, and can still move this turn. Mounting draws no fire."
+      - "A carried unit goes where its transport goes. It cannot be fired at. It can do nothing but dismount."
+      - "**Dismounting**: a Ready carried unit gets down into its transport's hex or the next hex. Click the transport and press U, then click a tinted hex. The unit becomes Spent. Like any move, it may draw reaction fire."
+      - "When a transport is destroyed, the unit it carries is set down in that hex, Suppressed."
+      - "A gun or mortar with no movement of its own moves only when it is carried. A heavy machine-gun platoon walks one hex a turn, or rides."
+    tip: "Mount on one turn, then ride and dismount on the next. A unit that mounts is Spent, but its transport is not."
+    table: null
+
+  - id: batteries
+    title: "Artillery and smoke"
+    lead: "Call it now, and it lands later"
+    points:
+      - "A battery does not fire directly. It **calls a fire mission** on a hex instead."
+      - "The hex must be within the battery's range, but not closer than its least range. One of your combat units that is not Suppressed must be able to see it."
+      - "Click the battery. Press T for high explosive or K for smoke, then click a tinted hex. The battery becomes Spent."
+      - "A marker shows both sides where the mission will land. It lands at the start of your next turn, so your opponent has one turn to move away."
+      - "High explosive attacks **every unit in the hex**, friend or enemy. Each unit gets its own roll. The column is the battery's firepower, minus the unit's defense and cover, and {rules.artillery.vsHard|signed} against armor."
+      - "Smoke blocks every line of sight through its hex. It clears at the end of the turn."
+      - "While a mission waits, the battery can do nothing else. If the battery is suppressed or destroyed before the mission lands, the mission is lost."
+    tip: "Call fire where the enemy is going, not where it is now."
+    table:
+      title: "High explosive"
+      rows:
+        - ["Against armor", "{rules.artillery.vsHard|signed}"]
+
+  - id: winning
+    title: "Winning"
+    lead: "Hold objectives, destroy units, and don't break"
+    points:
+      - "At the end of every turn, each side scores the points of every **objective** it holds."
+      - "You take an objective when you have a combat unit in it that is not Suppressed and the enemy has none there. Otherwise it stays with the side that held it."
+      - "Each side also scores {game.kill.points|word} point for every {game.kill.cost|word} points of cost of the enemy units it destroyed that turn. A half point counts as a whole one."
+      - "A side that has lost {game.breakShare|percent} or more of its starting cost is **broken**. It loses the game."
+      - "A side that leads by {game.lead} points or more at the end of a turn wins at once."
+      - "Otherwise the higher score after turn {game.turns} wins. A tie goes to the {game.second}, which goes second in every game turn."
+      - "At the end of a turn, check in this order: a broken side, then a winning lead, then the last turn. A broken side loses even if it leads."
+    tip: "Objectives score every turn. A destroyed unit scores only once."
+    table:
+      title: "This scenario"
+      rows:
+        - ["Last turn", "{game.turns}"]
+        - ["A lead that wins at once", "{game.lead}"]
+        - ["A side breaks at", "{game.breakShare|percent} lost"]
+        - ["A kill scores", "{game.kill.points} for every {game.kill.cost} of cost"]
+
+  - id: counter
+    title: "Reading a counter"
+    lead: "A name, a picture and four numbers"
+    points:
+      - "The band across the top shows the unit's name. Counters of the active group are highlighted."
+      - "The number beside the picture is the unit's **movement**, in movement points."
+      - "Along the bottom, from the left: its **fire** against armor and against soft targets, its **range** in hexes (in a ring), and its **defense** (in a box)."
+      - "A transport carrying a unit lies on top of it. The two move together."
+      - "A **heavy machine-gun platoon**'s counter shows the infantry box with a machine gun. It has a long range against soft targets and no fire against armor. It can fire together with other units, like any unit."
+      - "A small chevron at the lower right marks a **Moved** unit. It can still fire, close assault or move on."
+      - "The unit you have chosen rides higher than the others, with a bright line around its edge."
+      - "A **Spent** unit is grayed out, and its band is dark. Only a **Suppressed** unit lies turned, with a red band across it."
+      - "Point at a counter to see the rest on the notebook's Unit page: its cost, what it can do, and its state now."
+    tip: "Press J to open the notebook. It stays open until you close it."
+    table: null
+
+  - id: map
+    title: "Reading the map"
+    lead: "Ground, cover and sight"
+    points:
+      - "A hex is a quarter of a kilometer across. A turn is five minutes. Each hex is numbered by its column, then its row."
+      - "**Sight** runs in a straight line from the center of one hex to the center of another. Higher ground, woods, towns, ridge crests and smoke in between block it. If you can see a unit, it can see you."
+      - "**Cover** makes a target harder to hit. The table gives the step for each kind of ground. Woods and towns also **hide** a unit. It can be fired at only while it is Revealed, or while an enemy combat unit within {rules.spot.distance|word} hexes can see it."
+      - "Only open ground and fields can be overrun."
+      - "The objectives are tinted on the map. The briefing says what each one is worth."
+    tip: "The map button in the corner turns the hex grid, the hex numbers and the sight lines on and off."
+    table:
+      title: "Cover against fire"
+      rows:
+        - ["Open ground, field, swamp", "{rules.cover.open.fire|less}"]
+        - ["Rough", "{rules.cover.rough.fire|less}"]
+        - ["Woods", "{rules.cover.woods.fire|less}, hides"]
+        - ["Town", "{rules.cover.town.fire|less}, hides"]
+
+  - id: winter
+    title: "Winter battles"
+    lead: "Snow on the ground, ice on the water"
+    points:
+      - "Some battles are fought on a **winter board**. Winter changes what movement costs. Sight, cover and combat stay the same."
+      - "On a winter board, the table on the Moving page shows winter's costs."
+      - "**Rivers are frozen.** Any unit can enter a river hex anywhere, not only at a bridge. The ice costs extra movement."
+      - "**Lakes are frozen.** Infantry and wheeled vehicles can move onto a lake. The ice does not hold tanks or towed guns. A unit on the ice is in the open."
+      - "**Snow slows wheels.** Off a road, wheeled vehicles and towed guns pay more for each hex than in summer. Tracked vehicles and infantry pay the same."
+      - "**Swamp is frozen.** Any unit can enter it. It costs the same as rough ground."
+      - "The sea does not freeze. No unit can enter it."
+    tip: "A frozen river is no longer a wall. Watch the whole bank, not only the bridges."
+    table:
+      title: "Winter costs: tracked · wheeled · foot · towed"
+      rows:
+        - ["Into a frozen river hex, more", "{rules.seasons.winter.river.tracked|cost} · {rules.seasons.winter.river.wheeled|cost} · {rules.seasons.winter.river.foot|cost} · {rules.seasons.winter.river.towed|cost}"]
+        - ["Onto a frozen lake", "{rules.seasons.winter.lake.tracked|cost} · {rules.seasons.winter.lake.wheeled|cost} · {rules.seasons.winter.lake.foot|cost} · {rules.seasons.winter.lake.towed|cost}"]
+        - ["Frozen swamp", "{rules.seasons.winter.enter.swamp.tracked|cost} · {rules.seasons.winter.enter.swamp.wheeled|cost} · {rules.seasons.winter.enter.swamp.foot|cost} · {rules.seasons.winter.enter.swamp.towed|cost}"]
+        - ["Open ground", "{rules.seasons.winter.enter.open.tracked|cost} · {rules.seasons.winter.enter.open.wheeled|cost} · {rules.seasons.winter.enter.open.foot|cost} · {rules.seasons.winter.enter.open.towed|cost}"]

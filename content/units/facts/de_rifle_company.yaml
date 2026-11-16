@@ -1,0 +1,127 @@
+schema: unit-facts/1
+id: de_rifle_company
+designation: Rifle company (German infantry division)
+full_name: Schützenkompanie / Grenadierkompanie, infantry division, 1944 type
+side: german
+kind: infantry
+setting: >-
+  Eastern Front, 1943. The table is the handbook's 1944 type, as in the research's worked example;
+  no 1943 German rifle-company table was opened (gap, see README).
+facts:
+  count_per_unit:
+    value: 142
+    unit: men
+    source: tme30-451-hw
+    locator: "Chapter II, Figure 35, 'Rifle Company, Infantry Division, 1944 Type, total strength 142'; Total row Offs 2, NCOs 21, Pvts 119"
+    retrieved: 2026-11-11
+    confidence: verified
+  rifles:
+    value: 96
+    unit: rifles or carbines
+    source: tme30-451-hw
+    locator: "Figure 35, Total row, 'Rs or Cbns' = 96 (8 Co Hq + 3 x 22 rifle platoons + 11 HMG section + 11 train)"
+    retrieved: 2026-11-11
+    confidence: verified
+  pistols: {value: 22, unit: pistols, source: tme30-451-hw, locator: "Figure 35, Total row, Pistols = 22", retrieved: 2026-11-11, confidence: verified, note: "recorded for completeness; the formulas do not use pistols"}
+  submachine_guns:
+    value: 28
+    unit: submachine guns
+    source: tme30-451-hw
+    locator: "Figure 35, Total row, Sub-MGs = 28 (3 + 3 x 7 + 3 + 1)"
+    retrieved: 2026-11-11
+    confidence: verified
+  light_machine_guns:
+    value: 13
+    unit: guns
+    source: tme30-451-hw
+    locator: "Figure 35, Total row, LMGs = 13 (3 x 4 in the rifle platoons + 1 in the train)"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "the column-sum check holds; the HTML transcription's headings are partly garbled (research 2.4), but the row sums are consistent"
+  heavy_machine_guns:
+    value: 2
+    unit: guns
+    source: tme30-451-hw
+    locator: "Figure 35, 'Hv MG Sec' row and Total row, Hv MGs = 2"
+    retrieved: 2026-11-11
+    confidence: verified
+  short_range_antitank_weapons:
+    value: 0
+    unit: weapons on the company table
+    source: tme30-451-hw
+    locator: "Figure 35 has no column for rocket launchers or Panzerfaust; the regiment's antitank company (Figure 39) holds 36 'Bazookas' (Panzerschreck)"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: >-
+      The research's worked example assumed six short-range anti-tank teams; that was an assumption,
+      not a table entry. Panzerfaust facts for any later decision: first Panzerfaust 30 klein and
+      Panzerfaust 30 delivered August 1943 (wp-en-panzerfaust, Variants); range about 30 m;
+      penetration 140 mm (klein) and 200 mm (30) (tme30-451-hw, Chapter VII, Section II, 7.b).
+  organic_transport:
+    value: "horse-drawn: 15 horse-drawn vehicles, 11 trailers, 27 horses, 3 bicycles; no motor vehicles"
+    unit: description
+    source: tme30-451-hw
+    locator: "Figure 35, Total row, H-Dr Vehicles 15, Tlrs 11, Hs 27, Bcls 3 (headings as transcribed)"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "the infantry division company marched; a carrier for it is a game choice, not a fact. The armoured infantry company in half-tracks is a different table (183 men, 21 carriers, research 2.4)"
+
+  weapons:
+    rifle:
+      designation: {value: "Karabiner 98k", unit: name, source: tme30-451-hw, locator: "Chapter VII, Section II, 5.a: 'the short carbine Model 98k (Karabiner 98k)'", retrieved: 2026-11-11, confidence: verified}
+      effective_range_m:
+        value: 500
+        unit: m
+        source: wp-en-kar98k
+        locator: "infobox range: '500 m with iron sights; 800 or 1000 m with telescopic sight'"
+        retrieved: 2026-11-11
+        confidence: verified
+        alternatives:
+          - {value: 732, unit: m, source: tme30-451-hw, locator: "Chapter VII, Section II, 5.a (2) Characteristics: 'Effective range 800 yards'", retrieved: 2026-11-11, confidence: verified}
+        preferred: "500, the iron-sight figure, as the research used; the handbook's 800 yd is 46% longer and would raise the rifle weight from 1.0 to 1.2 in the research's small-arms formula"
+    light_machine_gun:
+      designation: {value: "MG 42 on bipod (MG 34 also in service)", unit: name, source: tme30-451-hw, locator: "Chapter VII, Section II, 6.b: the MG 42 'in most cases has replaced the M.G. 34 as a standard dual-purpose weapon'", retrieved: 2026-11-11, confidence: verified}
+      practical_rate_rpm:
+        value: 154
+        unit: rounds per minute
+        source: ib-1944-05
+        locator: "'Under battle conditions the MG 42 can fire about 22 bursts per minute--that is, about 154 rounds.' (MG 34: 'about 150 rounds')"
+        retrieved: 2026-11-11
+        confidence: verified
+        alternatives:
+          - {value: 250, unit: rounds per minute, source: tme30-451-hw, locator: "Chapter VII, Section II, 6.b (2): 'Rate of fire (practical) As LMG 250 rounds per minute.'", retrieved: 2026-11-11, confidence: verified}
+          - {value: 153, unit: rounds per minute, source: wp-en-mg42, locator: "infobox rate: 'Practical: 153 rounds/min' (cites the same Intelligence Bulletin)", retrieved: 2026-11-11, confidence: verified}
+        preferred: >-
+          154: it is a battle-conditions figure from German instructions; the handbook's 250 is a
+          capability figure. This is the input the research's machine-gun weight is most sensitive to
+          (weight goes as the square root of rate).
+      effective_range_m:
+        value: "549 to 732"
+        unit: m
+        source: tme30-451-hw
+        locator: "Chapter VII, Section II, 6.b (2): 'Effective range As LMG 600 to 800 yards.'"
+        retrieved: 2026-11-11
+        confidence: verified
+    heavy_machine_gun:
+      designation: {value: "MG 42 (or MG 34) on tripod", unit: name, source: tme30-451-hw, locator: "Chapter VII, Section II, 6.b: 'it may be used on a fixed bipod, a tripod mount, or an antiaircraft mount'", retrieved: 2026-11-11, confidence: verified}
+      practical_rate_rpm:
+        value: 500
+        unit: rounds per minute
+        source: tme30-451-hw
+        locator: "Chapter VII, Section II, 6.b (2): 'As Hv MG 500 rounds per minute.'"
+        retrieved: 2026-11-11
+        confidence: verified
+        note: "ib-1944-05 says sustained fire from the tripod was to be avoided and gives bursts of about 50 rounds, with 150 rounds in six seconds of sustained fire, but no per-minute battle rate for the heavy role"
+      effective_range_m:
+        value: "1829 to 2286"
+        unit: m
+        source: tme30-451-hw
+        locator: "Chapter VII, Section II, 6.b (2): 'As Hv MG 2,000 to 2,500 yards.'"
+        retrieved: 2026-11-11
+        confidence: verified
+        alternatives:
+          - {value: 3500, unit: m, source: wp-en-mg34, locator: "infobox range: '3500 m with tripod and telescopic sight'", retrieved: 2026-11-11, confidence: verified, note: "a sight limit, not an effective range"}
+    submachine_gun:
+      designation: {value: "M.P. 40", unit: name, source: tme30-451-hw, locator: "Chapter VII, Section II, 4.a 'M.P. (Maschinenpistole) 40'", retrieved: 2026-11-11, confidence: verified, note: "Figure 35 counts submachine guns without naming the model; M.P. 40 is the handbook's first-listed standard type"}
+      practical_rate_rpm: {value: 180, unit: rounds per minute, source: tme30-451-hw, locator: "Chapter VII, Section II, 4.a (2): 'Rate of fire (cyclic) 500 rounds per minute (practical) 180 rounds per minute'", retrieved: 2026-11-11, confidence: verified, note: "the research counts submachine guns only in the same hex; recorded in case close combat needs it"}
+      sight_range_m: {value: 200, unit: m, source: tme30-451-hw, locator: "Chapter VII, Section II, 4.a (1): '100-meter fixed rear sight and a 200-meter folding rear sight'", retrieved: 2026-11-11, confidence: verified}

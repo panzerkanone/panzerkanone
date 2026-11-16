@@ -1,0 +1,162 @@
+# The Graviel Lakes, November 1943: a counterattack to retake a town, round a town of three hexes, on a board where
+# two lakes lie between two rivers and split the ways in. A Soviet rifle regiment broke into Graviel overnight; a
+# German battle group comes down from the north to take it back, by the road past the wood between the lakes and
+# the bridge into the town, or round the east side of the long lake by the east bridge. Original content: the
+# situation and the forces are invented for this scenario from the unit types of roster v1
+# (content/units/v1.units.yaml, each value derived from cited public facts); the board is this project's own
+# generated board "graviel_lakes" (assets/maps/graviel_lakes.map.yaml, rolling country by the natural grammar), and
+# the place names are the board's own invented names, on no other board.
+# No historical engagement is depicted, and no published scenario, board, order of battle or victory rule is
+# followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md): the German columns wait at the
+# north edge, beyond the woods north of the wood between the lakes. The German side attacks and moves first; the
+# Soviet regiment has no armor yet (its tanks have not crossed), only riflemen, guns and mortars (108 points to 54).
+# Levelled on 2026-11-14 between two planning opponents at `normal` (the whole side moving, the same side first
+# every turn; docs/review/M7/battles-handover.md). The first draft (a Soviet tank reserve of two T-34 companies and
+# a SU-76M platoon behind the town; Graviel's two ends and the east bridge worth 2; lead 40, break share 0.6) went
+# 4.5% German over 200 games: the planning opponent keeps its tanks out of reach of the rifle companies, so it
+# shoots what comes out and never crosses into the town. Break share 0.45, 8% (100 games); the town worth 3, 3%
+# (100); one T-34 company and the SU-76M, 10.5%; the two T-34s alone, 9.5%; no tank reserve, 59% (100); no tank
+# reserve and break share 0.65, 57.5%; 0.7, 13%; an outpost of a rifle company and a Maxim platoon in the wood
+# between the lakes as a fourth objective, 15.5% (with the tanks) and 33.5% (without); the outpost a ZiS-3 and a
+# Maxim, no tanks, break share 0.65, 56.5%; 0.67, 55.5%; with a cart beside the outpost's gun (break share 0.65),
+# 49.5% (200). This file, that: German share 49.5% over 400 games (44.6 to 54.4), mean last turn 6.8; ends by a
+# break 50% (all 198 German wins), at the turn limit 39% (all Soviet) and by the lead 12% (all Soviet); losses 4.1
+# German and 34.8 Soviet points a game. The German side wins by breaking the regiment, as the Ravayn Woods are won:
+# its guns and Maxims are shot up from range, and the planning opponent seldom takes the town itself.
+# `hard` on both sides (96 games): 16.7% German (10.5 to 25.4), mean last turn 7.8: the hard German side shoots as well
+# but holds back still more (not tuned for `hard`, as no level of any battle is).
+
+format: impulse-scenario/1
+id: graviel-lakes-november-1943
+name: "The Graviel Lakes, November 1943"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3): the battle's Battle level.
+battle: graviel
+level: battle
+ruleset: v1
+units: v1
+map: { id: graviel_lakes, hash: "f8c342ca9f322354b56db1fc04d54227a11ee5e85df1f5b29ef236ee0a21888d" }
+initiative: german
+freeDeployment: false
+# All four are held by the Soviet side at the start: the counterattack must take them back.
+objectives:
+  - { hex: "0708", points: 2, holder: soviet }   # the wood between the lakes, astride the road to Graviel
+  - { hex: "0811", points: 2, holder: soviet }   # Graviel, its north end, at the bridge
+  - { hex: "0912", points: 2, holder: soviet }   # Graviel, its east end
+  - { hex: "1711", points: 2, holder: soviet }   # the east bridge, beside the village east of the long lake
+ending: { turns: 8, suddenDeathLead: 40, breakShare: 0.65 }
+sides:
+  - id: german
+    name: "German battle group"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "3305"]]
+    formations:
+      # The west column: a tank company of three Pz IV H platoons and a StuG III G platoon, north of Dovonov.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pz4h, hex: "0302" }
+          - { id: g1b, type: pz4h, hex: "0502" }
+          - { id: g1c, type: pz4h, hex: "0501" }
+          - { id: g1d, type: stug3g, hex: "0201" }
+      # Armored infantry: two grenadier companies in half-tracks, a third on foot, a machine-gun platoon and the heavy
+      # mortars with their truck.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: grenadier_co, carriedBy: g2h }
+          - { id: g2b, type: grenadier_co, carriedBy: g2i }
+          - { id: g2c, type: grenadier_co, hex: "0803" }
+          - { id: g2d, type: mg42, hex: "0903" }
+          - { id: g2e, type: grw42, hex: "0801" }
+          - { id: g2h, type: sdkfz251, hex: "0802" }
+          - { id: g2i, type: sdkfz251, hex: "0904" }
+          - { id: g2t, type: opel_blitz, hex: "0303" }
+      # The east column: two Pz IV H platoons and a StuG III G platoon, north of Nelennov.
+      - id: g3
+        discipline: free
+        units:
+          - { id: g3a, type: pz4h, hex: "2002" }
+          - { id: g3b, type: pz4h, hex: "2102" }
+          - { id: g3c, type: stug3g, hex: "1902" }
+  - id: soviet
+    name: "Soviet rifle regiment"
+    counters: stock-b
+    orders: 3
+    zone: [["0108", "3321"]]
+    formations:
+      # The Graviel garrison: a rifle company in each part of the town and a Maxim platoon at the bridge.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: rifle_co, hex: "0811" }
+          - { id: s1b, type: rifle_co, hex: "0812" }
+          - { id: s1c, type: rifle_co, hex: "0912" }
+          - { id: s1d, type: maxim, hex: "0711" }
+      # The guns: two ZiS-3s south of the river covering the bridges, and the heavy mortars behind the town with a
+      # truck.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: zis3, hex: "0913" }
+          - { id: s2b, type: zis3, hex: "0612" }
+          - { id: s2c, type: pm38, hex: "0813" }
+          - { id: s2t, type: zis5, hex: "0713" }
+      # The east bridge: a rifle company in the village beside it and a ZiS-3 covering it.
+      - id: s3
+        discipline: free
+        units:
+          - { id: s3a, type: rifle_co, hex: "1611" }
+          - { id: s3b, type: zis3, hex: "1712" }
+      # The outpost in the wood between the lakes: a ZiS-3 astride the road with a cart to move it, and a Maxim
+      # platoon beside it.
+      - id: s4
+        discipline: free
+        units:
+          - { id: s4a, type: zis3, hex: "0708" }
+          - { id: s4b, type: maxim, hex: "0608" }
+          - { id: s4c, type: cart, hex: "0709" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. The forces, their points and
+# the win conditions are not written here: the panel works them out from the units above and from `ending` and
+# `objectives`. Graviel and this action are invented: the background is period color and claims no real
+# engagement. Original text, written for this project.
+briefing:
+  title: "The Graviel Lakes"
+  date: "November 1943"
+  place: "the Eastern Front"
+  picture: engraving-ruined-town
+  background: >-
+    Late autumn, and the ground is still soft. A Soviet rifle regiment broke into the town of Graviel last
+    night and has dug in. A German battle group is sent to take the town back before more Soviet troops
+    can cross the river.
+  situation: >-
+    Two rivers cross the farmland above Graviel, and two lakes lie between them. The lakes split the ground
+    in two. West of the long lake, the road runs past a wood to the bridge into Graviel. East of it, a second
+    road crosses the river by a bridge near a small village. A Soviet outpost with a gun holds the wood,
+    and more guns watch both bridges.
+  note: "The forces are of the kind that met that month. The place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Retake the wood between the lakes, Graviel and the east bridge. Use the lakes to hide your moves, and attack from both sides."
+      formations:
+        - { id: g1, role: "west tank column" }
+        - { id: g2, role: "armored infantry" }
+        - { id: g3, role: "east tank column" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Hold the wood, Graviel and the east bridge. The lakes leave the enemy only two ways in, so cover both."
+      formations:
+        - { id: s1, role: "Graviel garrison" }
+        - { id: s2, role: "guns and mortars" }
+        - { id: s3, role: "east bridge" }
+        - { id: s4, role: "outpost between the lakes" }
+  objectives:
+    - { hex: "0708", name: "The wood between the lakes" }
+    - { hex: "0811", name: "Graviel, north end" }
+    - { hex: "0912", name: "Graviel, east end" }
+    - { hex: "1711", name: "The east bridge" }

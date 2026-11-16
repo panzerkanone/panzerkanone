@@ -1,0 +1,234 @@
+# Source registry for content/units/facts/*.yaml. Every `source:` key in a facts file is a key here.
+# Shape and confidence marks: see README.md in this folder.
+# revision: the page revision current when read (Wikipedia), so a later reader can open the same text.
+# licence: the basis on which the facts are used. Facts are not copyrightable (US Copyright Office,
+#   FAQ and Circular 33, cited in docs/research/2026-11/research-history-data.md section 2.1); no
+#   prose or table layout from any source is copied into the game.
+
+# --- US government works (public domain in the US, 17 U.S.C. 105) ---------------------------------
+
+tme30-451-hw:
+  title: "War Department, TM-E 30-451, Handbook on German Military Forces, 15 March 1945"
+  host: HyperWar transcription at ibiblio
+  urls:
+    chapter_II: https://www.ibiblio.org/hyperwar/Germany/HB/HB-2.html
+    chapter_VI: https://www.ibiblio.org/hyperwar/Germany/HB/HB-6.html
+    chapter_VII: https://www.ibiblio.org/hyperwar/Germany/HB/HB-7.html
+    chapter_VIII: https://www.ibiblio.org/hyperwar/Germany/HB/HB-8.html
+  kind: primary (wartime US intelligence; technical data sometimes wrong, see research 2.6)
+  licence: US government work, public domain
+  retrieved: 2026-11-11
+
+tme30-451-ls:
+  title: "War Department, TM-E 30-451, 1945, Chapter VII, Section VI, 3. Medium Tanks (Pz. Kpfw. IV)"
+  host: Lone Sentry transcription
+  url: https://lonesentry.com/manuals/tme30/ch7sec6sub3.html
+  kind: primary
+  licence: US government work, public domain
+  retrieved: 2026-11-11
+
+ttt19-1943:
+  title: "Military Intelligence Service, Tactical and Technical Trends No. 19, 25 February 1943, 'Tactical Employment of German 75-mm Assault Gun'"
+  host: Lone Sentry
+  url: https://lonesentry.com/articles/ttt07/german-assault-gun.html
+  kind: primary (wartime US intelligence)
+  licence: US government work, public domain
+  retrieved: 2026-11-11
+
+ib-1943-07:
+  title: "Military Intelligence Service, Intelligence Bulletin, July 1943, '75-mm Assault Artillery'"
+  host: Lone Sentry
+  url: https://lonesentry.com/articles/assaultart/index.html
+  kind: primary (wartime US intelligence, itself based on translated Soviet reports; Lone Sentry's note says it contains inaccuracies)
+  licence: US government work, public domain
+  retrieved: 2026-11-11
+
+ib-1944-05:
+  title: "Military Intelligence Service, Intelligence Bulletin, May 1944, 'German Views on Use of the MG 42'"
+  host: Lone Sentry
+  url: http://www.lonesentry.com/articles/intelligence-report/use-of-mg42.html
+  kind: primary (wartime US intelligence)
+  licence: US government work, public domain
+  retrieved: 2026-11-11
+
+ttt22-1943:
+  title: "Military Intelligence Service, Tactical and Technical Trends No. 22, 8 April 1943, 'Observations on German Employment of Armored Infantry' (translated from a German training manual)"
+  host: Lone Sentry
+  url: https://lonesentry.com/articles/ttt07/armored-infantry.html
+  kind: primary (wartime US intelligence)
+  licence: US government work, public domain
+  retrieved: 2026-11-11
+
+ttt25-1943:
+  title: "Military Intelligence Service, Tactical and Technical Trends No. 25, 20 May 1943, 'Notes on Russian and Japanese Animal-Drawn Transport'"
+  host: Lone Sentry
+  url: https://lonesentry.com/articles/ttt07/russian-and-japanese-transport.html
+  kind: primary (wartime US intelligence, partly from American observers in the USSR)
+  licence: US government work, public domain
+  retrieved: 2026-11-11
+
+gtd-1942:
+  title: "Military Intelligence Service, Special Series No. 8, German Tactical Doctrine, 20 December 1942, Section X, Marches"
+  host: Lone Sentry
+  url: https://lonesentry.com/manuals/german-tactical-doctrine/marches.html
+  kind: primary (wartime US intelligence, a digest of German doctrine)
+  licence: US government work, public domain
+  retrieved: 2026-11-11
+
+fme101-10-1942:
+  title: "War Department, FM-E 101-10, Staff Officers' Field Manual: Enemy Forces, Organization, Technical, and Logistical Data, 1 October 1942"
+  host: scan hosted by patcosta.com (a private site hosting the government PDF; nothing of the site's own is used)
+  url: https://patcosta.com/wp-content/uploads/2024/07/FM-E-101-10-Staff-Officers-Field-Manual-Enemy-Forces-Organization-Technical-and-Logistical-Data-Oct-1942.pdf
+  kind: primary (wartime US intelligence; its foreword says 'Much of the data herein are not exact values')
+  licence: US government work, public domain
+  retrieved: 2026-11-11
+  note: "page numbers are the PDF's; the OCR text layer is partly garbled, and figures were read where the layer is legible"
+
+fm101-10-1941:
+  title: "War Department, FM 101-10, Staff Officers' Field Manual: Organization, Technical, and Logistical Data, 1941, paragraph 38, Rates and Lengths of Marches"
+  host: HyperWar at ibiblio (PDF scan)
+  url: https://ibiblio.org/hyperwar/USA/ref/FM/PDFs/FM101-10.pdf
+  kind: primary (US doctrine for US units; used only where no German or Soviet figure was found)
+  licence: US government work, public domain
+  retrieved: 2026-11-11
+  note: "the table on printed pages 82-83 was read from the page images, because the OCR layer garbles the fractions"
+
+coeo-1945:
+  title: "US Office of the Chief of Ordnance, Catalog of Enemy Ordnance Materiel, 1945, 'm. gp. Mannsch. Kw. (Sd. Kfz. 251): Medium Armored Personnel Carrier', German section p. 45"
+  host: Lone Sentry transcription, read in the Internet Archive snapshot of 6 December 2019 (the live site returned only server warnings)
+  url: https://web.archive.org/web/20191206030550/http://www.lonesentry.com/ordnance/tag/sdkfz-251
+  kind: primary (wartime US technical intelligence)
+  licence: US government work, public domain
+  retrieved: 2026-11-11
+  note: "angles are printed 'to the horizontal'; recorded from the vertical as 90 minus the printed figure"
+
+# --- Wikipedia (facts used; no text copied; text would be CC BY-SA 4.0) ----------------------------
+
+wp-en-panzer-iv:      {title: "Wikipedia (en), Panzer IV", url: "https://en.wikipedia.org/wiki/Panzer_IV", revision: 1383027829, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-kwk40:          {title: "Wikipedia (en), 7.5 cm KwK 40", url: "https://en.wikipedia.org/wiki/7.5_cm_KwK_40", revision: 1383036903, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-tiger-i:        {title: "Wikipedia (en), Tiger I", url: "https://en.wikipedia.org/wiki/Tiger_I", revision: 1382800075, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-kwk36:          {title: "Wikipedia (en), 8.8 cm KwK 36", url: "https://en.wikipedia.org/wiki/8.8_cm_KwK_36", revision: 1376172114, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-stug-iii:       {title: "Wikipedia (en), Sturmgeschütz III", url: "https://en.wikipedia.org/wiki/Sturmgesch%C3%BCtz_III", revision: 1384955828, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-pak40:          {title: "Wikipedia (en), 7.5 cm Pak 40", url: "https://en.wikipedia.org/wiki/7.5_cm_Pak_40", revision: 1380837853, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-grw42:          {title: "Wikipedia (en), Granatwerfer 42", url: "https://en.wikipedia.org/wiki/Granatwerfer_42", revision: 1383812486, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-m1938-mortar:   {title: "Wikipedia (en), M1938 mortar", url: "https://en.wikipedia.org/wiki/M1938_mortar", revision: 1357444783, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-pm43:           {title: "Wikipedia (en), 120-PM-43 mortar", url: "https://en.wikipedia.org/wiki/120-PM-43_mortar", revision: 1359637212, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-t34:            {title: "Wikipedia (en), T-34", url: "https://en.wikipedia.org/wiki/T-34", revision: 1381325747, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-t34-variants:   {title: "Wikipedia (en), T-34 variants", url: "https://en.wikipedia.org/wiki/T-34_variants", revision: 1372746548, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-f34:            {title: "Wikipedia (en), 76 mm tank gun M1940 F-34", url: "https://en.wikipedia.org/wiki/76_mm_tank_gun_M1940_F-34", revision: 1380400897, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-kv:             {title: "Wikipedia (en), KV tank family", url: "https://en.wikipedia.org/wiki/KV_tank_family", revision: 1380476272, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-su76:           {title: "Wikipedia (en), SU-76", url: "https://en.wikipedia.org/wiki/SU-76", revision: 1384725235, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-zis3:           {title: "Wikipedia (en), 76 mm divisional gun M1942 (ZiS-3)", url: "https://en.wikipedia.org/wiki/76_mm_divisional_gun_M1942_(ZiS-3)", revision: 1349016414, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-mg42:           {title: "Wikipedia (en), MG 42", url: "https://en.wikipedia.org/wiki/MG_42", revision: 1380623656, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-mg34:           {title: "Wikipedia (en), MG 34", url: "https://en.wikipedia.org/wiki/MG_34", revision: 1377596327, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-kar98k:         {title: "Wikipedia (en), Karabiner 98k", url: "https://en.wikipedia.org/wiki/Karabiner_98k", revision: 1384672526, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-mosin:          {title: "Wikipedia (en), Mosin–Nagant", url: "https://en.wikipedia.org/wiki/Mosin%E2%80%93Nagant", revision: 1382243102, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-dp:             {title: "Wikipedia (en), Degtyaryov machine gun", url: "https://en.wikipedia.org/wiki/Degtyaryov_machine_gun", revision: 1372994077, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-pm1910:         {title: "Wikipedia (en), PM M1910", url: "https://en.wikipedia.org/wiki/PM_M1910", revision: 1380091696, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-panzerfaust:    {title: "Wikipedia (en), Panzerfaust", url: "https://en.wikipedia.org/wiki/Panzerfaust", revision: 1381729700, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-opel-blitz:     {title: "Wikipedia (en), Opel Blitz", url: "https://en.wikipedia.org/wiki/Opel_Blitz", revision: 1363603561, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-sdkfz251:       {title: "Wikipedia (en), Sd.Kfz. 251", url: "https://en.wikipedia.org/wiki/Sd.Kfz._251", revision: 1380732120, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-zis5-truck:     {title: "Wikipedia (en), ZIS-5 (truck)", url: "https://en.wikipedia.org/wiki/ZIS-5_(truck)", revision: 1380088739, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-en-hvy-tank-bn:    {title: "Wikipedia (en), German heavy tank battalion", url: "https://en.wikipedia.org/wiki/German_heavy_tank_battalion", revision: 1326724932, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+
+wp-de-pz4:            {title: "Wikipedia (de), Panzerkampfwagen IV", url: "https://de.wikipedia.org/wiki/Panzerkampfwagen_IV", revision: 271931519, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "armour angles are given from the horizontal; converted to angle from vertical as 90 minus the printed figure"}
+wp-de-tiger:          {title: "Wikipedia (de), Panzerkampfwagen VI Tiger", url: "https://de.wikipedia.org/wiki/Panzerkampfwagen_VI_Tiger", revision: 271682620, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "armour angles from the horizontal, as above"}
+wp-de-stug:           {title: "Wikipedia (de), Sturmgeschütz III", url: "https://de.wikipedia.org/wiki/Sturmgesch%C3%BCtz_III", revision: 271707796, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-de-sturmart:       {title: "Wikipedia (de), Sturmartillerietruppe von Wehrmacht und Waffen-SS", url: "https://de.wikipedia.org/wiki/Sturmartillerietruppe_von_Wehrmacht_und_Waffen-SS", revision: 271707949, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-de-pak40:          {title: "Wikipedia (de), 7,5-cm-Pak 40", url: "https://de.wikipedia.org/wiki/7,5-cm-Pak_40", revision: 265096774, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-de-grw42:          {title: "Wikipedia (de), Granatwerfer 42", url: "https://de.wikipedia.org/wiki/Granatwerfer_42", revision: 246887292, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-de-blitz36:        {title: "Wikipedia (de), Opel Blitz 3,6", url: "https://de.wikipedia.org/wiki/Opel_Blitz_3,6", revision: 263261027, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-de-spw251:         {title: "Wikipedia (de), Schützenpanzerwagen Sd.Kfz. 251", url: "https://de.wikipedia.org/wiki/Sch%C3%BCtzenpanzerwagen_Sd.Kfz._251", revision: 264549211, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-de-kw1:            {title: "Wikipedia (de), KW-1", url: "https://de.wikipedia.org/wiki/KW-1", revision: 271682055, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-de-opel-blitz:     {title: "Wikipedia (de), Opel Blitz", url: "https://de.wikipedia.org/wiki/Opel_Blitz", revision: 259703945, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "searched for a seat count; none found"}
+wp-de-heeresfeldwagen: {title: "Wikipedia (de), Heeresfeldwagen", url: "https://de.wikipedia.org/wiki/Heeresfeldwagen", revision: 263692263, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "cites Fleischer, Bespannte Fahrzeuge des deutschen Heeres (2011)"}
+wp-de-hf1:            {title: "Wikipedia (de), Leichter Proviantwagen 95 n/K (Leichter Feldwagen, Hf. 1)", url: "https://de.wikipedia.org/wiki/Leichter_Proviantwagen_95_n/K", revision: 269865861, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "its infobox (empty 0.95 t, payload 0.50 t) and its table of variants (610 kg empty, 1,360 kg loaded) disagree; cites Fleischer, Feldwagen in Uniform (2022), pp. 60-62"}
+wp-de-hf7:            {title: "Wikipedia (de), Stahlfeldwagen (Hf. 7)", url: "https://de.wikipedia.org/wiki/Stahlfeldwagen_(Hf._7)", revision: 261682254, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "cites Fleischer, Feldwagen in Uniform (2022), pp. 74-76, and H.Dv. 476/1 (1936), p. 18"}
+wp-de-if8:            {title: "Wikipedia (de), Infanteriekarren If.8", url: "https://de.wikipedia.org/wiki/Infanteriekarren_If.8", revision: 261940925, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "cites Fleischer, Feldwagen in Uniform (2022), pp. 213-215"}
+wp-en-horse-gait:     {title: "Wikipedia (en), Horse gait", url: "https://en.wikipedia.org/wiki/Horse_gait", revision: 1378360032, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "walk and trot averages cite Harris, Horse Gaits, Balance and Movement (1993), pp. 32-37"}
+wp-ru-zis2:           {title: "Wikipedia (ru), 57-мм противотанковая пушка образца 1941 года (ЗИС-2)", url: "https://ru.wikipedia.org/wiki/57-%D0%BC%D0%BC_%D0%BF%D1%80%D0%BE%D1%82%D0%B8%D0%B2%D0%BE%D1%82%D0%B0%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BF%D1%83%D1%88%D0%BA%D0%B0_%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D0%B0_1941_%D0%B3%D0%BE%D0%B4%D0%B0_(%D0%97%D0%98%D0%A1-2)", revision: 155104344, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "horse team and towing speed cite the GAU's short service manual for the 57 mm gun, 1942"}
+wp-ru-sdkfz251:       {title: "Wikipedia (ru), Sd.Kfz. 251", url: "https://ru.wikipedia.org/wiki/Sd.Kfz._251", revision: 150225516, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "the infobox has a column for armour angles but leaves it empty"}
+wp-ru-telega:         {title: "Wikipedia (ru), Телега", url: "https://ru.wikipedia.org/wiki/%D0%A2%D0%B5%D0%BB%D0%B5%D0%B3%D0%B0", revision: 148521505, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-ru-zis5:           {title: "Wikipedia (ru), ЗИС-5 (автомобиль)", url: "https://ru.wikipedia.org/wiki/%D0%97%D0%98%D0%A1-5_(%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C)", revision: 154151080, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "searched for a crew or cab seat count; none found"}
+
+wp-ru-t34:            {title: "Wikipedia (ru), Т-34", url: "https://ru.wikipedia.org/wiki/%D0%A2-34", revision: 155296383, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "armour angles given from the vertical (infobox convention)"}
+wp-ru-kv1:            {title: "Wikipedia (ru), КВ-1", url: "https://ru.wikipedia.org/wiki/%D0%9A%D0%92-1", revision: 154879580, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "infobox is for the KV-1 model 1940"}
+wp-ru-su76:           {title: "Wikipedia (ru), СУ-76", url: "https://ru.wikipedia.org/wiki/%D0%A1%D0%A3-76", revision: 153090883, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "infobox is labelled SU-76 model 1942"}
+wp-ru-zis3:           {title: "Wikipedia (ru), 76-мм дивизионная пушка образца 1942 года (ЗИС-3)", url: "https://ru.wikipedia.org/wiki/76-%D0%BC%D0%BC_%D0%B4%D0%B8%D0%B2%D0%B8%D0%B7%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F_%D0%BF%D1%83%D1%88%D0%BA%D0%B0_%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D0%B0_1942_%D0%B3%D0%BE%D0%B4%D0%B0_(%D0%97%D0%98%D0%A1-3)", revision: 156089235, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-ru-pm38:           {title: "Wikipedia (ru), 120-мм полковой миномёт образца 1938 года", url: "https://ru.wikipedia.org/wiki/120-%D0%BC%D0%BC_%D0%BF%D0%BE%D0%BB%D0%BA%D0%BE%D0%B2%D0%BE%D0%B9_%D0%BC%D0%B8%D0%BD%D0%BE%D0%BC%D1%91%D1%82_%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D0%B0_1938_%D0%B3%D0%BE%D0%B4%D0%B0", revision: 148061843, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-ru-stug:           {title: "Wikipedia (ru), StuG III", url: "https://ru.wikipedia.org/wiki/StuG_III", revision: 155977268, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11, note: "armour angles from the vertical"}
+wp-ru-pz4:            {title: "Wikipedia (ru), Pz.Kpfw. IV", url: "https://ru.wikipedia.org/wiki/Pz.Kpfw._IV", revision: 155249043, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-ru-tiger:          {title: "Wikipedia (ru), Тигр (танк)", url: "https://ru.wikipedia.org/wiki/%D0%A2%D0%B8%D0%B3%D1%80_(%D1%82%D0%B0%D0%BD%D0%BA)", revision: 155695628, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-ru-tank-brigade:   {title: "Wikipedia (ru), Танковая бригада РККА", url: "https://ru.wikipedia.org/wiki/%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F_%D0%B1%D1%80%D0%B8%D0%B3%D0%B0%D0%B4%D0%B0_%D0%A0%D0%9A%D0%9A%D0%90", revision: 153488788, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-ru-ogttp:          {title: "Wikipedia (ru), Отдельный гвардейский тяжёлый танковый полк", url: "https://ru.wikipedia.org/wiki/%D0%9E%D1%82%D0%B4%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D0%B3%D0%B2%D0%B0%D1%80%D0%B4%D0%B5%D0%B9%D1%81%D0%BA%D0%B8%D0%B9_%D1%82%D1%8F%D0%B6%D1%91%D0%BB%D1%8B%D0%B9_%D1%82%D0%B0%D0%BD%D0%BA%D0%BE%D0%B2%D1%8B%D0%B9_%D0%BF%D0%BE%D0%BB%D0%BA", revision: 155388936, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-ru-sap:            {title: "Wikipedia (ru), Самоходно-артиллерийский полк РККА", url: "https://ru.wikipedia.org/wiki/%D0%A1%D0%B0%D0%BC%D0%BE%D1%85%D0%BE%D0%B4%D0%BD%D0%BE-%D0%B0%D1%80%D1%82%D0%B8%D0%BB%D0%BB%D0%B5%D1%80%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D0%BE%D0%BB%D0%BA_%D0%A0%D0%9A%D0%9A%D0%90", revision: 154473844, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-ru-rifle-regt:     {title: "Wikipedia (ru), Стрелковый полк РККА", url: "https://ru.wikipedia.org/wiki/%D0%A1%D1%82%D1%80%D0%B5%D0%BB%D0%BA%D0%BE%D0%B2%D1%8B%D0%B9_%D0%BF%D0%BE%D0%BB%D0%BA_%D0%A0%D0%9A%D0%9A%D0%90", revision: 153390059, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-ru-dp:             {title: "Wikipedia (ru), ДП (пулемёт)", url: "https://ru.wikipedia.org/wiki/%D0%94%D0%9F_(%D0%BF%D1%83%D0%BB%D0%B5%D0%BC%D1%91%D1%82)", revision: 154835693, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+wp-ru-maxim:          {title: "Wikipedia (ru), Пулемёт Максима", url: "https://ru.wikipedia.org/wiki/%D0%9F%D1%83%D0%BB%D0%B5%D0%BC%D1%91%D1%82_%D0%9C%D0%B0%D0%BA%D1%81%D0%B8%D0%BC%D0%B0", revision: 155453366, licence: "facts only; text CC BY-SA 4.0", retrieved: 2026-11-11}
+
+# --- Independent historical research (copyrighted pages; individual facts only) ---------------------
+
+bs-rifle-bn-dec42:
+  title: "Gary Kennedy, 'Red Army Rifle Battalion, Shtat reference 04/551, dated 10th December 1942', bayonetstrength.uk, May 2019"
+  url: "https://bayonetstrength.uk/RedArmy/RedArmyRifleBn/6.%20Shtat%20Rifle%20Bn%20Dec1942.pdf"
+  kind: secondary (transcription of the Soviet establishment table; the shtat itself not opened)
+  licence: copyrighted compilation; individual facts only, no table layout reproduced
+  retrieved: 2026-11-11
+
+bs-rifle-bn-dec42-amended:
+  title: "Gary Kennedy, 'Red Army Rifle Battalion, Shtat reference 04/551, dated 10th December 1942 (with amendments to early 1944)', bayonetstrength.uk, May 2019"
+  url: "https://bayonetstrength.uk/RedArmy/RedArmyRifleBn/7.%20Shtat%20Rifle%20Bn%20Dec1942~.pdf"
+  kind: secondary
+  licence: copyrighted compilation; individual facts only
+  retrieved: 2026-11-11
+
+at-rifle-co-04-551:
+  title: "A. Dyagilev, 'Стрелковая рота штата №04/551' (rifle company of establishment 04/551), author.today post 329459, 9 December 2022"
+  url: https://author.today/post/329459
+  kind: secondary (a private transcription of the company table; no archive reference given)
+  licence: copyrighted text; individual facts only
+  retrieved: 2026-11-11
+
+tankarchives-kv1s:
+  title: "Tank Archives (P. Samsonov), 'Less Armour, More Mobility', 2 December 2017"
+  url: https://www.tankarchives.com/2017/12/less-armour-more-mobility.html
+  kind: secondary (quotes Soviet decrees and factory documents not opened here)
+  licence: copyrighted text; individual facts only
+  retrieved: 2026-11-11
+
+pw-kstn-446b:
+  title: "Panzerworld, 'K St N 446 b: Sturmgeschützbatterie (mot) (zu 14 Geschützen), 1 February 1944' (transcribes K.St.N. 446 b, AHA Berlin 1944, NARA T283 R123)"
+  url: https://panzerworld.com/k-st-n-446-b-1944-02-01-sturmgeschutzbatterie-mot-zu-14-geschutzen
+  kind: secondary (transcription of a German establishment table; microfilm not opened)
+  licence: copyrighted page; individual facts only
+  retrieved: 2026-11-11
+
+kolesa-zis5-2018:
+  title: "E. Kochnev, 'Бронированные, санитарные, секретные: неизвестные версии ЗИС-5', Kolesa.ru, 14 October 2018 (updated 18 June 2020)"
+  url: https://www.kolesa.ru/article/bronirovannye-sanitarnye-sekretnye-neizvestnye-versii-zis-5
+  kind: secondary (a motoring magazine's history article; cites no document for the figure used)
+  licence: copyrighted text; individual facts only
+  retrieved: 2026-11-11
+
+qms-grw42:
+  title: "Quartermaster Section, 'Schwere Granatwerfer 42' data page"
+  url: https://www.quartermastersection.com/german/infantry-weapons/395/Granatwerfer42
+  kind: secondary (collector's reference page; cites no source for its figures)
+  licence: copyrighted page; individual facts only
+  retrieved: 2026-11-11
+
+qms-pm1910:
+  title: "Quartermaster Section, 'PM M.1910 & M.1910/30 machine gun' data page"
+  url: https://www.quartermastersection.com/russian/infantry-weapons/840/PMM.1910M.191030MACHINEGUN
+  kind: secondary (collector's reference page; cites no source for its figures)
+  licence: copyrighted page; individual facts only
+  retrieved: 2026-11-14
+
+nsd-38-1944:
+  title: "People's Commissariat of Defence of the USSR, Наставление по стрелковому делу (НСД-38): Станковый пулемёт системы Максима обр. 1910 г. (Rifle Training Manual: the Maxim heavy machine gun, model 1910), Voenizdat, Moscow, 1944"
+  host: DIGAR, the digital archive of the National Library of Estonia (a scan with a text layer)
+  url: https://digar.ee/arhiiv/et/download/113474
+  kind: primary (the Red Army's own manual for the gun)
+  licence: "facts only; no text of the manual is used"
+  retrieved: 2026-11-14
+

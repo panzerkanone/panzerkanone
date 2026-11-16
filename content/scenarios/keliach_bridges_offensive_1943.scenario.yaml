@@ -1,0 +1,256 @@
+# The Keliach Bridges, June 1943: an offensive, the battle's largest level (docs/rules/rules-v1.md 1.3). The
+# attack the bridges were wanted for comes: a German armored battle group of two tank columns, assault guns
+# and two grenadier battalions crosses the river by both bridges against a reinforced Soviet rifle regiment
+# with two tank battalions, which holds Keliach, the hill above the north bridge, the ridge south of the
+# village and Nestgard. Every unit is on the board from the first turn: the rules have no reinforcements.
+# Original content: the situation and the forces are invented for this scenario from the unit types of
+# roster v1 (content/units/v1.units.yaml, each value derived from cited public facts); the board is this
+# project's own generated board "farmland_river" (assets/maps/farmland_river.map.yaml), and the place names
+# are the board's own invented names. No historical engagement is depicted, and no published scenario,
+# board, order of battle or victory rule is followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md): the starting places
+# were found by placing each unit, in turn, on the nearest hex to where it was meant to stand that no enemy
+# unit placed so far could see.
+# Levelled on 2026-11-14 between two planning opponents at `normal` (the whole side moving, the same side
+# first every turn; the planning opponent that no longer throws tanks beside rifle companies): the first
+# draft went 71.0% German over 100 games; with five more rifle companies by Keliach and the north bridge
+# 30.0%, with three more in Keliach 36.0%; with two more in Keliach (s9a, s9b):
+# German share 48.0% over 200 games (41.2 to 54.9), mean last turn 10.9; ends at the turn limit 86%, by a
+# break 10% (all German), by the lead 5% (all Soviet).
+# (docs/review/M7/levels-handover.md.)
+# Levelled again on 2026-11-15 for the lead's rulings 84 (a side's units are made Ready when its own turn begins) and
+# 85 (heavy machine-gun platoons), with the planning opponent that sets its whole side's fire discipline alike
+# (docs/review/M7/levels2-handover.md): as it stood it went 35.3% German at `normal` (21.5 to 52.1, on 34 games,
+# measured before that change of the opponent). One of Keliach's two added rifle companies a Maxim platoon instead
+# (s9m) and an MG 42 platoon with the half-track grenadier battalion (g6m): 43.0% over 100 games (33.7 to 52.8); and
+# one T-34 company fewer in the first tank battalion at Nestgard (s4c), as in the Battle level, this file: German share
+# 50.0% over 200 games (43.1 to 56.9), mean last turn 11.0; ends at the turn limit 95% (91:99), by a break 5% (9:0).
+# At `hard` on both sides 97.9% German (48 games; the German side breaks the regiment in 44; 100% before ruling 84).
+# Forces 260 German points to 251 Soviet. The guns: the German Pak 40s stand with the assault guns behind Hill 144
+# (2606, 2706) and have no truck of their own; the GrW 42s are with the foot grenadiers, one with an Opel Blitz
+# beside it (2906, 3005), the other four hexes from the nearer truck (2909); the MG 42 platoon is beside its
+# battalion's half-track (2905, 2904). The Soviet ZiS-3s are dug in at Keliach (1807), on the hill above the north
+# bridge (1405, 1407), on the ridge south of Keliach (1814, 2014) and before Nestgard (1313); the two PM-38s are in the
+# wood west of the hill (0908, 0808); the Soviet side has no transport.
+
+format: impulse-scenario/1
+id: keliach-bridges-offensive-june-1943
+name: "The Keliach Bridges, June 1943 (Offensive)"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3).
+battle: keliach
+level: offensive
+ruleset: v1
+units: v1
+map: { id: farmland_river, hash: "5ef4395313f3f103ee1dfb53f7860ac7c700dabf38472f9866106b616bca83bf" }
+initiative: german
+freeDeployment: false
+objectives:
+  - { hex: "1402", points: 3, holder: soviet }   # the north bridge, on the road down from the north edge
+  - { hex: "2009", points: 3, holder: soviet }   # the south bridge, between Galowick and Keliach
+  - { hex: "1809", points: 2, holder: soviet }   # the village of Keliach, at the west end of the south bridge
+  - { hex: "1915", points: 2, holder: soviet }   # the ridge south of Keliach
+  - { hex: "1115", points: 2, holder: soviet }   # Nestgard, on the road west
+# An offensive's ending: eleven turns, a lead of 100 (the objectives give the defender 12 a turn), and a side
+# that has lost seven tenths of its cost has broken.
+ending: { turns: 11, suddenDeathLead: 100, breakShare: 0.7 }
+sides:
+  - id: german
+    name: "German armored battle group"
+    counters: stock-a
+    orders: 3
+    zone: [["2201", "3311"]]
+    formations:
+      # The north column: two Tiger platoons and two Pz IV H platoons north of Hill 144.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: tiger1e, hex: "2601" }
+          - { id: g1b, type: tiger1e, hex: "2701" }
+          - { id: g1c, type: pz4h, hex: "2801" }
+          - { id: g1d, type: pz4h, hex: "2802" }
+      # Its armored grenadiers, three companies in half-tracks.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: grenadier_co, carriedBy: g2h }
+          - { id: g2b, type: grenadier_co, carriedBy: g2i }
+          - { id: g2c, type: grenadier_co, carriedBy: g2j }
+          - { id: g2h, type: sdkfz251, hex: "2602" }
+          - { id: g2i, type: sdkfz251, hex: "2702" }
+          - { id: g2j, type: sdkfz251, hex: "2902" }
+      # The south column: four Pz IV H platoons behind the wood south of Galowick.
+      - id: g3
+        discipline: free
+        units:
+          - { id: g3a, type: pz4h, hex: "2611" }
+          - { id: g3b, type: pz4h, hex: "2711" }
+          - { id: g3c, type: pz4h, hex: "2511" }
+          - { id: g3d, type: pz4h, hex: "2811" }
+      # The heavy tanks and an assault gun with the south column.
+      - id: g4
+        discipline: armor
+        units:
+          - { id: g4a, type: tiger1e, hex: "2712" }
+          - { id: g4b, type: tiger1e, hex: "2912" }
+          - { id: g4c, type: stug3g, hex: "2410" }
+      # Assault guns and antitank guns behind Hill 144.
+      - id: g5
+        discipline: free
+        units:
+          - { id: g5a, type: stug3g, hex: "2607" }
+          - { id: g5b, type: stug3g, hex: "2707" }
+          - { id: g5c, type: stug3g, hex: "2806" }
+          - { id: g5d, type: pak40, hex: "2606" }
+          - { id: g5e, type: pak40, hex: "2706" }
+      # A grenadier battalion with half-tracks, behind Hill 144, and its MG 42 platoon (since 2026-11-15).
+      - id: g6
+        discipline: free
+        units:
+          - { id: g6a, type: grenadier_co, carriedBy: g6h }
+          - { id: g6b, type: grenadier_co, carriedBy: g6i }
+          - { id: g6c, type: grenadier_co, carriedBy: g6j }
+          - { id: g6d, type: grenadier_co, hex: "2805" }
+          - { id: g6m, type: mg42, hex: "2905" }
+          - { id: g6h, type: sdkfz251, hex: "2604" }
+          - { id: g6i, type: sdkfz251, hex: "2603" }
+          - { id: g6j, type: sdkfz251, hex: "2904" }
+      # A grenadier battalion on foot and the heavy mortars, by Sortal.
+      - id: g7
+        discipline: free
+        units:
+          - { id: g7a, type: grenadier_co, hex: "3006" }
+          - { id: g7b, type: grenadier_co, hex: "3106" }
+          - { id: g7c, type: grenadier_co, hex: "3108" }
+          - { id: g7d, type: grw42, hex: "2906" }
+          - { id: g7e, type: grw42, hex: "2909" }
+          - { id: g7t, type: opel_blitz, hex: "3005" }
+          - { id: g7u, type: opel_blitz, hex: "3105" }
+  - id: soviet
+    name: "Soviet rifle regiment"
+    counters: stock-b
+    orders: 3
+    zone: [["0101", "1921"]]
+    formations:
+      # The garrison of Keliach: two rifle companies and a gun.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: rifle_co, hex: "1808" }
+          - { id: s1b, type: rifle_co, hex: "1809" }
+          - { id: s1c, type: zis3, hex: "1807" }
+      # The guns on the hill above the north bridge, and a rifle company in the wood by the road.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: zis3, hex: "1405" }
+          - { id: s2b, type: zis3, hex: "1407" }
+          - { id: s2c, type: rifle_co, hex: "1203" }
+          - { id: s2d, type: rifle_co, hex: "1305" }
+      # Two rifle companies and the heavy mortars west of the hill.
+      - id: s3
+        discipline: free
+        units:
+          - { id: s3a, type: rifle_co, hex: "1007" }
+          - { id: s3b, type: rifle_co, hex: "0907" }
+          - { id: s3c, type: pm38, hex: "0908" }
+          - { id: s3d, type: pm38, hex: "0808" }
+      # The first tank battalion at Nestgard: two T-34 companies and a KV-1 company (three T-34 companies until
+      # 2026-11-15).
+      - id: s4
+        discipline: free
+        units:
+          - { id: s4a, type: t34_76, hex: "1214" }
+          - { id: s4b, type: t34_76, hex: "1115" }
+          - { id: s4d, type: kv1, hex: "1316" }
+      # The second rifle battalion on the ridge south of Keliach.
+      - id: s5
+        discipline: free
+        units:
+          - { id: s5a, type: rifle_co, hex: "1815" }
+          - { id: s5b, type: rifle_co, hex: "1914" }
+          - { id: s5c, type: rifle_co, hex: "2015" }
+          - { id: s5d, type: zis3, hex: "1814" }
+          - { id: s5e, type: zis3, hex: "2014" }
+      # The third rifle battalion by Hill 53.
+      - id: s6
+        discipline: free
+        units:
+          - { id: s6a, type: rifle_co, hex: "1111" }
+          - { id: s6b, type: rifle_co, hex: "1013" }
+          - { id: s6c, type: rifle_co, hex: "1213" }
+          - { id: s6d, type: rifle_co, hex: "1310" }
+          - { id: s6e, type: zis3, hex: "1313" }
+      # The second tank battalion south of the ridge.
+      - id: s7
+        discipline: free
+        units:
+          - { id: s7a, type: t34_76, hex: "1717" }
+          - { id: s7b, type: t34_76, hex: "1816" }
+          - { id: s7c, type: t34_76, hex: "1916" }
+          - { id: s7d, type: kv1, hex: "1617" }
+          - { id: s7e, type: su76m, hex: "2019" }
+      # The last rifle companies and a self-propelled gun, by Ulmanov road.
+      - id: s8
+        discipline: free
+        units:
+          - { id: s8a, type: rifle_co, hex: "1009" }
+          - { id: s8b, type: rifle_co, hex: "1109" }
+          - { id: s8c, type: su76m, hex: "0915" }
+          - { id: s8d, type: rifle_co, hex: "1416" }
+      # More for Keliach from the regiment's second battalion: a rifle company and a Maxim platoon (two rifle
+      # companies until 2026-11-15).
+      - id: s9
+        discipline: free
+        units:
+          - { id: s9a, type: rifle_co, hex: "1709" }
+          - { id: s9m, type: maxim, hex: "1710" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. Keliach, Nestgard and
+# this action are invented: the background is period color and claims no real engagement. Original text,
+# written for this project.
+briefing:
+  title: "The Keliach Bridges"
+  date: "June 1943"
+  place: "the Eastern Front"
+  picture: engraving-gun-battery
+  background: >-
+    Early summer, and the attack the bridges were wanted for has come. A whole German armored battle
+    group is on the east bank, with orders to cross at both bridges and drive on to Nestgard.
+  situation: >-
+    A reinforced Soviet rifle regiment holds the far bank: guns on the hill above the north bridge,
+    Keliach fortified, a second battalion on the ridge south of it, a third by Hill 53, and two tank
+    battalions waiting behind them. Tanks and guns can cross only by the bridges. Infantry can wade.
+  note: "The forces are of the kind that met that month. The place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Take both bridges and Keliach, then the ridge and Nestgard beyond. Hold what you take to the end."
+      formations:
+        - { id: g1, role: "north column" }
+        - { id: g2, role: "north column's grenadiers" }
+        - { id: g3, role: "south column" }
+        - { id: g4, role: "heavy tanks" }
+        - { id: g5, role: "assault guns and antitank guns" }
+        - { id: g6, role: "armored grenadiers" }
+        - { id: g7, role: "grenadiers and mortars" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Hold the bridges, Keliach, the ridge and Nestgard. Shoot the enemy tanks as they cross, and keep your own tanks back until they are needed."
+      formations:
+        - { id: s1, role: "Keliach garrison" }
+        - { id: s2, role: "the hill" }
+        - { id: s3, role: "rifles and mortars" }
+        - { id: s4, role: "first tank battalion" }
+        - { id: s5, role: "the ridge" }
+        - { id: s6, role: "Hill 53" }
+        - { id: s7, role: "second tank battalion" }
+        - { id: s8, role: "reserve" }
+        - { id: s9, role: "Keliach's reinforcements" }
+  objectives:
+    - { hex: "1402", name: "The north bridge" }
+    - { hex: "2009", name: "The south bridge" }
+    - { hex: "1809", name: "Keliach" }
+    - { hex: "1915", name: "The ridge" }
+    - { hex: "1115", name: "Nestgard" }

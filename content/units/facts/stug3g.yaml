@@ -1,0 +1,122 @@
+schema: unit-facts/1
+id: stug3g
+designation: StuG III G
+full_name: Sturmgeschütz III Ausf. G (Sd.Kfz. 142/1), 7.5 cm StuK 40 L/48
+side: german
+kind: assault_gun
+setting: Eastern Front, 1943 (Ausf. G in production from December 1942)
+facts:
+  count_per_unit:
+    value: 3
+    unit: assault guns
+    source: pw-kstn-446b
+    locator: "K.St.N. 446 b, 1 February 1944, Gefechtsbatterie, 1st platoon: 'Equipment 3 Sturmgeschütz III Ausf. G ... 7,5 cm Stu K 40: 3'; 2nd and 3rd platoons 'as 1st platoon'; battery headquarters 1 StuG III G"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: >-
+      The table is dated February 1944 (14 guns: battery commander's StuG and StuH, three StuG
+      platoons of 3, one StuH platoon of 3). For the 1943 battery of 10 (battery_strength below), 1 +
+      3 x 3 = 10 is consistent but no 1943 table was opened. The July 1943 Intelligence Bulletin
+      describes the same shape (a battery commander's gun plus three platoons) with platoons of 2.
+    alternatives:
+      - {value: 2, unit: assault guns, source: ib-1943-07, locator: "'Two self-propelled guns make up a platoon ... There are three platoons in a battery, as well as a separate gun for the battery commander'; 'All seven guns'", retrieved: 2026-11-11, confidence: verified, note: "the 1940-42 seven-gun battery, reported in July 1943 from Soviet sources"}
+      - {value: 2, unit: assault guns, source: ttt19-1943, locator: "'The battery has six guns--three platoons, each of two guns.'", retrieved: 2026-11-11, confidence: verified, note: "February 1943; older six-gun count"}
+  battery_strength:
+    value: 10
+    unit: assault guns
+    source: wp-de-sturmart
+    locator: "'Am 1. November 1942 wurde die Sollstärke der Abteilungen auf 31 Sturmgeschütze (je zehn in drei Batterien und eines für den Abteilungsstab) erhöht.' (Fleischer, Die deutschen Sturmgeschütze 1935-1945, p. 44)"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: "the establishment table itself was not opened. From 1944 batteries had 14 (same article: 45 guns, 'je 14 in drei Batterien')"
+    alternatives:
+      - {value: 7, unit: assault guns, source: ib-1943-07, locator: "'All seven guns and three armored supply vehicles are in this echelon'", retrieved: 2026-11-11, confidence: verified}
+
+  gun:
+    designation: {value: "7.5 cm StuK 40 L/48", unit: name, source: wp-en-stug-iii, locator: "infobox primary_armament: '1 x 7.5 cm StuK 40 L/48, 54 rounds'", retrieved: 2026-11-11, confidence: verified, note: "same gun as the KwK 40 L/48 under the assault-gun name (wp-en-kwk40, History)"}
+    calibre_mm: {value: 75, unit: mm, source: wp-en-kwk40, locator: "infobox caliber 75 mm", retrieved: 2026-11-11, confidence: verified}
+    ap_round: {value: "Pzgr. Patr. 39 (APCBC)", unit: name, source: wp-en-kwk40, locator: "Ammunition table, first row (KwK 40 and StuK 40 share the round)", retrieved: 2026-11-11, confidence: verified}
+    ap_shot_origin: {value: german_capped, unit: category, source: wp-en-kwk40, locator: "APCBC", retrieved: 2026-11-11, confidence: verified}
+    ap_shot_mass_kg: {value: 6.8, unit: kg, source: wp-en-kwk40, locator: "Ammunition table, Pzgr. Patr. 39, 6.8 kg", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 6.80, unit: kg, source: tme30-451-hw, locator: "Chapter VII, Section V, 2.a, ammunition table: APCBC projectile weight 15 pounds", retrieved: 2026-11-11, confidence: verified}]}
+    ap_muzzle_velocity_ms:
+      value: 750
+      unit: m/s
+      source: wp-en-kwk40
+      locator: "Ammunition table, Pzgr. Patr. 39, 750 m/s"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 701, unit: m/s, source: tme30-451-hw, locator: "Chapter VII, Section V, 2.a: 'Muzzle velocity APCBC 2,300 feet per second' (x 0.3048)", retrieved: 2026-11-11, confidence: verified, note: "wartime intelligence figure; the same handbook gives the Pak 40 2,530 ft/s"}
+      preferred: "750, consistent with the Pz IV H file; the 701 m/s handbook figure is 7% low and unexplained"
+    he_round: {value: "7.5 cm Sprgr. Patr. 34 (HE)", unit: name, source: wp-en-kwk40, locator: "Ammunition list", retrieved: 2026-11-11, confidence: verified}
+    he_shell_mass_kg: {value: 5.76, unit: kg, source: tme30-451-hw, locator: "Chapter VII, Section V, 2.a, ammunition table: HE projectile weight 12.7 pounds", retrieved: 2026-11-11, confidence: verified, note: "see pz4h.yaml for the 5.69 kg and 4.42 kg alternatives"}
+
+  machine_guns:
+    count: {value: 1, unit: guns, source: wp-en-stug-iii, locator: "infobox secondary_armament: '1 x 7.92 mm MG34 or MG42 machine gun (600 rounds)'; a coaxial MG only from 1944", retrieved: 2026-11-11, confidence: verified}
+    type: {value: "MG 34 carried, fired from the loader's shielded hatch from December 1942", unit: name, source: wp-en-stug-iii, locator: "Ausf. G: 'From December 1942, a square machine gun shield for the loader was installed'", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: "One M.G. 34, carried", unit: name, source: tme30-451-hw, locator: "Chapter VII, Section V, 2.a: 'Armament Type One M.G. 34. Location Carried.'", retrieved: 2026-11-11, confidence: verified}]}
+
+  armour:
+    hull_front:
+      thickness_mm: {value: 80, unit: mm, source: wp-de-stug, locator: "Technische Daten, Panzerung, Front: Ausf. G column '80 mm'", retrieved: 2026-11-11, confidence: verified, note: "50 + 30 mm bolted plates on early G (wp-ru-stug infobox: '50+30')", alternatives: [{value: 81, unit: mm, source: tme30-451-hw, locator: "Chapter VII, Section V, 2.a: 'Hull armor Front 81 mm at 52°'", retrieved: 2026-11-11, confidence: verified}]}
+      angle_from_vertical_deg:
+        value: 21
+        unit: degrees
+        source: wp-ru-stug
+        locator: "infobox Лоб корпуса (середина) = '50+30 / 21—52°'"
+        retrieved: 2026-11-11
+        confidence: verified
+        note: "the 80 mm nose plate is in two inclinations, 21° and 52° from vertical; the upper glacis is 25+30 mm at 85° (nearly horizontal) and the lower nose 30 mm at 75°"
+        alternatives:
+          - {value: 52, unit: degrees, source: tme30-451-hw, locator: "'Hull armor Front 81 mm at 52°'", retrieved: 2026-11-11, confidence: verified}
+        preferred: >-
+          21 is the conservative choice (the steeper face that matters most for a head-on shot is the
+          superstructure front, recorded as turret_front). The deriver should state which it uses.
+      cast: {value: false, unit: boolean, source: wp-ru-stug, locator: "Тип брони: rolled and cast (cast only in the late 'Topfblende' mantlet from October 1943, wp-en-stug-iii)", retrieved: 2026-11-11, confidence: verified}
+    hull_side:
+      thickness_mm: {value: 30, unit: mm, source: wp-de-stug, locator: "Panzerung, Seiten: '30 mm' (both columns)", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 31, unit: mm, source: tme30-451-hw, locator: "'Sides 31 mm vertical'", retrieved: 2026-11-11, confidence: verified}]}
+      angle_from_vertical_deg: {value: 0, unit: degrees, source: wp-ru-stug, locator: "Борт корпуса = '30 / 0°'", retrieved: 2026-11-11, confidence: verified}
+      cast: {value: false, unit: boolean, source: wp-ru-stug, locator: "rolled plate", retrieved: 2026-11-11, confidence: verified}
+    turret_front:
+      note: "turretless: this is the fixed superstructure (casemate) front"
+      thickness_mm: {value: 80, unit: mm, source: wp-ru-stug, locator: "Лоб рубки = '50+30 / 9°'", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: "53 to 71", unit: mm, source: tme30-451-hw, locator: "'Fighting compartment armor: Front 53 to 71 mm at 15°'", retrieved: 2026-11-11, confidence: verified}]}
+      angle_from_vertical_deg: {value: 9, unit: degrees, source: wp-ru-stug, locator: "Лоб рубки '/ 9°'", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 15, unit: degrees, source: tme30-451-hw, locator: "'at 15°'", retrieved: 2026-11-11, confidence: verified}]}
+      cast: {value: false, unit: boolean, source: wp-ru-stug, locator: "rolled plate (the gun mantlet 50+30/5° is separate)", retrieved: 2026-11-11, confidence: verified}
+    turret_side:
+      note: "superstructure side"
+      thickness_mm: {value: 30, unit: mm, source: wp-ru-stug, locator: "Борт рубки = '30 / 0° + 8 / 30°' (the 8 mm is the side skirt plate)", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 30, unit: mm, source: tme30-451-hw, locator: "'Fighting compartment armor ... Sides 30 mm vertical'", retrieved: 2026-11-11, confidence: verified}]}
+      angle_from_vertical_deg: {value: 0, unit: degrees, source: wp-ru-stug, locator: "'30 / 0°'", retrieved: 2026-11-11, confidence: verified}
+      cast: {value: false, unit: boolean, source: wp-ru-stug, locator: "rolled plate", retrieved: 2026-11-11, confidence: verified}
+
+  mobility:
+    road_speed_max_kmh:
+      value: 40
+      unit: km/h
+      source: wp-en-stug-iii
+      locator: "infobox speed: '40 km/h (25 mph)'"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 38, unit: km/h, source: wp-ru-stug, locator: "Скорость по шоссе, км/ч = 38", retrieved: 2026-11-11, confidence: verified}
+        - {value: 32, unit: km/h, source: tme30-451-hw, locator: "Chapter VII, Section V, 2.a: 'Maximum speed 20 miles per hour'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 35, unit: km/h, source: ib-1943-07, locator: "'on roads, about 22 miles per hour'", retrieved: 2026-11-11, confidence: verified}
+      preferred: "40, also wp-de-stug; same engine and running gear as the Pz III"
+    engine_power: {value: 300, unit: PS (metric horsepower), source: wp-en-stug-iii, locator: "infobox engine_power: '300 PS (296 hp, 220 kW)', Maybach HL120 TRM", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 295, unit: hp (brake), source: tme30-451-hw, locator: "'Horsepower 295 at 3,000 rpm'", retrieved: 2026-11-11, confidence: verified}]}
+    combat_weight_t: {value: 23.9, unit: t, source: wp-en-stug-iii, locator: "infobox weight: '23.9 tonnes' (spec_label StuG III Ausf. G, 1942)", retrieved: 2026-11-11, confidence: verified, note: "tme30-451-hw 'Weight 26.35 short tons' = 23.9 t; wp-de-stug and wp-ru-stug also 23,9"}
+
+  crew:
+    total: {value: 4, unit: men, source: wp-en-stug-iii, locator: "infobox crew: '4 (driver, commander, gunner and loader)'", retrieved: 2026-11-11, confidence: verified}
+    in_turret: {value: 3, unit: men, source: wp-en-stug-iii, locator: "crew list: commander, gunner and loader serve the gun in the fighting compartment; the driver sits in the hull", retrieved: 2026-11-11, confidence: verified, note: "casemate vehicle: 'in_turret' here means the men serving the gun"}
+
+  traits:
+    height_m: {value: 2.16, unit: m, source: wp-en-stug-iii, locator: "infobox height 2.16 m; Ausf. G 'increased its height to 2160 mm'", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 2.13, unit: m, source: tme30-451-hw, locator: "'Height over-all 7 feet'", retrieved: 2026-11-11, confidence: verified}], note: "under the research's 2.2 m low-profile line by 4 cm"}
+    ground_pressure_kg_cm2: {value: 0.94, unit: kg/cm2, source: wp-ru-stug, locator: "Удельное давление на грунт, кг/см2 = 0,94", retrieved: 2026-11-11, confidence: verified, note: "track width 400 mm for Ausf. B-G in the same infobox"}
+    radio:
+      value: "battery and platoon commanders' vehicles two-way; other guns receive only"
+      unit: description
+      source: ib-1943-07
+      locator: "'The platoon commander's vehicle is equipped with ... a two-way radio ... The second vehicle in the platoon has only a receiving set and signal flags.'"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "describes the 1940-42 pattern; no source opened for the radio fit of a 1943 ten-gun battery"
+    open_top: {value: false, unit: boolean, source: wp-en-stug-iii, locator: "'fixed, fully integrated casemate superstructure ... provided overhead protection'", retrieved: 2026-11-11, confidence: verified, note: "the July 1943 Intelligence Bulletin wrongly calls it open-topped (Lone Sentry's editorial note)"}
+    turretless: {value: true, unit: boolean, source: wp-en-stug-iii, locator: "'The gun mount's fixed, fully integrated casemate superstructure allowed a limited traverse of 20°'", retrieved: 2026-11-11, confidence: verified}

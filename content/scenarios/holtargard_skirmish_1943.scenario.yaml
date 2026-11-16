@@ -1,0 +1,119 @@
+# Holtargard, July 1943: a skirmish, a smaller level of the battle (docs/rules/rules-v1.md 1.3). The
+# advance guards of a German battle group and of a Soviet tank brigade's forward detachment reach the
+# crossroads town first, ahead of their main bodies. Original content: the forces are invented for this
+# scenario from the unit types of roster v1 (content/units/v1.units.yaml, dated early July 1943, each value
+# derived from cited public facts); the map is the standard test board with its woods placed as tree
+# sides; its place names are the generated test board's. No historical engagement is depicted and no
+# published scenario, order of battle or victory rule is followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md).
+# Levelled on 2026-11-14 between two planning opponents at `normal` (the whole side moving, the same side
+# first every turn): the first draft (the Soviet companies beside the town, no Tiger, the town worth 3, a lead
+# of 25) went 1% German: the T-34s took the town and the hill on turn 1 and the lead ran out; with the Soviet
+# side three to five rows farther south and a Tiger platoon with the German tanks, 39.5%; with the town worth 2
+# as well, 52.5% with the opponent of 8146e8a and, with the planning opponent that no longer throws tanks
+# beside rifle companies, 50.2% over 400 games (45.4 to 55.1), mean last turn 5.7; ends at the turn limit
+# 65%, by a break 32% (nearly all German wins), by the lead 3%. (docs/review/M7/levels-handover.md.)
+# Measured again on 2026-11-14 for the lead's rulings 84 (a side's units are made Ready when its own turn begins)
+# and 85 (heavy machine-gun platoons; docs/review/M7/ready-handover.md): as it stood, 52.5% German over 200 games
+# (45.6 to 59.3). With an MG 42 platoon added to the German side (g2m, in the wood on the ridge over the town's east
+# side) and a Maxim platoon to the Soviet side (s2m, on the road out of the town to the east): German share 55.0%
+# over 400 games (50.1 to 59.8), mean last turn 5.8; ends at the turn limit 79% (138:176), by a break 19% (74:2),
+# by the lead 3%. At `hard` on both sides 65.6% German (96 games). Forces 70 German points to 61 Soviet. The guns:
+# the Pak 40 stands in the ridge wood at 2210 over the town's east approach, the half-track two hexes off; the ZiS-3
+# covers the road from the east behind the rifle company at 2216, with no truck of its own (the advance guard has none).
+
+format: impulse-scenario/1
+id: holtargard-skirmish-july-1943
+name: "Holtargard, July 1943 (Skirmish)"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3).
+battle: holtargard
+level: skirmish
+ruleset: v1
+units: v1
+map: { id: test_standard_trees, hash: "199d66239d98f21208175f6d352793be392f77e995eb8e0ec0d8e6b40f697932" }
+initiative: german
+freeDeployment: false
+objectives:
+  - { hex: "1813", points: 2, holder: none }   # the town of Holtargard (3 in the Battle level)
+  - { hex: "1810", points: 2, holder: none }   # Hill 91, above the town
+ending: { turns: 6, suddenDeathLead: 30, breakShare: 0.7 }
+sides:
+  - id: german
+    name: "German advance guard"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "3311"]]
+    formations:
+      # A tank platoon and an assault gun north of the hill, and a Tiger platoon by the ridge.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pz4h, hex: "1705" }
+          - { id: g1b, type: pz4h, hex: "1605" }
+          - { id: g1c, type: stug3g, hex: "1905" }
+          - { id: g1d, type: tiger1e, hex: "2407" }
+      # Two grenadier companies, one in its half-tracks, and an antitank gun by the wood.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: grenadier_co, hex: "2209" }
+          - { id: g2b, type: grenadier_co, carriedBy: g2h }
+          - { id: g2c, type: pak40, hex: "2210" }
+          - { id: g2m, type: mg42, hex: "2311" }        # the MG 42 platoon in the wood on the ridge, over the town's east side (ruling 85)
+          - { id: g2h, type: sdkfz251, hex: "2410" }
+  - id: soviet
+    name: "Soviet forward detachment"
+    counters: stock-b
+    orders: 3
+    zone: [["0112", "1721"], ["1812", "3321"]]
+    formations:
+      # A T-34 company and a self-propelled gun platoon far south of the town.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: t34_76, hex: "1619" }
+          - { id: s1b, type: t34_76, hex: "1620" }
+          - { id: s1c, type: su76m, hex: "1720" }
+      # A motor rifle battalion's leading companies and a gun, south of the town.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: rifle_co, hex: "1717" }
+          - { id: s2b, type: rifle_co, hex: "1817" }
+          - { id: s2c, type: rifle_co, hex: "2216" }
+          - { id: s2d, type: zis3, hex: "2217" }
+          - { id: s2m, type: maxim, hex: "2215" }       # the Maxim platoon on the road out of the town to the east (ruling 85)
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. The forces, their
+# points and the win conditions are worked out by the panel. Holtargard and this action are invented.
+# Original text, written for this project.
+briefing:
+  title: "Holtargard"
+  date: "July 1943"
+  place: "the Eastern Front"
+  picture: engraving-tank-riders
+  background: >-
+    High summer on the steppe. A German battle group and a Soviet tank brigade are both on the road to
+    the crossroads town of Holtargard. Their advance guards are an hour ahead of them.
+  situation: >-
+    The two advance guards reach the town at the same time. Whoever holds the town and the hill above
+    it when the main bodies arrive has the crossroads.
+  note: "The forces are of the kind that met that month; the place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Take the town and the hill, and keep them."
+      formations:
+        - { id: g1, role: "tanks" }
+        - { id: g2, role: "grenadiers" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Hold the town and take the hill before the German tanks do."
+      formations:
+        - { id: s1, role: "tanks" }
+        - { id: s2, role: "motor rifles" }
+  objectives:
+    - { hex: "1813", name: "Holtargard town" }
+    - { hex: "1810", name: "Hill 91" }

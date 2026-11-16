@@ -1,0 +1,156 @@
+{
+  "format": "rewardsart/1",
+  "stage": [
+    2752,
+    1536
+  ],
+  "pieces": {
+    "desk": {
+      "file": "desk.webp",
+      "width": 2752,
+      "height": 1536,
+      "side": null,
+      "tier": null
+    },
+    "medal-german-1": {
+      "file": "medal-german-1.webp",
+      "width": 616,
+      "height": 960,
+      "side": "german",
+      "tier": 1
+    },
+    "medal-german-2": {
+      "file": "medal-german-2.webp",
+      "width": 622,
+      "height": 960,
+      "side": "german",
+      "tier": 2
+    },
+    "medal-german-3": {
+      "file": "medal-german-3.webp",
+      "width": 636,
+      "height": 964,
+      "side": "german",
+      "tier": 3
+    },
+    "medal-german-4": {
+      "file": "medal-german-4.webp",
+      "width": 620,
+      "height": 956,
+      "side": "german",
+      "tier": 4
+    },
+    "medal-german-5": {
+      "file": "medal-german-5.webp",
+      "width": 636,
+      "height": 958,
+      "side": "german",
+      "tier": 5
+    },
+    "medal-soviet-1": {
+      "file": "medal-soviet-1.webp",
+      "width": 610,
+      "height": 954,
+      "side": "soviet",
+      "tier": 1
+    },
+    "medal-soviet-2": {
+      "file": "medal-soviet-2.webp",
+      "width": 620,
+      "height": 952,
+      "side": "soviet",
+      "tier": 2
+    },
+    "medal-soviet-3": {
+      "file": "medal-soviet-3.webp",
+      "width": 634,
+      "height": 956,
+      "side": "soviet",
+      "tier": 3
+    },
+    "medal-soviet-4": {
+      "file": "medal-soviet-4.webp",
+      "width": 616,
+      "height": 954,
+      "side": "soviet",
+      "tier": 4
+    },
+    "medal-soviet-5": {
+      "file": "medal-soviet-5.webp",
+      "width": 634,
+      "height": 956,
+      "side": "soviet",
+      "tier": 5
+    },
+    "rank-german-1": {
+      "file": "rank-german-1.webp",
+      "width": 374,
+      "height": 475,
+      "side": "german",
+      "tier": 1
+    },
+    "rank-german-2": {
+      "file": "rank-german-2.webp",
+      "width": 376,
+      "height": 476,
+      "side": "german",
+      "tier": 2
+    },
+    "rank-german-3": {
+      "file": "rank-german-3.webp",
+      "width": 382,
+      "height": 461,
+      "side": "german",
+      "tier": 3
+    },
+    "rank-german-4": {
+      "file": "rank-german-4.webp",
+      "width": 380,
+      "height": 476,
+      "side": "german",
+      "tier": 4
+    },
+    "rank-german-5": {
+      "file": "rank-german-5.webp",
+      "width": 388,
+      "height": 482,
+      "side": "german",
+      "tier": 5
+    },
+    "rank-soviet-1": {
+      "file": "rank-soviet-1.webp",
+      "width": 366,
+      "height": 451,
+      "side": "soviet",
+      "tier": 1
+    },
+    "rank-soviet-2": {
+      "file": "rank-soviet-2.webp",
+      "width": 374,
+      "height": 451,
+      "side": "soviet",
+      "tier": 2
+    },
+    "rank-soviet-3": {
+      "file": "rank-soviet-3.webp",
+      "width": 380,
+      "height": 454,
+      "side": "soviet",
+      "tier": 3
+    },
+    "rank-soviet-4": {
+      "file": "rank-soviet-4.webp",
+      "width": 371,
+      "height": 476,
+      "side": "soviet",
+      "tier": 4
+    },
+    "rank-soviet-5": {
+      "file": "rank-soviet-5.webp",
+      "width": 390,
+      "height": 478,
+      "side": "soviet",
+      "tier": 5
+    }
+  }
+}

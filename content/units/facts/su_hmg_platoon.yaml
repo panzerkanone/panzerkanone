@@ -1,0 +1,118 @@
+schema: unit-facts/1
+id: su_hmg_platoon
+designation: Machine-gun platoon (Soviet rifle battalion)
+full_name: Pulemyotny vzvod, machine-gun company of the rifle battalion of a rifle regiment, establishment (shtat) 04/551 of 10 December 1942
+side: soviet
+kind: machine_gun
+setting: >-
+  Eastern Front, 1943. One of the three platoons of the battalion's machine-gun company under the
+  table of the rifle company (su_rifle_company.yaml), as issued in December 1942. Added 2026-11-14
+  for the lead's ruling 85 (docs/bars/M2a.md).
+facts:
+  count_per_unit:
+    value: 18
+    unit: men
+    source: bs-rifle-bn-dec42
+    locator: "p. 1: 'Machine Gun Company, 6 Officers, 52 men ... Three Platoons, each (1 Officer, 17 men) - (three heavy machine guns)'; p. 7: 'Three Machine Gun Platoons, each (1 Officer, 17 men)', Total, all ranks 18"
+    retrieved: 2026-11-14
+    confidence: secondary
+    note: "a platoon headquarters (the platoon commander and two machine gunners with the wagons) and three squads of five men, each squad one gun"
+  rifles:
+    value: 14
+    unit: rifles
+    source: bs-rifle-bn-dec42
+    locator: "p. 7, Machine Gun Platoon: Headquarters, two machine gunners, 'Rifle 1' each; Three Squads, each: squad commander 'Rifle 1', gunner 'Rifle 1', machine gunners 'Rifle 2' (2 + 3 x 4)"
+    retrieved: 2026-11-14
+    confidence: secondary
+  pistols: {value: 1, unit: pistols, source: bs-rifle-bn-dec42, locator: "p. 7, Machine Gun Platoon, Headquarters: platoon commander 'Pistol 1'", retrieved: 2026-11-14, confidence: secondary, note: "recorded for completeness; the formulas do not use pistols"}
+  submachine_guns:
+    value: 0
+    unit: submachine guns
+    source: bs-rifle-bn-dec42
+    locator: "p. 7, Machine Gun Platoon: no submachine gun on any row"
+    retrieved: 2026-11-14
+    confidence: secondary
+  light_machine_guns:
+    value: 0
+    unit: guns
+    source: bs-rifle-bn-dec42
+    locator: "p. 7, Machine Gun Platoon: no light machine gun on any row"
+    retrieved: 2026-11-14
+    confidence: secondary
+  heavy_machine_guns:
+    value: 3
+    unit: guns
+    source: bs-rifle-bn-dec42
+    locator: "p. 1: '(three heavy machine guns)'; p. 7, Three Squads, each: deputy commander - gunner 'Heavy machine gun 1'"
+    retrieved: 2026-11-14
+    confidence: secondary
+    note: "the company's 9 (su_rifle_company.yaml, heavy_machine_guns note)"
+  organic_transport:
+    value: "horse-drawn: 2 wagons, 3 draught horses; no motor vehicles"
+    unit: description
+    source: bs-rifle-bn-dec42
+    locator: "p. 7, Machine Gun Platoon, Headquarters: 'Wagon 1', 'Draught horse 2' and 'Wagon 1', 'Draught horse 1'"
+    retrieved: 2026-11-14
+    confidence: secondary
+    note: "the guns could also go on 'four-wheeled (tachanka) or two-wheeled (dvukolka) horse carts', and in snow 'on skis or sleds by hand or ponies' (wp-en-pm1910); in action the crew pulled the gun on its wheeled mount. A carrier for it in a scenario is a game choice"
+
+  weapons:
+    rifle:
+      designation: {value: "Mosin-Nagant M1891/30", unit: name, source: bs-rifle-bn-dec42, locator: "p. 7: 'Rifle' (the rifle company's file records the model and the SVT-40 authorised)", retrieved: 2026-11-14, confidence: secondary}
+      effective_range_m: {value: 500, unit: m, source: wp-en-mosin, locator: "infobox range: '500 m, 850 m with optical sights'", retrieved: 2026-11-14, confidence: verified, note: "the same entry as su_rifle_company.yaml"}
+    heavy_machine_gun:
+      designation: {value: "Maxim M1910/30 on the Sokolov wheeled mount", unit: name, source: wp-en-pm1910, locator: "'In 1930, a modernized version M1910/30 was adopted by the Red Army'; 'The PM M1910 initially used a wheeled mounting designed by Aleksandr Alekseevich Sokolov'", retrieved: 2026-11-14, confidence: verified}
+      practical_rate_rpm:
+        value: "250-300"
+        unit: rounds per minute
+        source: wp-ru-maxim
+        locator: "'боевая скорострельность составляет 250—300 выстрелов в минуту' (section 'Система'); cyclic 600"
+        retrieved: 2026-11-14
+        confidence: verified
+        note: "the same entry as su_rifle_company.yaml; qms-pm1910 and wp-en-pm1910 give only the cyclic 600"
+        alternatives:
+          - {value: "250-300", unit: rounds per minute, source: nsd-38-1944, locator: "Введение, 3: 'Техническая скорострельность (темп стрельбы) станкового пулемёта достигает 480—600 выстрелов в минуту, боевая же его скорострельность 250—300 выстрелов в минуту'", retrieved: 2026-11-14, confidence: verified, note: "the manual agrees"}
+      effective_range_m:
+        value: 1500
+        unit: m
+        source: nsd-38-1944
+        locator: "Введение, 1 (p. 3 of the text): the heavy machine gun engages group targets and weapons 'на расстояниях до 1 000 м'; 'Станковые пулемёты в составе пулемётных подразделений применяются для стрельбы по тем же целям на расстояниях до 1 500 м'"
+        retrieved: 2026-11-14
+        confidence: verified
+        note: "the Soviet manual for this gun on the Sokolov mount (its Figure 1: 'Пулемёт системы Максима обр. 1910 г. на станке Соколова'); the guns firing together as a platoon or company reach 1,500 m, one gun 1,000 m, and 'Наилучшие результаты даёт внезапный огонь с 600 м и ближе'"
+        alternatives:
+          - {value: 1000, unit: m, source: nsd-38-1944, locator: "Введение, 1: one heavy machine gun, 'на расстояниях до 1 000 м'", retrieved: 2026-11-14, confidence: verified}
+          - {value: 2700, unit: m, source: wp-en-pm1910, locator: "infobox effective firing range '2,700 m (2,950 yd)', maximum firing range '5,000 m (5,470 yd)'", retrieved: 2026-11-14, confidence: verified, note: "su_rifle_company.yaml takes this figure and flags it as possibly a sight range; the manual's limit of the bullet's flight is 3 km (1908 bullet) and 5 km (1930 bullet), Введение, 5"}
+          - {value: 2700, unit: m, source: qms-pm1910, locator: "data table: 'Effective Range 2.700m', 'Maximum Range 5000m'", retrieved: 2026-11-14, confidence: secondary}
+          - {value: "800 to 1000", unit: m, source: wp-ru-maxim, locator: "'на практике огонь ведётся на дистанции от 800 до 1000 м'", retrieved: 2026-11-14, confidence: verified, note: "the range at which fire was mostly opened in practice"}
+        preferred: >-
+          1500, the manual's own reach for the guns firing as a machine-gun platoon or company, the role
+          and the counter of this file: the same kind of figure as the MG 42's range as Hv MG (2,000 to
+          2,500 yd, de_hmg_platoon.yaml), the gun on its own mount in the sustained-fire role (the lead's
+          word of 2026-11-14). Not 2,700 m, which su_rifle_company.yaml flags as a sight range
+      gun_weight_kg:
+        value: 23.8
+        unit: kg
+        source: wp-en-pm1910
+        locator: "infobox: gun body mass '23.8 kg (52.47 lb)'"
+        retrieved: 2026-11-14
+        confidence: verified
+        note: "qms-pm1910: 'Gun: 23.80 kg'. Recorded for the platoon's movement (ruling 85); no formula reads it"
+      mount_weight_kg:
+        value: 45.22
+        unit: kg
+        source: qms-pm1910
+        locator: "data table: 'Mount & Shield: 45.22 kg', 'Total: 74.2 kg' (with water)"
+        retrieved: 2026-11-14
+        confidence: secondary
+        note: "wp-en-pm1910: '62.66 kg' gun and wheeled mount together; wp-ru-maxim: the Sokolov mount with shield 'около 40 кг', the whole system without cartridges 'около 67 кг'. No formula reads it"
+      crew:
+        value: 5
+        unit: men
+        source: bs-rifle-bn-dec42
+        locator: "p. 7, Machine Gun Platoon, Three Squads, each: squad commander, deputy commander - gunner, gunner, machine gunner 2 (five)"
+        retrieved: 2026-11-14
+        confidence: secondary
+        alternatives:
+          - {value: 5, unit: men, source: qms-pm1910, locator: "data table: 'Crew 5'", retrieved: 2026-11-14, confidence: secondary}
+        note: "No formula reads it"

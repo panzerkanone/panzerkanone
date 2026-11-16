@@ -1,0 +1,46 @@
+schema: unit-facts/1
+id: zis5_truck
+designation: ZIS-5
+full_name: ZIS-5 (ZIS-5V wartime simplified version from 1942) 3-tonne 4x2 truck
+side: soviet
+kind: carrier
+setting: Eastern Front, 1943
+facts:
+  top_speed_kmh: {value: 60, unit: km/h, source: wp-en-zis5-truck, locator: "Specifications: 'Maximal speed: 60 km/h (from early 1950s - 70 km/h)'", retrieved: 2026-11-11, confidence: verified}
+  engine_power:
+    value: 73
+    unit: hp (rated)
+    source: wp-en-zis5-truck
+    locator: "Specification: 'Engine: carburetor, 73 hp(*)/2300rpm ... (from Jan. 1944 - 76 hp/2400rpm)'"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "footnote (*): 'the real power of the engine was less than claimed in official documents and equal to 67-68 hp'. Not a v1 formula input for trucks"
+    alternatives:
+      - {value: "67-68", unit: hp (brake), source: wp-en-zis5-truck, locator: "Specification footnote (*)", retrieved: 2026-11-11, confidence: verified}
+  empty_weight_t: {value: 3.1, unit: t, source: wp-en-zis5-truck, locator: "infobox weight 3100 kg", retrieved: 2026-11-11, confidence: verified}
+  payload_t: {value: 3, unit: t, source: wp-en-zis5-truck, locator: "Specifications: '4x2, 2-axle 3-ton cargo truck'; nickname 'Tryohtonka' for its 3-ton payload", retrieved: 2026-11-11, confidence: verified}
+  troops_carried:
+    value: 25
+    unit: men
+    source: wp-en-zis5-truck
+    locator: "'used as a light artillery tractor and for troop transportation (25 soldiers could sit in five benches placed in the rear bo[x])'"
+    retrieved: 2026-11-11
+    confidence: verified
+    alternatives:
+      - {value: "12 to 24", unit: men, source: kolesa-zis5-2018, locator: "'для перевозки 12–24 человек личного состава их оборудовали съемными скамейками'", retrieved: 2026-11-11, confidence: verified, note: "a motoring magazine's history article, citing no document; added 2026-11-11"}
+    preferred: "25, the existing value: a seat count on five benches. The magazine's range has no source of its own"
+  tow_role: {value: "light artillery tractor", unit: description, source: wp-en-zis5-truck, locator: "same sentence", retrieved: 2026-11-11, confidence: verified}
+  crew:
+    total:
+      value: null
+      unit: men
+      source: null
+      locator: "not found"
+      retrieved: 2026-11-11
+      confidence: unverified
+      note: >-
+        Gap. Neither wp-en-zis5-truck (rev. 1380088739) nor wp-ru-zis5 (rev. 154151080) gives a
+        crew or a cab seat count; wp-ru-zis5 says only that its successor, the ZIS-15, had a new
+        three-seat cab ('трёхместной ... кабиной'), which does not give the ZIS-5's. A web search
+        for a technical description found none.
+  armour: {value: none, unit: description, source: wp-en-zis5-truck, locator: "cargo truck; improvised armoured versions were separate vehicles (IZ, 1941)", retrieved: 2026-11-11, confidence: verified}

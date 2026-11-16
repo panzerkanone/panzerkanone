@@ -1,0 +1,122 @@
+# The Marnov Road, August 1943: a skirmish, the battle's smaller level (docs/rules/rules-v1.md 1.3). The
+# two columns' leading companies meet on the steppe road before their main bodies come up. Original content:
+# the situation and the forces are invented for this scenario from the unit types of roster v1
+# (content/units/v1.units.yaml, each value derived from cited public facts); the board is this project's own
+# generated board "open_steppe" (assets/maps/open_steppe.map.yaml), and the place names are the board's own
+# invented names. No historical engagement is depicted, and no published scenario, board, order of battle or
+# victory rule is followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md): as in the Battle level,
+# the two columns start in Hill 161's shadow on either side of it.
+# Levelled on 2026-11-14 between two planning opponents at `normal` (the whole side moving, the same side
+# first every turn; the planning opponent that no longer throws tanks beside rifle companies): the first
+# draft (a Tiger platoon with the German tanks; two T-34 companies and two rifle companies) went 90.0%
+# German; without the Tiger, 84.0%; without it and with a third T-34 company, 57.5%; with a third rifle
+# company east of Marnov as well, 51.7% over 400 games (46.9 to 56.6), mean last turn 5.4; ends by a break
+# 59% (won by either side), at the turn limit 42%. (docs/review/M7/levels-handover.md.)
+# Levelled again on 2026-11-15 for the lead's rulings 84 (a side's units are made Ready when its own turn begins) and 85
+# (heavy machine-gun platoons), with the planning opponent that sets its whole side's fire discipline alike
+# (docs/review/M7/levels2-handover.md): as it stood it went 74.0% German over 200 games at `normal` (67.5 to 79.6;
+# measured before that change of the opponent), too high for the side that moves first. A KV-1 company for the Soviet
+# side 64.5%, a Maxim platoon 70.5%; the wood worth 1 (it was 2: the German side takes it on its first turn) 42.3% over
+# 400; with that, Hill 161 worth 4 35.5%; an MG 42 platoon for the German side beside its half-track (1210) 57.5% over
+# 400, and a Maxim as well 29.5%. With the wood worth 1 and the MG 42 platoon one hex farther back (g2m, 1010), this
+# file: German share 49.0% over 400 games (44.1 to 53.9), mean last turn 5.9; ends at the turn limit 83% (146:185), by a
+# break 17% (50:19). At `hard` on both sides 19.8% German (96 games; 45.8% before ruling 84). Forces 44 German points to
+# 76 Soviet. The guns: the MG 42 platoon stands beside the assault guns (1110), its half-track two hexes off (1109); the
+# Soviet ZiS-3 is east of the road (3012) with the riflemen's ZIS-5 three hexes off (3110), carrying a rifle company.
+
+format: impulse-scenario/1
+id: marnov-road-skirmish-august-1943
+name: "The Marnov Road, August 1943 (Skirmish)"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3).
+battle: marnov
+level: skirmish
+ruleset: v1
+units: v1
+map: { id: open_steppe, hash: "c36568cf7e2a57d9e6e7887fa3c9c358246309dad8053a16a4fb1059b3301454" }
+initiative: german
+freeDeployment: false
+objectives:
+  - { hex: "1808", points: 1, holder: none }   # the wood beside the road, on the German side of the hill (2 until 2026-11-15)
+  - { hex: "2111", points: 3, holder: none }   # Hill 161, beside the road between the two columns
+ending: { turns: 6, suddenDeathLead: 30, breakShare: 0.7 }
+sides:
+  - id: german
+    name: "German advance guard"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "1521"]]
+    formations:
+      # Two Pz IV H platoons at the head of the column on the road.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pz4h, hex: "1310" }
+          - { id: g1b, type: pz4h, hex: "1311" }
+      # A grenadier company in its half-tracks, an assault gun platoon and an MG 42 platoon (since 2026-11-15).
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: stug3g, hex: "1110" }
+          - { id: g2b, type: grenadier_co, carriedBy: g2h }
+          - { id: g2m, type: mg42, hex: "1010" }
+          - { id: g2h, type: sdkfz251, hex: "1109" }
+  - id: soviet
+    name: "Soviet forward detachment"
+    counters: stock-b
+    orders: 3
+    zone: [["2201", "3321"]]
+    formations:
+      # Three T-34 companies and a self-propelled gun platoon south of the road behind the hill.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: t34_76, hex: "2411" }
+          - { id: s1b, type: t34_76, hex: "2511" }
+          - { id: s1c, type: su76m, hex: "2911" }
+          - { id: s1d, type: t34_76, hex: "2412" }
+      # A rifle company by the hill, another east of Marnov, a motor rifle company in its trucks, and a gun
+      # east of Marnov.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: rifle_co, hex: "2311" }
+          - { id: s2d, type: rifle_co, hex: "3111" }
+          - { id: s2b, type: rifle_co, carriedBy: s2t }
+          - { id: s2c, type: zis3, hex: "3012" }
+          - { id: s2t, type: zis5, hex: "3110" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. Marnov, Lunets and
+# this action are invented: the background is period color and claims no real engagement. Original text,
+# written for this project.
+briefing:
+  title: "The Marnov Road"
+  date: "August 1943"
+  place: "the Eastern Front"
+  picture: engraving-wrecks
+  background: >-
+    Late summer, and the front is moving again. A German battle group and a Soviet tank brigade drive
+    toward each other along the steppe road west of Marnov. Their advance guards are well ahead.
+  situation: >-
+    The two advance guards meet on open steppe. There is almost nowhere to hide. A small wood stands
+    beside the road, and Hill 161 looks out over everything. Whoever holds the hill when the main bodies
+    arrive holds the road.
+  note: "The forces are of the kind that met that month. The place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Take Hill 161 and hold the wood by the road. Your guns reach farther, so make him cross the open to you."
+      formations:
+        - { id: g1, role: "tanks" }
+        - { id: g2, role: "grenadiers and assault guns" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Take Hill 161 first. His guns reach farther, so close in fast."
+      formations:
+        - { id: s1, role: "tanks" }
+        - { id: s2, role: "riflemen and gun" }
+  objectives:
+    - { hex: "1808", name: "The wood by the road" }
+    - { hex: "2111", name: "Hill 161" }

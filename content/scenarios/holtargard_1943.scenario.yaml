@@ -1,0 +1,172 @@
+# Holtargard, July 1943: a German battle group and a Soviet tank brigade's forward detachment
+# meet for a crossroads town. Original content: the forces are invented for this scenario from
+# the unit types of roster v1 (content/units/v1.units.yaml, dated early July 1943, each value
+# derived from cited public facts); the map and its place names are the generated test board's.
+# No historical engagement is depicted and no published scenario is followed. The set-up and
+# the forces are those of the balance review of 2026-11-13 (docs/review/M2b/balance/README.md):
+# on the board the game plays (tree sides) no unit starts in sight of an enemy unit, and two
+# stand-in opponents each win about half their games.
+# Balanced again on 2026-11-14 for ruling 82 (infantry companies move 4) and the planning opponent
+# taught rulings 80 and 81: between two planning opponents at `normal` (the whole side moves, the same
+# side first every turn) the set-up as it stood went 90.5% German over 200 games, nearly all by the
+# Soviet side's break: the German armor outshoots the T-34s from the ridge and the hill's flank. No
+# change of starting places moved it (rifles in the town, the Tigers or the Pz IVs farther back, the
+# Soviet side farther south, the T-34s on the east flank: 85% to 97%). Changed: one Tiger platoon
+# fewer (g4b; 74%), the wood worth 1 a turn (it was 2: the German side holds it from turn 1), and a
+# break share of 0.75 (it was 0.6). German share 54.0% (47.1 to 60.8), mean last turn 7.1; ends by a
+# break 56%, the lead 14% and the turn limit 31% (docs/review/M2b/balance-82-handover.md).
+# The free-deployment form of the same scenario is holtargard_1943_free.scenario.yaml.
+# Levelled again on 2026-11-14 for the planning opponent that no longer throws tanks beside rifle companies
+# (the levels builder; docs/review/M7/levels-handover.md): as it stood it went 62.5% German over 200 games
+# at `normal`, nearly all its wins by the Soviet side's break. Neither starting places (the Pz IVs two rows
+# back: 73%) nor the objectives and endings (the town worth 4: 63.5%; break 0.8: 61%; a lead of 30: 64.5%)
+# moved it; one Pz IV H platoon fewer (g1d) did: German share 50.7% over 400 games (45.9 to 55.6), mean last turn
+# 7.6; ends at the turn limit 50%, by a break 40% (all German wins), by the lead 10%. Forces 105 German points
+# to 119 Soviet.
+
+format: impulse-scenario/1
+id: holtargard-july-1943
+name: "Holtargard, July 1943"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3): the battle's Battle level.
+battle: holtargard
+level: battle
+ruleset: v1
+units: v1
+map: { id: test_standard, hash: "bc56fc9b1f9dfe5471c26220d8605c5e66e90bbe3394dd24a24c8e03e6a43c5e" }
+initiative: german
+freeDeployment: false
+objectives:
+  - { hex: "1813", points: 3, holder: none }   # the town of Holtargard
+  - { hex: "1810", points: 2, holder: none }   # hilltop
+  - { hex: "2110", points: 1, holder: none }   # woods (2 until 2026-11-14)
+# The endings are set for this roster, whose counters cost up to 21: the ruleset's lead of 12 was
+# reached by one kill, and games between two stand-in opponents ended on turn 3 or 4 of 8.
+# The lead that wins at once was 20 until 2026-11-14, when the owner found it too strict: with the
+# whole side moving, two or three kills in one turn reached it. At 40 it ends a rout and little
+# else (ruling 79 in docs/bars/M2a.md has the measure). Provisional.
+# The break share was 0.6 until 2026-11-14: with the planning opponent on both sides nearly every
+# game ended in the Soviet side's break; at 0.75 a side must lose three quarters of its cost.
+ending: { turns: 8, suddenDeathLead: 40, breakShare: 0.75 }
+sides:
+  - id: german
+    name: "German battle group"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "3311"]]
+    formations:
+      # A tank company: three platoons of Pz IV H, in the dead ground north of Hill 91 (four until
+      # 2026-11-14: one fewer for the new planning opponent).
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pz4h, hex: "1705" }
+          - { id: g1b, type: pz4h, hex: "1605" }
+          - { id: g1c, type: pz4h, hex: "1704" }
+      # Grenadiers with assault guns, in the wood; one company rides a half-track platoon.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: stug3g, hex: "2409" }
+          - { id: g2b, type: grenadier_co, carriedBy: g2h }
+          - { id: g2c, type: grenadier_co, hex: "2209" }
+          - { id: g2d, type: grenadier_co, hex: "2310" }
+          - { id: g2h, type: sdkfz251, hex: "2410" }
+      # The support: an assault gun platoon, anti-tank guns at the wood's edge, heavy mortars behind
+      # the hill, and trucks to move them.
+      - id: g3
+        discipline: free
+        units:
+          - { id: g3a, type: stug3g, hex: "1905" }
+          - { id: g3b, type: pak40, hex: "2210" }
+          - { id: g3c, type: grw42, hex: "1805" }
+          - { id: g3t, type: opel_blitz, hex: "1804" }
+      # A heavy tank platoon behind the eastern ridge and its escort in the wood, holding fire for
+      # armour (two Tiger platoons until 2026-11-14).
+      - id: g4
+        discipline: armor
+        units:
+          - { id: g4a, type: tiger1e, hex: "2407" }
+          - { id: g4c, type: grenadier_co, hex: "2211" }
+          - { id: g4m, type: mg42, hex: "2311" }        # the MG 42 platoon in the wood on the ridge, over the town's east side (ruling 85)
+  - id: soviet
+    name: "Soviet tank brigade"
+    counters: stock-b
+    orders: 3
+    zone: [["0112", "1721"], ["1812", "3321"]]
+    formations:
+      # A tank battalion: three companies of T-34, south-west of the town, out of sight of the hill.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: t34_76, hex: "1616" }
+          - { id: s1b, type: t34_76, hex: "1615" }
+          - { id: s1c, type: t34_76, hex: "1715" }
+      # Motor rifles beside the town with a battery of self-propelled guns; one company rides the trucks.
+      # No unit starts on an objective.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: su76m, hex: "1716" }
+          - { id: s2b, type: su76m, hex: "1717" }
+          - { id: s2c, type: rifle_co, carriedBy: s2t }
+          - { id: s2d, type: rifle_co, hex: "1714" }
+          - { id: s2e, type: rifle_co, hex: "1814" }
+          - { id: s2t, type: zis5, hex: "1815" }
+      # The support: divisional guns forward, heavy mortars behind Hill 86, and trucks to move them.
+      - id: s3
+        discipline: free
+        units:
+          - { id: s3a, type: zis3, hex: "2214" }
+          - { id: s3b, type: zis3, hex: "1612" }
+          - { id: s3c, type: pm38, hex: "2017" }
+          - { id: s3t, type: zis5, hex: "2117" }
+      # Heavy tanks and their riflemen at the south end of the wood, holding fire for armour.
+      - id: s4
+        discipline: armor
+        units:
+          - { id: s4a, type: kv1, hex: "2314" }
+          - { id: s4b, type: rifle_co, hex: "2213" }
+          - { id: s4c, type: rifle_co, hex: "2414" }
+          - { id: s4m, type: maxim, hex: "2215" }       # the Maxim platoon on the road out of the town to the east (ruling 85)
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. The forces, their
+# points and the win conditions are NOT written here: the panel works the forces out from the units above
+# and states the win conditions from `ending` and `objectives`, so they cannot drift from the rules.
+# Holtargard is an invented place and this action is invented: the background is period colour and
+# claims no real engagement. Original text, written for this project.
+briefing:
+  title: "Holtargard"
+  date: "July 1943"
+  place: "the Eastern Front"
+  picture: engraving-tank-riders
+  background: >-
+    High summer on the steppe. While the great battle around the Kursk salient burns to the south,
+    a German battle group is sent to take the crossroads town of Holtargard before a Soviet tank
+    brigade's forward detachment can dig in around it.
+  situation: >-
+    Both columns reach the town on the same morning. Whoever holds the town, the hill above it and
+    the wood beside the road when the day ends has the crossroads.
+  note: "The forces are of the kind that met that month; the place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Take the town, the hill and the wood, and keep them."
+      formations:
+        - { id: g1, role: "tank company" }
+        - { id: g2, role: "grenadiers" }
+        - { id: g3, role: "support" }
+        - { id: g4, role: "heavy tanks" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Hold the crossroads, and break the battle group against it."
+      formations:
+        - { id: s1, role: "tank battalion" }
+        - { id: s2, role: "motor rifles" }
+        - { id: s3, role: "support" }
+        - { id: s4, role: "heavy tanks" }
+  objectives:
+    - { hex: "1813", name: "Holtargard town" }
+    - { hex: "1810", name: "Hill 91" }
+    - { hex: "2110", name: "The wood" }

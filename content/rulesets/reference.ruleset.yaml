@@ -1,0 +1,87 @@
+# The reference ruleset of Milestone 1b: a small ruleset that proves the engine kernel.
+# It ports the old prototype's behaviour in general form only (a sequence of phases, a
+# stacking limit, fire resolved by odds against a table, movement by terrain cost, a
+# victory rule). Every number in this file was invented for it: none is copied from a
+# published game or from the old prototype's rules profile.
+# Checked on load by this ruleset's own loader (data.ts, among the engine's rulesets): every
+# key is required, unknown keys are refused, nothing is defaulted.
+
+format: ruleset/1
+id: reference
+version: 1
+name: "Reference ruleset"
+note: "Every number in this file is invented for the engine kernel's reference ruleset. None is taken from a published game or from the old prototype's rules profile."
+
+# Two six-sided dice per attack; the result is read from their sum.
+dice: { count: 2, faces: 6 }
+
+# The phases of a player-turn, in order. gunnery: units declare fire, and ending the phase
+# resolves every declared attack. manoeuvre: units move.
+sequence: [gunnery, manoeuvre]
+
+moverTypes: [tracked, wheeled, foot]
+targetClasses: [hard, soft]
+
+movement:
+  rule: >-
+    The cost of a step from hex a to the adjacent hex b, for one mover type. If a and b are
+    consecutive hexes of one road chain of the map (in either order), the step costs
+    road[mover] and nothing else is added (a road step onto a river hex is a bridge).
+    Otherwise it costs enter[cover of b][mover], plus climb[mover] when a is level ground and
+    b is a hilltop, plus ridge[mover] when the hexside between a and b is a ridge crest edge,
+    plus river[mover] when b is a hex of a river chain. null means impassable: a step is
+    impassable when any term that applies to it is null. Stepping down from a hilltop adds
+    nothing; separators and slope area cost nothing. A unit may spend up to its allowance
+    in movement points in one move.
+  road:  { tracked: 1, wheeled: 1, foot: 2 }
+  enter:
+    open:  { tracked: 2, wheeled: 3, foot: 2 }
+    woods: { tracked: 5, wheeled: null, foot: 3 }
+    town:  { tracked: 3, wheeled: 2, foot: 2 }
+    field: { tracked: 2, wheeled: 4, foot: 3 }
+    swamp: { tracked: null, wheeled: null, foot: 5 }
+    rough: { tracked: 4, wheeled: 6, foot: 4 }
+  climb: { tracked: 2, wheeled: 3, foot: 1 }
+  ridge: { tracked: 1, wheeled: 2, foot: 0 }
+  river: { tracked: 5, wheeled: null, foot: 3 }
+
+sight:
+  # Which covers add one level to a hex's height for line of sight.
+  coverAddsLevel: { open: false, woods: true, town: true, field: false, swamp: false, rough: false }
+  # The crest rule: between two level hexes that are not neighbours, a crest or separator crossed blocks.
+  crestRule: true
+
+fire:
+  rule: >-
+    A unit declares fire on one enemy unit it can see within its range, if it has firepower
+    against the target's class. Every unit that declared on the same target fires together
+    when the gunnery phase ends, targets in order of unit number. Attack = the sum of the
+    attackers' firepower against the target's class. Defense = the target's defense plus
+    coverDefense of the cover of its hex. The column is the last one whose atLeast ratio
+    [p, q] satisfies attack * q >= defense * p; below the first column the attack cannot
+    succeed. Roll the dice: a sum at or above `destroy` destroys the target, else a sum at
+    or above `suppress` suppresses it, else no effect (null: that result cannot happen).
+    When only one result is possible no dice are rolled. A suppressed unit cannot act; it
+    recovers at the end of its own side's next player-turn. Suppressing a suppressed unit
+    changes nothing.
+  coverDefense: { open: 0, woods: 2, town: 3, field: 0, swamp: 1, rough: 1 }
+  columns:
+    - { atLeast: [1, 5], destroy: null, suppress: 11 }
+    - { atLeast: [2, 5], destroy: 12, suppress: 10 }
+    - { atLeast: [3, 4], destroy: 11, suppress: 9 }
+    - { atLeast: [5, 4], destroy: 10, suppress: 7 }
+    - { atLeast: [7, 4], destroy: 9, suppress: 6 }
+    - { atLeast: [5, 2], destroy: 8, suppress: 5 }
+    - { atLeast: [7, 2], destroy: 7, suppress: 4 }
+    - { atLeast: [5, 1], destroy: 6, suppress: 3 }
+
+# Unit types. firepower is per target class; allowance is in movement points; value is what
+# destroying the unit scores for the other side.
+unitTypes:
+  - { id: battle_tank,    name: "Battle tank",       mover: tracked, class: hard, firepower: { hard: 7, soft: 5 }, defense: 6, range: 7, allowance: 10, value: 6 }
+  - { id: light_tank,     name: "Light tank",        mover: tracked, class: hard, firepower: { hard: 4, soft: 4 }, defense: 4, range: 6, allowance: 13, value: 4 }
+  - { id: tank_destroyer, name: "Tank destroyer",    mover: tracked, class: hard, firepower: { hard: 9, soft: 2 }, defense: 5, range: 8, allowance: 9,  value: 5 }
+  - { id: armoured_car,   name: "Armoured car",      mover: wheeled, class: hard, firepower: { hard: 2, soft: 3 }, defense: 2, range: 5, allowance: 16, value: 2 }
+  - { id: rifle_platoon,  name: "Rifle platoon",     mover: foot,    class: soft, firepower: { hard: 0, soft: 4 }, defense: 5, range: 3, allowance: 5,  value: 3 }
+  - { id: mortar_section, name: "Mortar section",    mover: foot,    class: soft, firepower: { hard: 0, soft: 6 }, defense: 2, range: 9, allowance: 4,  value: 2 }
+  - { id: antitank_gun,   name: "Anti-tank gun",     mover: foot,    class: soft, firepower: { hard: 6, soft: 1 }, defense: 3, range: 8, allowance: 2,  value: 3 }

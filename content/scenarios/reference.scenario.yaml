@@ -1,0 +1,51 @@
+# The reference scenario of Milestone 1b: two equal forces meet over three towns on the
+# standard test board. Original content: invented forces and numbers; the map and its
+# place names are the generated test board's.
+# Checked on load by its ruleset's own loader (scenario.ts, among the engine's rulesets)
+# against the ruleset data and the map, whose content hash must match the one given here.
+
+format: scenario/1
+id: reference-holtargard
+name: "Meeting at Holtargard"
+ruleset: reference
+map: { id: test_standard, hash: "bc56fc9b1f9dfe5471c26220d8605c5e66e90bbe3394dd24a24c8e03e6a43c5e" }
+
+# The game ends after this turn, the higher score winning.
+turns: 8
+# A side with this many live units or fewer has lost at once.
+brokenAt: 4
+# Each hex here scores its points, at the end of every turn, for a side that alone holds it. Three
+# points on the main road: the middle of the board, and one four columns to either side of it
+# (the western one is the town of Pelarost).
+objectives:
+  - { hex: "1714", points: 3 }
+  - { hex: "1314", points: 2 }
+  - { hex: "2114", points: 2 }
+
+# Sides in order of play. Both set up at the same time, hidden from each other until both
+# have submitted. zone: two opposite corners of the set-up rectangle.
+sides:
+  - id: azure
+    name: "Azure column"
+    stacking: 2
+    zone: ["0101", "0421"]
+    force:
+      - { type: battle_tank, count: 4 }
+      - { type: light_tank, count: 2 }
+      - { type: tank_destroyer, count: 1 }
+      - { type: armoured_car, count: 1 }
+      - { type: rifle_platoon, count: 4 }
+      - { type: mortar_section, count: 1 }
+      - { type: antitank_gun, count: 1 }
+  - id: ochre
+    name: "Ochre column"
+    stacking: 2
+    zone: ["3001", "3321"]
+    force:
+      - { type: battle_tank, count: 4 }
+      - { type: light_tank, count: 2 }
+      - { type: tank_destroyer, count: 1 }
+      - { type: armoured_car, count: 1 }
+      - { type: rifle_platoon, count: 4 }
+      - { type: mortar_section, count: 1 }
+      - { type: antitank_gun, count: 1 }

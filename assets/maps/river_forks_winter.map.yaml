@@ -1,0 +1,152 @@
+# Two frozen rivers and their tributaries: a generated board. Original content: invented terrain from archetype
+# stamps and invented place names.
+# Regenerate: npm run genmap -- --seed 25 --country river --density 0.3 --cols 33 --rows 21 --woods sides --tributaries --season winter --name "Two frozen rivers and their tributaries" --out assets/maps/river_forks_winter.map.yaml
+
+format: map/1
+layout: flat-top
+id: river_forks_winter
+name: "Two frozen rivers and their tributaries"
+cols: 33
+rows: 21
+artSeed: 3474492985
+# season: the time of year the board is printed for, summer or winter (a map without the key is summer).
+season: winter
+
+# The two layers: one text row per board row, top row first; one character per
+# column, column 01 first. On the board, even-numbered columns sit half a hex lower.
+#   elevation:  .  level ground   H  hilltop
+elevation: |
+  .................................
+  .............H.H.................
+  .............HH..................
+  ............................H....
+  ......................H..........
+  .................................
+  .................................
+  .................................
+  .................................
+  ..............H..................
+  ..............H..................
+  .................................
+  .................................
+  ...............H.................
+  .................................
+  .................................
+  .................................
+  .................................
+  .................................
+  .....H...........................
+  .....HH..........................
+#   cover:  .  open   w  woods   t  town   f  field   s  swamp   r  rough
+cover: |
+  .................................
+  .................................
+  .................................
+  ...........f.....................
+  ............tt...................
+  ...........................s...f.
+  ............................s.t..
+  .......................s....s.t..
+  ......................ss.........
+  .............................f...
+  ............................tf...
+  ............................t....
+  .................................
+  .................................
+  .................................
+  .................................
+  .............rr..................
+  .................................
+  ...t.......................s.....
+  ...f.................s.....s.....
+  .................sssss...........
+
+# A hex is named by the label printed on it: column then row ("0412" is column 4, row 12).
+# A slope is not a hex. It is the hill area around a crest, and a crest is a hexside:
+# every edge of a hilltop is one, and a ridge is a chain of them across level ground.
+# ridges: each ridge is its chain of crest edges; an edge is the pair of hexes it runs between.
+ridges:
+  - [["3120", "3219"], ["3119", "3219"], ["3119", "3218"], ["3118", "3218"], ["3118", "3217"]]
+  - [["2515", "2614"], ["2615", "2614"], ["2615", "2715"], ["2716", "2715"], ["2716", "2815"]]
+
+# roads and rivers run hex to hex. A road leaves the map at each exit; a river end on the
+# board edge runs off the map.
+# A river whose last hex is a hex of another river joins it there: a junction.
+roads:
+  - ["0102", "0202", "0302", "0402", "0503", "0603", "0703", "0803", "0904", "1004", "1104", "1204", "1305", "1405"]
+  - ["0421", "0420", "0419", "0519", "0618", "0617", "0616", "0716", "0815", "0814", "0813", "0913", "1012", "1011", "1010", "1009", "1109", "1208", "1207", "1206", "1306", "1405"]
+  - ["1405", "1505", "1604", "1705", "1805", "1906", "2005", "2106", "2206", "2307", "2406", "2506", "2606", "2706", "2805", "2906", "3006", "3107"]
+  - ["2921", "2920", "2919", "3018", "3017", "3016", "3015", "2915", "2914", "2913", "2912", "2911", "3010", "3110", "3109", "3108", "3107"]
+  - ["3107", "3206", "3307"]
+exits: ["0102", "3307", "0421", "2921"]
+rivers:
+  - ["3316", "3215", "3116", "3016", "2917", "2918", "2818", "2819", "2720", "2619", "2520", "2420", "2320", "2220", "2120", "2020", "1920", "1820", "1720", "1620", "1520", "1420", "1320", "1219", "1218", "1118", "1117", "1016", "0917", "0816", "0717", "0616", "0517", "0416", "0317", "0216", "0117"]
+  - ["3302", "3202", "3203", "3204", "3205", "3106", "3006", "2907", "2908", "2808", "2709", "2608", "2509", "2408", "2309", "2208", "2109", "2008", "2007", "1907", "1807", "1707", "1607", "1507", "1407", "1308", "1207", "1108", "1007", "0908", "0807", "0708", "0608", "0508", "0408", "0309", "0208", "0109"]
+  - ["3309", "3209", "3109", "3009", "2909", "2808"]
+  - ["3313", "3213", "3113", "3013", "3014", "2915", "2916", "2917"]
+bridges: ["0616", "1207", "2915", "3006", "3016", "3109"]
+
+towns:
+  - { name: "Dararmere", hexes: ["1405", "1305"] }
+  - { name: "Wesargard", hexes: ["3107", "3108"] }
+  - { name: "Morenfeld", hexes: ["2911", "2912"] }
+  - { name: "Ulmwick", hexes: ["0419"] }
+# spotHeights: the hill numbers printed on hilltops ("Hill 92").
+spotHeights:
+  - { hex: "0620", height: 170 }
+  - { hex: "1614", height: 54 }
+  - { hex: "2305", height: 83 }
+  - { hex: "2904", height: 158 }
+
+# trees: tree sides. Woods are a hexside feature, as slopes are: each entry sets one hexside
+# for trees, with a strength (above 0, at most 3; 1 is an ordinary side). A side is named by a
+# hex and one of its six sides, N NE SE S SW NW (N and S are the level ones): by the hex for
+# which it faces N, NE or SE, or on the board's own edge by the hex it belongs to. Nothing else
+# is stored: a hex is a tree hex when any of its sides is set, and the art derives the rest.
+trees:
+  - { hex: "1606", side: "N", strength: 1.1 }
+  - { hex: "1605", side: "SE", strength: 1 }
+  - { hex: "1506", side: "NE", strength: 1.2 }
+  - { hex: "0507", side: "N", strength: 1 }
+  - { hex: "0507", side: "NE", strength: 1.3 }
+  - { hex: "0507", side: "SE", strength: 1.4 }
+  - { hex: "0508", side: "N", strength: 1.3 }
+  - { hex: "0407", side: "NE", strength: 0.9 }
+  - { hex: "0406", side: "SE", strength: 1.2 }
+  - { hex: "0406", side: "N", strength: 1.3 }
+  - { hex: "0406", side: "NE", strength: 1.2 }
+  - { hex: "0407", side: "N", strength: 0.9 }
+  - { hex: "0307", side: "NE", strength: 1.1 }
+  - { hex: "0306", side: "SE", strength: 1.1 }
+  - { hex: "0506", side: "SE", strength: 1 }
+  - { hex: "0307", side: "N", strength: 1.1 }
+  - { hex: "0206", side: "NE", strength: 1.2 }
+  - { hex: "1808", side: "NE", strength: 1 }
+  - { hex: "1909", side: "N", strength: 1.3 }
+  - { hex: "1909", side: "NE", strength: 1 }
+  - { hex: "1909", side: "SE", strength: 1 }
+  - { hex: "2007", side: "NE", strength: 1.1 }
+  - { hex: "1808", side: "SE", strength: 1 }
+  - { hex: "0212", side: "N", strength: 1.2 }
+  - { hex: "0212", side: "NE", strength: 1 }
+  - { hex: "0211", side: "SE", strength: 1 }
+  - { hex: "0313", side: "N", strength: 1 }
+  - { hex: "0212", side: "SE", strength: 1.2 }
+  - { hex: "0811", side: "SE", strength: 1 }
+  - { hex: "1012", side: "SE", strength: 1.1 }
+  - { hex: "0812", side: "NE", strength: 1.2 }
+  - { hex: "0812", side: "N", strength: 0.9 }
+  - { hex: "0712", side: "NE", strength: 1 }
+  - { hex: "0711", side: "SE", strength: 1 }
+  - { hex: "0321", side: "N", strength: 1 }
+  - { hex: "0220", side: "NE", strength: 1.1 }
+  - { hex: "0219", side: "SE", strength: 1 }
+  - { hex: "2521", side: "NE", strength: 1.2 }
+
+source:
+  generator: "mapgen/3"
+  seed: 25
+  country: river
+  density: 0.3
+  mirror: false
+  command: "npm run genmap -- --seed 25 --country river --density 0.3 --cols 33 --rows 21 --woods sides --tributaries --season winter --name \"Two frozen rivers and their tributaries\" --out assets/maps/river_forks_winter.map.yaml"

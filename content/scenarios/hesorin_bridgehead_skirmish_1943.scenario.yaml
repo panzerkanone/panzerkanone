@@ -1,0 +1,118 @@
+# The Hesorin Bridgehead, October 1943: a skirmish, the battle's smaller level (docs/rules/rules-v1.md 1.3). The
+# forward detachment of a Soviet tank brigade (two T-34 companies, a SU-76M platoon, two rifle companies and a Maxim
+# platoon) comes down from Kelenholm against the German rearguard at the north end of the bridge: a grenadier company
+# in Hesorin with two anti-tank guns and a machine-gun platoon, and across the river a StuG III G platoon and a
+# second grenadier company in its half-track. Original content: the situation and the forces are invented for this
+# scenario from the unit types of roster v1 (content/units/v1.units.yaml, each value derived from cited public
+# facts); the board is this project's own generated board "hesorin_steppe" (assets/maps/hesorin_steppe.map.yaml), and
+# the place names are the board's own invented names, on no other board. No historical engagement is depicted, and
+# no published scenario, board, order of battle or victory rule is followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md). The Soviet side attacks and
+# moves first, and is the larger in points (52 to 35).
+# Levelled on 2026-11-14 and 15 between two planning opponents at `normal` (the whole side moving, the same side
+# first every turn; docs/review/M7/battles-handover.md). The first draft (one anti-tank gun, 6 turns, break share
+# 0.7) went 20% Soviet over 100 games. The share moves in steps, because the detachment's kills come a unit at a
+# time: at 6 turns, break share 0.6 or 0.55, 40.0% (200 games); 0.5, 78.5%; a KV-1 more, 41.0%. At 7 turns, break
+# share 0.55, 0.6 or 0.65, 55.0%, 56.0%, 54.5% (and 57.3% over 400); 0.7, 34.5%; no SU-76M, 35.5%; a KV-1 for the
+# SU-76M, 43.0%; a KV-1 for a T-34, 17.0%; no Maxim, 56.5%; the detachment two rows farther north, 4.5%; a cart in
+# Hesorin, 81.5%; a Pak 40 for the machine-gun platoon, 85.5%. This file (7 turns, break share 0.6, a second Pak 40
+# beside Hesorin): Soviet share 51.5% over 400 games (46.6 to 56.4), mean last turn 6.6; ends by a break 53% (206
+# Soviet wins to 5), at the turn limit 44% (all German) and by the lead 3% (all German); losses 1.7 Soviet and 18.4
+# German points a game: the Soviet side wins by breaking the rearguard, the German side by holding to the end.
+# `hard` on both sides (96 games): 60.4% Soviet (50.4 to 69.6), mean last turn 6.3.
+
+format: impulse-scenario/1
+id: hesorin-bridgehead-skirmish-october-1943
+name: "The Hesorin Bridgehead, October 1943 (Skirmish)"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3).
+battle: hesorin
+level: skirmish
+ruleset: v1
+units: v1
+map: { id: hesorin_steppe, hash: "8c2e96e6ad89af9ac76cb3e8bcfec73f2cc220215129bfb076e38fcfefda3659" }
+initiative: soviet
+freeDeployment: false
+# Both are held by the German side at the start.
+objectives:
+  - { hex: "2816", points: 2, holder: german }   # Hesorin, the village at the north end of the bridge
+  - { hex: "2817", points: 2, holder: german }   # the bridge at Hesorin
+ending: { turns: 7, suddenDeathLead: 30, breakShare: 0.6 }
+sides:
+  - id: soviet
+    name: "Soviet forward detachment"
+    counters: stock-b
+    orders: 3
+    zone: [["0101", "3310"]]
+    formations:
+      # The tanks: two T-34 companies and a SU-76M platoon, north of Kelenholm.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: t34_76, hex: "2704" }
+          - { id: s1b, type: t34_76, hex: "2804" }
+          - { id: s1c, type: su76m, hex: "2604" }
+      # Two rifle companies, one in a truck, and a Maxim platoon, in and beside Kelenholm.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: rifle_co, carriedBy: s2t }
+          - { id: s2b, type: rifle_co, hex: "2708" }
+          - { id: s2c, type: maxim, hex: "2707" }
+          - { id: s2t, type: zis5, hex: "2806" }
+  - id: german
+    name: "German rearguard"
+    counters: stock-a
+    orders: 3
+    zone: [["0111", "3321"]]
+    formations:
+      # The rearguard in the bridgehead: grenadiers in Hesorin, a machine-gun platoon and two anti-tank guns beside
+      # the
+      # village.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: grenadier_co, hex: "2816" }
+          - { id: g1b, type: pak40, hex: "2715" }
+          - { id: g1c, type: mg42, hex: "2716" }
+          - { id: g1d, type: pak40, hex: "2917" }
+      # A StuG III G platoon and a second grenadier company in its half-track, south of the river.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: stug3g, hex: "2818" }
+          - { id: g2b, type: grenadier_co, carriedBy: g2h }
+          - { id: g2h, type: sdkfz251, hex: "2919" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. Hesorin and this action are
+# invented: the background is period color and claims no real engagement. Original text, written for this project.
+briefing:
+  title: "The Hesorin Bridgehead"
+  date: "October 1943"
+  place: "the Eastern Front"
+  picture: engraving-pontoon-bridge
+  background: >-
+    The German armies are falling back to the river line. At Hesorin, a small rearguard holds the north end of
+    the bridge while the last carts cross. The forward detachment of a Soviet tank brigade arrives first.
+  situation: >-
+    Hesorin stands at the north end of the bridge, with open steppe all around it. A German grenadier company
+    holds the village with two anti-tank guns. An assault gun and a second grenadier company wait across the
+    river. The Soviet tanks come down from Kelenholm, with nothing to hide behind once they leave the village.
+  note: "The forces are of the kind that met that month. The place and this action are invented."
+  sides:
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Take Hesorin and the bridge before the rearguard can blow it."
+      formations:
+        - { id: s1, role: "tanks" }
+        - { id: s2, role: "riflemen" }
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Hold Hesorin and the bridge until the last columns are across."
+      formations:
+        - { id: g1, role: "rearguard" }
+        - { id: g2, role: "assault guns and reserve" }
+  objectives:
+    - { hex: "2816", name: "Hesorin" }
+    - { hex: "2817", name: "Hesorin bridge" }

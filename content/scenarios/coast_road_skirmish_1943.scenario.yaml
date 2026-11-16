@@ -1,0 +1,117 @@
+# The Coast Road, September 1943: a skirmish, the battle's smaller level (docs/rules/rules-v1.md 1.3). The
+# head of a Soviet tank column runs into the first two posts of a German rearguard on the coast road.
+# Original content: the situation and the forces are invented for this scenario from the unit types of
+# roster v1 (content/units/v1.units.yaml, each value derived from cited public facts); the board is this
+# project's own generated board "coast_road" (assets/maps/coast_road.map.yaml), and the place names are the
+# board's own invented names. No historical engagement is depicted, and no published scenario, board, order
+# of battle or victory rule is followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md).
+# Levelled on 2026-11-14 between two planning opponents at `normal` (the whole side moving, the same side
+# first every turn; the planning opponent that no longer throws tanks beside rifle companies): the first
+# draft (Daroel worth 3) went 31.5% Soviet; a third T-34 company gave 60.0%, no Pak 40 in the screen 59.0%;
+# Daroel worth 2: Soviet share 45.8% over 400 games (40.9 to 50.6), mean last turn 5.3; ends at the turn
+# limit 57% (mostly German wins), by a break 42% (mostly Soviet). Sorestad worth 1 as well left the column
+# where it stood (1.0%). (docs/review/M7/levels-handover.md.)
+# Levelled again on 2026-11-15 for the lead's rulings 84 (a side's units are made Ready when its own turn begins) and 85
+# (heavy machine-gun platoons), with the planning opponent that sets its whole side's fire discipline alike
+# (docs/review/M7/levels2-handover.md): as it stood it went 8.5% Soviet over 200 games at `normal` (5.4 to 13.2;
+# measured before that change of the opponent). The Tiger platoon at Daroel a Pak 40 instead: 27.0%; a third T-34
+# company: 28.0%; both: 43.5%; and a fourth T-34 company 60.5%, a Maxim platoon 44.0%, seven turns 32.0%, Sorestad worth
+# 3 19.5%. With the Pak 40 at Daroel, a third T-34 company (s1d) and a second SU-76M platoon (s1e), this file: Soviet
+# share 49.8% over 400 games (44.9 to 54.6), mean last turn 6.0; ends at the turn limit 98% (199:194). At `hard` on both
+# sides 44.8% Soviet (96 games; 35.4% before ruling 84). Forces 73 Soviet points to 30 German. The guns: the Pak 40 at
+# Daroel stands in the village with its grenadier company (1319), the one above Sorestad in the wood with the screen
+# (2715); neither has a truck: the rearguard's posts hold where they stand.
+
+format: impulse-scenario/1
+id: coast-road-skirmish-september-1943
+name: "The Coast Road, September 1943 (Skirmish)"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3).
+battle: coast
+level: skirmish
+ruleset: v1
+units: v1
+map: { id: coast_road, hash: "1435a4e0f0c50215656c59aac400036e16d1812656d36bd6ddae71d2b238c4a9" }
+initiative: soviet
+freeDeployment: false
+objectives:
+  - { hex: "2318", points: 2, holder: german }   # Sorestad, the first village west of the river
+  - { hex: "1319", points: 2, holder: german }   # Daroel, halfway along the coast (3 in the Battle level)
+ending: { turns: 6, suddenDeathLead: 30, breakShare: 0.7 }
+sides:
+  - id: soviet
+    name: "Soviet forward column"
+    counters: stock-b
+    orders: 3
+    zone: [["2901", "3321"]]
+    formations:
+      # The head of the column: three T-34 companies and two self-propelled gun platoons (two and one until
+      # 2026-11-15).
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: t34_76, hex: "3014" }
+          - { id: s1b, type: t34_76, hex: "3114" }
+          - { id: s1d, type: t34_76, hex: "3015" }
+          - { id: s1e, type: su76m, hex: "3016" }
+          - { id: s1c, type: su76m, hex: "3017" }
+      # Two motor rifle companies, one in its trucks.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: rifle_co, carriedBy: s2t }
+          - { id: s2b, type: rifle_co, hex: "3314" }
+          - { id: s2t, type: zis5, hex: "3216" }
+  - id: german
+    name: "German rearguard"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "2821"]]
+    formations:
+      # The screen in the wood north of Sorestad.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: stug3g, hex: "2415" }
+          - { id: g1b, type: grenadier_co, hex: "2615" }
+          - { id: g1c, type: pak40, hex: "2715" }
+      # The post at Daroel: a grenadier company and a Pak 40 (a Tiger platoon until 2026-11-15).
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: grenadier_co, hex: "1319" }
+          - { id: g2c, type: pak40, hex: "1319" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. Sorestad, Daroel and
+# this action are invented: the background is period color and claims no real engagement. Original text,
+# written for this project.
+briefing:
+  title: "The Coast Road"
+  date: "September 1943"
+  place: "the Eastern Front"
+  picture: engraving-gun-team
+  background: >-
+    Autumn is coming, and the German armies are falling back to the west along the only good road here,
+    which runs beside the sea through a string of fishing villages.
+  situation: >-
+    The head of a Soviet tank column has crossed the last river. The first two posts of the German
+    rearguard wait for it: a screen in the wood above Sorestad, and a company with an anti-tank gun at Daroel.
+  note: "The forces are of the kind that met that month. The place and this action are invented."
+  sides:
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Take Sorestad and Daroel before the day ends. Every turn the enemy holds one costs you points."
+      formations:
+        - { id: s1, role: "tanks" }
+        - { id: s2, role: "motor rifles" }
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Hold both villages as long as you can, and make the enemy pay for the road."
+      formations:
+        - { id: g1, role: "screen at Sorestad" }
+        - { id: g2, role: "Daroel" }
+  objectives:
+    - { hex: "2318", name: "Sorestad" }
+    - { hex: "1319", name: "Daroel" }

@@ -1,0 +1,16 @@
+{
+  "format": "battle-marks-art/2",
+  "longest": 512,
+  "marks": [
+    {"id":"hulk-tank-turret-off","file":"hulk-tank-turret-off.webp","kind":"hulk","width":512,"height":403,"shows":"A burnt-out tank with sloped armor, a turret blown off and lying beside it among scattered debris"},
+    {"id":"hulk-tank-burning","file":"hulk-tank-burning.webp","kind":"hulk","width":512,"height":487,"shows":"A wrecked boxy tank, its gun drooping, smoke pouring from it"},
+    {"id":"hulk-armored-car","file":"hulk-armored-car.webp","kind":"hulk","width":424,"height":436,"shows":"A burnt-out eight-wheeled armored car, its top open"},
+    {"id":"hulk-truck","file":"hulk-truck.webp","kind":"hulk","width":499,"height":443,"shows":"A burnt-out army truck with an empty cargo frame"},
+    {"id":"hulk-half-buried","file":"hulk-half-buried.webp","kind":"hulk","width":463,"height":313,"shows":"A green armored vehicle half buried in a mound of earth"},
+    {"id":"crater-deep","file":"crater-deep.webp","kind":"crater","width":512,"height":486,"shows":"A deep shell crater with earth thrown out all round"},
+    {"id":"crater-double","file":"crater-double.webp","kind":"crater","width":506,"height":500,"shows":"Two overlapping shell craters with broken stones in them"},
+    {"id":"crater-burst","file":"crater-burst.webp","kind":"crater","width":512,"height":487,"shows":"A fresh shell burst, earth and debris flung out from its middle"},
+    {"id":"crater-holes","file":"crater-holes.webp","kind":"crater","width":329,"height":406,"shows":"A cluster of small shell holes"},
+    {"id":"crater-shallow","file":"crater-shallow.webp","kind":"crater","width":450,"height":438,"shows":"A wide, shallow crater of scorched earth"}
+  ]
+}

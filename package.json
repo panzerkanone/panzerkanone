@@ -1,0 +1,27 @@
+{
+  "name": "panzerkanone",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Panzer Kanone: a WW2 tactical armor game on a hex board, played in the browser on a 3D tabletop.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npm run dev --prefix client",
+    "build": "npm run build --prefix client",
+    "preview": "npm run preview --prefix client",
+    "typecheck": "tsc --noEmit -p engine/tsconfig.json && tsc --noEmit -p mapart/tsconfig.json && npm run typecheck --prefix client"
+  },
+  "dependencies": {
+    "@types/pngjs": "^6.0.5",
+    "pngjs": "^7.0.0",
+    "uuid": "^13.0.0",
+    "yaml": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "playwright": "^1.62.1",
+    "tsx": "^4.19.0",
+    "typescript": "~5.9.3",
+    "vitest": "^3.0.0"
+  }
+}

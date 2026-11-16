@@ -1,0 +1,135 @@
+schema: unit-facts/1
+id: kv1_m1942
+designation: KV-1 (1942)
+full_name: KV-1 Model 1942 (cast turret, 76.2 mm ZiS-5); German designation KW-1C 756(r)
+side: soviet
+kind: tank
+setting: Eastern Front, 1943 (KV-1 production ended August 1942; wp-ru-kv1)
+facts:
+  count_per_unit:
+    value: 5
+    unit: tanks
+    source: wp-ru-ogttp
+    locator: "'По штату конца 1942 года каждый Гв.оттпп имел 21 танк в составе 4 рот по 5 линейных машин (два взвода по два танка и танк командира роты), плюс танк командира полка.'"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: "separate guards heavy breakthrough tank regiment, late 1942; the shtat itself was not opened"
+    alternatives:
+      - {value: 5, unit: tanks, source: wp-ru-tank-brigade, locator: "October 1943 brigade pattern: '1 рота тяжёлых танков (5 танков КВ-1)'; and shtat 010/306 of October 1941: heavy company '5 KB'", retrieved: 2026-11-11, confidence: secondary}
+    preferred: "5; both organisations agree"
+
+  gun:
+    designation: {value: "76.2 mm ZiS-5 (L/41.5)", unit: name, source: wp-en-kv, locator: "comparison table, KV-1 M1942: '76.2 mm ZiS-5'", retrieved: 2026-11-11, confidence: verified, note: "'A modified version of the gun, the 76 mm tank gun M1941 ZiS-5, was used on KV-1 tanks' (wp-en-f34, lead). Ballistic facts below are the F-34's, on that basis"}
+    calibre_mm: {value: 76.2, unit: mm, source: wp-en-f34, locator: "infobox caliber 76.2 mm", retrieved: 2026-11-11, confidence: verified}
+    ap_round: {value: "BR-350A (APHE, ballistic cap)", unit: name, source: wp-en-f34, locator: "comparison table, BR-350/BR-350A", retrieved: 2026-11-11, confidence: secondary, note: "the article gives the round for the F-34; the ZiS-5 shares the 76.2 x 385R round (inference stated above)"}
+    ap_shot_origin: {value: soviet_wartime, unit: category, source: wp-en-f34, locator: "Soviet BR-350A", retrieved: 2026-11-11, confidence: verified}
+    ap_shot_mass_kg: {value: 6.3, unit: kg, source: wp-en-f34, locator: "BR-350/BR-350A, F-34 column, 6.3 kg", retrieved: 2026-11-11, confidence: secondary}
+    ap_muzzle_velocity_ms: {value: 655, unit: m/s, source: wp-en-f34, locator: "BR-350/BR-350A, F-34 column, 655 m/s", retrieved: 2026-11-11, confidence: secondary, alternatives: [{value: 662, unit: m/s, source: wp-ru-t34, locator: "F-34 AP 'начальная скорость ... 662 м/с'", retrieved: 2026-11-11, confidence: verified}], note: "no ZiS-5-specific velocity found"}
+    he_round: {value: "OF-350 (HE-fragmentation)", unit: name, source: wp-en-f34, locator: "comparison table", retrieved: 2026-11-11, confidence: secondary}
+    he_shell_mass_kg: {value: 6.21, unit: kg, source: wp-en-f34, locator: "OF-350, 6.21 kg", retrieved: 2026-11-11, confidence: secondary}
+
+  machine_guns:
+    count:
+      value: 3
+      unit: guns
+      source: wp-ru-kv1
+      locator: "'Начиная с ноября 1940 года на КВ-1 устанавливались уже три 7,62-мм пулемёта ДТ-29: спаренный с орудием, а также курсовой и кормовой'; anti-aircraft DT mount on every fifth KV"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 4, unit: guns, source: wp-en-kv, locator: "comparison table (Zaloga and Grandsen 1984, pp. 119, 176), KV-1 M1942, Secondary armament '4x DT'", retrieved: 2026-11-11, confidence: verified}
+      preferred: "3: the guns that fire at ground targets (coaxial, bow, turret rear). The table's fourth is the anti-aircraft mount, carried by every fifth tank (lead's ruling, 2026-11-11; until then the entry's value was 4)"
+    type: {value: "DT", unit: name, source: wp-ru-kv1, locator: "as above", retrieved: 2026-11-11, confidence: verified}
+
+  armour:
+    hull_front:
+      thickness_mm: {value: 75, unit: mm, source: wp-ru-kv1, locator: "infobox (KV-1 обр. 1940) Лоб корпуса (верх) = '75 / 30°', (низ) '75 / 25°'; text: hull plates of 75 mm, 'равнопрочная'", retrieved: 2026-11-11, confidence: verified, note: "1940 hull; 1941-42 tanks could carry 25-35 mm bolted or welded appliqué on hull front and sides (wp-en-kv, Model 1941: 'Up-armoured with 25-35 mm added', citation needed; wp-ru-kv1: 25 mm screens on some tanks in the second half of 1941, stopped in August 1941). Whether the 1942 hull had appliqué is not settled by any page opened today"}
+      angle_from_vertical_deg: {value: 30, unit: degrees, source: wp-ru-kv1, locator: "infobox Лоб корпуса (верх) '75 / 30°'", retrieved: 2026-11-11, confidence: verified}
+      cast: {value: false, unit: boolean, source: wp-ru-kv1, locator: "'Броневой корпус танка сваривался из катаных броневых плит'", retrieved: 2026-11-11, confidence: verified}
+    hull_side:
+      thickness_mm: {value: 75, unit: mm, source: wp-ru-kv1, locator: "infobox Борт корпуса = '75 / 0°'", retrieved: 2026-11-11, confidence: verified, note: "the KV-1S reduced the sides to 60 mm (wp-ru-kv1 and tankarchives-kv1s), implying 75 on the KV-1"}
+      angle_from_vertical_deg: {value: 0, unit: degrees, source: wp-ru-kv1, locator: "'75 / 0°'", retrieved: 2026-11-11, confidence: verified}
+      cast: {value: false, unit: boolean, source: wp-ru-kv1, locator: "rolled", retrieved: 2026-11-11, confidence: verified}
+    turret_front:
+      thickness_mm:
+        value: 95
+        unit: mm
+        source: wp-ru-kv1
+        locator: "'Толщина брони у сварных башен была 75 мм, у литых — 95 мм, так как литая броня была менее прочной.'"
+        retrieved: 2026-11-11
+        confidence: verified
+        note: >-
+          The KV-1S cut the cast turret front to 82 mm (wp-ru-kv1), and a GKO decree of 23 February
+          1942 ordered turret sides reduced 'to 90-100 mm' from 1 April 1942 (tankarchives-kv1s,
+          secondary), which implies thicker early cast turrets. wp-en-kv gives 'Armour 20-130 mm'
+          for the M1942 without saying which face is 130.
+        alternatives:
+          - {value: "90-100", unit: mm, source: tankarchives-kv1s, locator: "'Decree #1332 ... ordering that the thickness of the side of tank turrets will be reduced to 90-100 mm starting on April 1st, 1942'", retrieved: 2026-11-11, confidence: secondary}
+      angle_from_vertical_deg: {value: 20, unit: degrees, source: wp-ru-kv1, locator: "infobox Лоб башни = '75 / 20°' (welded turret of 1940)", retrieved: 2026-11-11, confidence: secondary, note: "angle of the welded turret; the cast turret's angle not found"}
+      cast: {value: true, unit: boolean, source: wp-en-kv, locator: "KV-1 Model 1942: 'Fully cast turret with thicker armour'", retrieved: 2026-11-11, confidence: verified}
+    turret_side:
+      thickness_mm: {value: 95, unit: mm, source: wp-ru-kv1, locator: "cast turrets 95 mm (same sentence)", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: "90-100", unit: mm, source: tankarchives-kv1s, locator: "decree #1332, from 1 April 1942", retrieved: 2026-11-11, confidence: secondary}]}
+      angle_from_vertical_deg: {value: 15, unit: degrees, source: wp-ru-kv1, locator: "infobox Борт башни = '75 / 15°' (welded turret)", retrieved: 2026-11-11, confidence: secondary, note: "welded-turret angle used for the cast turret"}
+      cast: {value: true, unit: boolean, source: wp-en-kv, locator: "'Fully cast turret'", retrieved: 2026-11-11, confidence: verified}
+
+  mobility:
+    road_speed_max_kmh:
+      value: 28
+      unit: km/h
+      source: wp-en-kv
+      locator: "comparison table (Zaloga and Grandsen 1984), KV-1 M1942, Road speed 28 km/h"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 35, unit: km/h, source: wp-en-kv, locator: "same table, KV-1 M1941: 35 km/h", retrieved: 2026-11-11, confidence: verified}
+        - {value: 34, unit: km/h, source: wp-ru-kv1, locator: "infobox (1940): Скорость по шоссе 34", retrieved: 2026-11-11, confidence: verified}
+        - {value: 35, unit: km/h, source: wp-de-kw1, locator: "infobox Höchstgeschwindigkeit 35 km/h", retrieved: 2026-11-11, confidence: verified}
+      preferred: "28 for the heavier 1942 tank; the figure falls with weight on the same engine"
+    engine_power:
+      value: 600
+      unit: hp
+      source: wp-en-kv
+      locator: "comparison table, KV-1 M1942, Engine '600 hp V-2'"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 550, unit: PS, source: wp-de-kw1, locator: "infobox Leistung 550 PS (W-2K)", retrieved: 2026-11-11, confidence: verified}
+        - {value: 500, unit: hp, source: wp-ru-kv1, locator: "infobox (1940) Мощность двигателя 500", retrieved: 2026-11-11, confidence: verified, note: "1940 model"}
+      preferred: "600 (V-2K uprated; the 1942 tank)"
+    combat_weight_t:
+      value: 52
+      unit: t
+      source: wp-en-kv
+      locator: "comparison table, KV-1 M1942, Weight 52 tonnes; Variants: 'KV-1 Model 1942 ... 52 tons'"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 47.5, unit: t, source: tankarchives-kv1s, locator: "'In 1941, its mass reached 46, then 47.5 tons'; cast turrets made overweight tanks common, 'which reached 50 tons'", retrieved: 2026-11-11, confidence: secondary}
+        - {value: 50, unit: t, source: tankarchives-kv1s, locator: "cast turret tanks 'reached 50 tons'", retrieved: 2026-11-11, confidence: secondary}
+      preferred: >-
+        52, with the 28 km/h of the same table (Zaloga and Grandsen): the pair describes the 1942
+        tank. 47.5 (factory figures quoted from Soviet documents) goes with 34 to 35 km/h and
+        describes the 1941 tank; the two pairs are not to be mixed. The movement formula takes power
+        per tonne, so 52 t gives a 4.4% slower vehicle than 47.5 t. (Lead's ruling, 2026-11-11; until
+        then the entry's value was 47.5 beside 28 km/h, a mixed pair.)
+
+  crew:
+    total: {value: 5, unit: men, source: wp-en-kv, locator: "comparison table, KV-1 M1942, Crew 5", retrieved: 2026-11-11, confidence: verified}
+    in_turret: {value: 3, unit: men, source: wp-ru-kv1, locator: "'Три члена экипажа располагались в башне: слева от орудия были рабочие места наводчика и заряжающего, а справа — командира танка.'", retrieved: 2026-11-11, confidence: verified}
+
+  traits:
+    height_m: {value: 2.71, unit: m, source: wp-ru-kv1, locator: "infobox Высота 2 710 (1940)", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 2.70, unit: m, source: wp-de-kw1, locator: "infobox Höhe 2,70 m", retrieved: 2026-11-11, confidence: verified}]}
+    ground_pressure_kg_cm2:
+      value: 0.77
+      unit: kg/cm2
+      source: wp-ru-kv1
+      locator: "infobox (1940) Удельное давление на грунт 0,77"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "for a 47.5 t 1940-41 tank; a 52 t tank on the same 700 mm track would be higher"
+      alternatives:
+        - {value: 0.70, unit: kg/cm2, source: wp-de-kw1, locator: "Panzerkampfwagen KW-IA table (Jentz 1998, p. 282): Bodendruck 0,70 kg/cm², Gefechtsgewicht 43,5 t", retrieved: 2026-11-11, confidence: verified}
+      preferred: "0.77, the published figure, which is for the 47.5 t tank; a 52 t tank on the same track would stand near or over the 0.8 wide-track line. No formula of the first roster reads this fact (the unit format carries no traits)"
+    radio: {value: true, unit: boolean, source: wp-ru-ogttp, locator: "'Все танки полка оснащались радиостанциями.'", retrieved: 2026-11-11, confidence: secondary, note: "heavy breakthrough regiments; brigade KVs may differ"}
+    open_top: {value: false, unit: boolean, source: wp-ru-kv1, locator: "turreted tank with one roof hatch in the turret", retrieved: 2026-11-11, confidence: verified}
+    turretless: {value: false, unit: boolean, source: wp-ru-kv1, locator: "turreted tank", retrieved: 2026-11-11, confidence: verified}

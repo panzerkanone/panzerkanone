@@ -1,0 +1,35 @@
+# The game server: one Worker, and a Durable Object for each game (src/index.ts).
+#
+# Deployed by the GitHub workflow (.github/workflows/deploy.yml, job "Publish the game server"),
+# after the site, with `wrangler deploy` in this folder. Run locally with `npm run dev` here
+# (wrangler dev on http://127.0.0.1:8790, every game kept in .wrangler/ on this machine); a page
+# then plays on it with `server=http://127.0.0.1:8790` in its address.
+name = "panzerkanone-games"
+main = "src/index.ts"
+compatibility_date = "2026-10-15"
+
+# Served at games.panzerkanone.com (the zone is in the same account as the site), and nowhere else.
+workers_dev = false
+preview_urls = false
+routes = [{ pattern = "games.panzerkanone.com", custom_domain = true }]
+
+[[durable_objects.bindings]]
+name = "GAMES"
+class_name = "GameRoom"
+
+# The object's storage is SQLite (the free plan has only this kind).
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["GameRoom"]
+
+# The scenarios, boards, rules data and unit file are bundled as text (src/texts.ts).
+[[rules]]
+type = "Text"
+globs = ["**/*.yaml"]
+fallthrough = true
+
+[vars]
+ORIGINS = "https://panzerkanone.com,https://www.panzerkanone.com,https://panzerkanone.pages.dev"
+
+[observability]
+enabled = true

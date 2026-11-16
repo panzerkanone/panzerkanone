@@ -1,0 +1,305 @@
+# Wooded hills and the road through Velost: a generated board. Original content: invented terrain from archetype
+# stamps and invented place names.
+# Regenerate: npm run genmap -- --seed 40 --country wooded --density 0.5 --cols 33 --rows 21 --name "Wooded hills and the road through Velost" --generator mapgen/4 --out assets/maps/velost_woods.map.yaml
+
+format: map/1
+layout: flat-top
+id: velost_woods
+name: "Wooded hills and the road through Velost"
+cols: 33
+rows: 21
+artSeed: 2656914754
+
+# The two layers: one text row per board row, top row first; one character per
+# column, column 01 first. On the board, even-numbered columns sit half a hex lower.
+#   elevation:  .  level ground   H  hilltop
+elevation: |
+  .................................
+  ..........H................H.....
+  ...........................HH....
+  ....................HH...HH......
+  ......................HHHH.......
+  ......................H..........
+  .................................
+  ......H..........................
+  .H.H.HH..................H.......
+  ..H.HHHH..............HHH........
+  .........................H.......
+  ..........................H......
+  .................................
+  .................................
+  ............................H....
+  ..HHHH......................H....
+  ..H........................HH....
+  ............................H....
+  .............................H...
+  .............................H...
+  .................................
+#   cover:  .  open   w  woods   t  town   f  field   s  swamp   r  rough
+cover: |
+  .................................
+  .................................
+  .................................
+  .................................
+  .................................
+  .................................
+  .................................
+  .................................
+  .................................
+  .................................
+  .................................
+  ....ss...........................
+  .................................
+  .................................
+  .................f.f.............
+  .................tt.ff...........
+  .................ft...t..........
+  .....t...........................
+  .....f.....tf....................
+  .................................
+  .................................
+
+# A hex is named by the label printed on it: column then row ("0412" is column 4, row 12).
+# A slope is not a hex. It is the hill area around a crest, and a crest is a hexside:
+# every edge of a hilltop is one, and a ridge is a chain of them across level ground.
+# ridges: each ridge is its chain of crest edges; an edge is the pair of hexes it runs between.
+ridges:
+  - [["1818", "1918"], ["1919", "1918"], ["1919", "2018"]]
+
+# roads and rivers run hex to hex. A road leaves the map at each exit; a river end on the
+# board edge runs off the map.
+# A river whose last hex is a hex of another river joins it there: a junction.
+roads:
+  - ["0118", "0218", "0319", "0419", "0519", "0618", "0719", "0819", "0919", "1018", "1119", "1219", "1319", "1418", "1417", "1517", "1616", "1716", "1816", "1917", "2016", "2116", "2216", "2317"]
+  - ["2121", "2120", "2219", "2319", "2318", "2317"]
+  - ["2317", "2416", "2516", "2615", "2715", "2714", "2813", "2913", "3012", "3113", "3212", "3312"]
+exits: ["0118", "3312", "2121"]
+rivers:
+  - ["1821", "1820", "1720", "1619", "1618", "1617", "1717", "1716", "1715", "1814", "1813", "1713", "1712", "1711", "1810", "1809", "1808", "1708", "1707", "1606", "1605", "1604", "1504", "1503", "1402", "1401"]
+  - ["0621", "0620", "0720", "0719", "0818", "0918", "0917", "0916", "0915", "0814", "0813", "0713", "0613", "0513", "0412", "0313", "0212", "0112"]
+  - ["1121", "1120", "1019", "1119", "1118", "1117", "1216", "1215", "1115", "1114", "1013", "1012", "0912", "0812", "0713"]
+  - ["2408", "2308", "2208", "2109", "2008", "1909", "1808"]
+  - ["2716", "2615", "2515", "2415", "2315", "2214", "2114", "2014", "1914", "1813"]
+# springs: where a stream rises inland, each the first hex of the river that rises there.
+springs: ["2408", "2716"]
+bridges: ["0719", "1119", "1716", "2615"]
+
+towns:
+  - { name: "Velost", hexes: ["1816", "1917", "1916"] }
+  - { name: "Korach", hexes: ["1219"] }
+  - { name: "Korenel", hexes: ["2317"] }
+  - { name: "Wesoau", hexes: ["0618"] }
+# spotHeights: the hill numbers printed on hilltops ("Hill 92").
+spotHeights:
+  - { hex: "1102", height: 157 }
+  - { hex: "2305", height: 159 }
+  - { hex: "2611", height: 190 }
+
+# trees: tree sides. Woods are a hexside feature, as slopes are: each entry sets one hexside
+# for trees, with a strength (above 0, at most 3; 1 is an ordinary side). A side is named by a
+# hex and one of its six sides, N NE SE S SW NW (N and S are the level ones): by the hex for
+# which it faces N, NE or SE, or on the board's own edge by the hex it belongs to. Nothing else
+# is stored: a hex is a tree hex when any of its sides is set, and the art derives the rest.
+trees:
+  - { hex: "1703", side: "N", strength: 0.9 }
+  - { hex: "1703", side: "NE", strength: 1.1 }
+  - { hex: "1703", side: "SE", strength: 1.2 }
+  - { hex: "1704", side: "N", strength: 0.9 }
+  - { hex: "1603", side: "NE", strength: 0.9 }
+  - { hex: "1602", side: "SE", strength: 1.1 }
+  - { hex: "1802", side: "N", strength: 1.2 }
+  - { hex: "1802", side: "NE", strength: 1.3 }
+  - { hex: "1802", side: "SE", strength: 1.1 }
+  - { hex: "1803", side: "N", strength: 1 }
+  - { hex: "1702", side: "SE", strength: 0.9 }
+  - { hex: "1803", side: "NE", strength: 1.2 }
+  - { hex: "1803", side: "SE", strength: 1.2 }
+  - { hex: "1804", side: "N", strength: 0.9 }
+  - { hex: "1704", side: "NE", strength: 1 }
+  - { hex: "1603", side: "N", strength: 1.3 }
+  - { hex: "1702", side: "NE", strength: 1.1 }
+  - { hex: "1603", side: "SE", strength: 1 }
+  - { hex: "1503", side: "NE", strength: 1 }
+  - { hex: "1502", side: "SE", strength: 1 }
+  - { hex: "1902", side: "N", strength: 1 }
+  - { hex: "1902", side: "NE", strength: 1.3 }
+  - { hex: "1602", side: "N", strength: 1 }
+  - { hex: "1902", side: "SE", strength: 1 }
+  - { hex: "2403", side: "N", strength: 0.9 }
+  - { hex: "2403", side: "NE", strength: 0.8 }
+  - { hex: "2403", side: "SE", strength: 0.9 }
+  - { hex: "2404", side: "N", strength: 1.3 }
+  - { hex: "2304", side: "NE", strength: 0.8 }
+  - { hex: "2303", side: "SE", strength: 1.3 }
+  - { hex: "2503", side: "N", strength: 1.1 }
+  - { hex: "2503", side: "NE", strength: 0.9 }
+  - { hex: "2503", side: "SE", strength: 0.9 }
+  - { hex: "2504", side: "N", strength: 0.9 }
+  - { hex: "2402", side: "SE", strength: 0.9 }
+  - { hex: "2303", side: "NE", strength: 1.1 }
+  - { hex: "2603", side: "N", strength: 1 }
+  - { hex: "2304", side: "N", strength: 1 }
+  - { hex: "2203", side: "NE", strength: 1 }
+  - { hex: "2302", side: "SE", strength: 1.1 }
+  - { hex: "2402", side: "N", strength: 1 }
+  - { hex: "2202", side: "SE", strength: 1.2 }
+  - { hex: "2601", side: "SE", strength: 1.2 }
+  - { hex: "2103", side: "N", strength: 1.1 }
+  - { hex: "1903", side: "SE", strength: 1.1 }
+  - { hex: "0605", side: "N", strength: 1.2 }
+  - { hex: "0605", side: "NE", strength: 1.1 }
+  - { hex: "0605", side: "SE", strength: 0.8 }
+  - { hex: "0606", side: "N", strength: 1.2 }
+  - { hex: "0506", side: "NE", strength: 1.1 }
+  - { hex: "0505", side: "SE", strength: 1.4 }
+  - { hex: "0705", side: "N", strength: 1.3 }
+  - { hex: "0705", side: "NE", strength: 0.9 }
+  - { hex: "0705", side: "SE", strength: 0.9 }
+  - { hex: "0706", side: "N", strength: 1 }
+  - { hex: "0604", side: "SE", strength: 1.2 }
+  - { hex: "0706", side: "NE", strength: 1.3 }
+  - { hex: "0706", side: "SE", strength: 0.9 }
+  - { hex: "0707", side: "N", strength: 1.3 }
+  - { hex: "0606", side: "NE", strength: 1.2 }
+  - { hex: "0506", side: "SE", strength: 1 }
+  - { hex: "0604", side: "NE", strength: 1 }
+  - { hex: "0507", side: "N", strength: 1.2 }
+  - { hex: "0505", side: "NE", strength: 1 }
+  - { hex: "0905", side: "N", strength: 1 }
+  - { hex: "0904", side: "SE", strength: 1 }
+  - { hex: "2006", side: "N", strength: 0.9 }
+  - { hex: "2005", side: "SE", strength: 1 }
+  - { hex: "2106", side: "N", strength: 1 }
+  - { hex: "1906", side: "NE", strength: 1.2 }
+  - { hex: "1107", side: "N", strength: 1 }
+  - { hex: "1107", side: "NE", strength: 1 }
+  - { hex: "1009", side: "N", strength: 1 }
+  - { hex: "1009", side: "NE", strength: 1 }
+  - { hex: "1009", side: "SE", strength: 1.3 }
+  - { hex: "1010", side: "N", strength: 0.9 }
+  - { hex: "0910", side: "NE", strength: 0.9 }
+  - { hex: "0909", side: "SE", strength: 0.8 }
+  - { hex: "1110", side: "N", strength: 0.9 }
+  - { hex: "1110", side: "NE", strength: 1.3 }
+  - { hex: "1110", side: "SE", strength: 0.8 }
+  - { hex: "1111", side: "N", strength: 0.9 }
+  - { hex: "1010", side: "NE", strength: 1.2 }
+  - { hex: "1109", side: "N", strength: 0.8 }
+  - { hex: "1109", side: "NE", strength: 1.1 }
+  - { hex: "1109", side: "SE", strength: 1.3 }
+  - { hex: "1008", side: "SE", strength: 1.3 }
+  - { hex: "1008", side: "N", strength: 0.9 }
+  - { hex: "1008", side: "NE", strength: 1.2 }
+  - { hex: "0909", side: "NE", strength: 1.2 }
+  - { hex: "0908", side: "SE", strength: 0.8 }
+  - { hex: "1010", side: "SE", strength: 1.1 }
+  - { hex: "0909", side: "N", strength: 1.1 }
+  - { hex: "1111", side: "NE", strength: 1.1 }
+  - { hex: "0808", side: "SE", strength: 1 }
+  - { hex: "1111", side: "SE", strength: 1.1 }
+  - { hex: "1112", side: "N", strength: 1 }
+  - { hex: "1011", side: "N", strength: 1 }
+  - { hex: "2807", side: "SE", strength: 1 }
+  - { hex: "2908", side: "N", strength: 1 }
+  - { hex: "1511", side: "NE", strength: 1.1 }
+  - { hex: "1511", side: "SE", strength: 1 }
+  - { hex: "1510", side: "SE", strength: 1 }
+  - { hex: "2111", side: "NE", strength: 1.2 }
+  - { hex: "2911", side: "N", strength: 1.2 }
+  - { hex: "2911", side: "NE", strength: 0.9 }
+  - { hex: "2911", side: "SE", strength: 1.2 }
+  - { hex: "2912", side: "N", strength: 0.9 }
+  - { hex: "2811", side: "NE", strength: 0.9 }
+  - { hex: "2810", side: "SE", strength: 1.1 }
+  - { hex: "2910", side: "N", strength: 1.3 }
+  - { hex: "2910", side: "NE", strength: 1.2 }
+  - { hex: "2910", side: "SE", strength: 0.9 }
+  - { hex: "2810", side: "NE", strength: 1.3 }
+  - { hex: "2809", side: "SE", strength: 1.1 }
+  - { hex: "3010", side: "N", strength: 1.1 }
+  - { hex: "3010", side: "NE", strength: 1 }
+  - { hex: "3010", side: "SE", strength: 0.9 }
+  - { hex: "3011", side: "N", strength: 0.9 }
+  - { hex: "2810", side: "N", strength: 1.3 }
+  - { hex: "2710", side: "SE", strength: 1 }
+  - { hex: "1912", side: "N", strength: 0.9 }
+  - { hex: "1912", side: "NE", strength: 1.2 }
+  - { hex: "1811", side: "SE", strength: 1.2 }
+  - { hex: "2012", side: "N", strength: 0.9 }
+  - { hex: "2011", side: "N", strength: 1.2 }
+  - { hex: "2011", side: "NE", strength: 1.2 }
+  - { hex: "2011", side: "SE", strength: 1.3 }
+  - { hex: "1911", side: "SE", strength: 1 }
+  - { hex: "1911", side: "N", strength: 1 }
+  - { hex: "1911", side: "NE", strength: 0.9 }
+  - { hex: "1811", side: "NE", strength: 1.1 }
+  - { hex: "1810", side: "SE", strength: 0.9 }
+  - { hex: "1811", side: "N", strength: 1.3 }
+  - { hex: "1812", side: "N", strength: 0.9 }
+  - { hex: "1712", side: "NE", strength: 1.2 }
+  - { hex: "1711", side: "SE", strength: 1.3 }
+  - { hex: "2113", side: "N", strength: 1.2 }
+  - { hex: "2112", side: "SE", strength: 1.1 }
+  - { hex: "2112", side: "N", strength: 1 }
+  - { hex: "1313", side: "N", strength: 1 }
+  - { hex: "1313", side: "NE", strength: 1 }
+  - { hex: "1313", side: "SE", strength: 1 }
+  - { hex: "1312", side: "SE", strength: 1 }
+  - { hex: "2412", side: "NE", strength: 1.1 }
+  - { hex: "1513", side: "NE", strength: 1.2 }
+  - { hex: "1513", side: "SE", strength: 1 }
+  - { hex: "2413", side: "SE", strength: 1.1 }
+  - { hex: "2413", side: "N", strength: 0.8 }
+  - { hex: "2413", side: "NE", strength: 1.2 }
+  - { hex: "2414", side: "N", strength: 0.9 }
+  - { hex: "2314", side: "NE", strength: 1 }
+  - { hex: "2313", side: "SE", strength: 1.2 }
+  - { hex: "2613", side: "SE", strength: 1.1 }
+  - { hex: "2314", side: "N", strength: 1.1 }
+  - { hex: "2313", side: "NE", strength: 1 }
+  - { hex: "2513", side: "SE", strength: 1.2 }
+  - { hex: "2213", side: "NE", strength: 1.1 }
+  - { hex: "2212", side: "SE", strength: 1 }
+  - { hex: "3013", side: "SE", strength: 1.1 }
+  - { hex: "0414", side: "NE", strength: 1 }
+  - { hex: "0414", side: "N", strength: 0.9 }
+  - { hex: "0314", side: "SE", strength: 1.1 }
+  - { hex: "0315", side: "N", strength: 1 }
+  - { hex: "0815", side: "N", strength: 1.3 }
+  - { hex: "0815", side: "NE", strength: 1 }
+  - { hex: "0815", side: "SE", strength: 1.1 }
+  - { hex: "0816", side: "N", strength: 0.8 }
+  - { hex: "0716", side: "NE", strength: 1.2 }
+  - { hex: "0715", side: "SE", strength: 1.2 }
+  - { hex: "0715", side: "NE", strength: 1 }
+  - { hex: "0715", side: "N", strength: 1 }
+  - { hex: "0817", side: "N", strength: 1 }
+  - { hex: "0717", side: "SE", strength: 1.2 }
+  - { hex: "0718", side: "NE", strength: 1 }
+  - { hex: "1415", side: "NE", strength: 1 }
+  - { hex: "1516", side: "N", strength: 1 }
+  - { hex: "1414", side: "SE", strength: 1 }
+  - { hex: "1415", side: "SE", strength: 1 }
+  - { hex: "1415", side: "N", strength: 1.2 }
+  - { hex: "3015", side: "SE", strength: 1.2 }
+  - { hex: "2617", side: "N", strength: 1.1 }
+  - { hex: "2417", side: "SE", strength: 1 }
+  - { hex: "2218", side: "N", strength: 1.1 }
+  - { hex: "2119", side: "N", strength: 1.2 }
+  - { hex: "2418", side: "N", strength: 1 }
+  - { hex: "1018", side: "N", strength: 1.1 }
+  - { hex: "1719", side: "N", strength: 1.1 }
+  - { hex: "2020", side: "N", strength: 1.2 }
+  - { hex: "2619", side: "NE", strength: 1 }
+  - { hex: "2618", side: "SE", strength: 1.2 }
+  - { hex: "2619", side: "N", strength: 1 }
+  - { hex: "2220", side: "SE", strength: 1 }
+  - { hex: "2221", side: "N", strength: 1 }
+
+source:
+  generator: "mapgen/4"
+  seed: 40
+  country: wooded
+  density: 0.5
+  mirror: false
+  command: "npm run genmap -- --seed 40 --country wooded --density 0.5 --cols 33 --rows 21 --name \"Wooded hills and the road through Velost\" --generator mapgen/4 --out assets/maps/velost_woods.map.yaml"

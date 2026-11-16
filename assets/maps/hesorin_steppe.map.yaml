@@ -1,0 +1,150 @@
+# Open steppe and the river at Hesorin: a generated board. Original content: invented terrain from archetype
+# stamps and invented place names.
+# Regenerate: npm run genmap -- --seed 26 --country steppe --density 0.5 --cols 33 --rows 21 --name "Open steppe and the river at Hesorin" --generator mapgen/4 --out assets/maps/hesorin_steppe.map.yaml
+
+format: map/1
+layout: flat-top
+id: hesorin_steppe
+name: "Open steppe and the river at Hesorin"
+cols: 33
+rows: 21
+artSeed: 3225349608
+
+# The two layers: one text row per board row, top row first; one character per
+# column, column 01 first. On the board, even-numbered columns sit half a hex lower.
+#   elevation:  .  level ground   H  hilltop
+elevation: |
+  .................................
+  .................................
+  .................HH..............
+  ..................H..............
+  ..................H..............
+  ..................H..............
+  .................................
+  .................................
+  ................H................
+  .................................
+  .................................
+  .................................
+  ...........................H.....
+  .................................
+  .................................
+  .................................
+  .........H.......................
+  .........HH......................
+  ..........HH.....................
+  ............H....................
+  .................................
+#   cover:  .  open   w  woods   t  town   f  field   s  swamp   r  rough
+cover: |
+  ............................r....
+  ............................r....
+  .................................
+  .................................
+  ...r.............................
+  ..r...........ft.................
+  .r............ff..........f......
+  r.........................t......
+  r................................
+  .................................
+  .................................
+  .............................s...
+  ..............................s..
+  .................................
+  .............r...................
+  ............r.............ft.....
+  .................................
+  ................................s
+  .................................
+  .................................
+  .................................
+
+# A hex is named by the label printed on it: column then row ("0412" is column 4, row 12).
+# A slope is not a hex. It is the hill area around a crest, and a crest is a hexside:
+# every edge of a hilltop is one, and a ridge is a chain of them across level ground.
+# ridges: each ridge is its chain of crest edges; an edge is the pair of hexes it runs between.
+ridges:
+  - [["2911", "3010"], ["3011", "3010"], ["3011", "3111"]]
+  - [["2309", "2310"], ["2409", "2310"], ["2409", "2410"]]
+  - [["1915", "1914"], ["1814", "1914"], ["1814", "1813"], ["1714", "1813"], ["1714", "1713"], ["1613", "1713"], ["1613", "1612"]]
+
+# roads and rivers run hex to hex. A road leaves the map at each exit; a river end on the
+# board edge runs off the map.
+# A river whose last hex is a hex of another river joins it there: a junction.
+roads:
+  - ["0104", "0204", "0305", "0404", "0505", "0605", "0706", "0806", "0906", "1006", "1107", "1206", "1307", "1407", "1507", "1606"]
+  - ["1606", "1605", "1604", "1603", "1602", "1702", "1801", "1901"]
+  - ["1606", "1707", "1807", "1908", "2007", "2107", "2207", "2308", "2407", "2507", "2607", "2708"]
+  - ["2708", "2709", "2710", "2711", "2712", "2612", "2613", "2614", "2715", "2815", "2816", "2817", "2818", "2719", "2720", "2721"]
+  - ["2708", "2807", "2907", "3006", "3107", "3206", "3306"]
+exits: ["0104", "3306", "1901", "2721"]
+rivers:
+  - ["3320", "3219", "3120", "3019", "2920", "2819", "2720", "2619", "2520", "2420", "2320", "2220", "2121"]
+  - ["3317", "3217", "3117", "3017", "2918", "2817", "2718", "2617", "2518", "2519", "2520"]
+  - ["2912", "3012", "3013", "3114", "3115", "3015", "3016", "3017"]
+# springs: where a stream rises inland, each the first hex of the river that rises there.
+springs: ["2912"]
+bridges: ["2720", "2817"]
+
+towns:
+  - { name: "Hesorin", hexes: ["2816"] }
+  - { name: "Quilennov", hexes: ["1606"] }
+  - { name: "Kelenholm", hexes: ["2708"] }
+# spotHeights: the hill numbers printed on hilltops ("Hill 92").
+spotHeights:
+  - { hex: "1709", height: 50 }
+  - { hex: "2813", height: 61 }
+
+# trees: tree sides. Woods are a hexside feature, as slopes are: each entry sets one hexside
+# for trees, with a strength (above 0, at most 3; 1 is an ordinary side). A side is named by a
+# hex and one of its six sides, N NE SE S SW NW (N and S are the level ones): by the hex for
+# which it faces N, NE or SE, or on the board's own edge by the hex it belongs to. Nothing else
+# is stored: a hex is a tree hex when any of its sides is set, and the art derives the rest.
+trees:
+  - { hex: "0903", side: "N", strength: 1 }
+  - { hex: "0802", side: "NE", strength: 1.1 }
+  - { hex: "0902", side: "SE", strength: 1 }
+  - { hex: "0801", side: "SE", strength: 1 }
+  - { hex: "1203", side: "N", strength: 1.2 }
+  - { hex: "1203", side: "NE", strength: 0.8 }
+  - { hex: "1203", side: "SE", strength: 0.8 }
+  - { hex: "1204", side: "N", strength: 1 }
+  - { hex: "1104", side: "NE", strength: 1.1 }
+  - { hex: "1103", side: "SE", strength: 1 }
+  - { hex: "1103", side: "N", strength: 1.2 }
+  - { hex: "1103", side: "NE", strength: 1 }
+  - { hex: "1104", side: "N", strength: 0.9 }
+  - { hex: "1003", side: "NE", strength: 1.3 }
+  - { hex: "1002", side: "SE", strength: 1.1 }
+  - { hex: "1202", side: "SE", strength: 1 }
+  - { hex: "1003", side: "SE", strength: 1.1 }
+  - { hex: "1004", side: "NE", strength: 1 }
+  - { hex: "1005", side: "SE", strength: 1 }
+  - { hex: "1005", side: "NE", strength: 1 }
+  - { hex: "2512", side: "N", strength: 1.1 }
+  - { hex: "2512", side: "NE", strength: 1.2 }
+  - { hex: "2411", side: "NE", strength: 1 }
+  - { hex: "2411", side: "SE", strength: 1 }
+  - { hex: "0612", side: "NE", strength: 1 }
+  - { hex: "0713", side: "N", strength: 1.2 }
+  - { hex: "0612", side: "SE", strength: 1 }
+  - { hex: "0611", side: "SE", strength: 1.2 }
+  - { hex: "0813", side: "SE", strength: 1.1 }
+  - { hex: "0914", side: "N", strength: 1.2 }
+  - { hex: "0914", side: "NE", strength: 1.1 }
+  - { hex: "1014", side: "N", strength: 1 }
+  - { hex: "0914", side: "SE", strength: 1.1 }
+  - { hex: "2417", side: "SE", strength: 1.2 }
+  - { hex: "2418", side: "N", strength: 1.2 }
+  - { hex: "2821", side: "N", strength: 1.2 }
+  - { hex: "2820", side: "SE", strength: 1.2 }
+  - { hex: "2921", side: "NE", strength: 1.2 }
+  - { hex: "3021", side: "N", strength: 1.2 }
+
+source:
+  generator: "mapgen/4"
+  seed: 26
+  country: steppe
+  density: 0.5
+  mirror: false
+  command: "npm run genmap -- --seed 26 --country steppe --density 0.5 --cols 33 --rows 21 --name \"Open steppe and the river at Hesorin\" --generator mapgen/4 --out assets/maps/hesorin_steppe.map.yaml"

@@ -1,0 +1,286 @@
+# The winter set: how a board whose map states `season: winter` is printed (engine/core/map.ts `seasonOf`).
+#
+# The owner, 2026-11-14: "Basically modifying the color balance of our existing art, adding in snow pillows and
+# ice on top." So a winter board is the summer board, every shape where summer has it, printed from the winter
+# ink table (summer's inks with one colour transform: mapart/data/inks-winter.yaml), and over it the snow and the
+# ice (mapart/winter.ts).
+#
+# A snow pillow is a way of shading a shape, and no object (the owner, the same day, of the lumps the second round
+# drew: "there are blobular objects on hilltops. This was only meant to indicate that there are geometric objects
+# (squares, circles for trees, geometric shapes for empty ground) that have a slight highlight on one side and a
+# suggested thin shadow on the other that represent accumulated snow of around 12-15 inches. They also can
+# represent areas of ice. They can be slightly lighter than the surrounding areas"). Wherever `pillow` stands
+# below it is that: `lift` (how much lighter than what the shape lies on), `edge` and `light` (the slight
+# highlight: a band this wide inside the sides toward the light, cleared by this much more), `shadow` and
+# `shadowTone` (the thin shadow: a line this wide along the other sides, at this tone of the shade), `facing` (how
+# squarely a side must face the light, or away from it, to take either).
+#
+# Two parts. `changes`: what winter changes of mapart/data/params.yaml, each key by its place there (a key the
+# parameters do not have is refused, and the parameters with the changes made are checked as a whole); everything
+# not named is the summer value. `winter`: what winter draws on top. Colours are plates of the winter ink table.
+# Checked on load by mapart/params.ts: every key is required, an unknown key is refused.
+#
+# What is SWITCHED OFF below is kept, not lost: each such part says how to switch it on, and draws nothing until
+# then (docs/review/M7/winter3-handover.md lists them). The owner saw them all beside the result and left the
+# choice to the builder (2026-11-14: "Have the agent make its best call, and use that"). The call: the lake's wider
+# rim of snow goes on (`ice.rim`); every other trial stays off, for the reasons the hand-over gives.
+format: mapart-season/1
+season: winter
+
+changes:
+  plates:
+    # A road is bare stock in winter too: its fill clears winter's own shade plate as well (the ice of a river it
+    # crosses on a bridge, the tint of a hilltop).
+    roadKnockout: [ground, relief, straw, green, blue, red, shade]
+  wash:
+    # The haze on the slopes: winter's own red-brown (the ink table's `onSnow`), at its full ink against the crest,
+    # where his example has it strongest, and fading softly over about a hex, with no edge: a ring 0.5 h out from
+    # the crest, its soft band 1 h wide (full at the crest, half at 0.5 h, gone 1 h out). Measured on his example
+    # out from two crests of hill 4183 (down the column x 1725 to 1755 from y 556, and westward along y 545 from
+    # x 1715; a hex is 67 of its pixels there): 1, 0.9, 0.8, 0.7, 0.55, 0.30, 0.17, 0.08, 0.02 of its full
+    # strength at 0.09, 0.16, 0.28, 0.38, 0.49, 0.63, 0.75, 0.87, 1.0 h. This fade gives 0.98, 0.93, 0.81, 0.68,
+    # 0.52, 0.31, 0.16, 0.05, 0. (Summer's olive: a ring at 0.55 h, 0.5 h wide. The second round's winter: that
+    # ring at tone 0.42.)
+    tone: 1
+    ringOffset: 0.5
+    feather: 1
+
+winter:
+  shadePlate: shade         # the cool shade: the shaded side of snow, and the ice
+  # What snow lies on: the plates it clears (every plate but the key: the grid, numbers, names and outlines).
+  snowPlates: [ground, relief, straw, green, blue, red, brown, shade]
+  wind: -25                 # the way the wind blows, degrees clockwise from east: from the west-south-west, up and to the right
+  # The shaded side of a rounded form of snow (a cap on a tree; a lump of the second round's mounds): bands, each a
+  # crescent this share of the form's width thick at this tone of the shade: a broad pale one, and a thin darker
+  # one inside it.
+  bands:
+    lunes: [0.66, 0.3]
+    tones: [0.3, 0.62]
+
+  # ---- the speckled, icy snow of the hills (the owner, 2026-11-14, of the hill of his example: "the speckled icy
+  # snow and reddish brown slopes ... is very good"). Every piece is flat and seeded: soft clouds, flecks and
+  # streaks, and no lump; a fleck is the set's worn piece, turned and squashed by seed, never a dot in a row ----
+  frost:
+    # SWITCHED OFF (a trial of the third round, "also tried"): faint soft clouds of the shade on the open snow of
+    # the plain, as his example has. share 0: none. SWITCH: share: 0.5.
+    plain:
+      pitch: 1.3
+      share: 0
+      sizeMin: 0.9
+      sizeMax: 2
+      feather: 0.9
+      toneMin: 0.03
+      toneMax: 0.08
+    slopes:
+      # Snow showing through the haze in soft clouds.
+      clouds:
+        pitch: 0.4          # a world lattice: in this share of its cells whose place lies on a slope, one cloud
+        share: 0.55
+        sizeMin: 0.22
+        sizeMax: 0.5
+        feather: 0.3        # the soft edge of a cloud
+        near: 0.2           # its middle no nearer a crest or a ridge than this (the haze stays strongest against the crest)...
+        reach: 0.85         # ...and no further than this
+        liftMin: 0.12       # this share of the haze cleared under it, from this...
+        liftMax: 0.38       # ...to this
+      # Flecks of frost and snow caught on the slope, white on the haze.
+      flecks:
+        pitch: 0.026        # a world lattice this fine holds at most one fleck a cell
+        share: 0.72         # the chance of one against a crest, in the heart of a clump...
+        scatter: 0.22       # ...and this share of that chance outside the clumps
+        clumpPitch: 0.26    # the clumps: where a smooth seeded value of this pitch...
+        clumpLevel: 0.5     # ...rises over this (0 to 1)
+        reach: 0.8          # none further from a crest or a ridge than this...
+        power: 1.2          # ...thinning outward by this power
+        sizeMin: 0.006
+        sizeMax: 0.03
+        sizePower: 2.6      # most are specks: a number from 0 to 1, raised to this, says where between the two sizes
+        lift: 0.9           # this share of the haze cleared under a fleck...
+        # ...and this share of the ground (frost whiter than the plain). 0: on the haze a fleck of the plain's own
+        # snow is white enough, and a whitened one (0.5 was tried) cannot be told from it, at twice the list.
+        whiten: 0
+    # The hilltops, inside their crests: a mottled icy white, and not the plain's flat snow.
+    hilltops:
+      tint: 0.09            # a faint tone of the shade over the whole hilltop
+      patches:              # soft darker clouds of the shade
+        pitch: 0.4
+        share: 0.6
+        sizeMin: 0.28
+        sizeMax: 0.6
+        feather: 0.32
+        toneMin: 0.12
+        toneMax: 0.24
+      clouds:               # soft whiter clouds: the shade cleared
+        pitch: 0.36
+        share: 0.6
+        sizeMin: 0.2
+        sizeMax: 0.5
+        feather: 0.3
+        liftMin: 0.5
+        liftMax: 1
+      streaks:              # fine streaks along the wind, white through the tint
+        pitch: 0.3
+        share: 0.3
+        lengthMin: 0.08
+        lengthMax: 0.26
+        turn: 16            # each turned from the wind by up to this many degrees
+        bend: 0.015         # and bowed by up to this
+        width: 0.012
+        lift: 0.6           # this share of the shade cleared under a streak...
+        whiten: 0.3         # ...and this share of the ground
+      flecks:
+        pitch: 0.026
+        share: 0.6
+        scatter: 0.35
+        clumpPitch: 0.26
+        clumpLevel: 0.5
+        sizeMin: 0.006
+        sizeMax: 0.03
+        sizePower: 3
+        whiten: 0.5         # the shade is cleared under a fleck, and this share of the ground
+
+  # ---- as the second round drew them, and the owner kept them ("Generally the trees look fine too") ----
+  caps:
+    share: 0.45             # a cap of snow on this share of the trees...
+    scale: 0.48             # ...this share of the crown across...
+    shift: 0.14             # ...moved this share of it toward the light
+    shadeScale: 0.6         # its bands this share of their tones
+    knockout: [ground, relief, green, shade]   # what lies under a crown...
+    clear: 0.85             # ...cleared this far toward bare stock under the cap
+  roofs:
+    inset: 0.012            # snow on every roof, this far inside its edge
+    shadeTone: 0.32         # style ridge: the half of it away from the light
+    # ridge: as the second round drew it (the roof bare stock, the half across its ridge away from the light in
+    # shade), which the owner kept ("The town and buildings look fine"). pillow: the one trial he asked for
+    # ("We could try adding the pillow style snowdrifts on the roofs of the town, but if it doesnt look better than
+    # the current style.. just keep the current style"): the roof's square in the pillow manner. Shown beside each
+    # other in docs/review/M7/winter3: the pillow roofs read as flat boxes, the ridge as pitched roofs under snow,
+    # so `ridge` is kept (the builder's call, which the owner asked for, 2026-11-14). SWITCH: style: pillow.
+    style: ridge
+    pillow: { lift: 0.9, edge: 0.016, light: 0.95, shadow: 0.01, shadowTone: 0.55, facing: 0.2 }
+
+  # What a freestanding thing on open ground keeps clear of (the second round's work, kept: it holds a flat piece
+  # of banked snow now, and that round's mounds if they are switched on).
+  keepClear:
+    spacing: 0.04           # two of them keep this far apart
+    counterClear: 0.3       # and this far from the middle of every hex, where a counter stands
+    # The box the table prints a hex's number in (client/src/scene/grid.ts: LABEL_HEIGHT 0.125, four digits of
+    # DIGIT_ASPECT 0.6, LABEL_GAP 0.065 under the hex's top side), and a pad round it: nothing enters it.
+    numberBox: { halfWidth: 0.15, top: 0.065, height: 0.125, pad: 0.025 }
+    edgeClear: 0.06
+    roadClear: 0.03         # from a road's casing
+    riverClear: 0.02        # from a stream's bank
+    lineClear: 0.025        # from a hill line or a green side
+    treeClear: 0.015        # from the outline of a tree
+
+  # ---- SWITCHED OFF: trials of the third round in the pillow manner, shown in docs/review/M7/winter3 ----
+  # A few flat pieces of banked snow on open ground. share 0: none (open ground is bare snow, as in his example).
+  # SWITCH: share: 0.07 (the trial's value: that share of the open hexes that are no hilltop).
+  drifts:
+    share: 0
+    tries: 4
+    reachMin: 0.34          # from the hex's middle
+    reachMax: 0.46
+    lengthMin: 0.18         # long the way the wind blows...
+    lengthMax: 0.3
+    widthMin: 0.07
+    widthMax: 0.11
+    turn: 12                # ...each turned from it by up to this many degrees either way
+    plates: [ground, relief]   # what lies under a piece on open ground: the snow, and the haze of a slope
+    step: 0.03              # a piece's outline is tested at points this far apart
+    pillow: { lift: 0.6, edge: 0.016, light: 0.95, shadow: 0.008, shadowTone: 0.4, facing: 0.2 }
+  # Snow on the stones of rough ground: each stone's own shape in the pillow manner. SWITCH: on: true.
+  stones:
+    on: false
+    plates: [ground, relief, brown]   # the stone's own ink, and what it lies on
+    pillow: { lift: 0.62, edge: 0.01, light: 0.9, shadow: 0.007, shadowTone: 0.55, facing: 0.2 }
+
+  # ---- SWITCHED OFF: the second round's snow pillows, kept whole (the owner's standing rule: "Please retain any
+  # excellent or worthy work even if it was produced by mistake"). Mounds of fallen snow, each a row of rounded
+  # lumps with a thrown shadow, where snow settles: on the lee side of woods, along the uphill side of crests,
+  # against the banks of streams, and as low drifts on open ground. The owner, 2026-11-14: "the agent took it
+  # literally and there are blobular objects on hilltops". SWITCH: on: true draws them again, placed and seeded
+  # exactly as that round drew them ----
+  mounds:
+    on: false
+    most: 3                 # a mound is a row of up to this many lumps of snow
+    castTone: 0.42          # the mound's shadow on the snow...
+    castOffset: 0.04        # ...thrown this far away from the light...
+    castGrow: 0.012         # ...grown by this...
+    castFeather: 0.07       # ...and softened over this
+    lee:
+      share: 0.6
+      pitch: 0.24           # along a green side, a try every this far
+      gap: 0.01
+      lengthMin: 0.2
+      lengthMax: 0.38
+      widthMin: 0.08
+      widthMax: 0.13
+    crests:
+      share: 0.65
+      pitch: 0.3
+      gap: 0.035            # inside the crest line (more than lineClear: the mound keeps clear of the line it lies along)
+      lengthMin: 0.18
+      lengthMax: 0.32
+      widthMin: 0.07
+      widthMax: 0.11
+    banks:
+      share: 0.45
+      pitch: 0.3
+      gap: 0.02
+      lengthMin: 0.16
+      lengthMax: 0.28
+      widthMin: 0.06
+      widthMax: 0.09
+    open:
+      share: 0.1            # most open ground stays plain snow
+      tries: 4
+      reachMin: 0.34
+      reachMax: 0.46
+      lengthMin: 0.3
+      lengthMax: 0.48
+      widthMin: 0.1
+      widthMax: 0.15
+      shadeScale: 0.65      # low drifts: fainter than the rest
+      castTone: 0.24
+
+  ice:
+    # The snow along the shore, inside it. 0.14 until 2026-11-14 (the second round's). Widened in the third round:
+    # the bank of his example is about twice as wide as ours was, and a wider white band makes a lake's shore
+    # plainer from across the table. Shown beside 0.14 in docs/review/M7/winter3 ("also tried"); the owner left the
+    # choice to the builder ("make its best call, and use that"). To go back: rim: 0.14.
+    rim: 0.22
+    rimLift: 0.5            # the rim whiter than the plain by this
+    tone: 0.3               # the ice
+    edgeTone: 0.62          # the line along the ice's edge
+    edgeHalfWidth: 0.005
+    crackShare: 0.55        # a crack starts in this share of the water hexes
+    crackStepsMin: 3
+    crackStepsMax: 7
+    crackStep: 0.12
+    crackTurn: 32           # degrees a crack turns at most from one step to the next
+    crackBranch: 0.3
+    crackWidth: 0.006
+    crackTone: 0.85
+    crackClear: 0.04        # cracks stop this far short of the ice's edge
+    riverTone: 0.7          # a river's water frozen (0.34 until 2026-11-14: too faint to find from across the table)
+    # What lies on a river's ice. floes: chunks of ice (the owner: "Some stampable chunks of ice in the cold probably
+    # frozen waters ... a slightly highlighted geometric shape indicating a chunk of ice. Since it is floating it
+    # would not have highlight/shadow relief"): flat stamped shapes, a little lighter than the ice round them.
+    # dashes: the second round's patches of snow ("it looks like we have repeating light colored dashes"), kept,
+    # SWITCHED OFF. SWITCH: river: dashes.
+    river: floes
+    floes:
+      lift: 0.6             # this share of the river's tone cleared under a chunk
+      sizeMin: 0.5          # a chunk's width across the river, as a share of the room the water has there...
+      sizeMax: 1
+      stretch: 1.3          # ...its length along the river up to this much more than its width...
+      turn: 32              # ...and turned from the river's direction by up to this many degrees either way
+      least: 0.018          # no chunk narrower than this (none where a stream is that narrow)
+      edge: 0.003           # every corner of a chunk keeps this far inside the water's edge
+      gapMin: 0.01          # clear ice between one chunk and the next, along the river: from this...
+      gapMax: 0.22          # ...to this, most of the reaches short
+    dashes:
+      patch: 0.08           # a patch of snow about this long...
+      gap: 0.3              # ...about this far apart...
+      jitter: 0.6           # ...each varied by up to this share

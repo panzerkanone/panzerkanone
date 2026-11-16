@@ -1,0 +1,99 @@
+schema: unit-facts/1
+id: grw42_battery
+designation: 12 cm GrW 42
+full_name: 12 cm Granatwerfer 42, heavy mortar platoon of the infantry heavy weapons company
+side: german
+kind: mortar
+setting: Eastern Front, 1943 (the GrW 42 was produced from 1943; wp-en-grw42 infobox)
+facts:
+  count_per_unit:
+    value: 4
+    unit: mortars
+    source: tme30-451-hw
+    locator: "Chapter II, Figure 37, Heavy Weapons Company, Infantry Division, 1944 Type: '(120-mm Mort) Plat (Mtz)' row, 120-mm Morts = 4"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "a platoon in the German table; the game calls the counter a battery"
+  platoon_men:
+    value: 47
+    unit: men
+    source: tme30-451-hw
+    locator: "Figure 37, 120-mm mortar platoon (Mtz): Offs 1, NCOs 7, Pvts 39; Rs or Cbns 36, Pistols 5, Sub-MGs 7, LMGs 2"
+    retrieved: 2026-11-11
+    confidence: verified
+  organic_transport:
+    value: "motorised: 7 motor vehicles and 2 motorcycles in the platoon"
+    unit: description
+    source: tme30-451-hw
+    locator: "Figure 37, 120-mm mortar platoon (Mtz): Mtr Vehicles 7, Mtrcls 2"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "the mortar has 'a two-wheeled, quickly attached axle' and 'can be quickly towed or manhandled into a new firing position' (tme30-451-hw, Chapter VII, Section III, 4.d (1))"
+
+  mortar:
+    designation: {value: "12 cm Granatwerfer 42", unit: name, source: tme30-451-hw, locator: "Chapter VII, Section III, 4.d '120-MM MORTAR (12 cm Granatenwerfer 42)'; 'a virtually exact German copy of a standard Russian weapon'", retrieved: 2026-11-11, confidence: verified}
+    calibre_mm: {value: 120, unit: mm, source: tme30-451-hw, locator: "Chapter VII, Section III, 4.d (2): 'Caliber 120 mm'", retrieved: 2026-11-11, confidence: verified}
+    bomb_mass_kg:
+      value: 15.6
+      unit: kg
+      source: wp-en-grw42
+      locator: "infobox cartridge: '15.6 kg bomb'"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 15.9, unit: kg, source: tme30-451-hw, locator: "Chapter VII, Section III, 4.d (2): 'Weight of shell 35 pounds'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 15.6, unit: kg, source: wp-de-grw42, locator: "Geschossgewicht = 'Sprenggranate 15,6'; text: German and Soviet HE bombs of 15.6 kg (Gander and Chamberlain, p. 302)", retrieved: 2026-11-11, confidence: verified}
+        - {value: 15.8, unit: kg, source: qms-grw42, locator: "'Round Weight HE: 15.8 kg'", retrieved: 2026-11-11, confidence: secondary}
+      preferred: "15.6 (two Wikipedia articles from Gander and Chamberlain); the handbook's 35 lb is a rounded figure"
+    max_range_m:
+      value: 6000
+      unit: m
+      source: wp-en-grw42
+      locator: "infobox max_range: '6 km' (Chamberlain and Gander, Mortars and Rockets, 1975, p. 9)"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 6035, unit: m, source: tme30-451-hw, locator: "Chapter VII, Section III, 4.d (2): 'Maximum range 6,600 yards'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 6185, unit: m, source: qms-grw42, locator: "'Maximum Range 6.185m'", retrieved: 2026-11-11, confidence: secondary}
+        - {value: 650, unit: m, source: wp-de-grw42, locator: "Maximale Schussweite = 650", retrieved: 2026-11-11, confidence: verified, note: "evidently a dropped digit (6,050 m appears in mirrors of the English article); do not use"}
+      preferred: "6000; the handbook's 6035 agrees to 1%"
+    min_range_m:
+      value: 600
+      unit: m
+      source: qms-grw42
+      locator: "'Minimum Range 600m'"
+      retrieved: 2026-11-11
+      confidence: secondary
+      note: >-
+        Only source found, and it cites nothing. The Soviet original fires from 460 m (wp-ru-pm38,
+        'Эффективная дальность 460 — 5700'), and the research used 500 m from the 120-PM-43. A
+        handbook source for the German minimum is a gap.
+    max_rate_rpm:
+      value: 10
+      unit: rounds per minute
+      source: wp-en-grw42
+      locator: "infobox rate: '8-10 rpm'; the upper figure is the maximum"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "the source prints a range, 8 to 10; this entry is the maximum rate, which is its upper end"
+      alternatives:
+        - {value: "8-10", unit: rounds per minute, source: wp-de-grw42, locator: "Kadenz = 8-10", retrieved: 2026-11-11, confidence: verified}
+        - {value: 12, unit: rounds per minute, source: qms-grw42, locator: "'Maximum Rate of Fire 12 r.p.m.'; 'Practical Rate of Fire 5 r.p.m.'", retrieved: 2026-11-11, confidence: secondary}
+      preferred: "10, the maximum (the research halves the published maximum for mortars, which gives 5 a minute, the practical rate the secondary source states). Lead's ruling, 2026-11-11; until then the entry's value was the range as printed"
+    muzzle_velocity_ms: {value: 283, unit: m/s, source: wp-de-grw42, locator: "Mündungsgeschwindigkeit_V0 = 283", retrieved: 2026-11-11, confidence: verified, note: "not a formula input for mortars", alternatives: [{value: 280, unit: m/s, source: wp-en-grw42, locator: "infobox velocity 280 m/s", retrieved: 2026-11-11, confidence: verified}]}
+
+  crew:
+    total: {value: 6, unit: men per mortar, source: qms-grw42, locator: "'Crew 6'", retrieved: 2026-11-11, confidence: secondary, note: "the platoon table gives 47 men for 4 mortars including transport and headquarters (platoon_men); the Soviet original's crew is 6 (wp-en-m1938-mortar)"}
+  weight_in_action_kg:
+    value: 280
+    unit: kg
+    source: wp-en-grw42
+    locator: "infobox weight: '280 kg'"
+    retrieved: 2026-11-11
+    confidence: verified
+    alternatives:
+      - {value: 279, unit: kg, source: tme30-451-hw, locator: "Chapter VII, Section III, 4.d (2): 'Total weight 616 pounds'", retrieved: 2026-11-11, confidence: verified}
+      - {value: 285, unit: kg, source: wp-de-grw42, locator: "Gewicht in Feuerstellung = 285 (Fahrstellung 560)", retrieved: 2026-11-11, confidence: verified}
+      - {value: 274, unit: kg, source: qms-grw42, locator: "'Combat Weight 274 kg'", retrieved: 2026-11-11, confidence: secondary}
+  traits:
+    indirect: {value: true, unit: boolean, source: tme30-451-hw, locator: "Chapter VII, Section III, 4.d (2): 'Elevation 45° to 85°'", retrieved: 2026-11-11, confidence: verified}

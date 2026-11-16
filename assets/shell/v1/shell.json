@@ -1,0 +1,363 @@
+{
+  "format": "shell-art/1",
+  "frame": [
+    2752,
+    1536
+  ],
+  "pieces": [
+    {
+      "id": "battlefield",
+      "file": "battlefield.webp",
+      "width": 2752,
+      "height": 1536,
+      "at": [
+        0,
+        0
+      ],
+      "shows": "Churned, snow-dusted ground running to low hills under a dark storm sky"
+    },
+    {
+      "id": "tanks",
+      "file": "tanks.webp",
+      "width": 2752,
+      "height": 1536,
+      "at": [
+        0,
+        0
+      ],
+      "shows": "A Tiger and two Panzer IVs driving at the viewer through churned ground, with infantry running beside them; nothing in the sky"
+    },
+    {
+      "id": "title",
+      "file": "title.webp",
+      "width": 2024,
+      "height": 416,
+      "at": [
+        553,
+        105
+      ],
+      "shows": "The game's title in riveted steel letters over its subtitle in red stencil letters"
+    },
+    {
+      "id": "plate-lit",
+      "file": "plate-lit.webp",
+      "width": 629,
+      "height": 127,
+      "at": [
+        90,
+        975
+      ],
+      "shows": "A blank ivory menu plate with a rivet in each corner"
+    },
+    {
+      "id": "plate-dark-1",
+      "file": "plate-dark-1.webp",
+      "width": 629,
+      "height": 127,
+      "at": [
+        90,
+        1101
+      ],
+      "shows": "A blank dark steel menu plate with a rivet in each corner"
+    },
+    {
+      "id": "plate-dark-2",
+      "file": "plate-dark-2.webp",
+      "width": 629,
+      "height": 127,
+      "at": [
+        90,
+        1229
+      ],
+      "shows": "A blank dark steel menu plate with a rivet in each corner"
+    },
+    {
+      "id": "plate-dark-3",
+      "file": "plate-dark-3.webp",
+      "width": 629,
+      "height": 127,
+      "at": [
+        90,
+        1356
+      ],
+      "shows": "A blank dark steel menu plate with a rivet in each corner"
+    },
+    {
+      "id": "nameplate",
+      "file": "nameplate.webp",
+      "width": 707,
+      "height": 169,
+      "at": [
+        1023,
+        1359
+      ],
+      "shows": "A blank, worn steel nameplate with a rivet in each corner"
+    },
+    {
+      "id": "frame",
+      "file": "frame.webp",
+      "width": 952,
+      "height": 527,
+      "at": [
+        797,
+        790
+      ],
+      "slice": [
+        132,
+        134,
+        138,
+        134
+      ],
+      "shows": "An empty steel frame with riveted corner brackets"
+    },
+    {
+      "id": "strip",
+      "file": "strip.webp",
+      "width": 1034,
+      "height": 156,
+      "at": [
+        0,
+        1381
+      ],
+      "period": 103.4,
+      "periods": 10,
+      "shows": "A dark leather strip with a riveted, stitched brown band along its top"
+    },
+    {
+      "id": "settings-desk",
+      "file": "settings-desk.webp",
+      "width": 2752,
+      "height": 1536,
+      "at": [
+        0,
+        0
+      ],
+      "shows": "A dark wooden desk with papers, a riveted steel frame on it, the title lettering at the top and a blank wooden heading strip"
+    },
+    {
+      "id": "settings-book",
+      "file": "settings-book.webp",
+      "width": 2355,
+      "height": 886,
+      "at": [
+        225,
+        446
+      ],
+      "shows": "An open spiral notebook in a leather cover: two blank sliders with their scales on the left page, six blank buttons on the right"
+    },
+    {
+      "id": "settings-rail",
+      "file": "settings-rail.webp",
+      "width": 753,
+      "height": 112,
+      "at": [
+        263,
+        1383
+      ],
+      "shows": "A blank steel slider rail with a slot and a screw at each end"
+    },
+    {
+      "id": "settings-knob",
+      "file": "settings-knob.webp",
+      "width": 147,
+      "height": 158,
+      "at": [
+        1090,
+        1355
+      ],
+      "shows": "A worn, knurled steel slider knob"
+    },
+    {
+      "id": "settings-button",
+      "file": "settings-button.webp",
+      "width": 266,
+      "height": 138,
+      "at": [
+        1514,
+        704
+      ],
+      "shows": "A blank steel push button on the notebook's paper"
+    },
+    {
+      "id": "settings-button-lower",
+      "file": "settings-button-lower.webp",
+      "width": 276,
+      "height": 150,
+      "at": [
+        1518,
+        1032
+      ],
+      "shows": "A blank steel push button on the notebook's paper, a little nearer"
+    },
+    {
+      "id": "settings-button-lit",
+      "file": "settings-button-lit.webp",
+      "width": 278,
+      "height": 148,
+      "at": [
+        1820,
+        1031
+      ],
+      "shows": "A blank push button with a red-lit rim on the notebook's paper"
+    },
+    {
+      "id": "settings-emblems",
+      "file": "settings-emblems.webp",
+      "width": 240,
+      "height": 104,
+      "at": [
+        2250,
+        1170
+      ],
+      "shows": "Two small metal emblems pinned to the notebook's page, a compass rose and a winged badge"
+    },
+    {
+      "id": "settings-tag",
+      "file": "settings-tag.webp",
+      "width": 329,
+      "height": 137,
+      "at": [
+        2291,
+        1378
+      ],
+      "shows": "A blank grey steel tag with an eyelet"
+    },
+    {
+      "id": "side-panel",
+      "file": "side-panel.webp",
+      "width": 2752,
+      "height": 1536,
+      "at": [
+        0,
+        0
+      ],
+      "shows": "A dark wooden desk with maps and papers, a riveted steel frame, a blank wooden heading strip and an open notebook with an iron cross on one page and a red star on the other"
+    },
+    {
+      "id": "side-title",
+      "file": "side-title.webp",
+      "width": 1714,
+      "height": 255,
+      "at": [
+        538,
+        75
+      ],
+      "shows": "The game's title in riveted steel letters"
+    },
+    {
+      "id": "side-tank-first",
+      "file": "side-tank-first.webp",
+      "width": 722,
+      "height": 411,
+      "at": [
+        592,
+        690
+      ],
+      "shows": "A Tiger tank, drawn in ink and wash"
+    },
+    {
+      "id": "side-tank-second",
+      "file": "side-tank-second.webp",
+      "width": 787,
+      "height": 438,
+      "at": [
+        1634,
+        673
+      ],
+      "shows": "A T-34 tank, drawn in ink and wash"
+    },
+    {
+      "id": "side-select-first",
+      "file": "side-select-first.webp",
+      "width": 760,
+      "height": 143,
+      "at": [
+        441,
+        1097
+      ],
+      "shows": "A blank steel select button with a screw at each end"
+    },
+    {
+      "id": "side-select-first-lit",
+      "file": "side-select-first-lit.webp",
+      "width": 760,
+      "height": 143,
+      "at": [
+        441,
+        1097
+      ],
+      "shows": "A blank steel select button with its rims lit red"
+    },
+    {
+      "id": "side-select-second",
+      "file": "side-select-second.webp",
+      "width": 729,
+      "height": 143,
+      "at": [
+        1622,
+        1097
+      ],
+      "shows": "A blank steel select button with a screw at each end"
+    },
+    {
+      "id": "side-select-second-lit",
+      "file": "side-select-second-lit.webp",
+      "width": 729,
+      "height": 143,
+      "at": [
+        1622,
+        1097
+      ],
+      "shows": "A blank steel select button with its rims lit red"
+    },
+    {
+      "id": "side-tag-wide",
+      "file": "side-tag-wide.webp",
+      "width": 679,
+      "height": 137,
+      "at": [
+        1589,
+        1378
+      ],
+      "shows": "A wide blank steel tag with an eyelet"
+    },
+    {
+      "id": "side-tag-narrow",
+      "file": "side-tag-narrow.webp",
+      "width": 329,
+      "height": 137,
+      "at": [
+        2291,
+        1378
+      ],
+      "shows": "A narrow blank steel tag with an eyelet"
+    },
+    {
+      "id": "play-rest",
+      "file": "play-rest.webp",
+      "width": 803,
+      "height": 680,
+      "at": [
+        975,
+        850
+      ],
+      "shows": "A rusty riveted medallion, a star and a gear on a disc, with a plate reading PLAY GAME and a small plate under it"
+    },
+    {
+      "id": "play-ablaze",
+      "file": "play-ablaze.webp",
+      "width": 803,
+      "height": 680,
+      "at": [
+        975,
+        850
+      ],
+      "shows": "The same medallion burning: the edges of its words alight and its metal lit by fire"
+    }
+  ],
+  "font": {
+    "family": "Stick No Bills",
+    "weight": 800,
+    "file": "stick-no-bills-latin-800-normal.woff2"
+  }
+}

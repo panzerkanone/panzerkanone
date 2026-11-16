@@ -1,0 +1,62 @@
+schema: unit-facts/1
+id: zis3_battery
+designation: ZiS-3
+full_name: 76 mm divisional gun M1942 (ZiS-3), battery
+side: soviet
+kind: towed_gun
+setting: Eastern Front, 1943
+facts:
+  count_per_unit:
+    value: 4
+    unit: guns
+    source: wp-en-zis3
+    locator: "Combat history: 'A ZiS-3 battery had four guns, with three batteries making a division or battalion. Independent anti-tank regiments consisted of six batteries with no divisions.'"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "the sentence is uncited in the article; no establishment table opened. The October 1943 tank brigade had an anti-tank battery of '4 76,2-мм орудия' (wp-ru-tank-brigade), consistent"
+  organic_transport:
+    value: "towed by trucks, by Lend-Lease 3/4-ton Dodge trucks, or manhandled; ZIS-5 used as a light artillery tractor"
+    unit: description
+    source: wp-en-zis3
+    locator: "Combat history: 'The light carriage allowed the ZiS-3 to be towed by trucks, heavy jeeps, like American Lend-Lease-supplied Dodge WC-51/WC-52 ... or even manually hauled by the crew'"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "wp-en-zis5-truck: the ZIS-5 'was used as a light artillery tractor'"
+
+  gun:
+    designation: {value: "76 mm divisional gun M1942 (ZiS-3), L/42.6", unit: name, source: wp-en-zis3, locator: "infobox part_length '3.4 m, 42.6 calibers' (Foss 1977, p. 37)", retrieved: 2026-11-11, confidence: verified}
+    calibre_mm: {value: 76.2, unit: mm, source: wp-en-zis3, locator: "infobox caliber 76.2 mm", retrieved: 2026-11-11, confidence: verified}
+    ap_round: {value: "53-BR-350A (APHE, blunt-nosed with ballistic cap)", unit: name, source: wp-ru-zis3, locator: "ammunition table, 53-БР-350А", retrieved: 2026-11-11, confidence: verified}
+    ap_shot_origin: {value: soviet_wartime, unit: category, source: wp-ru-zis3, locator: "Soviet BR-350A", retrieved: 2026-11-11, confidence: verified}
+    ap_shot_mass_kg: {value: 6.3, unit: kg, source: wp-ru-zis3, locator: "53-БР-350А, 6,3 kg", retrieved: 2026-11-11, confidence: verified}
+    ap_muzzle_velocity_ms:
+      value: 662
+      unit: m/s
+      source: wp-ru-zis3
+      locator: "53-БР-350А, Начальная скорость 662"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 700, unit: m/s, source: wp-en-zis3, locator: "table heading 'Armour-piercing projectiles (muzzle velocity 700 m/s)'", retrieved: 2026-11-11, confidence: verified}
+      preferred: "662 (round-specific)"
+    he_round: {value: "53-OF-350 (HE-fragmentation)", unit: name, source: wp-ru-zis3, locator: "ammunition table", retrieved: 2026-11-11, confidence: verified}
+    he_shell_mass_kg: {value: 6.2, unit: kg, source: wp-ru-zis3, locator: "53-ОФ-350, 6,2 kg, 680 m/s, table range 13,000 m", retrieved: 2026-11-11, confidence: verified}
+    published_penetration: {value: "BR-350A: 82 / 75 / 67 mm at 100 / 500 / 1,000 m, 90° impact", unit: mm, source: wp-en-zis3, locator: "Armour penetration table, 'Meet angle 90°' column; Soviet method, 75% success", retrieved: 2026-11-11, confidence: verified, note: "check value for the penetration model only; not an input"}
+    published_effective_range_m: {value: null, unit: m, source: null, locator: "no direct-fire effective range found", retrieved: 2026-11-11, confidence: unverified, note: "gap; wp-ru-zis3 says the gun could defeat most German armour frontally 'на дистанции огня до 500—700 метров' before 1943, which is a tactical statement, not an effective range"}
+    rate_of_fire_rpm: {value: 25, unit: rounds per minute, source: wp-en-zis3, locator: "infobox rate: 'up to 25 rounds per minute'", retrieved: 2026-11-11, confidence: verified, note: "nominal maximum; reference only"}
+
+  crew:
+    total: {value: 7, unit: men per gun, source: wp-en-zis3, locator: "infobox crew: '7 artillerymen'", retrieved: 2026-11-11, confidence: verified, note: "wp-ru-zis3 describes four working numbers (commander, layer, loader, ammunition number) at the gun"}
+  weight_in_action_kg:
+    value: 1116
+    unit: kg
+    source: wp-en-zis3
+    locator: "infobox weight: 'combat: 1,116 kg; travel: 2,150 kg' (Foedrowitz 1996, p. 11)"
+    retrieved: 2026-11-11
+    confidence: verified
+    alternatives:
+      - {value: 1200, unit: kg, source: wp-ru-zis3, locator: "Масса в боевом положении, кг = 1200 (travel 1850 with combined limber)", retrieved: 2026-11-11, confidence: verified}
+  traits:
+    height_m: {value: 1.37, unit: m, source: wp-en-zis3, locator: "infobox height 1.37 m (Foss 1977)", retrieved: 2026-11-11, confidence: verified}
+    shield_mm: {value: 5, unit: mm, source: wp-ru-zis3, locator: "'Для защиты расчёта орудие имело щит толщиной 5 мм'", retrieved: 2026-11-11, confidence: verified}
+    towed: {value: true, unit: boolean, source: wp-en-zis3, locator: "towed by trucks", retrieved: 2026-11-11, confidence: verified}

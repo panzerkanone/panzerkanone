@@ -1,0 +1,83 @@
+# The winter ink table, W2: summer's (ink table A2, mapart/data/inks-a2.yaml) with one colour transform made
+# (mapart/seasonInks.ts). The owner, 2026-11-14: "Desaturate, move towards ice blue (color reference in the
+# sample map). We should be able to get the existing color set, imagery to look like the winter versions
+# without too much trouble." So no ink of a summer plate is written here: every one is summer's, transformed,
+# and a plate added to summer later has its winter ink at once.
+#
+# The transform, in OKLab: each ink keeps `saturation` of its colour, then moves `towardIce` of the way toward
+# the ice blue's colour (its lightness kept); the ground plate then moves `groundLift` of the way toward the
+# snow white, lightness and colour both. The exceptions below are the only plates treated otherwise, each for
+# the reason given. The margin is summer's margin transformed.
+#
+# One plate takes no part of summer's ink (`onSnow`): the haze on the slopes, a brown that no transform of
+# summer's olive reaches. Its ink is his haze as it shows on his snow, with the snow white divided out.
+#
+# Checked on load by mapart/seasonInks.ts: every key is required, an unknown key is refused.
+format: inks-season/1
+name: W2
+version: 2
+season: winter
+
+# Sampled from the owner's example (images/map_style/2026-11-14-winter/Gemini_Generated_Image_dcbxlsdcbxlsdcbx.jpeg
+# in the main checkout, 2528 x 1684 pixels; untracked, never a source of pixels for the art). Each is the mean of
+# the middle fifth, by brightness, of the pixels of a box (so the grid lines and hex numbers in the box do not
+# count): docs/review/M7/winter2/tools/median.py. It is a photograph of a board under a table light, so its
+# lightness is the light's: the transform takes the colour of the ice blue only, and the snow white whole.
+sampled:
+  iceBlue:
+    colour: "#B6CDDD"
+    where: "the lake ice: a box 60 x 80 at x 1270, y 760, the middle of the long lake (two more boxes on it, at 1280, 900 and 1300, 1010, give #BED2E1 and #B6CEDE)"
+  snowWhite:
+    colour: "#E1E8F0"
+    where: "open snow: a box 70 x 60 at x 1620, y 820, the plain east of the long lake"
+  # Sampled the same way (docs/review/M7/winter3/tools/sample.py), on the slope just outside a crest, where his haze
+  # is strongest and its flecks of frost are few: a thin box that holds no part of the crest's line and no hex
+  # number.
+  slopeHaze:
+    colour: "#988785"
+    where: "the haze on a slope just outside its crest: a box 30 x 4 at x 1985, y 1093, from two to five pixels above the top crest of the one-hex hill south-east of the long lake (its hill number reads 478; the crest's line is at y 1098, and a hex is 71 pixels there). Two more clean boxes beside crests of the hill east of the lake (number 4183) give #978788 (30 x 6 at 1725, 566) and #9A8A8E (30 x 5 at 1725, 479)"
+  # The same haze out in the middle of a slope hex, half faded and under its frost: this round's first sample. As
+  # the slopes' ink it printed a grey mauve beside his red-brown, and the owner chose his. Kept, not used: to print
+  # from it, name it as the sample of `onSnow.relief` below.
+  slopeHazeFaded:
+    colour: "#9D8F92"
+    where: "the haze in the middle of a slope hex: a box 44 x 30 at x 1718, y 560, south-west of the crest of the hill east of the long lake (number 4183)"
+
+transform:
+  saturation: 0.3       # how much of each summer ink's colour is kept
+  towardIce: 0.55       # how far each ink then moves toward the ice blue's colour
+  groundLift: 0.9       # how far the ground then moves toward the snow white
+
+groundPlate: ground
+
+exceptions:
+  red:
+    saturation: 0.75
+    towardIce: 0.1
+    reason: "crests and hill numbers keep most of their red-brown, as in his example: the crest is a line that bars sight and must read at a glance on the snow"
+  blue:
+    saturation: 0.85
+    towardIce: 0.2
+    reason: "water's lines must be found at a glance on the snow: a frozen river is ground every unit pays to cross (ruling 83) and a shore is where tanks stop. Blue keeps most of its colour, so that a river's course reads from across the table (the lead, 2026-11-14, from the first winter battle on the live site, where the river was all but lost)"
+  key:
+    saturation: 1
+    towardIce: 0
+    reason: "the key plate is the grid, the hex numbers, the town names and the outlines of buildings: it stays summer's near-black, so every number and name reads as it does in summer"
+
+# Plates whose winter ink is a sample as it shows on the snow, and no transform of summer's ink. The plate prints
+# over the ground and plates multiply, so the ink is the sample with the snow white divided out of it, channel by
+# channel (mapart/seasonInks.ts `inkOnSnow`): at full tone on the snow it gives the sample back. How strong the
+# haze is printed is the parameters' (mapart/data/params-winter.yaml, changes.wash.tone).
+onSnow:
+  relief:
+    sample: slopeHaze
+    reason: "the haze on the slopes is the reddish brown of his example (the owner, 2026-11-14: 'The slopes still need to be a blue shifted brown ... The color blended', and of the hill of his example: 'the speckled icy snow and reddish brown slopes ... is very good'). Summer's olive transformed is a faint grey, and no saturation or move toward the ice blue makes a brown of an olive"
+
+# Winter's own plate: the cool shade of the snow pillows (their lower side and their faint shadow) and the ice on
+# the water, printed at tones. The ice blue at this lightness (OKLab L) and this many times its colour.
+plates:
+  - id: shade
+    offset: [0.005, -0.005]
+    lightness: 0.66
+    chroma: 2
+    reason: "the shaded side of snow and the ice are the ice blue of his example, darker so that a tone of it reads on the white"

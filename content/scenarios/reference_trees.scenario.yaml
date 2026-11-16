@@ -1,0 +1,53 @@
+# The reference scenario on the second standard board: the same meeting over three towns, with
+# the board's woods placed as tree sides (assets/maps/test_standard_trees.map.yaml). Tree sides
+# bar sight along their green hexsides, and a tree hex is woods to enter and to stand in. The
+# forces, the zones, the objectives and every number are those of the reference scenario
+# (reference.scenario.yaml); only the board differs. Original content.
+# Checked on load by its ruleset's own loader (scenario.ts, among the engine's rulesets)
+# against the ruleset data and the map, whose content hash must match the one given here.
+
+format: scenario/1
+id: reference-holtargard-trees
+name: "Meeting at Holtargard, among the trees"
+ruleset: reference
+map: { id: test_standard_trees, hash: "199d66239d98f21208175f6d352793be392f77e995eb8e0ec0d8e6b40f697932" }
+
+# The game ends after this turn, the higher score winning.
+turns: 8
+# A side with this many live units or fewer has lost at once.
+brokenAt: 4
+# Each hex here scores its points, at the end of every turn, for a side that alone holds it. Three
+# points on the main road: the middle of the board, and one four columns to either side of it
+# (the western one is the town of Pelarost).
+objectives:
+  - { hex: "1714", points: 3 }
+  - { hex: "1314", points: 2 }
+  - { hex: "2114", points: 2 }
+
+# Sides in order of play. Both set up at the same time, hidden from each other until both
+# have submitted. zone: two opposite corners of the set-up rectangle.
+sides:
+  - id: azure
+    name: "Azure column"
+    stacking: 2
+    zone: ["0101", "0421"]
+    force:
+      - { type: battle_tank, count: 4 }
+      - { type: light_tank, count: 2 }
+      - { type: tank_destroyer, count: 1 }
+      - { type: armoured_car, count: 1 }
+      - { type: rifle_platoon, count: 4 }
+      - { type: mortar_section, count: 1 }
+      - { type: antitank_gun, count: 1 }
+  - id: ochre
+    name: "Ochre column"
+    stacking: 2
+    zone: ["3001", "3321"]
+    force:
+      - { type: battle_tank, count: 4 }
+      - { type: light_tank, count: 2 }
+      - { type: tank_destroyer, count: 1 }
+      - { type: armoured_car, count: 1 }
+      - { type: rifle_platoon, count: 4 }
+      - { type: mortar_section, count: 1 }
+      - { type: antitank_gun, count: 1 }

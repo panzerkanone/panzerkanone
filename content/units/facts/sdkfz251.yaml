@@ -1,0 +1,113 @@
+schema: unit-facts/1
+id: sdkfz251
+designation: Sd.Kfz. 251
+full_name: Mittlerer Schützenpanzerwagen Sd.Kfz. 251/1, medium armoured half-track (Ausf. C in 1943)
+side: german
+kind: carrier
+setting: Eastern Front, 1943
+facts:
+  top_speed_kmh: {value: 52.5, unit: km/h, source: wp-en-sdkfz251, locator: "infobox speed 52.5 km/h", retrieved: 2026-11-11, confidence: verified, note: "wp-de-spw251: Höchstgeschwindigkeit 52,5 km/h"}
+  engine_power: {value: 100, unit: PS, source: wp-en-sdkfz251, locator: "infobox engine_power 100 PS, Maybach HL42", retrieved: 2026-11-11, confidence: verified}
+  combat_weight_t:
+    value: 7.81
+    unit: t
+    source: wp-en-sdkfz251
+    locator: "infobox weight 7.81 t"
+    retrieved: 2026-11-11
+    confidence: verified
+    alternatives:
+      - {value: 7.4, unit: t, source: wp-de-spw251, locator: "infobox Gewicht 7,4 t", retrieved: 2026-11-11, confidence: verified}
+  troops_carried:
+    value: 10
+    unit: men (plus 2 crew)
+    source: wp-en-sdkfz251
+    locator: "infobox crew: '2 crew+10 passengers'; 'a vehicle that could be used to transport a single squad of 10 panzergrenadiers'"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "wp-de-spw251: Besatzung '2 + 10 Mann'. An armoured infantry company had 21 carriers for 183 men (TM-E 30-451 via research 2.4, not re-opened today)"
+  armour:
+    front:
+      thickness_mm: {value: 14.5, unit: mm, source: wp-en-sdkfz251, locator: "'The front-facing plates were 14.5 mm thick'", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: "8 to 12", unit: mm, source: wp-de-spw251, locator: "infobox Panzerung 8 bis 12 mm", retrieved: 2026-11-11, confidence: verified}, {value: "5 to 15", unit: mm, source: tme30-451-hw, locator: "Chapter VII, Section VI, 6: 'These vehicles are armored only lightly (5 to 15 mm) and the plates are sloped'", retrieved: 2026-11-11, confidence: verified}, {value: 15, unit: mm, source: coeo-1945, locator: "German p. 45: '15 mm on the lower front plate'; specifications 'Front plate 15 mm'", retrieved: 2026-11-11, confidence: verified}]}
+      angle_from_vertical_deg:
+        value: 35
+        unit: degrees
+        source: coeo-1945
+        locator: "m. gp. Mannsch. Kw. (Sd. Kfz. 251), German p. 45: 'The armor plate thickness measures 7.5 mm on the radiator cover, 8.5 mm on the sides, and 15 mm on the lower front plate, set at angles to the horizontal of 81°, 55-60°, and 55° respectively.' 90 - 55 = 35 from the vertical"
+        retrieved: 2026-11-11
+        confidence: verified
+        note: >-
+          The lower front plate. The thickness above (the English article's "front-facing plates")
+          and this angle (the Catalog's lower front plate) come from two sources, and neither says
+          they describe the same plate (independent check, 2026-11-11). Above it the radiator cover
+          is 7.5 mm at 81° to the horizontal, 9° from the vertical. The Catalog prints thickness 15 mm here (14.5 in wp-en-sdkfz251). Its
+          entry describes the vehicle as built on the Sd.Kfz. 11 chassis with variants 251/1 to
+          251/8, an early description; no angle for the Ausf. C of 1943 was found. Was a gap until
+          2026-11-11.
+    side:
+      thickness_mm: {value: 8, unit: mm, source: wp-en-sdkfz251, locator: "'the sides were V-shaped 8 mm thick plates, steeply angled'", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 8.5, unit: mm, source: coeo-1945, locator: "German p. 45: '8.5 mm on the sides'; specifications 'Sides 8.5 mm'", retrieved: 2026-11-11, confidence: verified}], preferred: "8, the article's figure for the plates; the Catalog's 8.5 is a measurement of one vehicle and differs by half a millimetre"}
+      angle_from_vertical_deg:
+        value: "30 to 35"
+        unit: degrees
+        source: coeo-1945
+        locator: "German p. 45: '8.5 mm on the sides ... set at angles to the horizontal of ... 55-60°'. 90 - 60 = 30 and 90 - 55 = 35 from the vertical"
+        retrieved: 2026-11-11
+        confidence: verified
+        note: "the Catalog prints a range; kept as a range, not averaged. Same caveat on the vehicle described as for the front plate. Was a gap until 2026-11-11"
+    protection_against: {value: "rifle and machine-gun bullets (7.92 x 57 mm)", unit: description, source: wp-en-sdkfz251, locator: "'The armour plates were designed to provide protection against standard rifle/ machine gun bullets'", retrieved: 2026-11-11, confidence: verified}
+  open_top: {value: true, unit: boolean, source: wp-en-sdkfz251, locator: "'The troop compartment was protected by armor on its sides, but open on top.'", retrieved: 2026-11-11, confidence: verified}
+  machine_guns:
+    count: {value: 1, unit: guns, note: "the gun at the front of the compartment; a second could be mounted at the rear, and is not counted (lead's ruling, 2026-11-11: the entry's value was the sentence, and a formula needs a number)", source: wp-en-sdkfz251, locator: "'equipped with a 7.92 mm MG 34 or MG 42 machine gun mounted at the front of the open compartment ... A second machine gun could be mounted at the rear on an anti-aircraft mount.'", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 2, unit: guns, source: wp-de-spw251, locator: "infobox Hauptbewaffnung '2 MG'", retrieved: 2026-11-11, confidence: verified}]}
+  height_m: {value: 1.75, unit: m, source: wp-en-sdkfz251, locator: "infobox height 1.75 m", retrieved: 2026-11-11, confidence: verified}
+  crew:
+    total:
+      value: 2
+      unit: men (driver and commander; the 10 carried men are counted in troops_carried)
+      source: wp-en-sdkfz251
+      locator: "infobox crew: '2 crew+10 passengers'"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 2, unit: men, source: wp-de-spw251, locator: "infobox Besatzung '2 + 10 Mann'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 2, unit: men, source: wp-ru-sdkfz251, locator: "infobox Экипаж 2, Десант 10; 'места механика-водителя и командира бронетранспортёра'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 11, unit: men (all aboard), source: coeo-1945, locator: "German p. 45: 'The vehicle has a seating capacity for eleven men, including the driver'; specifications 'Crew 11'", retrieved: 2026-11-11, confidence: verified, note: "counts everyone aboard of an early vehicle: one fewer than 2 + 10"}
+      preferred: "2, the vehicle's own crew in three articles; the Catalog's 11 is everyone aboard"
+  carriers_per_platoon:
+    value: 4
+    unit: carriers
+    source: ttt22-1943
+    locator: "Tactical and Technical Trends No. 22, 8 April 1943 (from a German training manual), j (1): 'The first two of the four carriers of an assault platoon drive forward ... In the third carrier is the assault platoon leader ... The fourth carrier ... follows up with ammunition and equipment.'"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "a training manual's assault platoon, not an establishment table; the K.St.N. for the armoured Panzergrenadier company of 1943 was not found"
+    alternatives:
+      - {value: 4, unit: carriers, source: tme30-451-hw, locator: "Chapter II, Figure 66, Panzer Grenadier Company, Army Armored Division: each 'Pz. Gren. Plat (Armd)' Mtr Vehicles 4 (30 men)", retrieved: 2026-11-11, confidence: verified, note: "the handbook of March 1945; the vehicles are not named, but the company footnote counts 21 of its 25 as armoured personnel carriers"}
+  carriers_per_company:
+    value: 21
+    unit: carriers
+    source: tme30-451-hw
+    locator: "Chapter II, Figure 66, 'PanzerGrenadier Company, Army Armored Division, total strength 183': Total Mtr Vehicles '25[1]', note '[1] Including 21 Armd pers carriers'"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: >-
+      Dated March 1945 (the handbook) for the organisation of 1944; no 1943 company table was
+      opened. The company: three Pz. Gren. platoons of 4 vehicles, a heavy weapons platoon of 4,
+      an anti-aircraft platoon of 5, company headquarters 4.
+  tow_role:
+    value: "prime mover for the 7.5 cm Pak 40, among others"
+    unit: description
+    source: wp-en-pak40
+    locator: "'The usual prime movers were Opel Blitz lorry, Raupenschlepper Ost tracked tractor, SdKfz 11 medium halftrack and SdKfz 251 armoured halftrack.'"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "the Sd.Kfz. 251/4 variant was the ammunition carrier and tractor for the le.IG 18, le.FH 18/1 and 37 to 75 mm anti-tank guns (wp-ru-sdkfz251, Modifications); coeo-1945 gives 'Trailer load 3.3 tons'"
+  march_speed_kmh:
+    value: 24.1
+    unit: km/h
+    source: ttt22-1943
+    locator: "d. The March: 'Over favorable terrain, an average speed of 15 mph can be maintained, with a maximum speed of from 18 1/2 to 22 1/2 mph under favorable conditions. This would permit a total of 90 to 120 miles per day.'"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "the armoured infantry company on the march, from a German training manual. A 20-minute halt every 2 hours"
+    alternatives:
+      - {value: 25.7, unit: km/h, source: tme30-451-hw, locator: "Chapter VI, Section VI, 3.b (2), average speeds of march columns: 'Half-track vehicles 16' miles per hour", retrieved: 2026-11-11, confidence: verified}
+    preferred: "24.1, the armoured infantry's own figure; the handbook's 25.7 is for half-tracks in general"

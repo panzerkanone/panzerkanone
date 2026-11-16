@@ -1,0 +1,110 @@
+# The Doviel Heights, August 1943: a skirmish, the battle's smaller level (docs/rules/rules-v1.md 1.3). The forward
+# detachment of a Soviet tank brigade (two T-34 companies, a SU-76M platoon, two rifle companies and a Maxim platoon)
+# must cross the open valley to Doviel under a German outpost's two anti-tank guns, one on each ridge, with an assault
+# gun platoon behind the east ridge and grenadiers in the village. Original content: the situation and the forces are
+# invented for this scenario from the unit types of roster v1 (content/units/v1.units.yaml, each value derived from
+# cited public facts); the board is this project's own generated board "doviel_hills"
+# (assets/maps/doviel_hills.map.yaml), and the place names are the board's own invented names, on no other board.
+# No historical engagement is depicted, and no published scenario, board, order of battle or victory rule is
+# followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md). The Soviet side attacks and
+# moves first, and is the larger in points (52 to 30).
+# Levelled on 2026-11-14 between two planning opponents at `normal` (the whole side moving, the same side first
+# every turn; docs/review/M7/battles-handover.md): the first draft is this file. Soviet share 51.0% over seeds 1 to
+# 100, 52.0% over 200 to 299; over 400 games (seeds 1 to 400) 50.5% (45.6 to 55.4), mean last turn 6.0; ends at the
+# turn limit 96% (193 Soviet wins to 190), by a break 4% (9 to 7), by the lead 0% (one German). Both sides lose
+# little (7 and 15 points a game): the Soviet side wins by taking a ridge or the village late and holding it, the
+# German side by holding both. `hard` on both sides (96 games): 74.0% Soviet (64.4 to 81.7), mean last turn 6.0.
+
+format: impulse-scenario/1
+id: doviel-heights-skirmish-august-1943
+name: "The Doviel Heights, August 1943 (Skirmish)"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3).
+battle: doviel
+level: skirmish
+ruleset: v1
+units: v1
+map: { id: doviel_hills, hash: "2baf0558cc5aa729c2681556099a3a51494552497e736abf6e0825d3968b4b9d" }
+initiative: soviet
+freeDeployment: false
+objectives:
+  - { hex: "1809", points: 2, holder: german }   # Doviel, the village where the three roads meet
+  - { hex: "2313", points: 2, holder: german }   # the east ridge, its west end, over the Kelbeck road
+ending: { turns: 6, suddenDeathLead: 30, breakShare: 0.7 }
+sides:
+  - id: soviet
+    name: "Soviet forward detachment"
+    counters: stock-b
+    orders: 3
+    zone: [["0116", "3321"]]
+    formations:
+      # The tanks: two T-34 companies and a SU-76M platoon, south of the low ridge on the south edge.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: t34_76, hex: "1821" }
+          - { id: s1b, type: t34_76, hex: "1721" }
+          - { id: s1c, type: su76m, hex: "1921" }
+      # Two rifle companies, one in a truck, and a Maxim platoon.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: rifle_co, carriedBy: s2t }
+          - { id: s2b, type: rifle_co, hex: "1619" }
+          - { id: s2c, type: maxim, hex: "1621" }
+          - { id: s2t, type: zis5, hex: "2019" }
+  - id: german
+    name: "German outpost"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "3315"]]
+    formations:
+      # Two anti-tank guns, one on each ridge, and a StuG III G platoon behind the east ridge.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pak40, hex: "1113" }
+          - { id: g1b, type: pak40, hex: "2213" }
+          - { id: g1c, type: stug3g, hex: "2408" }
+      # A grenadier company in Doviel and a machine-gun platoon in the wood north of it, with their truck.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: grenadier_co, hex: "1809" }
+          - { id: g2b, type: mg42, hex: "1907" }
+          - { id: g2t, type: opel_blitz, hex: "1806" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. Doviel and this action are
+# invented: the background is period color and claims no real engagement. Original text, written for this project.
+briefing:
+  title: "The Doviel Heights"
+  date: "August 1943"
+  place: "the Eastern Front"
+  picture: engraving-factory
+  background: >-
+    The summer offensive has broken through, and a Soviet tank brigade is driving north. Its forward detachment
+    reaches a stretch of hill country, where three roads meet at the village of Doviel. A German outpost got
+    there first.
+  situation: >-
+    A few German anti-tank guns watch the valley from the ridges on both sides of Doviel. Grenadiers hold the
+    village. The Soviet tanks wait behind the low hills to the south. To reach the village, they must cross
+    open ground under the guns.
+  note: "The forces are of the kind that met that month. The place and this action are invented."
+  sides:
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Take Doviel and the east ridge before the German main body arrives."
+      formations:
+        - { id: s1, role: "tanks" }
+        - { id: s2, role: "riflemen" }
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Hold Doviel and the east ridge. Fire on the tanks from the heights as they cross the open ground."
+      formations:
+        - { id: g1, role: "guns and assault guns" }
+        - { id: g2, role: "Doviel garrison" }
+  objectives:
+    - { hex: "1809", name: "Doviel" }
+    - { hex: "2313", name: "The east ridge" }

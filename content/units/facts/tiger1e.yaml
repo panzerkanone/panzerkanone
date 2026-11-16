@@ -1,0 +1,119 @@
+schema: unit-facts/1
+id: tiger1e
+designation: Tiger I E
+full_name: Panzerkampfwagen VI Tiger Ausf. E (Sd.Kfz. 181)
+side: german
+kind: tank
+setting: Eastern Front, 1943
+facts:
+  count_per_unit:
+    value: 4
+    unit: tanks
+    source: wp-en-hvy-tank-bn
+    locator: "Organisation of schwere Panzerabteilung 508, 1943 (Schneider 2004, pp. 13-14): '1st - 3rd panzer platoon, each of four tanks each'; company 14 tanks with a two-tank company detachment"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "TM-E 30-451, Chapter II, Figure 102 (GHQ Tiger battalion) gives 14 Pz. Kpfw. VI per company, consistent with 2 + 3 x 4"
+    alternatives:
+      - {value: 14, unit: "tanks per company", source: tme30-451-hw, locator: "Chapter II, Figure 102, GHQ Pz. Kpfw. VI (Tiger) Battalion: each 'Tk Co' row, 14 tanks", retrieved: 2026-11-11, confidence: verified, note: "company total, not a platoon; supports the platoon of 4"}
+
+  gun:
+    designation: {value: "8.8 cm KwK 36 L/56", unit: name, source: wp-en-tiger-i, locator: "infobox primary_armament: '1x 8.8 cm KwK 36 L/56, 92 AP and HE rounds'", retrieved: 2026-11-11, confidence: verified}
+    calibre_mm: {value: 88, unit: mm, source: wp-en-kwk36, locator: "infobox caliber 88 mm", retrieved: 2026-11-11, confidence: verified}
+    ap_round: {value: "Pzgr. 39 (APCBC)", unit: name, source: wp-en-kwk36, locator: "section 'Panzergranate 39 (PzGr. 39)'", retrieved: 2026-11-11, confidence: verified}
+    ap_shot_origin: {value: german_capped, unit: category, source: wp-en-kwk36, locator: "'Armour-piercing, capped, ballistic cap (APCBC) projectile'", retrieved: 2026-11-11, confidence: verified}
+    ap_shot_mass_kg: {value: 10.2, unit: kg, source: wp-en-kwk36, locator: "PzGr. 39, 'Projectile weight: 10.2 kg' (cites H.Dv. 481/60, p. 24)", retrieved: 2026-11-11, confidence: verified}
+    ap_muzzle_velocity_ms:
+      value: 773
+      unit: m/s
+      source: wp-en-kwk36
+      locator: "PzGr. 39, 'Muzzle velocity: 773 m/s'"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 780, unit: m/s, source: wp-en-kwk36, locator: "infobox velocity: '780 m/s APCBC'", retrieved: 2026-11-11, confidence: verified}
+      preferred: "773, the figure in the round's own section; the infobox looks rounded. 0.9% apart"
+    he_round: {value: "8.8 cm Sprgr. L/45 (HE), as the article names it", unit: name, source: wp-en-kwk36, locator: "section 'Sprgr. L/45 (HE)'", retrieved: 2026-11-11, confidence: verified}
+    he_shell_mass_kg: {value: 9.0, unit: kg, source: wp-en-kwk36, locator: "Sprgr. (HE): 'Projectile weight: 9 kg' (cites Jentz 1996, p. 9; H.Dv. 481/60, p. 24)", retrieved: 2026-11-11, confidence: verified}
+    published_hit_probability: {value: "93 / 74 / 50 % at 1,000 / 1,500 / 2,000 m", unit: percent, source: wp-en-kwk36, locator: "PzGr. 39 table, 'Firing range' column, 2.5 x 2 m target (Jentz 1996, p. 9)", retrieved: 2026-11-11, confidence: verified, note: "check value used by the research for the range-band curve (section 3.2); not an input"}
+
+  machine_guns:
+    count: {value: 2, unit: guns, source: wp-en-tiger-i, locator: "infobox secondary_armament: '2x 7.92 mm MG 34'", retrieved: 2026-11-11, confidence: verified}
+    type: {value: "MG 34, one coaxial, one in hull", unit: name, source: tme30-451-hw, locator: "Chapter VII, Section VI, 4.b Pz. Kpfw. Tiger, Specifications: 'One 8.8 cm Kw.K.36 (L/56). One M.G. 34' coaxial; 'In hull One M.G. 34'", retrieved: 2026-11-11, confidence: verified}
+
+  armour:
+    hull_front:
+      thickness_mm: {value: 100, unit: mm, source: wp-de-tiger, locator: "Technical table, Panzerung, Wannenfront: '100 mm / 81° (Fahrerfront)'", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 102, unit: mm, source: tme30-451-hw, locator: "Chapter VII, Section VI, 4.b: 'Driver's front plate 102 mm at 10°'", retrieved: 2026-11-11, confidence: verified, note: "wartime measurement; wp-ru-tiger footnote says Allied wartime literature used 102 and 82 for 100 and 80"}], preferred: "100 (nominal plate)"}
+      angle_from_vertical_deg: {value: 9, unit: degrees, source: wp-de-tiger, locator: "'81°' from horizontal = 9° from vertical", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 10, unit: degrees, source: tme30-451-hw, locator: "'Driver's front plate 102 mm at 10°' ('All angle measurements given are from vertical')", retrieved: 2026-11-11, confidence: verified}]}
+      cast: {value: false, unit: boolean, source: tme30-451-hw, locator: "'the hull is constructed of large plates entirely welded together'", retrieved: 2026-11-11, confidence: verified}
+    hull_side:
+      thickness_mm: {value: 80, unit: mm, source: wp-de-tiger, locator: "Wannenseite (Aufbau): '80 mm / 90°'", retrieved: 2026-11-11, confidence: verified, note: "upper hull (superstructure) side over the tracks; the lower hull side behind the running gear is 60 mm (wp-de-tiger 'Wannenseite unten (Laufwerk) 60 mm / 90°'; 62/63 mm in tme30-451-hw and wp-ru-tiger)", alternatives: [{value: 82, unit: mm, source: tme30-451-hw, locator: "'Superstructure sides 82 mm vertical'", retrieved: 2026-11-11, confidence: verified}]}
+      angle_from_vertical_deg: {value: 0, unit: degrees, source: wp-de-tiger, locator: "'90°' from horizontal", retrieved: 2026-11-11, confidence: verified}
+      cast: {value: false, unit: boolean, source: tme30-451-hw, locator: "welded plate construction", retrieved: 2026-11-11, confidence: verified}
+    turret_front:
+      thickness_mm: {value: 100, unit: mm, source: wp-de-tiger, locator: "Turmfront: '100 mm / 80° (Blende 110 mm)'", retrieved: 2026-11-11, confidence: verified, note: "mantlet 110 mm at the edges, up to 200 mm around the gun (wp-en-tiger-i, Armour)"}
+      angle_from_vertical_deg:
+        value: 10
+        unit: degrees
+        source: wp-de-tiger
+        locator: "'80°' from horizontal = 10° from vertical"
+        retrieved: 2026-11-11
+        confidence: verified
+        alternatives:
+          - {value: 0, unit: degrees, source: wp-ru-tiger, locator: "infobox Лоб башни = 100 / 0°", retrieved: 2026-11-11, confidence: verified}
+          - {value: "0 to 11", unit: degrees, source: tme30-451-hw, locator: "'Turret front 100 mm at 0° to 11°'", retrieved: 2026-11-11, confidence: verified}
+        preferred: "10, the German-language table; the handbook's range 0-11 brackets both figures"
+      cast: {value: false, unit: boolean, source: tme30-451-hw, locator: "'The turret wall is made from a single large piece of armor, 82 mm thick, bent into a horseshoe shape'", retrieved: 2026-11-11, confidence: verified}
+    turret_side:
+      thickness_mm: {value: 80, unit: mm, source: wp-de-tiger, locator: "Turmseite: '80 mm / 90°'", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 82, unit: mm, source: tme30-451-hw, locator: "'Turret sides and rear 82 mm vertical'", retrieved: 2026-11-11, confidence: verified}]}
+      angle_from_vertical_deg: {value: 0, unit: degrees, source: wp-de-tiger, locator: "'90°' from horizontal", retrieved: 2026-11-11, confidence: verified}
+      cast: {value: false, unit: boolean, source: tme30-451-hw, locator: "bent rolled plate, as above", retrieved: 2026-11-11, confidence: verified}
+
+  mobility:
+    road_speed_max_kmh:
+      value: 45.4
+      unit: km/h
+      source: wp-en-tiger-i
+      locator: "infobox speed: '45.4 km/h on roads' (Jentz and Doyle 2000, p. 181); sustained road speed 40 km/h"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "an engine governor fitted from November 1943 capped speed at about 38 km/h (wp-en-tiger-i, Mobility; Newsome 2020)"
+      alternatives:
+        - {value: 45, unit: km/h, source: wp-de-tiger, locator: "Höchstgeschwindigkeit Straße / Gelände 45 / 20 km/h", retrieved: 2026-11-11, confidence: verified}
+        - {value: 40, unit: km/h, source: tme30-451-hw, locator: "Chapter VII, Section VI, 4.b: 'Maximum speed 25 miles per hour'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 38, unit: km/h, source: wp-en-tiger-i, locator: "Mobility: governor from November 1943, 'maximum speed to about 38 km/h'", retrieved: 2026-11-11, confidence: verified}
+      preferred: "45.4 for 1943 production before the governor; use 38 if the scenario is after November 1943"
+    engine_power:
+      value: 700
+      unit: PS (metric horsepower)
+      source: wp-en-tiger-i
+      locator: "infobox engine_power: '700 PS (690 hp, 515 kW)' (HL230 P45)"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "from the 251st Tiger (about May 1943) the HL 230 P45 gave 700 PS maximum, 650 PS continuous (wp-de-tiger, Leistung). Both engines served in 1943"
+      alternatives:
+        - {value: 650, unit: PS (metric horsepower), source: wp-de-tiger, locator: "Motor, note T: 'In den ersten 250 Fahrzeugen: Maybach HL 210 P45 (21 Liter Hubraum, 650 PS bei 3000 min-1)'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 690, unit: hp (brake), source: tme30-451-hw, locator: "Chapter VII, Section VI, 4.b: 'BHP 690 HP at 3,000 rpm'", retrieved: 2026-11-11, confidence: verified}
+      preferred: "700: a vehicle of July 1943, the date of the first roster, with the HL 230 (lead's ruling, 2026-11-11; until then the entry's value was 650, the first 250 vehicles' HL 210). The difference is 7% in power, about 4% in the research's movement formula (square root)"
+    combat_weight_t:
+      value: 57
+      unit: t
+      source: wp-en-tiger-i
+      locator: "infobox weight: '57 t (Ausf. E)' (Jentz and Doyle 2000, p. 179; combat weight, Green and Brown 2008, p. 20)"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 54, unit: t, source: wp-en-tiger-i, locator: "infobox weight first line '54 t' (Jentz and Doyle 2000, p. 177)", retrieved: 2026-11-11, confidence: verified}
+        - {value: 56.9, unit: t, source: tme30-451-hw, locator: "Chapter VII, Section VI, 4.b: 'Weight in action 62.75 short tons' (x 0.9072)", retrieved: 2026-11-11, confidence: verified}
+      preferred: "57 (also wp-de-tiger and wp-ru-tiger)"
+
+  crew:
+    total: {value: 5, unit: men, source: wp-en-tiger-i, locator: "infobox crew: '5 (commander, gunner, loader, driver, radio operator)'", retrieved: 2026-11-11, confidence: verified}
+    in_turret: {value: 3, unit: men, source: wp-de-tiger, locator: "Turm: 'Der Ladeschütze hatte seinen Platz rechts ... während der Richtschütze und der Kommandant links hintereinander saßen'", retrieved: 2026-11-11, confidence: verified}
+
+  traits:
+    height_m: {value: 3.00, unit: m, source: wp-en-tiger-i, locator: "infobox height 3.00 m", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 2.88, unit: m, source: wp-de-tiger, locator: "Höhe: '3 m (mit späterer Panther-Kuppel = 2,88 m)'", retrieved: 2026-11-11, confidence: verified}, {value: 2.86, unit: m, source: tme30-451-hw, locator: "'Height 9 feet 4 3/4 inches'", retrieved: 2026-11-11, confidence: verified}]}
+    ground_pressure_kg_cm2: {value: 1.03, unit: kg/cm2, source: wp-de-tiger, locator: "Technical table, Bodendruck: '1,03 kg / cm²'", retrieved: 2026-11-11, confidence: verified, note: "wp-ru-tiger infobox gives the same 1,03; on the 72 cm combat track"}
+    radio: {value: true, unit: boolean, source: wp-de-tiger, locator: "'Der Funker bediente neben dem Funkgerät auch das ... Bug-MG'; command tanks had an additional set in the turret", retrieved: 2026-11-11, confidence: verified}
+    open_top: {value: false, unit: boolean, source: wp-de-tiger, locator: "Turmdecke 25 mm", retrieved: 2026-11-11, confidence: verified}
+    turretless: {value: false, unit: boolean, source: wp-de-tiger, locator: "turreted tank", retrieved: 2026-11-11, confidence: verified}

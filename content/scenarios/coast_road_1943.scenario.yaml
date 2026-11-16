@@ -1,0 +1,162 @@
+# The Coast Road, September 1943: a pursuit. A Soviet tank brigade's forward column drives west
+# along the coast road and must clear three harbor villages before a German rearguard can hold
+# it. Original content: the situation and the forces are invented for this scenario from the unit
+# types of roster v1 (content/units/v1.units.yaml, each value derived from cited public facts); the
+# board is this project's own generated board "coast_road" (assets/maps/coast_road.map.yaml), and
+# the place names are the board's own invented names.
+# No historical engagement is depicted, and no published scenario, board, order of battle or
+# victory rule is followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md): the long open
+# coast is watched from both ends, so the German screen stands in the far side of the wood north of
+# Sorestad, the Daroel garrison in the west half of the village and the Zaroova group just north of
+# Zaroova. The Soviet side attacks and moves first; the German side is the smaller (85 points to
+# 104) and has the better guns. Between two planning opponents at `normal` the first draft (a KV-1
+# company with the Soviet column, one Tiger platoon with the rearguard, 116 points to 69, break
+# share 0.6) went 83% Soviet over 200 games; with the KV-1 out and a second Tiger platoon at Daroel,
+# 61%; with a break share of 0.7 as well, which is this file, 45.5%
+# (docs/review/M6/scenarios-handover.md has the measure).
+# Balanced again on 2026-11-14 for ruling 82 (infantry companies move 4) and the planning opponent
+# taught rulings 80 and 81 (between two planning opponents at `normal`, the whole side moving, the same
+# side first every turn, 200 games): as it stood it went 68.5% Soviet; the screen's assault guns were lost
+# by turn 2 to 4 in nearly every game. No starting place was tried: the screen already stands in the only
+# part of the wood the column cannot see, and the column starts at the board's edge. Changed: an anti-tank
+# gun (a Pak 40 platoon, 5 points) joins the screen in the wood at 2715. Soviet share 51.5% (44.6 to 58.3),
+# mean last turn 6.7; ends by a break 53% (won by the Soviet side), at the turn limit 31% and by the lead
+# 17% (won by the German side). One T-34 company fewer went 40.5%, one SU-76M platoon fewer 53.0%, a
+# break share of 0.8 50.5% (docs/review/M2b/balance-82-handover.md).
+# Levelled again on 2026-11-15 for the lead's rulings 84 (a side's units are made Ready when its own turn begins) and 85
+# (heavy machine-gun platoons), with the planning opponent that sets its whole side's fire discipline alike
+# (docs/review/M7/levels2-handover.md): as it stood it went 4.5% Soviet over 200 games at `normal` (2.4 to 8.3; measured
+# before that change of the opponent), the German side winning at the turn limit (58%) or by its lead (40%). Both Tiger
+# platoons out (g2d at Daroel, g3a at Zaroova): 25.5%; and a fifth T-34 company and a third SU-76M platoon 58.0%; that
+# with Zaroova's Tiger kept 21.5%. With both Tigers out and a fifth T-34 company (s1e), this file: Soviet share 46.5%
+# over 400 games (41.7 to 51.4), mean last turn 6.9; ends at the turn limit 51% (22:180), by a break 41% (164:1), by the
+# lead 8% (0:33). At `hard` on both sides 79.2% Soviet (96 games; 62.5% before ruling 84). Forces 120 Soviet points to
+# 58 German. The guns: the Pak 40s stand in the screen's wood above Sorestad (2715), in Daroel with its truck beside it
+# (1319, 1318) and at Zaroova (0816), with the GrW 42 two hexes off and its truck beside that (0616, 0516); the PM-38
+# comes up at the column's tail with its ZIS-5 beside it (3317, 3318).
+
+format: impulse-scenario/1
+id: coast-road-september-1943
+name: "The Coast Road, September 1943"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3): the battle's Battle level.
+battle: coast
+level: battle
+ruleset: v1
+units: v1
+map: { id: coast_road, hash: "1435a4e0f0c50215656c59aac400036e16d1812656d36bd6ddae71d2b238c4a9" }
+initiative: soviet
+freeDeployment: false
+# The three harbor villages, held by the German side at the start: the column must take them.
+objectives:
+  - { hex: "2318", points: 2, holder: german }   # Sorestad, the first village west of the river
+  - { hex: "1319", points: 3, holder: german }   # Daroel, halfway along the coast
+  - { hex: "0717", points: 3, holder: german }   # Zaroova, where the road turns inland
+# A lead of 40 ends a rout (ruling 79). At a break share of 0.6 most games ended with the rearguard
+# broken by turn 6; at 0.7 it can be worn down and still hold a village to the end.
+ending: { turns: 8, suddenDeathLead: 40, breakShare: 0.7 }
+sides:
+  - id: soviet
+    name: "Soviet forward column"
+    counters: stock-b
+    orders: 3
+    zone: [["2901", "3321"]]
+    formations:
+      # A tank battalion: five T-34 companies (four until 2026-11-15), between the two rivers at the east end of the
+      # coast.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: t34_76, hex: "3014" }
+          - { id: s1b, type: t34_76, hex: "3114" }
+          - { id: s1c, type: t34_76, hex: "3015" }
+          - { id: s1d, type: t34_76, hex: "3016" }
+          - { id: s1e, type: t34_76, hex: "3113" }
+      # Motor rifles in trucks on the road, with a self-propelled gun platoon.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: su76m, hex: "3017" }
+          - { id: s2c, type: rifle_co, carriedBy: s2t }
+          - { id: s2d, type: rifle_co, carriedBy: s2u }
+          - { id: s2t, type: zis5, hex: "3216" }
+          - { id: s2u, type: zis5, hex: "3316" }
+      # The column's tail: a second self-propelled gun platoon, and over the second river a rifle
+      # company and the heavy mortars with their truck.
+      - id: s3
+        discipline: free
+        units:
+          - { id: s3a, type: su76m, hex: "3018" }
+          - { id: s3b, type: rifle_co, hex: "3314" }
+          - { id: s3c, type: pm38, hex: "3317" }
+          - { id: s3t, type: zis5, hex: "3318" }
+  - id: german
+    name: "German rearguard"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "2821"]]
+    formations:
+      # The screen in the wood north of Sorestad: two assault gun platoons, a grenadier company and an
+      # anti-tank gun (the gun since 2026-11-14).
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: stug3g, hex: "2415" }
+          - { id: g1b, type: stug3g, hex: "2515" }
+          - { id: g1c, type: grenadier_co, hex: "2615" }
+          - { id: g1d, type: pak40, hex: "2715" }
+      # Daroel: two grenadier companies and an anti-tank gun with its truck (and a Tiger platoon until 2026-11-15).
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: grenadier_co, hex: "1319" }
+          - { id: g2b, type: grenadier_co, hex: "1218" }
+          - { id: g2c, type: pak40, hex: "1319" }
+          - { id: g2t, type: opel_blitz, hex: "1318" }
+      # Zaroova: an anti-tank gun and the heavy mortars, with a truck (and a Tiger platoon until 2026-11-15).
+      - id: g3
+        discipline: free
+        units:
+          - { id: g3b, type: pak40, hex: "0816" }
+          - { id: g3c, type: grw42, hex: "0616" }
+          - { id: g3t, type: opel_blitz, hex: "0516" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. The forces,
+# their points and the win conditions are not written here: the panel works them out from the units
+# above and from `ending` and `objectives`. Sorestad, Daroel, Zaroova and this action are invented: the
+# background is period color and claims no real engagement. Original text, written for this project.
+briefing:
+  title: "The Coast Road"
+  date: "September 1943"
+  place: "the Eastern Front"
+  picture: engraving-gun-team
+  background: >-
+    Autumn is coming, and the German armies are falling back to the west. The only good road here
+    runs along the sea through a string of fishing villages. Whoever moves faster on it decides
+    where the new front line will be.
+  situation: >-
+    A Soviet tank column has crossed the last river and is racing west along the coast. A German
+    rearguard has been left in the harbor villages of Sorestad, Daroel and Zaroova to stop it. The
+    sea is on one side of the road. Woods and hills are on the other.
+  note: "The forces are of the kind that met that month. The place and this action are invented."
+  sides:
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Take all three villages before the day ends. Every turn the enemy holds one costs you points, so keep moving."
+      formations:
+        - { id: s1, role: "tank battalion" }
+        - { id: s2, role: "motor rifles" }
+        - { id: s3, role: "rear of the column" }
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Hold the villages as long as you can. Make the enemy pay for every mile of the road."
+      formations:
+        - { id: g1, role: "screen at Sorestad" }
+        - { id: g2, role: "Daroel" }
+        - { id: g3, role: "Zaroova" }
+  objectives:
+    - { hex: "2318", name: "Sorestad" }
+    - { hex: "1319", name: "Daroel" }
+    - { hex: "0717", name: "Zaroova" }

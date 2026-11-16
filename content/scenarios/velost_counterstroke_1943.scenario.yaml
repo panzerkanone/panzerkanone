@@ -1,0 +1,144 @@
+# The Velost Counterstroke, September 1943: a tank battle in wooded hills. A Soviet tank brigade broke through the
+# German line the day before and took the town of Velost, its bridge and the village of Korenel, but its infantry
+# and guns are still far behind; a German armored battle group with Tigers strikes it from the east and south-east
+# before they arrive. Most of both sides is armor. Original content: the situation and the forces are invented for
+# this scenario from the unit types of roster v1 (content/units/v1.units.yaml, each value derived from cited public
+# facts); the board is this project's own generated board "velost_woods" (assets/maps/velost_woods.map.yaml, wooded
+# hills by the natural grammar, with Velost a town of three hexes), and the place names are the board's own invented
+# names, on no other board.
+# No historical engagement is depicted, and no published scenario, board, order of battle or victory rule is
+# followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md): the German tanks wait behind
+# the hills and woods east and south-east of Korenel. The German side attacks and moves first; the Soviet brigade
+# is the larger in points (117 to 105) and the German the longer in reach (Tigers and Pz IV H against T-34s).
+# Levelled on 2026-11-14 and 15 between two planning opponents at `normal` (the whole side moving, the same side
+# first every turn; docs/review/M7/battles-handover.md). This battle's first idea, a Soviet tank raid on a German rear
+# area (a mortar park, its trucks and guns at Velost, an armored reserve behind the hills), went 0% to 12% Soviet in
+# six set-ups and 100% once the reserve was taken out: the planning opponent's raiders shot up everything in the
+# open and never drove onto an objective, so it was given up for this fight. The counterstroke's first draft (break
+# share 0.6) went 59% German over 100 games; break share 0.65, 43.0% (200); one Pz IV H platoon fewer, 27.5%; 0.62,
+# 50.0%; 0.63, 50.5%. This file (0.62): German share 46.3% over 400 games (41.4 to 51.1), mean last turn 7.0; ends
+# by a break 57% (183 German wins to 43), at the turn limit 33% (2 to 129) and by the lead 11% (all Soviet); losses
+# 36.8 German and 65.3 Soviet points a game: the Tigers and Pz IVs win by destroying the brigade's tanks, the brigade
+# by holding its three places to the end. `hard` on both sides (96 games): 78.1% German (68.9 to 85.2), mean last
+# turn 6.3.
+
+format: impulse-scenario/1
+id: velost-counterstroke-september-1943
+name: "The Velost Counterstroke, September 1943"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3): the battle's Battle level.
+battle: velost
+level: battle
+ruleset: v1
+units: v1
+map: { id: velost_woods, hash: "a86ba13acbb3e607f87aefbecfc2557e20028d005bbae5e772bc39224bbfcb77" }
+initiative: german
+freeDeployment: false
+# All three are held by the Soviet side at the start: the brigade took them the day before.
+objectives:
+  - { hex: "1916", points: 2, holder: soviet }   # Velost, the town of three hexes
+  - { hex: "1716", points: 2, holder: soviet }   # the bridge west of Velost, the brigade's way back over the river
+  - { hex: "2317", points: 2, holder: soviet }   # Korenel, where the road from the south joins
+ending: { turns: 8, suddenDeathLead: 50, breakShare: 0.62 }
+sides:
+  - id: german
+    name: "German armored battle group"
+    counters: stock-a
+    orders: 3
+    zone: [["2501", "3321"]]
+    formations:
+      # The heavy company: two Tiger platoons and a StuG III G platoon, behind the hills south-east of Korenel.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: tiger1e, hex: "3018" }
+          - { id: g1b, type: tiger1e, hex: "2919" }
+          - { id: g1c, type: stug3g, hex: "3117" }
+      # A tank company of three Pz IV H platoons and a StuG III G platoon, on the road from the east.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: pz4h, hex: "3011" }
+          - { id: g2b, type: pz4h, hex: "3213" }
+          - { id: g2c, type: pz4h, hex: "3114" }
+          - { id: g2d, type: stug3g, hex: "3210" }
+      # Armored infantry: two grenadier companies in half-tracks and a machine-gun platoon with a truck.
+      - id: g3
+        discipline: free
+        units:
+          - { id: g3a, type: grenadier_co, carriedBy: g3h }
+          - { id: g3b, type: grenadier_co, carriedBy: g3i }
+          - { id: g3c, type: mg42, carriedBy: g3t }
+          - { id: g3h, type: sdkfz251, hex: "3115" }
+          - { id: g3i, type: sdkfz251, hex: "3215" }
+          - { id: g3t, type: opel_blitz, hex: "3216" }
+  - id: soviet
+    name: "Soviet tank brigade"
+    counters: stock-b
+    orders: 3
+    zone: [["0101", "2421"]]
+    formations:
+      # The first tank battalion: three T-34 companies and a KV-1 company, about Velost.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: t34_76, hex: "2015" }
+          - { id: s1b, type: t34_76, hex: "2017" }
+          - { id: s1c, type: t34_76, hex: "2116" }
+          - { id: s1d, type: kv1, hex: "1915" }
+      # The second battalion: two T-34 companies and a SU-76M platoon, at Korenel.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: t34_76, hex: "2216" }
+          - { id: s2b, type: t34_76, hex: "2217" }
+          - { id: s2c, type: su76m, hex: "2117" }
+      # The brigade's riflemen in Velost, a Maxim platoon and a ZiS-3 at the bridge with a truck.
+      - id: s3
+        discipline: free
+        units:
+          - { id: s3a, type: rifle_co, hex: "1916" }
+          - { id: s3b, type: rifle_co, hex: "1816" }
+          - { id: s3c, type: maxim, hex: "1917" }
+          - { id: s3d, type: zis3, hex: "1614" }
+          - { id: s3t, type: zis5, hex: "1817" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. The forces, their points and
+# the win conditions are not written here: the panel works them out from the units above and from `ending` and
+# `objectives`. Velost and this action are invented: the background is period color and claims no real
+# engagement. Original text, written for this project.
+briefing:
+  title: "The Velost Counterstroke"
+  date: "September 1943"
+  place: "the Eastern Front"
+  picture: engraving-rail-yard
+  background: >-
+    Yesterday a Soviet tank brigade broke through the German line and drove south through the forest. It took
+    the small town of Velost and the bridge beside it. Its infantry and guns are still far behind. A German
+    armored battle group is sent to strike the brigade before they arrive.
+  situation: >-
+    Velost lies on the road behind the river, among woods and low hills, with the village of Korenel to the
+    east. The Soviet tanks wait around the town and the village, with a few riflemen in Velost. The German
+    tanks come from the east and south-east, with Tigers in the lead.
+  note: "The forces are of the kind that met that month. The place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Destroy the Soviet tanks and retake Velost, its bridge and Korenel. Use the woods and hills to close in, then let your longer guns do the work."
+      formations:
+        - { id: g1, role: "heavy company" }
+        - { id: g2, role: "tank company" }
+        - { id: g3, role: "armored infantry" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Hold Velost, the bridge and Korenel until your infantry arrives. Fight the Tigers at close range, where your guns can hurt them."
+      formations:
+        - { id: s1, role: "first tank battalion" }
+        - { id: s2, role: "second tank battalion" }
+        - { id: s3, role: "Velost garrison" }
+  objectives:
+    - { hex: "1916", name: "Velost" }
+    - { hex: "1716", name: "Velost bridge" }
+    - { hex: "2317", name: "Korenel" }

@@ -1,0 +1,137 @@
+# The Keliach Bridges as the first battle of the campaign "The Long Summer", German side
+# (content/campaigns/long_summer_german.campaign.yaml). Original content: the forces are invented for this
+# game from the unit types of roster v1; the board and its place names are the game's own (farmland_river).
+# No historical engagement is depicted and no published scenario is followed.
+#
+# Level `campaign` (docs/review/M7/campaign/design.md): the German side is the campaign's force at full
+# strength, its formations and units by the campaign's ids; each game draws from it what the force has
+# left (client/src/campaign/force.ts). The Soviet side, the objectives and the ending are this battle's own,
+# levelled at `normal` against the full-strength force (the record is at the end of this comment).
+# Made from the Battle level (keliach_bridges_1943): its board, objectives, ending and the Soviet side's
+# starting places; the German force stands in that level's German places, and the MG 42 platoon in one of
+# its Tiger places.
+#
+# Levelled on 2026-11-14 (tools/balance/duel.ts --ai normal --ai-other normal --activation side --initiative fixed,
+# with ruling 84), 200 games each: with the Battle level's Soviet side (less its KV-1 and a T-34 company: 91 points)
+# the force won 6.5%, nearly all its losses by the Soviet side's lead; without Keliach's two added rifle companies
+# (81) 37.0%, and a lead of 60 36.5%; without a hill gun and a reserve company too (71) 39.0%; the bridges worth 4 and
+# Keliach 3, 30.5%; 10 turns, 41.0%; 10 turns and a lead of 60, 59.5%; 10 turns and Keliach's own gun out (66) 58.5%.
+# 71 points, 10 turns and a lead of 50, 54.0%. Shipped, the battle's own 8 turns and lead of 40 kept: 66 points (the
+# garrison's gun out too): 51.5% on seeds 1 to 200 and 55.0% on 201 to 400, 53.3% over the 400 (48.4 to 58.1), mean
+# last turn 6.7.
+
+format: impulse-scenario/1
+id: keliach-campaign-german-1943
+name: "The Keliach Bridges, June 1943 (The Long Summer)"
+battle: keliach
+level: campaign
+ruleset: v1
+units: v1
+map: { id: farmland_river, hash: "5ef4395313f3f103ee1dfb53f7860ac7c700dabf38472f9866106b616bca83bf" }
+initiative: german
+freeDeployment: false
+objectives:
+  - { hex: "1402", points: 3, holder: soviet }   # the north bridge
+  - { hex: "2009", points: 3, holder: soviet }   # the south bridge
+  - { hex: "1809", points: 2, holder: soviet }   # Keliach
+ending: { turns: 8, suddenDeathLead: 40, breakShare: 0.7 }
+sides:
+  - id: german
+    name: "German battle group"
+    counters: stock-a
+    orders: 3
+    zone: [["2201", "3311"]]
+    formations:
+      # The tank company: two Pz IV H platoons in the south column, the Tiger platoon in the north.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pz4h, hex: "2611" }
+          - { id: g1b, type: pz4h, hex: "2711" }
+          - { id: g1c, type: tiger1e, hex: "2601" }
+      # The grenadier battalion with its assault guns; one company rides the half-tracks.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: stug3g, hex: "2410" }
+          - { id: g2b, type: grenadier_co, carriedBy: g2h }
+          - { id: g2c, type: grenadier_co, hex: "2507" }
+          - { id: g2d, type: grenadier_co, hex: "2707" }
+          - { id: g2h, type: sdkfz251, hex: "2602" }
+      # The support: the antitank guns on the trucks, the mortars, the machine guns.
+      - id: g3
+        discipline: free
+        units:
+          - { id: g3a, type: pak40, carriedBy: g3t }
+          - { id: g3b, type: grw42, hex: "2607" }
+          - { id: g3c, type: mg42, hex: "2701" }
+          - { id: g3t, type: opel_blitz, hex: "2706" }
+  - id: soviet
+    name: "Soviet rifle regiment"
+    counters: stock-b
+    orders: 3
+    zone: [["0101", "1921"]]
+    formations:
+      # Keliach's garrison.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: rifle_co, hex: "1808" }
+          - { id: s1b, type: rifle_co, hex: "1809" }
+      # A gun dug in on the hill above the north bridge, with a rifle company.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: zis3, hex: "1405" }
+          - { id: s2c, type: rifle_co, hex: "1203" }
+      # The reserve: a rifle company and the heavy mortars, with a truck.
+      - id: s3
+        discipline: free
+        units:
+          - { id: s3b, type: rifle_co, hex: "0907" }
+          - { id: s3c, type: pm38, hex: "0908" }
+          - { id: s3t, type: zis5, hex: "0808" }
+      # The tank battalion, waiting behind the wood to the south-west.
+      - id: s4
+        discipline: free
+        units:
+          - { id: s4a, type: t34_76, hex: "1214" }
+          - { id: s4b, type: t34_76, hex: "1115" }
+
+# What a player is told before the first turn. No rule reads it. Keliach is an invented place and this action
+# is invented. Original text, written for this project.
+briefing:
+  title: "The Keliach Bridges"
+  date: "June 1943"
+  place: "the Eastern Front"
+  picture: engraving-gun-battery
+  background: >-
+    Early summer. Your battle group has come up to the river at Keliach, where two bridges cross to the far
+    bank. Before the summer's great attack can roll over them, they must be in German hands.
+  situation: >-
+    A Soviet rifle regiment holds the far bank, with a gun dug in on the hill above the north bridge and riflemen
+    in the village of Keliach at the end of the south bridge. Its tanks wait behind them. Tanks and guns can cross
+    only by the bridges.
+  note: "The forces are of the kind that met that summer; the place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Take both bridges and hold them to the end. Keliach is worth taking too."
+      formations:
+        - { id: g1, role: "tank company" }
+        - { id: g2, role: "grenadier battalion" }
+        - { id: g3, role: "support" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Hold both bridges and Keliach, and shoot the tanks as they cross."
+      formations:
+        - { id: s1, role: "Keliach's garrison" }
+        - { id: s2, role: "guns on the hill" }
+        - { id: s3, role: "reserve" }
+        - { id: s4, role: "tanks" }
+  objectives:
+    - { hex: "1402", name: "The north bridge" }
+    - { hex: "2009", name: "The south bridge" }
+    - { hex: "1809", name: "Keliach" }

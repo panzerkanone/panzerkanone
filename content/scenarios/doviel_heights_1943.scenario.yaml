@@ -1,0 +1,150 @@
+# The Doviel Heights, August 1943: armor crossing hill country against guns on the heights. A Soviet tank
+# brigade breaking north must get through the hills where three roads meet at the village of Doviel, and a German
+# battle group has dug its anti-tank guns in on the ridges on both sides of the valley. Original content: the
+# situation and the forces are invented for this scenario from the unit types of roster v1
+# (content/units/v1.units.yaml, each value derived from cited public facts); the board is this project's own
+# generated board "doviel_hills" (assets/maps/doviel_hills.map.yaml, hill country by the natural grammar), and the
+# place names are the board's own invented names, on no other board.
+# No historical engagement is depicted, and no published scenario, board, order of battle or victory rule is
+# followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md): the Soviet tanks wait south of
+# the low ridge along the south edge and in the hollow behind the south-west ridge, out of sight of the guns on the
+# heights. The Soviet side attacks and moves first, and is the larger in points (127 to 69): the Germans hold the
+# heights, and their units are Ready when their turn begins (ruling 84), so the attacker needs numbers and time.
+# Levelled on 2026-11-14 between two planning opponents at `normal` (the whole side moving, the same side first
+# every turn; docs/review/M7/battles-handover.md): the first draft (all three objectives worth 2, a lead of 40, break
+# share 0.6) went 30% Soviet over 20 games, nearly all lost by the lead; with one Pak 40 fewer, 14% (100 games); with
+# a lead of 60, 40% (100); and the west ridge worth 1, 35.5% (200); a lead of 60 and break share 0.55, 42.5%; 0.5,
+# 47.0%; 0.55 and 9 turns, 42.5%; a lead of 60, break share 0.55 and Doviel worth 3, 51.5% (200). This file (that,
+# with the motor riflemen's Maxim platoon, mortars and spare truck placed beside them):
+# Soviet share 54.8% over 400 games (49.9 to 59.6), mean last turn 6.6; ends by a break 63% (216 Soviet wins to 34),
+# at the turn limit 34% (3 to 133) and by the lead 4% (all German); losses 35.5 Soviet and 34.3 German points a game.
+# `hard` on both sides (96 games): 87.5% Soviet (79.4 to 92.7), mean last turn 5.4, nearly all by a break: the hard
+# attacker closes on the guns, which the normal one does less often (not tuned for `hard`, as no level is).
+
+format: impulse-scenario/1
+id: doviel-heights-august-1943
+name: "The Doviel Heights, August 1943"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3): the battle's Battle level.
+battle: doviel
+level: battle
+ruleset: v1
+units: v1
+map: { id: doviel_hills, hash: "2baf0558cc5aa729c2681556099a3a51494552497e736abf6e0825d3968b4b9d" }
+initiative: soviet
+freeDeployment: false
+# All three are held by the German side at the start, and the guns on the two ridges see the whole valley.
+objectives:
+  - { hex: "1809", points: 3, holder: german }   # Doviel, the village where the three roads meet
+  - { hex: "2313", points: 2, holder: german }   # the east ridge, its west end, over the Kelbeck road
+  - { hex: "1113", points: 2, holder: german }   # the west ridge, over the road from the west
+# A lead of 60 and a break share of 0.55: at 40 and 0.6 the defender's score ended most games before the brigade
+# could close (ruling 84: the attacker needs time).
+ending: { turns: 8, suddenDeathLead: 60, breakShare: 0.55 }
+sides:
+  - id: soviet
+    name: "Soviet tank brigade"
+    counters: stock-b
+    orders: 3
+    zone: [["0116", "3321"]]
+    formations:
+      # The first tank battalion: three T-34 companies and a KV-1 company, south of the low ridge on the south edge.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: t34_76, hex: "1821" }
+          - { id: s1b, type: t34_76, hex: "1721" }
+          - { id: s1c, type: t34_76, hex: "1921" }
+          - { id: s1d, type: kv1, hex: "1621" }
+      # The second tank battalion: two T-34 companies and a SU-76M platoon, in the hollow behind the south-west ridge.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: t34_76, hex: "0620" }
+          - { id: s2b, type: t34_76, hex: "0621" }
+          - { id: s2c, type: su76m, hex: "0521" }
+      # The motor rifle battalion: three rifle companies, two of them in trucks, a Maxim platoon, and the heavy
+      # mortars with a truck to move them.
+      - id: s3
+        discipline: free
+        units:
+          - { id: s3a, type: rifle_co, carriedBy: s3t }
+          - { id: s3b, type: rifle_co, carriedBy: s3u }
+          - { id: s3c, type: rifle_co, hex: "1420" }
+          - { id: s3d, type: maxim, hex: "1521" }
+          - { id: s3e, type: pm38, hex: "1619" }
+          - { id: s3t, type: zis5, hex: "1820" }
+          - { id: s3u, type: zis5, hex: "1920" }
+          - { id: s3v, type: zis5, hex: "2019" }
+  - id: german
+    name: "German battle group"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "3315"]]
+    formations:
+      # Anti-tank guns on the heights: one on the west ridge, two at the end of the east ridge, and a truck behind
+      # them.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pak40, hex: "1113" }
+          - { id: g1b, type: pak40, hex: "2213" }
+          - { id: g1c, type: pak40, hex: "2114" }
+          - { id: g1t, type: opel_blitz, hex: "2312" }
+      # The armor in reserve north of Doviel: two StuG III G platoons and a Pz IV H platoon.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: stug3g, hex: "2007" }
+          - { id: g2b, type: stug3g, hex: "2106" }
+          - { id: g2c, type: pz4h, hex: "1906" }
+      # Grenadiers in Doviel and on the east ridge, a machine-gun platoon, and the heavy mortars in the wood north of
+      # the village with their truck.
+      - id: g3
+        discipline: free
+        units:
+          - { id: g3a, type: grenadier_co, hex: "1809" }
+          - { id: g3b, type: grenadier_co, hex: "2313" }
+          - { id: g3c, type: mg42, hex: "1907" }
+          - { id: g3d, type: grw42, hex: "1706" }
+          - { id: g3t, type: opel_blitz, hex: "1705" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. The forces, their points and
+# the win conditions are not written here: the panel works them out from the units above and from `ending` and
+# `objectives`. Doviel and this action are invented: the background is period color and claims no real
+# engagement. Original text, written for this project.
+briefing:
+  title: "The Doviel Heights"
+  date: "August 1943"
+  place: "the Eastern Front"
+  picture: engraving-factory
+  background: >-
+    The summer offensive has broken through, and a Soviet tank brigade is driving north. Its road runs through
+    a stretch of hill country, where three roads meet at the village of Doviel. A German battle group has
+    reached the hills first.
+  situation: >-
+    The Germans hold Doviel and the ridges on both sides of it. Their anti-tank guns are dug in on the heights,
+    where they can see the whole valley. The Soviet tanks wait behind the low hills to the south. To reach
+    the village, they must cross open ground under those guns.
+  note: "The forces are of the kind that met that month. The place and this action are invented."
+  sides:
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Take Doviel and the two ridges. Find a way past the guns on the heights, or bring enough tanks to overwhelm them."
+      formations:
+        - { id: s1, role: "first tank battalion" }
+        - { id: s2, role: "second tank battalion" }
+        - { id: s3, role: "motor riflemen" }
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Hold Doviel and the ridges. Let the tanks come into the open, then fire on them from the heights."
+      formations:
+        - { id: g1, role: "anti-tank guns" }
+        - { id: g2, role: "armor reserve" }
+        - { id: g3, role: "grenadiers" }
+  objectives:
+    - { hex: "1809", name: "Doviel" }
+    - { hex: "2313", name: "The east ridge" }
+    - { hex: "1113", name: "The west ridge" }

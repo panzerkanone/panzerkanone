@@ -1,0 +1,112 @@
+# Hill 87 as the fourth battle of the campaign "The Long Summer", German side
+# (content/campaigns/long_summer_german.campaign.yaml). Original content: the forces are invented for this
+# game from the unit types of roster v1; the half board and its place names are the game's own
+# (galaost_half). No historical engagement is depicted and no published scenario is followed.
+#
+# Level `campaign` (docs/review/M7/campaign/design.md): the German side is the campaign's force at full
+# strength, here its advance guard only (the tank company and the grenadier battalion; the support stays
+# back, safe, as the half board has no room for it); each game draws from it what those two formations have
+# left (client/src/campaign/force.ts). The Soviet side, the objectives and the ending are this battle's own,
+# levelled at `normal` against the two formations at full strength.
+# Made from the Skirmish level (galaost_skirmish_1943): its board, objectives, ending and the Soviet side's
+# starting places; the force stands in that level's German places and two more on the north edge.
+#
+# Levelled on 2026-11-14 (tools/balance/duel.ts --ai normal --ai-other normal --activation side --initiative fixed,
+# with ruling 84): with a rifle company added in the wood by the south bridge and a second T-34 company (65 points)
+# the advance guard won 36.5% of 200 games; with either taken out again 41.0% (60) and 44.5% (49); shipped, with both
+# taken out, the Skirmish level's own Soviet side (44): 48.5% on seeds 1 to 200 and 53.5% on 201 to 400, 51.0% over
+# the 400 (46.1 to 55.9), mean last turn 5.5.
+
+format: impulse-scenario/1
+id: galaost-campaign-german-1943
+name: "Hill 87, September 1943 (The Long Summer)"
+battle: galaost
+level: campaign
+ruleset: v1
+units: v1
+map: { id: galaost_half, hash: "78221a02aa659e693a15f97227f0bac9e26d96f9fda7ce0ebde76af4aa1b89dc" }
+initiative: german
+freeDeployment: false
+objectives:
+  - { hex: "0406", points: 2, holder: none }     # Hill 87
+  - { hex: "0805", points: 1, holder: soviet }   # Galaost
+  - { hex: "1006", points: 1, holder: soviet }   # the north bridge
+ending: { turns: 6, suddenDeathLead: 25, breakShare: 0.7 }
+sides:
+  - id: german
+    name: "German advance guard"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "1102"]]
+    formations:
+      # The tank company along the north edge, the Tiger in the wood.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pz4h, hex: "0701" }
+          - { id: g1b, type: pz4h, hex: "0201" }
+          - { id: g1c, type: tiger1e, hex: "0401" }
+      # The grenadier battalion with its assault guns; one company rides the half-tracks.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: stug3g, hex: "0301" }
+          - { id: g2b, type: grenadier_co, carriedBy: g2h }
+          - { id: g2c, type: grenadier_co, hex: "0802" }
+          - { id: g2d, type: grenadier_co, hex: "0702" }
+          - { id: g2h, type: sdkfz251, hex: "0101" }
+  - id: soviet
+    name: "Soviet rifle outpost"
+    counters: stock-b
+    orders: 3
+    zone: [["0109", "1110"], ["0805", "1006"]]
+    formations:
+      # The outpost in Galaost with its gun.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: rifle_co, hex: "0805" }
+          - { id: s1b, type: zis3, hex: "0906" }
+      # The tanks and motor riflemen coming up the south road behind the long hill.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: t34_76, hex: "0710" }
+          - { id: s2b, type: kv1, hex: "0510" }
+          - { id: s2c, type: rifle_co, carriedBy: s2t }
+          - { id: s2t, type: zis5, hex: "0609" }
+
+# What a player is told before the first turn. No rule reads it. Galaost and Hill 87 are invented places and
+# this action is invented. Original text, written for this project.
+briefing:
+  title: "Hill 87"
+  date: "September 1943"
+  place: "the Eastern Front"
+  picture: engraving-long-column
+  background: >-
+    The summer is ending and the front is moving west. Your battle group's advance guard is sent down the north
+    road to take the crossing at Galaost, so that the columns behind it can get over the river. The guns stay
+    back with the trucks.
+  situation: >-
+    A Soviet rifle company with a gun holds Galaost and the north bridge. Behind the long hill, Soviet tanks are
+    coming up the other road. Hill 87 looks down on both roads and on the bridges.
+  note: "The forces are of the kind that met that autumn; the place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Take Galaost, the bridge and Hill 87 before the Soviet tanks can hold them."
+      formations:
+        - { id: g1, role: "tank company" }
+        - { id: g2, role: "grenadier battalion" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Hold Galaost and the bridge, and take Hill 87."
+      formations:
+        - { id: s1, role: "rifle outpost" }
+        - { id: s2, role: "tanks and motor rifles" }
+  objectives:
+    - { hex: "0406", name: "Hill 87" }
+    - { hex: "0805", name: "Galaost" }
+    - { hex: "1006", name: "The north bridge" }

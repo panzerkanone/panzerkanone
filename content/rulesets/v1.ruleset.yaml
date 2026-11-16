@@ -1,0 +1,80 @@
+# The rules data of Formation Impulse, version 1 (docs/rules/rules-v1.md).
+# Checked on load by engine/rulesets/impulse/data.ts (format impulse-ruleset/1): every key
+# required, no unknown key, nothing defaulted. The rules keys and their values are the
+# defaults of the specification's section 19; the swept options are named beside them.
+# The terrain data at the end is what the board is compiled with, in the reference
+# ruleset's shape. Original content: every number is invented for this game.
+
+format: impulse-ruleset/1
+id: v1
+
+sequence:    { activation: side }                 # side | formation (the formation game: rules-v1 5.9)
+ready:       { when: own-turn }                   # own-turn | end-phase; a side's units are made Ready when its own turn begins, so firing in reaction never costs a unit its coming turn (ruling 84 of 2026-11-14; end-phase, every unit at the turn's end, is the rule as it was and the formation game's)
+initiative:  { policy: fixed }                    # fixed | alternate | bought; the same side moves first every turn (ruling 78 of 2026-11-13)
+pass:        { rule: spends }                     # spends | free | final
+command:     { range: 3, lossStep: 1, min: 1 }    # range: a number, or none
+stack:       { limit: 2 }                         # swept: 1, 2, 3
+move:        { alwaysOne: true }
+spot:        { distance: 2 }
+rangeSteps:  { adjacent: 1, half: 0, full: -2, long: -5, longFactor: 1.5 }
+support:     { steps: [3, 2, 1], within: 3 }      # the last value repeats
+fireTable:   { profile: two-dice, dice: { count: 2, faces: 6 }, suppress: 8, destroy: 11 }
+             # one-die: { profile: one-die, dice: { count: 1, faces: 6 }, suppress: 4, destroy: 7 }
+reaction:    { cap: 2, modifier: -1, floor: 0.25 } # cap: a number, or none; modifier swept 0, -1, -2
+assault:     { targets: hard, vsHard: -1, coverVsHard: 0, moveShare: 0, vsSuppressed: 3, support: [4, 2, 1], afterMove: true }   # close assault, made on armour since rulings 74 and 75 of 2026-11-13; targets: hard | any; coverVsHard: -1 | 0 | 1; the last support value repeats. Since ruling 81 of 2026-11-14 it is made from beside the target (moveShare 0: no approach; it was 0.5) and a move with movement over leaves the unit able to make one (afterMove: true; false is the rule as it was)
+overrun:     { steps: 3, cost: 2 }
+moveFire:    { class: hard, moveShare: 0.5, steps: -1 }           # armour may move, then fire (ruling 77 of 2026-11-13); class: none | hard
+artillery:   { vsHard: -6 }                         # -4 until the balance review of 2026-11-13: heavy mortars were destroying tank platoons
+cover:       # per ground cover of the map: fire, close, conceals, may be overrun
+  open:  { fire: 0, close: 0, conceals: false, overrun: true }
+  field: { fire: 0, close: 0, conceals: false, overrun: true }
+  rough: { fire: 1, close: 1, conceals: false, overrun: false }
+  swamp: { fire: 0, close: 0, conceals: false, overrun: false }
+  woods: { fire: 2, close: 2, conceals: true, overrun: false }
+  town:  { fire: 3, close: 3, conceals: true, overrun: false }
+score:       { killShare: [1, 2] }                # one point for every two of cost; a scenario may override
+break:       { share: 0.5 }                       # a scenario may override
+suddenDeath: { lead: 12 }                         # a scenario may override
+
+# Terrain. One movement point is half a hex of open ground (the lead's ruling of 2026-11-11):
+# entering open ground costs 2 for tracked and foot movers, and a road costs 1 a hex for every
+# mover type. A towed mover is a gun or mortar that moves by hand: slow, and kept off swamp
+# and rivers. null is impassable. The cost rule is the board's (engine/core/board.ts): along a
+# road the road's cost alone; otherwise entering by cover, plus climbing onto a hilltop, plus
+# crossing a ridge crest, plus entering a river hex.
+moverTypes: [tracked, wheeled, foot, towed]
+movement:
+  road:  { tracked: 1, wheeled: 1, foot: 1, towed: 1 }
+  enter:
+    open:  { tracked: 2, wheeled: 3, foot: 2, towed: 4 }
+    field: { tracked: 2, wheeled: 4, foot: 2, towed: 4 }
+    rough: { tracked: 4, wheeled: 6, foot: 3, towed: 6 }
+    woods: { tracked: 4, wheeled: 8, foot: 3, towed: 8 }
+    town:  { tracked: 3, wheeled: 2, foot: 2, towed: 4 }
+    swamp: { tracked: null, wheeled: null, foot: 4, towed: null }
+  climb: { tracked: 2, wheeled: 2, foot: 2, towed: 4 }
+  ridge: { tracked: 1, wheeled: 2, foot: 1, towed: 2 }
+  river: { tracked: null, wheeled: null, foot: 4, towed: null }
+# The seasons (the lead's ruling 83 of 2026-11-14). `movement` above is a summer board's (a map that
+# names no season is one). A board printed for another season is compiled with that season's table
+# here instead, whole: the same five terms, and `lake` and `sea`, the cost of a step into standing
+# water of a lake or of a sea (a body of water on the board's edge); that cost is the whole step.
+# On a summer board no mover enters water. Sight, cover and combat are the same in every season.
+seasons:
+  winter:
+    road:  { tracked: 1, wheeled: 1, foot: 1, towed: 1 }
+    enter:                                                   # snow: wheeled and towed pay 1 more than in summer for a hex entered off a road
+      open:  { tracked: 2, wheeled: 4, foot: 2, towed: 5 }
+      field: { tracked: 2, wheeled: 5, foot: 2, towed: 5 }
+      rough: { tracked: 4, wheeled: 7, foot: 3, towed: 7 }
+      woods: { tracked: 4, wheeled: 9, foot: 3, towed: 9 }
+      town:  { tracked: 3, wheeled: 3, foot: 2, towed: 5 }
+      swamp: { tracked: 4, wheeled: 7, foot: 3, towed: 7 }   # frozen: as rough ground
+    climb: { tracked: 2, wheeled: 2, foot: 2, towed: 4 }
+    ridge: { tracked: 1, wheeled: 2, foot: 1, towed: 2 }
+    river: { tracked: 4, wheeled: 6, foot: 3, towed: 6 }     # frozen: every mover crosses, away from the bridges too
+    lake:  { tracked: null, wheeled: 4, foot: 2, towed: null } # frozen: foot and wheeled cross the ice; it will not bear tanks or guns
+    sea:   { tracked: null, wheeled: null, foot: null, towed: null } # open water still
+sight:
+  coverAddsLevel: { open: false, woods: true, town: true, field: false, swamp: false, rough: false }
+  crestRule: true

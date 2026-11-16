@@ -1,0 +1,187 @@
+# The Ice at Keliach, January 1944: a river crossed on the ice. Original content: the situation and
+# the forces are invented for this scenario from the unit types of roster v1
+# (content/units/v1.units.yaml, each value derived from cited public facts); the board is this
+# project's own generated board "farmland_river_winter" (assets/maps/farmland_river_winter.map.yaml,
+# the ground of "farmland_river" printed for winter), and the place names are the board's own
+# invented names. No historical engagement is depicted, and no published scenario, board, order of
+# battle or victory rule is followed or adapted.
+# On a winter board the river is frozen (the lead's ruling 83, rules-v1 6.10): every mover type may
+# cross it anywhere, at a cost, where in summer only the two bridges carried tanks. The German side
+# holds Galowick and Hill 144 across the river; the Soviet side holds Keliach on the near bank, empty,
+# and moves first from behind the hills to the south. The bend of the river south of Galowick is held
+# by whoever stands on the ice there. Each side must cross the river to take what the other holds.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md). Battle size:
+# 18 units a side for the Soviet side (140 points), 15 for the German (94).
+# Levelled on 2026-11-14 between two planning opponents at `normal` (the whole side moving, the same
+# side first every turn, 200 games a measure; docs/review/M7/winter2-handover.md has every measure).
+# With the German side holding all three objectives at the start, the Soviet attack stalled short of
+# them and the German side won every game by its lead. With Keliach the Soviet side's and the bend
+# held by nobody, a battle: 55.5% Soviet with the break at 0.6 of the starting points, 45.5% at 0.65,
+# 45.0% with one Soviet self-propelled gun fewer. This file (the break at 0.62): Soviet share 52.0%
+# (45.1 to 58.8) on seeds 1 to 200 and 48.0% (41.2 to 54.9) on seeds 201 to 400, mean last turn 6.9;
+# the Soviet side wins by a break, the German side by its lead or at the turn limit. At `hard`: 77.0%
+# Soviet (100 games). The Soviet side crosses the river away from the bridges about three times a game,
+# on foot and in tanks, and holds the bend at the end of nearly every game.
+# Levelled again on 2026-11-15 for the lead's rulings 84 (a side's units are made Ready when its own turn begins) and
+# 85 (heavy machine-gun platoons), with the planning opponent that sets its whole side's fire discipline alike
+# (docs/review/M7/levels2-handover.md): as it stood it went 7.0% Soviet over 200 games at `normal` (4.2 to 11.4;
+# measured before that change of the opponent), the German side winning by its lead (59%) or at the turn limit; the
+# same file under the old timing of Ready (end phase) went 52.0%. The German Tiger platoon out (g3d) and a Maxim
+# platoon with each rifle battalion (s1m, s2m): 14.5%; two more T-34 companies behind the tank brigade (s5a, s5b):
+# 39.5%; a third: 43.3% over 400; that and the bend worth 2: 57.3% over 400; nine turns in its place 70.5%. With two
+# T-34 companies more and the bend worth 2 (it was 1), this file: Soviet share 51.7% over 400 games (46.9 to 56.6), mean
+# last turn 7.1; the Soviet side wins by a break (43%, 172:0), the German side at the turn limit (45%, 35:146) or by
+# its lead (12%, 0:47). At `hard` on both sides 78.1% Soviet (96 games; 77.0% before ruling 84). Forces 176 Soviet
+# points to 78 German. The guns: the Soviet ZiS-3s stand behind the hills, one with the west battalion (1516) with no
+# truck, the other with the east battalion (2016) with its ZIS-5 beside it (2116), where that battalion's Maxim platoon
+# stands too; the west battalion's Maxim platoon is beside its gun (1416); the PM-38 has its ZIS-5 beside it (1218,
+# 1318). The German Pak 40s are dug in at the south bridge's far end (2209) and in Galowick (2308), with no truck of
+# their own; the GrW 42 is beside Galowick (2306) with the Opel Blitz beside it (2305).
+
+format: impulse-scenario/1
+id: keliach-ice-january-1944
+name: "The Ice at Keliach, January 1944"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3): the battle's Battle level.
+battle: keliach-ice
+level: battle
+ruleset: v1
+units: v1
+map: { id: farmland_river_winter, hash: "c64c620515b16ca883b1e465509584525c69746721d2e59ee80afd7fc178d7b9" }
+initiative: soviet
+freeDeployment: false
+objectives:
+  - { hex: "1809", points: 2, holder: soviet }   # Keliach, on the near bank at the west end of the south bridge
+  - { hex: "2312", points: 2, holder: none }     # the bend, south of Galowick, held by standing on the ice (1 until 2026-11-15)
+  - { hex: "2308", points: 2, holder: german }   # Galowick, across the river
+  - { hex: "2605", points: 1, holder: german }   # Hill 144, above Galowick
+ending: { turns: 8, suddenDeathLead: 40, breakShare: 0.62 }
+sides:
+  - id: soviet
+    name: "Soviet rifle division"
+    counters: stock-b
+    orders: 3
+    zone: [["0112", "2421"]]
+    formations:
+      # A rifle battalion behind the hills south of Keliach, with a gun and its Maxim platoon (since 2026-11-15).
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: rifle_co, hex: "1415" }
+          - { id: s1b, type: rifle_co, hex: "1515" }
+          - { id: s1c, type: rifle_co, hex: "1615" }
+          - { id: s1m, type: maxim, hex: "1416" }
+          - { id: s1d, type: zis3, hex: "1516" }
+      # A rifle battalion south of the river bend, with a gun and its truck, and its Maxim platoon (since 2026-11-15).
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: rifle_co, hex: "2015" }
+          - { id: s2b, type: rifle_co, hex: "2115" }
+          - { id: s2c, type: rifle_co, hex: "2215" }
+          - { id: s2m, type: maxim, hex: "2116" }
+          - { id: s2d, type: zis3, hex: "2016" }
+          - { id: s2t, type: zis5, hex: "2116" }
+      # A tank brigade behind the hills.
+      - id: s3
+        discipline: free
+        units:
+          - { id: s3a, type: t34_76, hex: "1716" }
+          - { id: s3b, type: t34_76, hex: "1816" }
+          - { id: s3c, type: t34_76, hex: "1916" }
+          - { id: s3d, type: t34_76, hex: "2216" }
+          - { id: s3e, type: kv1, hex: "1817" }
+      # Self-propelled guns and the heavy mortars.
+      - id: s4
+        discipline: free
+        units:
+          - { id: s4a, type: su76m, hex: "1317" }
+          - { id: s4b, type: su76m, hex: "1417" }
+          - { id: s4c, type: pm38, hex: "1218" }
+          - { id: s4t, type: zis5, hex: "1318" }
+      # Two more T-34 companies behind the tank brigade (since 2026-11-15).
+      - id: s5
+        discipline: free
+        units:
+          - { id: s5a, type: t34_76, hex: "1717" }
+          - { id: s5b, type: t34_76, hex: "1917" }
+  - id: german
+    name: "German armored infantry battle group"
+    counters: stock-a
+    orders: 3
+    zone: [["1701", "3311"]]
+    formations:
+      # The south bridge, at its far end.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: grenadier_co, hex: "2109" }
+          - { id: g1b, type: grenadier_co, hex: "2208" }
+          - { id: g1c, type: pak40, hex: "2209" }
+      # Galowick: a company, a gun and the heavy mortars with their truck.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: grenadier_co, hex: "2307" }
+          - { id: g2b, type: pak40, hex: "2308" }
+          - { id: g2c, type: grw42, hex: "2306" }
+          - { id: g2t, type: opel_blitz, hex: "2305" }
+      # Armour in reserve south-east of Galowick, behind the village (a Tiger platoon with it until 2026-11-15).
+      - id: g3
+        discipline: free
+        units:
+          - { id: g3a, type: pz4h, hex: "2408" }
+          - { id: g3b, type: pz4h, hex: "2509" }
+          - { id: g3c, type: stug3g, hex: "2409" }
+      # Armored infantry in half-tracks behind Hill 144.
+      - id: g4
+        discipline: free
+        units:
+          - { id: g4a, type: grenadier_co, carriedBy: g4h }
+          - { id: g4b, type: grenadier_co, carriedBy: g4i }
+          - { id: g4h, type: sdkfz251, hex: "2604" }
+          - { id: g4i, type: sdkfz251, hex: "2504" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. The forces,
+# their points and the win conditions are not written here: the panel works them out from the units
+# above and from `ending` and `objectives`. Keliach, Galowick and this action are invented: the
+# background is period color and claims no real engagement. Original text, written for this project.
+briefing:
+  title: "The Ice at Keliach"
+  date: "January 1944"
+  place: "the Eastern Front"
+  picture: engraving-commanders-view
+  background: >-
+    Deep winter, and the river at Keliach has frozen hard. In the summer the bridges decided
+    everything. Now the ice will carry a tank almost anywhere along the river, and a Soviet rifle
+    division with a tank brigade is ready to cross.
+  situation: >-
+    Keliach stands on the west bank at the end of the south bridge. Across the river are the village
+    of Galowick and Hill 144 above it. South of Galowick the river bends, and whoever stands on the ice
+    there holds the crossing. Any unit can cross the frozen river away from the bridges, but it costs
+    more movement than open ground.
+  note: "The forces are of the kind that met that winter. The place and this action are invented."
+  sides:
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Cross the ice and take the bend, Galowick and Hill 144, and keep Keliach. Your tanks do not need the bridges."
+      formations:
+        - { id: s1, role: "west rifle battalion" }
+        - { id: s2, role: "east rifle battalion" }
+        - { id: s3, role: "tank brigade" }
+        - { id: s4, role: "guns and mortars" }
+        - { id: s5, role: "two tank companies" }
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Hold Galowick and Hill 144, and take Keliach back. The river will not stop their tanks, so watch the whole bank."
+      formations:
+        - { id: g1, role: "the south bridge" }
+        - { id: g2, role: "Galowick" }
+        - { id: g3, role: "tank reserve" }
+        - { id: g4, role: "armored infantry" }
+  objectives:
+    - { hex: "1809", name: "Keliach" }
+    - { hex: "2312", name: "The bend in the river" }
+    - { hex: "2308", name: "Galowick" }
+    - { hex: "2605", name: "Hill 144" }

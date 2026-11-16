@@ -1,0 +1,78 @@
+{
+  "format": "narration/1",
+  "targetLufs": -20,
+  "pieces": [
+    {
+      "id": "long-summer-opening",
+      "seconds": 22.05,
+      "lufs": -20.1,
+      "peakDb": -3.4,
+      "mp3": "long-summer-opening.mp3",
+      "says": "The Eastern Front, June nineteen forty-three. One battle group. One summer. You will take it across a river, fight for a town and a road on the open steppe, and go ahead of the army to one last crossing. The units you bring through each battle fight the next one. What you lose can be replaced only in part."
+    },
+    {
+      "id": "long-summer-keliach",
+      "seconds": 29.81,
+      "lufs": -20.1,
+      "peakDb": -2.7,
+      "mp3": "long-summer-keliach.mp3",
+      "says": "The river at Keliach. Two bridges cross to the far bank, and the summer's great attack cannot roll until both are in your hands. A Soviet rifle regiment holds the other side. A gun is dug in on the hill above the north bridge. Riflemen wait in the village of Keliach, at the end of the south bridge, and their tanks stand behind them. Your tanks and guns can cross only by the bridges. Take both bridges, and hold them until the day is over."
+    },
+    {
+      "id": "long-summer-holtargard",
+      "seconds": 30.28,
+      "lufs": -20.4,
+      "peakDb": -3.3,
+      "mp3": "long-summer-holtargard.mp3",
+      "says": "July. High summer on the steppe. To the south, the great attack is burning. Your battle group has been across the river since June, and now it is sent on to the crossroads town of Holtargard. A Soviet tank brigade is driving for the same crossroads, and both columns will reach it on the same morning. Three places decide it: the town, Hill Ninety-One above it, and the wood beside the road. Take them, and keep them until the day ends."
+    },
+    {
+      "id": "long-summer-marnov",
+      "seconds": 33.23,
+      "lufs": -20.2,
+      "peakDb": -3,
+      "mp3": "long-summer-marnov.mp3",
+      "says": "August. The front has begun to move. Your battle group is sent east along the steppe road, to hold the ground west of Marnov while the army behind it regroups. On that road it meets a Soviet tank column, in country with almost nowhere to hide. There is one small wood beside the road. There is Hill One Sixty-One, which looks out over everything. Whoever holds the hill holds the road. Your guns reach farther than theirs. Take the hill, hold the wood, and make them cross the open ground to you."
+    },
+    {
+      "id": "long-summer-galaost",
+      "seconds": 33.8,
+      "lufs": -20.8,
+      "peakDb": -2.8,
+      "mp3": "long-summer-galaost.mp3",
+      "says": "September. The summer is ending, and the front is moving west. Your advance guard goes down the north road to take the crossing at Galaost, so that the columns behind it can get over the river. Your guns stay back with the trucks. A Soviet rifle company holds Galaost and the north bridge, with one gun. Behind the long hill, Soviet tanks are coming up the other road. Hill Eighty-Seven looks down on both roads and on the bridges. Take Galaost, the bridge and the hill before those tanks can hold them."
+    },
+    {
+      "id": "long-summer-victory",
+      "seconds": 9.95,
+      "lufs": -19.8,
+      "peakDb": -2.9,
+      "mp3": "long-summer-victory.mp3",
+      "says": "The long summer is over. Battle after battle, your battle group did what it was sent to do, and more. The campaign is a victory."
+    },
+    {
+      "id": "long-summer-draw",
+      "seconds": 10.03,
+      "lufs": -19.9,
+      "peakDb": -3.3,
+      "mp3": "long-summer-draw.mp3",
+      "says": "The long summer is over. Your battle group won some of its battles and lost others, and gave as good as it got. The campaign is a draw."
+    },
+    {
+      "id": "long-summer-defeat",
+      "seconds": 7.39,
+      "lufs": -19.5,
+      "peakDb": -2.6,
+      "mp3": "long-summer-defeat.mp3",
+      "says": "The long summer is over. Too many of its battles went against your battle group. The campaign is lost."
+    },
+    {
+      "id": "long-summer-broken",
+      "seconds": 9.95,
+      "lufs": -20,
+      "peakDb": -3,
+      "mp3": "long-summer-broken.mp3",
+      "says": "Your battle group can fight no more. Too few of its tanks and companies are left to send into another battle. The campaign ends here, in defeat."
+    }
+  ]
+}

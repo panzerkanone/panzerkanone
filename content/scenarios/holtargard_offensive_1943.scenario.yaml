@@ -1,0 +1,255 @@
+# Holtargard, July 1943: an offensive, the largest level of the battle (docs/rules/rules-v1.md 1.3). The
+# main bodies arrive: a German armored battle group of two tank companies, heavy tanks, assault guns and two
+# grenadier battalions attacks south across the whole width of the board between the two rivers, and a
+# Soviet tank brigade with two tank battalions and three rifle battalions meets it around Holtargard,
+# Pelarost and Hill 86. Every unit is on the board from the first turn: the rules have no reinforcements.
+# Original content: the forces are invented for this scenario from the unit types of roster v1
+# (content/units/v1.units.yaml, dated early July 1943, each value derived from cited public facts); the map
+# is the standard test board with its woods placed as tree sides; its place names are the generated test
+# board's. No historical engagement is depicted and no published scenario, order of battle or victory rule
+# is followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md): the starting places
+# were found by placing each unit, in turn, on the nearest hex to where it was meant to stand that no enemy
+# unit placed so far could see.
+# Levelled on 2026-11-14 between two planning opponents at `normal` (the whole side moving, the same side
+# first every turn; the planning opponent that no longer throws tanks beside rifle companies): the first
+# draft (two full Pz IV H companies) went 58.0% German over 100 games; with two Pz IV H platoons fewer
+# (g2c, g2d), 54.0% over 200 games (47.1 to 60.8), mean last turn 10.9; ends at the turn limit 87%, by a
+# break 12% (all German wins), by the lead 2%. (docs/review/M7/levels-handover.md.)
+# Levelled again on 2026-11-15 for the lead's rulings 84 (a side's units are made Ready when its own turn begins) and 85
+# (heavy machine-gun platoons), with the planning opponent that sets its whole side's fire discipline alike
+# (docs/review/M7/levels2-handover.md): as it stood it went 19.0% German over 200 games at `normal` (14.2 to 25.0;
+# measured before that change of the opponent), the attacker stalling at the turn limit. Screened on 60 games: the town
+# worth 4 18.3%, 12 turns 10.0%, Hill 91 worth 3 and the wood 2 13.3%; Pelarost and Hill 86 worth 1 (they were 2) 31.7%,
+# and with that the town worth 2 30.0%, MG platoons for both sides 28.3%, a kill share of 3 for 5 28.3%, the draft's two
+# Pz IV H platoons back (g2c, g2d) 38.3%, and with those two T-34 platoons fewer (s2d, s2e) or a third Tiger platoon
+# (g3e) 43.3% each. With all of these, this file: German share 44.5% over 200 games (37.8 to 51.4), a little under 45 (a
+# third T-34 platoon fewer was begun and not measured: the time box); mean last turn 11.0; ends at the turn limit 97%
+# (86:108). At `hard` on both sides 93.8% German (48 games; the German side breaks the brigade in 38; 95.8% before
+# ruling 84). Forces 294 German points to 296 Soviet. The guns: the Pak 40s stand with the assault guns by the wood
+# (2210, 2310), with no truck of their own; the GrW 42s are with the foot grenadiers north of the town (1805, 1804) with
+# the two Opel Blitzes within two hexes (1803, 1802); the Soviet ZiS-3s are dug in about the town (2214, 1613, 2113) and
+# west of Hill 86 (1920), with no truck; the PM-38s are south of the town (2017, 2018) with their ZIS-5s within two
+# hexes (2019, 1918).
+
+format: impulse-scenario/1
+id: holtargard-offensive-july-1943
+name: "Holtargard, July 1943 (Offensive)"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3).
+battle: holtargard
+level: offensive
+ruleset: v1
+units: v1
+map: { id: test_standard_trees, hash: "199d66239d98f21208175f6d352793be392f77e995eb8e0ec0d8e6b40f697932" }
+initiative: german
+freeDeployment: false
+objectives:
+  - { hex: "1813", points: 3, holder: none }   # the town of Holtargard
+  - { hex: "1810", points: 2, holder: none }   # Hill 91, above the town
+  - { hex: "2110", points: 1, holder: none }   # the wood east of the hill
+  - { hex: "1314", points: 1, holder: none }   # Pelarost, at the bridge west of the town (2 until 2026-11-15)
+  - { hex: "2016", points: 1, holder: none }   # Hill 86, south of the town (2 until 2026-11-15)
+# An offensive's ending: eleven turns, a lead of 80 (the objectives give 10 a turn), and a side that has lost
+# three quarters of its cost has broken.
+ending: { turns: 11, suddenDeathLead: 80, breakShare: 0.75 }
+sides:
+  - id: german
+    name: "German armored battle group"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "3311"]]
+    formations:
+      # The first tank company: four Pz IV H platoons north of Hill 91.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pz4h, hex: "1705" }
+          - { id: g1b, type: pz4h, hex: "1605" }
+          - { id: g1c, type: pz4h, hex: "1704" }
+          - { id: g1d, type: pz4h, hex: "1604" }
+      # Four more Pz IV H platoons, west of the first company (two from 2026-11-14 to 2026-11-15).
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: pz4h, hex: "1503" }
+          - { id: g2b, type: pz4h, hex: "1606" }
+          - { id: g2c, type: pz4h, hex: "1603" }
+          - { id: g2d, type: pz4h, hex: "1502" }
+      # The heavy tank platoons, three since 2026-11-15, with two more Pz IV H, behind the ridge.
+      - id: g3
+        discipline: armor
+        units:
+          - { id: g3a, type: tiger1e, hex: "2407" }
+          - { id: g3b, type: tiger1e, hex: "2406" }
+          - { id: g3e, type: tiger1e, hex: "2506" }
+          - { id: g3c, type: pz4h, hex: "2405" }
+          - { id: g3d, type: pz4h, hex: "2505" }
+      # An assault gun battery.
+      - id: g4
+        discipline: free
+        units:
+          - { id: g4a, type: stug3g, hex: "1905" }
+          - { id: g4b, type: stug3g, hex: "2004" }
+          - { id: g4c, type: stug3g, hex: "2104" }
+      # Two more assault guns and the antitank guns, by the wood.
+      - id: g5
+        discipline: free
+        units:
+          - { id: g5a, type: stug3g, hex: "2409" }
+          - { id: g5b, type: stug3g, hex: "2408" }
+          - { id: g5c, type: pak40, hex: "2210" }
+          - { id: g5d, type: pak40, hex: "2310" }
+      # The armored grenadier battalion: four companies, two in half-tracks.
+      - id: g6
+        discipline: free
+        units:
+          - { id: g6a, type: grenadier_co, carriedBy: g6h }
+          - { id: g6b, type: grenadier_co, carriedBy: g6i }
+          - { id: g6c, type: grenadier_co, hex: "2008" }
+          - { id: g6d, type: grenadier_co, hex: "2410" }
+          - { id: g6h, type: sdkfz251, hex: "2509" }
+          - { id: g6i, type: sdkfz251, hex: "2508" }
+      # A grenadier battalion on foot with the heavy mortars.
+      - id: g7
+        discipline: free
+        units:
+          - { id: g7a, type: grenadier_co, hex: "1502" }
+          - { id: g7b, type: grenadier_co, hex: "1602" }
+          - { id: g7c, type: grenadier_co, hex: "1703" }
+          - { id: g7d, type: grw42, hex: "1805" }
+          - { id: g7e, type: grw42, hex: "1804" }
+          - { id: g7t, type: opel_blitz, hex: "1803" }
+          - { id: g7u, type: opel_blitz, hex: "1802" }
+      # The last grenadier companies, west of the hill.
+      - id: g8
+        discipline: free
+        units:
+          - { id: g8a, type: grenadier_co, hex: "1501" }
+          - { id: g8b, type: grenadier_co, hex: "1601" }
+          - { id: g8c, type: grenadier_co, hex: "1701" }
+  - id: soviet
+    name: "Soviet tank brigade"
+    counters: stock-b
+    orders: 3
+    zone: [["0112", "3321"]]
+    formations:
+      # The first tank battalion: five T-34 companies south of the town.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: t34_76, hex: "1616" }
+          - { id: s1b, type: t34_76, hex: "1615" }
+          - { id: s1c, type: t34_76, hex: "1715" }
+          - { id: s1d, type: t34_76, hex: "1617" }
+          - { id: s1e, type: t34_76, hex: "1618" }
+      # The second tank battalion, east of the first (two T-34 platoons more, s2d and s2e, until 2026-11-15).
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: t34_76, hex: "2117" }
+          - { id: s2b, type: t34_76, hex: "2118" }
+          - { id: s2c, type: t34_76, hex: "2217" }
+      # The heavy tanks and a self-propelled gun battery.
+      - id: s3
+        discipline: armor
+        units:
+          - { id: s3a, type: kv1, hex: "2314" }
+          - { id: s3b, type: kv1, hex: "2315" }
+          - { id: s3c, type: su76m, hex: "1716" }
+          - { id: s3d, type: su76m, hex: "1717" }
+          - { id: s3e, type: su76m, hex: "1917" }
+      # The first motor rifle battalion, in and by the town.
+      - id: s4
+        discipline: free
+        units:
+          - { id: s4a, type: rifle_co, hex: "1714" }
+          - { id: s4b, type: rifle_co, hex: "1814" }
+          - { id: s4c, type: rifle_co, carriedBy: s4t }
+          - { id: s4d, type: rifle_co, hex: "1713" }
+          - { id: s4e, type: su76m, hex: "1718" }
+          - { id: s4t, type: zis5, hex: "1614" }
+      # The second motor rifle battalion, east of the town.
+      - id: s5
+        discipline: free
+        units:
+          - { id: s5a, type: rifle_co, hex: "2213" }
+          - { id: s5b, type: rifle_co, hex: "2414" }
+          - { id: s5c, type: rifle_co, hex: "2215" }
+          - { id: s5d, type: rifle_co, hex: "2416" }
+          - { id: s5e, type: su76m, hex: "2417" }
+      # The rifle battalion that marched in by Pelarost.
+      - id: s6
+        discipline: free
+        units:
+          - { id: s6a, type: rifle_co, hex: "1315" }
+          - { id: s6b, type: rifle_co, hex: "1215" }
+          - { id: s6c, type: rifle_co, hex: "1518" }
+          - { id: s6d, type: rifle_co, hex: "1519" }
+      # The brigade's guns and heavy mortars.
+      - id: s7
+        discipline: free
+        units:
+          - { id: s7a, type: zis3, hex: "2214" }
+          - { id: s7b, type: zis3, hex: "1613" }
+          - { id: s7c, type: zis3, hex: "2113" }
+          - { id: s7d, type: pm38, hex: "2017" }
+          - { id: s7e, type: pm38, hex: "2018" }
+          - { id: s7t, type: zis5, hex: "2019" }
+          - { id: s7u, type: zis5, hex: "1918" }
+      # The last rifle companies and a gun, west of Hill 86.
+      - id: s8
+        discipline: free
+        units:
+          - { id: s8a, type: rifle_co, hex: "2114" }
+          - { id: s8b, type: rifle_co, hex: "1919" }
+          - { id: s8c, type: zis3, hex: "1920" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. The forces, their
+# points and the win conditions are worked out by the panel. Holtargard and this action are invented.
+# Original text, written for this project.
+briefing:
+  title: "Holtargard"
+  date: "July 1943"
+  place: "the Eastern Front"
+  picture: engraving-tank-riders
+  background: >-
+    High summer on the steppe. The fight for the crossroads at Holtargard has drawn in both sides'
+    main bodies: a German armored battle group from the north, a whole Soviet tank brigade from the
+    south.
+  situation: >-
+    By noon the battle runs from Pelarost to the wood east of Hill 91. Whoever holds the town, the two
+    hills, the wood and Pelarost when the day ends has the crossroads and the road west.
+  note: "The forces are of the kind that met that month; the place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Break through to Holtargard and Pelarost, take both hills, and hold what you take."
+      formations:
+        - { id: g1, role: "first tank company" }
+        - { id: g2, role: "tank platoons" }
+        - { id: g3, role: "heavy tanks" }
+        - { id: g4, role: "assault guns" }
+        - { id: g5, role: "assault guns and antitank guns" }
+        - { id: g6, role: "armored grenadiers" }
+        - { id: g7, role: "grenadiers and mortars" }
+        - { id: g8, role: "grenadiers" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Hold the town, the hills and Pelarost, and break the battle group against them."
+      formations:
+        - { id: s1, role: "first tank battalion" }
+        - { id: s2, role: "second tank battalion" }
+        - { id: s3, role: "heavy tanks and self-propelled guns" }
+        - { id: s4, role: "first motor rifle battalion" }
+        - { id: s5, role: "second motor rifle battalion" }
+        - { id: s6, role: "rifle battalion" }
+        - { id: s7, role: "guns and mortars" }
+        - { id: s8, role: "rifle companies and gun" }
+  objectives:
+    - { hex: "1813", name: "Holtargard town" }
+    - { hex: "1810", name: "Hill 91" }
+    - { hex: "2110", name: "The wood" }
+    - { hex: "1314", name: "Pelarost" }
+    - { hex: "2016", name: "Hill 86" }

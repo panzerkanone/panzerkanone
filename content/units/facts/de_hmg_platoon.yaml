@@ -1,0 +1,126 @@
+schema: unit-facts/1
+id: de_hmg_platoon
+designation: Heavy machine-gun platoon (German infantry battalion)
+full_name: schwerer Maschinengewehrzug, heavy weapons company of the infantry battalion, infantry division, 1944 type
+side: german
+kind: machine_gun
+setting: >-
+  Eastern Front, 1943. The table is the handbook's 1944 type, as for the rifle company
+  (de_rifle_company.yaml): the 1st (heavy machine-gun) platoon of the battalion's heavy weapons
+  company, six guns. In 1943 the battalion's machine-gun company had platoons of four guns
+  (wp-en-mg42); no 1943 table giving that platoon's men and weapons was opened. Added 2026-11-14 for
+  the lead's ruling 85 (docs/bars/M2a.md).
+facts:
+  count_per_unit:
+    value: 55
+    unit: men
+    source: tme30-451-hw
+    locator: "Chapter II, Figure 37, 'Heavy Weapons Company, Infantry Division, 1944 Type, total strength 205'; row '1st (HvMG) Plat': Offs 1, NCOs 9, Pvts 45"
+    retrieved: 2026-11-14
+    confidence: verified
+    note: "the figure prints no total for the platoon; 55 is the sum of its three columns. The company's three platoons are one of heavy machine guns and two of mortars (81 mm and 120 mm)"
+  rifles:
+    value: 31
+    unit: rifles or carbines
+    source: tme30-451-hw
+    locator: "Figure 37, row '1st (HvMG) Plat', 'Rs or Cbns' = 31"
+    retrieved: 2026-11-14
+    confidence: verified
+  pistols: {value: 15, unit: pistols, source: tme30-451-hw, locator: "Figure 37, row '1st (HvMG) Plat', Pistols = 15", retrieved: 2026-11-14, confidence: verified, note: "recorded for completeness; the formulas do not use pistols"}
+  submachine_guns:
+    value: 10
+    unit: submachine guns
+    source: tme30-451-hw
+    locator: "Figure 37, row '1st (HvMG) Plat', Sub-MGs = 10"
+    retrieved: 2026-11-14
+    confidence: verified
+  light_machine_guns:
+    value: 0
+    unit: guns
+    source: tme30-451-hw
+    locator: "Figure 37, row '1st (HvMG) Plat': the LMGs cell is blank (the company's 3 light machine guns are in other rows)"
+    retrieved: 2026-11-14
+    confidence: verified
+  heavy_machine_guns:
+    value: 6
+    unit: guns
+    source: tme30-451-hw
+    locator: "Figure 37, row '1st (HvMG) Plat', Hv MGs = 6; Total row, Hv MGs = 6"
+    retrieved: 2026-11-14
+    confidence: verified
+    alternatives:
+      - {value: 4, unit: guns, source: wp-en-mg42, locator: "German heavy machine-gun platoons: 'each platoon served four MG 34/MG 42 machine guns'; in 1944 'two seven-man heavy machine gun squads per section'", retrieved: 2026-11-14, confidence: verified, note: "the platoon of the battalion's machine-gun company before the 1944 type; no table of its men and other weapons was opened"}
+    preferred: "6, the guns of the table whose men and weapons are recorded here (the 1944 type, as for the rifle company)"
+  organic_transport:
+    value: "horse-drawn: 8 horse-drawn vehicles; no motor vehicles"
+    unit: description
+    source: tme30-451-hw
+    locator: "Figure 37, row '1st (HvMG) Plat', H-Dr Vehicles = 8"
+    retrieved: 2026-11-14
+    confidence: verified
+    note: "the platoon marched, its guns and ammunition on its wagons; in action the crews carried them (gun and tripod, below). A carrier for it in a scenario is a game choice"
+
+  weapons:
+    rifle:
+      designation: {value: "Karabiner 98k", unit: name, source: tme30-451-hw, locator: "Chapter VII, Section II, 5.a: 'the short carbine Model 98k (Karabiner 98k)'", retrieved: 2026-11-14, confidence: verified}
+      effective_range_m:
+        value: 500
+        unit: m
+        source: wp-en-kar98k
+        locator: "infobox range: '500 m with iron sights; 800 or 1000 m with telescopic sight'"
+        retrieved: 2026-11-14
+        confidence: verified
+        note: "the same entry as de_rifle_company.yaml"
+    heavy_machine_gun:
+      designation: {value: "MG 42 on the tripod mount (M.G. 34 also in service)", unit: name, source: tme30-451-hw, locator: "Chapter VII, Section II, 6.b: the MG 42 'may be used on a fixed bipod, a tripod mount, or an antiaircraft mount'", retrieved: 2026-11-14, confidence: verified}
+      practical_rate_rpm:
+        value: 500
+        unit: rounds per minute
+        source: tme30-451-hw
+        locator: "Chapter VII, Section II, 6.b (2) Characteristics: 'Rate of fire ... (practical) ... As Hv MG 500 rounds per minute.'"
+        retrieved: 2026-11-14
+        confidence: verified
+        note: "the same entry as de_rifle_company.yaml; the M.G. 34 as Hv MG: 300 (6.a (2))"
+        alternatives:
+          - {value: 300, unit: rounds per minute, source: tme30-451-hw, locator: "Chapter VII, Section II, 6.a (2): M.G. 34 'As Hv MG 300 rounds per minute.'", retrieved: 2026-11-14, confidence: verified, note: "the older gun on the same mount"}
+        preferred: "500, the MG 42's, the gun the roster names"
+      effective_range_m:
+        value: "1829 to 2286"
+        unit: m
+        source: tme30-451-hw
+        locator: "Chapter VII, Section II, 6.b (2): 'Effective range ... As Hv MG 2,000 to 2,500 yards.'"
+        retrieved: 2026-11-14
+        confidence: verified
+        note: "the sustained-fire role from the tripod; as LMG '600 to 800 yards'. The same entry as de_rifle_company.yaml"
+        alternatives:
+          - {value: 3500, unit: m, source: wp-en-mg42, locator: "infobox effective range: '200–2,000 m sight adjustments', '3,500 m with tripod and telescopic sight'", retrieved: 2026-11-14, confidence: verified, note: "a sight limit, not an effective range"}
+        preferred: "the handbook's range as Hv MG, the figure the rifle company's file already takes for the same gun"
+      gun_weight_kg:
+        value: 10.8
+        unit: kg
+        source: tme30-451-hw
+        locator: "Chapter VII, Section II, 6.b (2): 'Weight 23 3/4 pounds' (10.8 kg)"
+        retrieved: 2026-11-14
+        confidence: verified
+        note: "recorded for the platoon's movement (ruling 85); no formula reads it"
+        alternatives:
+          - {value: 11.6, unit: kg, source: wp-en-mg42, locator: "infobox mass: '11.6 kg (25.57 lb)'", retrieved: 2026-11-14, confidence: verified}
+        preferred: "the handbook's, as the other figures of the gun; the two differ by 7%"
+      mount_weight_kg:
+        value: 20.5
+        unit: kg
+        source: wp-en-mg42
+        locator: "'The Lafette 42 weighed 20.5 kg (45.2 lb) on its own.'"
+        retrieved: 2026-11-14
+        confidence: verified
+        note: "the later tripod; the article gives no weight for the Lafette 34. TM-E 30-451, 6.a (2): the M.G. 34 'Weight with tripod 42 pounds' (19.1 kg), gun and tripod together. No formula reads it"
+      crew:
+        value: 6
+        unit: men
+        source: wp-en-mg42
+        locator: "'The optimum operating crew of an MG 42 in its medium machine gun role was six men.'"
+        retrieved: 2026-11-14
+        confidence: verified
+        note: "context: six guns of six men are 36 of the platoon's 55; the platoon's own head count is count_per_unit. No formula reads it"
+    submachine_gun:
+      designation: {value: "M.P. 40", unit: name, source: tme30-451-hw, locator: "Chapter VII, Section II, 4.a 'M.P. (Maschinenpistole) 40'", retrieved: 2026-11-14, confidence: verified, note: "Figure 37 counts submachine guns without naming the model; as de_rifle_company.yaml"}

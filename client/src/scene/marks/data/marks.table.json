@@ -1,0 +1,41 @@
+{
+  "format": "table-marks/1",
+  "note": "What the battle leaves on the table (the advanced options Show hulks and Show craters): a hulk where a vehicle is destroyed, a crater where a fire mission lands, each a drawing printed into the board on its hex, under the counters. No rule reads them. `hulks`: which pictures (assets/marks/v1/marks.json) a destroyed unit leaves, by the kind of unit its counter carries (the unit data's `kind`: content/units/*.units.yaml, and the reference ruleset's unit ids, which its counters carry as their kind); where two fit, a seeded choice between them. `none`: the kinds that leave nothing, named so that no kind is left to a default. `craters`: a landed mission's seeded choice. `size`: a mark's longer side, in h (a hex is 1 h across its flats). `place`: where a mark lies in its hex, from the hex's middle, in h (x right, y down the board, toward the hex's lower flat, away from its number at the top): a hex's first mark lies to one side and its second to the other, `across` from the middle and `down` (a seeded share of the range) below it, a seeded `jitter` either way, turned a seeded share of `turnDeg` either way. `perHex`: the most that lie in a hex (a newer one takes the place of the older of its kind, else of the oldest). `look`: how each kind is printed into the board (scene/marks/model.ts, MarkLook: opacity; shadows lifted; colour kept; inked toward the board's key ink or an ink of its own; edge softened; a light halo; laid on as ink, multiply, or over the board, normal: the hulks' blend serves both). `ease`: the seconds a mark takes to fade in where it is laid, the seconds after a mission lands before its crater, and the seconds the marks of a kind take to go or come when its option is switched.",
+  "size": { "hulk": 0.6, "crater": 0.52 },
+  "place": { "across": 0.17, "down": [0.08, 0.16], "jitter": 0.03, "turnDeg": 14 },
+  "perHex": 2,
+  "look": {
+    "hulk": { "opacity": 0.8, "lift": 0.45, "crisp": 0.2, "saturation": 0.45, "tint": { "ink": "key", "amount": 0.25 }, "feather": 0.15, "halo": 0, "blend": "multiply" },
+    "crater": { "opacity": 0.7, "lift": 0.5, "crisp": 0.25, "saturation": 0.4, "tint": { "ink": "key", "amount": 0.3 }, "feather": 0.25, "halo": 0, "blend": "multiply" }
+  },
+  "ease": { "seconds": 0.6, "craterAfter": 0.35, "switchSeconds": 0.3 },
+  "hulks": [
+    {
+      "kinds": ["tank", "battle_tank", "light_tank"],
+      "pictures": ["hulk-tank-turret-off", "hulk-tank-burning"],
+      "why": "Turreted tanks: either tank. The sloped tank with its turret thrown off beside it reads as a tank at a glance (only a turreted vehicle can lose one); the boxy tank under its smoke is a tank as well."
+    },
+    {
+      "kinds": ["assault_gun", "tank_destroyer"],
+      "pictures": ["hulk-tank-burning"],
+      "why": "Turretless armor: the boxy tank alone, its low square hull the nearest the sheet has to a casemate; never the thrown turret, which a vehicle without one cannot lose."
+    },
+    {
+      "kinds": ["self_propelled_gun"],
+      "pictures": ["hulk-tank-burning", "hulk-half-buried"],
+      "why": "An open-topped gun carriage on a tank's tracks: the boxy tank, or the green open-topped hull half buried in earth."
+    },
+    {
+      "kinds": ["half_track"],
+      "pictures": ["hulk-half-buried"],
+      "why": "An open-topped armored body: the green hull half buried in earth, whose running gear (wheels in front, tracks behind) the earth hides."
+    },
+    { "kinds": ["armored_car", "armoured_car"], "pictures": ["hulk-armored-car"], "why": "The eight-wheeled armored car." },
+    { "kinds": ["truck"], "pictures": ["hulk-truck"], "why": "The truck." }
+  ],
+  "none": {
+    "kinds": ["infantry", "rifle_platoon", "machine_gun", "towed_gun", "antitank_gun", "mortar", "mortar_section", "wagon"],
+    "why": "Infantry and towed guns and mortars leave no hulk; nor does a horse-drawn wagon (the sheet has no picture of one, and the truck's would say a truck died there)."
+  },
+  "craters": ["crater-deep", "crater-double", "crater-burst", "crater-holes", "crater-shallow"]
+}

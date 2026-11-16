@@ -1,0 +1,25 @@
+# Record of the lettering outline data in this folder (Milestone 3a, bar line M3a-27 (c)).
+# Kept beside the data until the attribution ledger exists.
+data: board-lettering.json
+dataName: "Board Lettering Outlines"
+what: "Glyph outlines (flattened quadratic curves, em units) of the printable ASCII and Latin-1 characters of one font."
+modifiedVersion: true
+modification: "Outlines extracted, flattened to polygons and rescaled to the em by tools/lettering/build-outlines.ts; no glyph is redrawn."
+source:
+  face: "Routed Gothic (regular)"
+  repository: https://github.com/dse/routed-gothic
+  commit: 365e340d64c55cb7c57940744773e6c833e3efd9
+  path: dist/ttf/routed-gothic.ttf
+  url: https://raw.githubusercontent.com/dse/routed-gothic/365e340d64c55cb7c57940744773e6c833e3efd9/dist/ttf/routed-gothic.ttf
+  fetched: 2026-11-11
+  sha256: 11f90db97172043a955522b83a96ca7e459f490623da39e102f03ba0142a098e
+  keptAt: tools/lettering/font/routed-gothic.ttf (unmodified, with its LICENSE.md)
+author: "Darren Embry"
+copyright: "Copyright (c) 2017, Darren Embry (<https://webonastick.com/>), with Reserved Font Name Routed Gothic."
+licence: "SIL Open Font License 1.1 (OFL-1.1)"
+licenceText: OFL.txt
+licenceInData: "board-lettering.json itself holds the copyright notice, the full licence text and the Modified Version statement (keys copyright, licence, modifiedVersion)."
+reservedFontName: "Routed Gothic"
+reservedNameUse: "The data is named Board Lettering Outlines and does not use the Reserved Font Name."
+allowedBy: "PLAN.md decision P8 (assets: OFL)"
+missingCharacters: []

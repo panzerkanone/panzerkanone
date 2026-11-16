@@ -1,0 +1,130 @@
+schema: unit-facts/1
+id: pz4h
+designation: Pz IV H
+full_name: Panzerkampfwagen IV Ausf. H (Sd.Kfz. 161/2)
+side: german
+kind: tank
+setting: Eastern Front, 1943 (Ausf. H in production from June 1943)
+facts:
+  count_per_unit:
+    value: 5
+    unit: tanks
+    source: tme30-451-hw
+    locator: "Chapter II, Figure 100, SS Tank Company: each 'Tk Plat' row, Pz. Kpfw. IV's or V's = 5"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: >-
+      Figure 100 is the 1944-45 SS company (2 HQ + 3 platoons of 5 = 17). The same handbook's Army
+      company, Figure 93, has platoons of 4 (2 HQ + 3 x 4 = 14). A 1943 Army company of 22 tanks
+      (2 HQ + 4 platoons of 5) under K.St.N. 1175 appears in web-search summaries only; no page
+      showing the table was opened, so it is not recorded as a fact.
+    alternatives:
+      - value: 4
+        unit: tanks
+        source: tme30-451-hw
+        locator: "Chapter II, Figure 93, Tank Company, Army Armored Division: each 'Tk Plat' row = 4; total 14"
+        retrieved: 2026-11-11
+        confidence: verified
+    preferred: >-
+      5, because the lead's ruling 8 (docs/bars/M2a.md) sets German platoons of five and a public
+      handbook table supports a five-tank platoon; the Army four-tank platoon is the other encoding.
+
+  gun:
+    designation: {value: "7.5 cm KwK 40 L/48", unit: name, source: wp-en-panzer-iv, locator: "infobox, primary_armament: '7.5 cm KwK 40 L/48 main gun (87 rounds)'", retrieved: 2026-11-11, confidence: verified}
+    calibre_mm: {value: 75, unit: mm, source: wp-en-kwk40, locator: "infobox, caliber = 75 mm", retrieved: 2026-11-11, confidence: verified}
+    ap_round: {value: "Pzgr. Patr. 39 KwK 40 (APCBC)", unit: name, source: wp-en-kwk40, locator: "Ammunition table, first row", retrieved: 2026-11-11, confidence: verified, note: "the standard full-calibre armour-piercing round of 1943; the tungsten-cored Pzgr. 40 was scarce (wp-de-pz4, note under the ammunition table)"}
+    ap_shot_origin: {value: german_capped, unit: category, source: wp-en-kwk40, locator: "Ammunition list: 'Armour-piercing, capped, ballistic capped shell (APCBC)'", retrieved: 2026-11-11, confidence: verified}
+    ap_shot_mass_kg: {value: 6.8, unit: kg, source: wp-en-kwk40, locator: "Ammunition table, Pzgr. Patr. 39 KwK 40, projectile weight 6.8 kg", retrieved: 2026-11-11, confidence: verified}
+    ap_muzzle_velocity_ms:
+      value: 750
+      unit: m/s
+      source: wp-en-kwk40
+      locator: "Ammunition table, Pzgr. Patr. 39 KwK 40, muzzle velocity 750 m/s"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 790, unit: m/s, source: wp-de-pz4, locator: "Panzergranaten table, L/48 column, 'Mündungsgeschwindigkeit 790 (Pzgr.)'", retrieved: 2026-11-11, confidence: verified}
+      preferred: >-
+        750: the KwK 40 article's sourced ammunition table and the Pak 40 article ('750 m/s for the
+        L/48') agree, and 790 m/s is the Pak 40's figure with its longer case. The research also
+        calibrates its penetration constant on 750 m/s.
+    he_round: {value: "7.5 cm Sprgr. Patr. 34 (HE)", unit: name, source: wp-en-kwk40, locator: "Ammunition list and table", retrieved: 2026-11-11, confidence: verified}
+    he_shell_mass_kg:
+      value: 5.76
+      unit: kg
+      source: tme30-451-hw
+      locator: "Chapter VII, Section V, 2.a, Stu. G. III fuer 7.5 cm Stu. K. 40 (L/48), ammunition table: HE projectile weight 12.7 pounds (converted at 0.4536 kg/lb)"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "the StuK 40 L/48 is the same gun as the KwK 40 L/48 (wp-en-kwk40, History); no shell weight is given in the handbook's own Pz IV entry"
+      alternatives:
+        - {value: 5.69, unit: kg, source: tme30-451-hw, locator: "Chapter VII, Section IV, 6.e, 7.5 cm Pak 40, Ammunition: 'HE, 12.54 pounds'", retrieved: 2026-11-11, confidence: verified, note: "Pak 40 round; same Sprgr. 34 projectile family with a longer case"}
+        - {value: 4.42, unit: kg, source: wp-en-kwk40, locator: "Ammunition table, 7.5 cm Sprgr.Patr.34, projectile weight '9.75 lb'", retrieved: 2026-11-11, confidence: verified, note: "cites War Office, Handbook of Enemy Ammunition, Pamphlet 7, 1943 (not opened). Out of line with both handbook figures; possibly a transcription error"}
+      preferred: "5.76 kg (12.7 lb): the handbook figure for this exact gun; 5.69 kg is within 1.3%."
+
+  machine_guns:
+    count: {value: 2, unit: guns, source: wp-en-panzer-iv, locator: "infobox, secondary_armament: '2 x 7.92 mm MG 34'", retrieved: 2026-11-11, confidence: verified}
+    type: {value: "MG 34, one coaxial, one in hull ball mount", unit: name, source: tme30-451-ls, locator: "Specifications (Model G): 'One 7.5 cm Kw.K.40 (L/43) and one M.G.34' in turret; 'One M.G.34' in hull", retrieved: 2026-11-11, confidence: verified}
+
+  armour:
+    hull_front:
+      thickness_mm: {value: 80, unit: mm, source: wp-de-pz4, locator: "Technische Daten, column Ausf. H, row Wanne Front: '80 mm/80°'", retrieved: 2026-11-11, confidence: verified, note: "driver's front plate; single 80 mm plate from Ausf. H (wp-en-panzer-iv, Ausf. H paragraph)", alternatives: [{value: 60, unit: mm, source: tme30-451-ls, locator: "Model G: 'Front nose plate 60 mm', 'Driver's front plate 60 mm'", retrieved: 2026-11-11, confidence: verified, note: "wartime intelligence, says Model H differs 'only in its 75-mm gun'; superseded"}], preferred: "80 (postwar data from factory documents; research 2.6 already flags the handbook figure)"}
+      angle_from_vertical_deg: {value: 10, unit: degrees, source: wp-de-pz4, locator: "same cell, '80°' measured from horizontal = 10° from vertical", retrieved: 2026-11-11, confidence: verified}
+      cast: {value: false, unit: boolean, source: wp-de-pz4, locator: "rolled plate; no cast parts listed for hull or turret faces", retrieved: 2026-11-11, confidence: verified}
+    hull_side:
+      thickness_mm: {value: 30, unit: mm, source: wp-de-pz4, locator: "Technische Daten, Ausf. H, row Wanne Seite: '30 mm/90°' (inherited '=')", retrieved: 2026-11-11, confidence: verified, note: "plus 5 mm Schürzen side skirts (wp-en-panzer-iv infobox); skirts not added"}
+      angle_from_vertical_deg: {value: 0, unit: degrees, source: wp-de-pz4, locator: "'90°' from horizontal = vertical", retrieved: 2026-11-11, confidence: verified}
+      cast: {value: false, unit: boolean, source: wp-de-pz4, locator: "as above", retrieved: 2026-11-11, confidence: verified}
+    turret_front:
+      thickness_mm: {value: 50, unit: mm, source: wp-de-pz4, locator: "Technische Daten, Ausf. H, row Turmfront: '50 mm/80°' (inherited)", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 40, unit: mm, source: tme30-451-ls, locator: "Model G: 'Turret front 40 mm'", retrieved: 2026-11-11, confidence: verified}], preferred: "50 (wp-en-panzer-iv infobox also gives 50)"}
+      angle_from_vertical_deg: {value: 10, unit: degrees, source: wp-de-pz4, locator: "'80°' from horizontal", retrieved: 2026-11-11, confidence: verified}
+      cast: {value: false, unit: boolean, source: wp-de-pz4, locator: "rolled plate", retrieved: 2026-11-11, confidence: verified}
+    turret_side:
+      thickness_mm: {value: 30, unit: mm, source: wp-de-pz4, locator: "Technische Daten, Ausf. H, row Turmseite: '30 mm/65°' (inherited)", retrieved: 2026-11-11, confidence: verified, note: "plus 5-8 mm turret Schürzen, not added"}
+      angle_from_vertical_deg: {value: 25, unit: degrees, source: wp-de-pz4, locator: "'65°' from horizontal = 25° from vertical", retrieved: 2026-11-11, confidence: verified}
+      cast: {value: false, unit: boolean, source: wp-de-pz4, locator: "rolled plate", retrieved: 2026-11-11, confidence: verified}
+
+  mobility:
+    road_speed_max_kmh:
+      value: 40
+      unit: km/h
+      source: wp-de-pz4
+      locator: "Technische Daten, row Höchstgeschwindigkeit: '40 km/h' for all models from B"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 38, unit: km/h, source: wp-ru-pz4, locator: "late-models table (Chamberlain and Doyle 1978), Ausf. H column, max road speed 38", retrieved: 2026-11-11, confidence: verified}
+        - {value: "38-42", unit: km/h, source: wp-en-panzer-iv, locator: "infobox speed: '38 to 42 km/h maximum, 25 km/h max sustained road speed, 16 km/h off-road'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 40, unit: km/h, source: tme30-451-ls, locator: "Model G: 'Maximum speed 25 miles per hour'", retrieved: 2026-11-11, confidence: verified}
+      preferred: "40, the middle of the published figures (38, 40, 42) and the handbook's 25 mph"
+    engine_power:
+      value: 300
+      unit: PS (metric horsepower)
+      source: wp-en-panzer-iv
+      locator: "infobox engine_power: '300 PS (296 hp, 220 kW)'"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "maximum output; continuous rating 265 PS at 2,600 rpm (wp-de-pz4, note T to Leistung). The research's formula takes the published (maximum) figure"
+      alternatives:
+        - {value: 295, unit: hp (brake), source: tme30-451-ls, locator: "Model G: 'BHP 295 HP at 3,000 rpm'", retrieved: 2026-11-11, confidence: verified}
+    combat_weight_t:
+      value: 25.0
+      unit: t
+      source: wp-en-panzer-iv
+      locator: "infobox weight (spec_label Pz. IV Ausf. H, 1943): 25.0 t"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 25.7, unit: t, source: wp-ru-pz4, locator: "late-models table (Chamberlain and Doyle 1978, pp. 94-99), Ausf. H, Боевая масса 25,7", retrieved: 2026-11-11, confidence: verified}
+      preferred: "25.0, also given by wp-de-pz4 (Gewicht, Ausf. H: 25 t)"
+
+  crew:
+    total: {value: 5, unit: men, source: wp-en-panzer-iv, locator: "infobox crew: '5 (commander, gunner, loader, driver, radio operator/bow machine-gunner)'", retrieved: 2026-11-11, confidence: verified}
+    in_turret: {value: 3, unit: men, source: wp-en-panzer-iv, locator: "Origins: 'In the turret, the tank commander sat beneath his roof hatch, while the gunner was situated to the left of the gun breech and the loader to the right.'", retrieved: 2026-11-11, confidence: verified}
+
+  traits:
+    height_m: {value: 2.68, unit: m, source: wp-en-panzer-iv, locator: "infobox height 2.68 m", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 2.59, unit: m, source: tme30-451-ls, locator: "Model G: 'Height 8 feet 6 inches'", retrieved: 2026-11-11, confidence: verified}]}
+    ground_pressure_kg_cm2: {value: 0.89, unit: kg/cm2, source: wp-ru-pz4, locator: "late-models table, row Удельное давление на грунт (Baryatinsky 1999, p. 18), Ausf. H column: 0,89", retrieved: 2026-11-11, confidence: verified}
+    radio: {value: true, unit: boolean, source: wp-de-pz4, locator: "Fahrer- und Funkerstand: the radio operator 'bediente neben dem Funkgerät' the hull MG; the requirement called for 'eine Funkanlage'", retrieved: 2026-11-11, confidence: verified}
+    open_top: {value: false, unit: boolean, source: wp-en-panzer-iv, locator: "turreted tank, roof plates 10 mm (infobox)", retrieved: 2026-11-11, confidence: verified}
+    turretless: {value: false, unit: boolean, source: wp-en-panzer-iv, locator: "infobox armour lists turret front, side and roof", retrieved: 2026-11-11, confidence: verified}

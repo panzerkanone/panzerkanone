@@ -1,0 +1,149 @@
+{
+  "format": "scenario-art/1",
+  "pictures": [
+    {
+      "id": "engraving-gun-team",
+      "file": "engraving-gun-team.webp",
+      "width": 1160,
+      "height": 864,
+      "style": "engraving",
+      "shows": "A horse-drawn gun team hauls a field gun through the mud before a village"
+    },
+    {
+      "id": "engraving-tank-riders",
+      "file": "engraving-tank-riders.webp",
+      "width": 1164,
+      "height": 864,
+      "style": "engraving",
+      "shows": "Soviet infantry charge through a ruined town beside a T-34 with riders on its hull"
+    },
+    {
+      "id": "engraving-commanders-view",
+      "file": "engraving-commanders-view.webp",
+      "width": 1160,
+      "height": 864,
+      "style": "engraving",
+      "shows": "A tank commander looks out over his hull, binoculars in hand, at enemy tanks burning across a snowfield"
+    },
+    {
+      "id": "engraving-campfire",
+      "file": "engraving-campfire.webp",
+      "width": 1160,
+      "height": 868,
+      "style": "engraving",
+      "shows": "Soviet soldiers sit round a campfire in a night wood, playing an accordion and a balalaika"
+    },
+    {
+      "id": "engraving-gun-battery",
+      "file": "engraving-gun-battery.webp",
+      "width": 1164,
+      "height": 868,
+      "style": "engraving",
+      "shows": "Self-propelled guns fire from under camouflage nets while their crews bring up shells"
+    },
+    {
+      "id": "engraving-ruin-fire",
+      "file": "engraving-ruin-fire.webp",
+      "width": 1160,
+      "height": 868,
+      "style": "engraving",
+      "shows": "Soldiers warm their hands at a fire in a ruin as shells fall outside"
+    },
+    {
+      "id": "engraving-signpost",
+      "file": "engraving-signpost.webp",
+      "width": 1158,
+      "height": 860,
+      "style": "engraving",
+      "shows": "A helmet hangs on a signpost before a burning city"
+    },
+    {
+      "id": "engraving-command-tent",
+      "file": "engraving-command-tent.webp",
+      "width": 1162,
+      "height": 860,
+      "style": "engraving",
+      "shows": "Officers study a map in a command tent by lamplight, a radio operator at work beside them"
+    },
+    {
+      "id": "engraving-pontoon-bridge",
+      "file": "engraving-pontoon-bridge.webp",
+      "width": 1160,
+      "height": 860,
+      "style": "engraving",
+      "shows": "Trucks and infantry cross a pontoon bridge over a misty river at dawn"
+    },
+    {
+      "id": "engraving-rail-yard",
+      "file": "engraving-rail-yard.webp",
+      "width": 1158,
+      "height": 864,
+      "style": "engraving",
+      "shows": "Soldiers move through a railway yard past a locomotive and goods wagons under a red sky"
+    },
+    {
+      "id": "engraving-antitank-gun",
+      "file": "engraving-antitank-gun.webp",
+      "width": 1164,
+      "height": 864,
+      "style": "engraving",
+      "shows": "An anti-tank gun's crew watch tanks come over a snowy field"
+    },
+    {
+      "id": "engraving-factory",
+      "file": "engraving-factory.webp",
+      "width": 1160,
+      "height": 864,
+      "style": "engraving",
+      "shows": "Soviet riflemen crouch beside a T-34 in a ruined factory"
+    },
+    {
+      "id": "engraving-rain-march",
+      "file": "engraving-rain-march.webp",
+      "width": 1162,
+      "height": 864,
+      "style": "engraving",
+      "shows": "Soldiers and a rider march through rain and deep mud"
+    },
+    {
+      "id": "engraving-winter-trench",
+      "file": "engraving-winter-trench.webp",
+      "width": 1160,
+      "height": 864,
+      "style": "engraving",
+      "shows": "Riflemen keep watch from a snow-filled trench at the edge of a wood"
+    },
+    {
+      "id": "engraving-ruined-town",
+      "file": "engraving-ruined-town.webp",
+      "width": 1162,
+      "height": 864,
+      "style": "engraving",
+      "shows": "Soldiers walk through the ruins of a burning town"
+    },
+    {
+      "id": "engraving-wrecks",
+      "file": "engraving-wrecks.webp",
+      "width": 1162,
+      "height": 864,
+      "style": "engraving",
+      "shows": "Knocked-out tanks smoke on a field at sunset"
+    },
+    {
+      "id": "engraving-cellar",
+      "file": "engraving-cellar.webp",
+      "width": 1160,
+      "height": 864,
+      "style": "engraving",
+      "shows": "Civilians and soldiers shelter in a cellar under a shaft of light"
+    },
+    {
+      "id": "engraving-long-column",
+      "file": "engraving-long-column.webp",
+      "width": 1162,
+      "height": 864,
+      "style": "engraving",
+      "shows": "A long column of soldiers marches away along a muddy road"
+    }
+  ]
+}

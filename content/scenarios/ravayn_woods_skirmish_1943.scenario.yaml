@@ -1,0 +1,124 @@
+# The Ravayn Woods, October 1943: a skirmish, the battle's smaller level (docs/rules/rules-v1.md 1.3). A
+# German tank company with a Tiger platoon and grenadiers probes the road between the two woods, held by
+# two Soviet rifle companies on either side, with a gun in the west wood. Original content: the
+# situation and the forces are invented for this scenario from the unit types of roster v1
+# (content/units/v1.units.yaml, each value derived from cited public facts); the board is this project's own
+# generated board "great_woods" (assets/maps/great_woods.map.yaml), and the place names are the board's own
+# invented names. No historical engagement is depicted, and no published scenario, board, order of battle or
+# victory rule is followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md).
+# Levelled on 2026-11-14 between two planning opponents at `normal` (the whole side moving, the same side
+# first every turn; the planning opponent that no longer throws tanks beside rifle companies): the first
+# draft (a T-34 company south of the river) went 8.5% German; with the objectives held by nobody at the
+# start, 12.5%; with a second Tiger platoon and a StuG for the Germans, 27.0%; without the T-34 company,
+# 42.3% over 400; and the road through the woods worth 2 as well:
+# German share 48.0% over 400 games (43.1 to 52.9), mean last turn 5.6; ends at the turn limit 53% (nearly
+# all Soviet wins), by a break 46% (all German).
+# Both sides lose little: the planning opponent's attacker keeps its tanks away from the trees, as the
+# briefing tells a player to. (docs/review/M7/levels-handover.md.)
+# Levelled again on 2026-11-15 for the lead's rulings 84 (a side's units are made Ready when its own turn begins) and
+# 85 (heavy machine-gun platoons), with the planning opponent that sets its whole side's fire discipline alike
+# (docs/review/M7/levels2-handover.md): as it stood it went 42.5% German over 200 games at `normal` (35.9 to 49.4;
+# measured before that change of the opponent). An MG 42 platoon for the German side changed nothing (42.0%: it moves
+# a hex a turn and the battle is six); an east-wood rifle company a Maxim platoon instead 26.5% (one company fewer
+# goes for the tanks, and the German side wins by breaking the riflemen); a third Pz IV H platoon north of Temmere
+# (g1d) 63.5%, and with it a Maxim platoon added to the east wood 40.5% to 44.0% (2314, 2316, 2317) or at Ravayn
+# 62.0%. With the third Pz IV and the road through the woods worth 1 (it was 2), this file: German share 48.3% over
+# 400 games (43.4 to 53.1), mean last turn 5.6; ends at the turn limit 56% (23:200), by a break 43% (170:1). At `hard`
+# on both sides 64.6% German (96 games). Forces 65 German points to 25 Soviet. The guns: the GrW 42 stands north of
+# Temmere (2204) with its Opel Blitz two hexes off (2003); the Soviet ZiS-3 is dug in in the west wood (1915), with
+# no truck.
+
+format: impulse-scenario/1
+id: ravayn-woods-skirmish-october-1943
+name: "The Ravayn Woods, October 1943 (Skirmish)"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3).
+battle: ravayn
+level: skirmish
+ruleset: v1
+units: v1
+map: { id: great_woods, hash: "b7b5a6ef8d458b3b3c00dd380f1b407267e6b16a1655ec9cd84ff070eb968f7e" }
+initiative: german
+freeDeployment: false
+objectives:
+  - { hex: "2014", points: 1, holder: soviet }   # the road where it runs through the trees between the two woods (2 until 2026-11-15)
+  - { hex: "2118", points: 2, holder: soviet }   # the bridge at Ravayn
+ending: { turns: 6, suddenDeathLead: 30, breakShare: 0.6 }
+sides:
+  - id: german
+    name: "German battle group"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "3309"]]
+    formations:
+      # Three Pz IV H platoons north of Temmere (two until 2026-11-15), and a Tiger platoon on the road by Neloane.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pz4h, hex: "2005" }
+          - { id: g1b, type: pz4h, hex: "2105" }
+          - { id: g1d, type: pz4h, hex: "2205" }
+          - { id: g1c, type: tiger1e, hex: "3009" }
+      # A grenadier company in its half-tracks and the heavy mortars.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: grenadier_co, carriedBy: g2h }
+          - { id: g2b, type: grw42, hex: "2204" }
+          - { id: g2h, type: sdkfz251, hex: "2004" }
+          - { id: g2t, type: opel_blitz, hex: "2003" }
+  - id: soviet
+    name: "Soviet rifle battalion"
+    counters: stock-b
+    orders: 3
+    zone: [["0110", "3321"]]
+    formations:
+      # Two rifle companies and a gun in the west wood.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: rifle_co, hex: "1914" }
+          - { id: s1b, type: rifle_co, hex: "2015" }
+          - { id: s1c, type: zis3, hex: "1915" }
+      # Two rifle companies in the east wood.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: rifle_co, hex: "2213" }
+          - { id: s2b, type: rifle_co, hex: "2214" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. Temmere, Ravayn and
+# this action are invented: the background is period color and claims no real engagement. Original text,
+# written for this project.
+briefing:
+  title: "The Ravayn Woods"
+  date: "October 1943"
+  place: "the Eastern Front"
+  picture: engraving-rain-march
+  background: >-
+    Autumn rain, and the leaves are falling. Soviet riflemen have pushed into the woods south of Temmere
+    and cut the road. A German tank company with a Tiger platoon is sent ahead to find out how strong
+    they are.
+  situation: >-
+    South of Temmere the road runs between two woods for a mile, then crosses the river at Ravayn.
+    Soviet riflemen wait in the trees on both sides of the road, two companies in each wood. In woods
+    like these, infantry can get close enough to destroy a tank by hand.
+  note: "The forces are of the kind that met that month. The place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Clear the road through the woods and take the bridge. Keep your tanks away from the trees."
+      formations:
+        - { id: g1, role: "tanks" }
+        - { id: g2, role: "grenadiers and mortars" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Hold the road and the bridge. Let the tanks come close to the woods, then attack them with your infantry."
+      formations:
+        - { id: s1, role: "west wood" }
+        - { id: s2, role: "east wood" }
+  objectives:
+    - { hex: "2014", name: "The road through the woods" }
+    - { hex: "2118", name: "Ravayn bridge" }

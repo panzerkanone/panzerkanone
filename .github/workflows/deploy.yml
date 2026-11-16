@@ -1,0 +1,139 @@
+# Every push to main gets a version, is built with it, and is published to the web.
+#
+#   1. Version: the commit is tagged with the next version: the highest vMAJOR.MINOR.PATCH tag with
+#      its patch number one higher (v0.0.1 when there is none). To start a new minor or major
+#      version, tag a commit by hand (v0.1.0, v1.0.0); the numbers go on from it (v0.1.1, ...).
+#   2. Build: the version is written into client/src/version.ts, which the title screen shows; then
+#      the tree is type-checked and built.
+#   3. Deploy: the build goes to Cloudflare Pages (the project "panzerkanone", served at
+#      panzerkanone.com), labelled with the version. A build that fails publishes nothing.
+#   4. The game server: once the site is up, the Worker in worker/ (a Durable Object for each game
+#      played online, served at games.panzerkanone.com) is type-checked and deployed with
+#      `wrangler deploy`, labelled with the version. The API token needs, besides Pages: Account,
+#      Workers Scripts, Edit; and on the zone panzerkanone.com, Workers Routes, Edit (and DNS, Edit,
+#      for the custom domain's record).
+#
+# The same can be started by hand from the Actions tab ("Run workflow").
+# Secrets (repository settings, never in a file): CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID.
+name: Publish to web
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# One at a time, so that two pushes cannot take the same version. A newer push waits.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  version:
+    name: Tag the commit with the next version
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    outputs:
+      version: ${{ steps.next.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Find or make the version
+        id: next
+        run: |
+          # A commit that has a version already (tagged by hand, or this run is a second one) keeps it.
+          version=$(git tag --points-at HEAD | sh .github/scripts/next-version.sh --highest)
+          if [ -z "$version" ]; then
+            version=$(git tag --list | sh .github/scripts/next-version.sh)
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git tag -a "$version" -m "$version"
+            git push origin "$version"
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "### $version" >> "$GITHUB_STEP_SUMMARY"
+
+  build:
+    name: Type-check and build
+    needs: version
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            client/package-lock.json
+      - name: Install
+        run: |
+          npm ci
+          npm ci --prefix client
+      - name: Write the version into the client
+        run: sh .github/scripts/stamp-version.sh "${{ needs.version.outputs.version }}" client/src/version.ts
+      - name: Type-check
+        run: npm run typecheck
+      - name: Build
+        run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: client/dist
+          if-no-files-found: error
+          retention-days: 7
+
+  deploy:
+    name: Publish to Cloudflare Pages
+    needs: [version, build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: site
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy site --project-name=panzerkanone --branch=main --commit-hash=${{ github.sha }} --commit-message=${{ needs.version.outputs.version }} --commit-dirty=true
+
+  server:
+    name: Publish the game server
+    needs: [version, deploy]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            worker/package-lock.json
+      # The Worker is built from engine/, session/, protocol/ and content/ beside it (their one package, yaml, is the root's).
+      - name: Install
+        run: |
+          npm ci
+          npm ci --prefix worker
+      - name: Type-check
+        run: npx tsc --noEmit -p worker/tsconfig.json
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: worker
+          wranglerVersion: '4.156.2'
+          command: deploy --message=${{ needs.version.outputs.version }}

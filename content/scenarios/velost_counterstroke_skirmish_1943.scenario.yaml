@@ -1,0 +1,113 @@
+# The Velost Counterstroke, September 1943: a skirmish, the battle's smaller level (docs/rules/rules-v1.md 1.3). The
+# first German tanks to arrive (two Tiger platoons, a Pz IV H platoon, a grenadier company in its half-tracks and a
+# machine-gun platoon) meet the Soviet brigade's forward battalion (two T-34 companies near Korenel, a rifle company
+# and a ZiS-3 in Velost) in a race for Korenel and the bridge at Velost, held by nobody at the start. Original
+# content: the situation and the forces are invented for this scenario from the unit types of roster v1
+# (content/units/v1.units.yaml, each value derived from cited public facts); the board is this project's own
+# generated board "velost_woods" (assets/maps/velost_woods.map.yaml), and the place names are the board's own
+# invented names, on no other board. No historical engagement is depicted, and no published scenario, board, order of
+# battle or victory rule is followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md). The German side moves first.
+# Levelled on 2026-11-15 between two planning opponents at `normal` (the whole side moving, the same side first every
+# turn; docs/review/M7/battles-handover.md). With Korenel and Velost held by the Soviet side, a SU-76M with the
+# T-34s and 6 turns, the first draft (a Tiger and two Pz IV H, break share 0.6) went 3% German over 100 games; break
+# share 0.5, 16%; a second Tiger for a Pz IV, 23%; both, 45% but a mean last turn of 4.8; and 7 turns, 49% (100) and
+# 56% (200) at a mean last turn of 5.0; 8 turns, 60% at break share 0.5 or 0.55 and 32% at 0.6; no SU-76M, 38.5%;
+# and a lead of 40 or 50, 40.5%. So the skirmish became the race: Korenel and the bridge held by nobody, no SU-76M, 8
+# turns, break share 0.6, 55.0%; 7 turns, 41.5%; with the SU-76M, 37.0%; break share 0.65, 49.0% (200).
+# This file: German share 48.0% over 400 games (43.1 to 52.9), mean last turn 7.1; ends at the turn limit 54% (53
+# German wins to 162), by a break 36% (139 to 6) and by the lead 10% (all Soviet); losses 6.8 German and 24.1 Soviet
+# points a game. `hard` on both sides (96 games): 59.4% German (49.4 to 68.7), mean last turn 5.7.
+
+format: impulse-scenario/1
+id: velost-counterstroke-skirmish-september-1943
+name: "The Velost Counterstroke, September 1943 (Skirmish)"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3).
+battle: velost
+level: skirmish
+ruleset: v1
+units: v1
+map: { id: velost_woods, hash: "a86ba13acbb3e607f87aefbecfc2557e20028d005bbae5e772bc39224bbfcb77" }
+initiative: german
+freeDeployment: false
+# Both are held by nobody at the start: the two advance guards race for them.
+objectives:
+  - { hex: "2317", points: 2, holder: none }   # Korenel, where the road from the south joins
+  - { hex: "1716", points: 2, holder: none }   # the bridge west of Velost
+ending: { turns: 8, suddenDeathLead: 30, breakShare: 0.65 }
+sides:
+  - id: german
+    name: "German armored advance guard"
+    counters: stock-a
+    orders: 3
+    zone: [["2501", "3321"]]
+    formations:
+      # Two Tiger platoons and a Pz IV H platoon, behind the hills south-east of Korenel.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: tiger1e, hex: "3018" }
+          - { id: g1b, type: pz4h, hex: "3019" }
+          - { id: g1c, type: tiger1e, hex: "3117" }
+      # A grenadier company in its half-tracks and a machine-gun platoon with a truck.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: grenadier_co, carriedBy: g2h }
+          - { id: g2b, type: mg42, carriedBy: g2t }
+          - { id: g2h, type: sdkfz251, hex: "3115" }
+          - { id: g2t, type: opel_blitz, hex: "3216" }
+  - id: soviet
+    name: "Soviet forward battalion"
+    counters: stock-b
+    orders: 3
+    zone: [["0101", "2421"]]
+    formations:
+      # The brigade's forward battalion: two T-34 companies about Korenel.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: t34_76, hex: "2216" }
+          - { id: s1b, type: t34_76, hex: "2117" }
+      # A rifle company in Velost and a ZiS-3 with its truck.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: rifle_co, hex: "1916" }
+          - { id: s2b, type: zis3, hex: "2015" }
+          - { id: s2t, type: zis5, hex: "1816" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. Velost and this action are
+# invented: the background is period color and claims no real engagement. Original text, written for this project.
+briefing:
+  title: "The Velost Counterstroke"
+  date: "September 1943"
+  place: "the Eastern Front"
+  picture: engraving-rail-yard
+  background: >-
+    Yesterday a Soviet tank brigade broke through the German line and took the small town of Velost. This
+    morning its forward battalion pushes on toward Korenel and the bridge, and the first German tanks to arrive
+    are sent to meet it.
+  situation: >-
+    Velost lies on the road behind the river, among woods and low hills, with the village of Korenel to the
+    east. Nobody holds Korenel or the bridge yet. Two Soviet tank companies are near Korenel, with riflemen and
+    a gun in Velost. The German tanks come from the hills to the south-east.
+  note: "The forces are of the kind that met that month. The place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Take Korenel and the bridge at Velost, and destroy the Soviet tanks. Let your longer guns do the work."
+      formations:
+        - { id: g1, role: "tanks" }
+        - { id: g2, role: "grenadiers" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Take Korenel and the bridge, and hold them until the rest of the brigade arrives. Fight the German tanks at close range."
+      formations:
+        - { id: s1, role: "tanks" }
+        - { id: s2, role: "Velost garrison" }
+  objectives:
+    - { hex: "2317", name: "Korenel" }
+    - { hex: "1716", name: "Velost bridge" }

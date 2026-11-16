@@ -1,0 +1,184 @@
+schema: unit-facts/1
+id: de_horse_wagon
+designation: Gefechtswagen (Hf. 1/11; Hf. 7/11)
+full_name: >-
+  Two-horse combat wagon of the German infantry rifle company: the wooden light field wagon
+  Leichter Feldwagen (Hf. 1), as Großer Gefechtswagen (Hf. 1/11), or the steel field wagon
+  Stahlfeldwagen (Hf. 7), as Großer Gefechtswagen (Hf. 7/11)
+side: german
+kind: carrier
+setting: >-
+  Eastern Front, July 1943. The infantry division of the old type, which TM-E 30-451 says
+  'remained unchanged for all practical purposes until the fall of 1943'. The sources name two
+  combat wagons for the rifle company: the Hf. 7/11 (introduced 1937) and the older Hf. 1, which
+  was brought back on the Eastern Front because the Hf. 7 was too heavy there. Values are the
+  Hf. 1's where the two differ; the Hf. 7/11 figure is kept as an alternative. Horse speeds are
+  doctrine and gait figures, not measured for this wagon.
+facts:
+  draught_horses:
+    value: 2
+    unit: horses
+    source: wp-de-hf1
+    locator: "lead: 'ein zwei- ausnahmsweise (im Ostheer) drei- oder vierspänniges Pferdefuhrwerk'"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "three horses 'exceptionally (in the army in the East)', citing Stautrains p. 8"
+    alternatives:
+      - {value: 2, unit: horses, source: fme101-10-1942, locator: "Part I (German Forces), Ch. 2, Sec. I, para. 26 a (2): '2-horse light field wagon (HF 1)' (PDF p. 37)", retrieved: 2026-11-11, confidence: verified}
+      - {value: 2, unit: horses, source: wp-de-hf7, locator: "lead: 'Die Stahlfeldwagen (Hf. 7) war ein zweispänniges oder per Kraftfahrzeug gezogenes, selten vierspänniges Pferdefuhrwerk'", retrieved: 2026-11-11, confidence: verified, note: "Hf. 7/11; the smith's and armourer's wagons had to be driven with four (Fleischer p. 76, via the article)"}
+  payload_t:
+    value: 0.5
+    unit: t
+    source: wp-de-hf1
+    locator: "infobox Nutzlast 0,50 t (Eigengewicht 0,95 t, ZLSG-GG 1,49 t)"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: >-
+      The same article's table of variants gives the plain Hf. 1 as '610 kg (unbeladen), 1.360 kg
+      (beladen)', and FM-E 101-10 gives 1,342 lb empty and 2,992 lb loaded (see empty_weight_t and
+      loaded_weight_t). Those two sources agree with each other, and the difference of their
+      loaded and empty weights is larger than the infobox payload. No source prints that
+      difference as a payload, so it is not recorded as a value.
+    alternatives:
+      - {value: 1.72, unit: t, source: wp-de-hf7, locator: "infobox Nutzlast '1,72' (no unit printed; Eigengewicht 1,04 t, ZLSG-GG 2,76 t)", retrieved: 2026-11-11, confidence: verified, note: "Hf. 7/11, the steel combat wagon; 'völlig ungeeignet, weil zu schwer' in a May 1942 report of the XX Army Corps (Fleischer p. 76, via the article)"}
+      - {value: 1.2, unit: t, source: wp-de-heeresfeldwagen, locator: "section Hf. 2: 'bei einem Leergewicht von 800 kg eine Nutzlast von 1200 kg'", retrieved: 2026-11-11, confidence: verified, note: "the four-horse heavy field wagon Hf. 2, a supply wagon, not the company's combat wagon"}
+    preferred: >-
+      0.5 t, the Hf. 1 as printed. On the Eastern Front in 1943 the light Hf. 1 (and local panje
+      wagons) replaced the heavy Hf. 7/11 (wp-de-hf1, wp-de-hf7). The deriver should know that the
+      Hf. 1's printed loaded and empty weights point to a larger load (see the note), and that the
+      Hf. 7/11 carried 1.72 t on good roads.
+  empty_weight_t:
+    value: 0.61
+    unit: t
+    source: wp-de-hf1
+    locator: "table of variants, row 'Leichter Feldwagen (Hf. 1)': '610 kg (unbeladen), 1.360 kg (beladen)'"
+    retrieved: 2026-11-11
+    confidence: verified
+    alternatives:
+      - {value: 0.609, unit: t, source: fme101-10-1942, locator: "para. 26 a (2): 'Weight, empty 1,342 lb.'", retrieved: 2026-11-11, confidence: verified}
+      - {value: 0.95, unit: t, source: wp-de-hf1, locator: "infobox Eigengewicht 0,95 t", retrieved: 2026-11-11, confidence: verified, note: "the article's infobox and its own table disagree"}
+    preferred: "0.61 t: the article's table and the 1942 US handbook agree to within 1 kg; the infobox's 0.95 t stands alone"
+  loaded_weight_t:
+    value: 1.36
+    unit: t
+    source: wp-de-hf1
+    locator: "table of variants, row 'Leichter Feldwagen (Hf. 1)': '1.360 kg (beladen)'"
+    retrieved: 2026-11-11
+    confidence: verified
+    alternatives:
+      - {value: 1.357, unit: t, source: fme101-10-1942, locator: "para. 26 a (2): 'Weight, loaded 2,992 lb.'; 'Weight behind each horse 1,496 lb.'", retrieved: 2026-11-11, confidence: verified}
+      - {value: 1.16, unit: t, source: wp-de-hf1, locator: "table, row 'Munitionswagen (Hf. 1)': '610 kg (unbeladen), 1.160 kg (beladen)'", retrieved: 2026-11-11, confidence: verified, note: "the same wagon loaded as an ammunition wagon for MG 34 ammunition, 1939"}
+  crew:
+    seats:
+      value: 2
+      unit: men
+      source: wp-de-hf7
+      locator: "Technik: 'Der Platz für den Fahrer und einen Begleiter bestand aus einem Sitzblech' (Fleischer p. 74; H.Dv. 476/1 pp. 18c-g)"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "the driver's box of the Hf. 7; no seat or driver count was found for the Hf. 1"
+  carries:
+    value: "two MG 34 with 3,200 rounds in four drums, and a 5 cm mortar (GrW 36) with five boxes of ten bombs"
+    unit: description
+    source: wp-de-hf7
+    locator: "table of variants, row 'Großer Gefechtswagen (Hf. 7/11)': 'Im Seitenkasten vorne rechts wurde ein leichter Granatwerfer 36 mit fünf Munitionskästen mit jeweils zehn Wurfgranaten mitgeführt ... zwei leichten Maschinengewehre 34 und vier Patronentrommeln mit insgesamt 3200 Patronen' (Fleischer pp. 74-75)"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: >-
+      The Hf. 1/11 of 1939 carried each rifle platoon's machine guns with their accessories and
+      ammunition, small-arms ammunition and hand grenades (wp-de-hf1, 'Bei Beginn des Zweiten
+      Weltkrieges gehörte je ein leichter Feldwagen (Hf. 1) als Großer Gefechtswagen (Hf. 1/11) zu
+      jedem Schützenzug'). From 1941 the one-axle Infanteriekarren (If. 8), payload 350 kg, drawn
+      by men, one or two horses, carried light machine guns, 5 cm mortars and ammunition and was to
+      replace both wagons (wp-de-if8). No source says the riflemen rode the wagons: they marched
+      (de_rifle_company, organic_transport), and on forced marches 'Their packs are carried, if
+      possible, in trains' (gtd-1942, Section X, 44). No troops_carried figure is recorded.
+  heavy_weapons_traction:
+    value: "7.5 cm Pak 40: motor-drawn; 7.5 cm le. I.G. 18: motor- or horse-drawn; 15 cm s. I.G. 33: horse- or motor-drawn"
+    unit: description
+    source: tme30-451-hw
+    locator: "Chapter VII, Section IV, 6.e (2) (Pak 40): 'Traction Motor-drawn'; 2.a (2) (le. I.G. 18): 'Traction Motor- or horse-drawn'; 2.c (2) (s. I.G. 33): 'Traction Horse- or motor-drawn'"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: >-
+      Each gun has its own traction in the handbook; no source says a field wagon towed a gun. The
+      Pak 40's 'usual prime movers were Opel Blitz lorry, Raupenschlepper Ost tracked tractor,
+      SdKfz 11 medium halftrack and SdKfz 251 armoured halftrack' (wp-en-pak40). How a Pak 40 was
+      moved in a horse-drawn division was not found (README, gaps). The 12 cm GrW 42 has 'a
+      two-wheeled, quickly attached axle' and 'can be quickly towed or manhandled' (tme30-451-hw,
+      Chapter VII, Section III, 4.d (1)); its draught was not found.
+  armour: {value: none, unit: description, source: wp-de-heeresfeldwagen, locator: "section Hf. 1: 'Er war aus Holz gefertigt'; section Hf. 7: 'vollständig aus Stahlblech gefertigten' (a steel body, not armour)", retrieved: 2026-11-11, confidence: verified}
+  per_rifle_company:
+    value: 3
+    unit: combat wagons
+    source: wp-de-hf7
+    locator: "'Gemäß dem Kriegsstärkenachweis (KStN) Nr. 131 a vom 1. Oktober 1937 verfügte der Gefechtstross einer Schützenkompanie a über drei zweispännig gefahrene große Gefechtswagen (Hf. 7/11)' (Fleischer p. 76)"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: "secondary: an establishment table (KStN 131 a) read through an article citing Fleischer. With three rifle platoons and one Hf. 1/11 per platoon in 1939 (wp-de-hf1), the count is also three"
+    alternatives:
+      - {value: "15 horse-drawn vehicles and 11 trailers, 27 horses", unit: description, source: tme30-451-hw, locator: "Chapter II, Figure 35, Total row (1944 type company); each rifle platoon 2 H-Dr vehicles, 2 trailers, 3 horses (Figure 36)", retrieved: 2026-11-11, confidence: verified, note: "the 1944 table, already in de_rifle_company.yaml. In the transcription the horse column of the sections sums to 26, not 27"}
+    preferred: "3, the old-type company that TM-E 30-451 says lasted until the fall of 1943; the 1944 table is the alternative"
+  per_infantry_regiment:
+    value: "210 horse-drawn vehicles, 683 horses, 73 motor vehicles"
+    unit: description
+    source: tme30-451-hw
+    locator: "Chapter II, Figure 8, Infantry Division, Old Type, row 'Inf Regt': Mtr Vehicles 73, H-Dr Vehicles 210, Hs 683; division total 1,133 horse-drawn vehicles and 5,375 horses"
+    retrieved: 2026-11-11
+    confidence: verified
+  speed:
+    walk_kmh:
+      value: 7
+      unit: km/h
+      source: wp-en-horse-gait
+      locator: "Walk: 'a four-beat gait that averages about 7 km/h' (cites Harris, Horse Gaits, Balance and Movement, 1993, pp. 32-33)"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "a horse's gait, not a measured wagon speed. A loaded cart is normally walked (wp-ru-telega: 'Гружёную телегу лошади обычно везут шагом')"
+      alternatives:
+        - {value: 7, unit: km/h, source: gtd-1942, locator: "Section X, 44, Rates of march: 'Mounted troops (trot and walk) 7 km (4 mi)' per hour, 'On good roads and under favorable conditions'", retrieved: 2026-11-11, confidence: verified, note: "a German march rate mixing walk and trot; agrees"}
+    trot_kmh:
+      value: 10
+      unit: km/h
+      source: gtd-1942
+      locator: "Section X, 44, Rates of march: 'Mounted troops (trot) 10 km (6 mi)' per hour"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "German doctrine for mounted troops, translated by the US Military Intelligence Service in December 1942; no figure for wagons at the trot was found"
+      alternatives:
+        - {value: 13, unit: km/h, source: wp-en-horse-gait, locator: "Trot: 'a two-beat gait that has a wide variation in possible speeds and averages about 13 km/h'", retrieved: 2026-11-11, confidence: verified, note: "a single horse's average"}
+        - {value: 9.7, unit: km/h, source: tme30-451-hw, locator: "Chapter VI, Section VI, 3.b (2), average speeds of march columns: 'Mounted troops 6' miles per hour", retrieved: 2026-11-11, confidence: verified}
+        - {value: 15, unit: km/h, source: wp-ru-zis2, locator: "'Скорость буксировки по хорошей дороге составляла при использовании конной тяги до 15 км/ч' (cites the GAU service manual of 1942)", retrieved: 2026-11-11, confidence: verified, note: "Soviet, 'up to', a six-horse gun team on a good road: a maximum"}
+      preferred: "10: a column average for troops at the trot, from German doctrine. 13 is one horse's average and 15 a Soviet maximum"
+    march_kmh:
+      value: 4.83
+      unit: km/h
+      source: tme30-451-hw
+      locator: "Chapter VI, Section VI, 3.b (1), p. VI-26: 'The average speeds of division marches in miles per hour', Infantry division 3 by day and 3 by night"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "the sustained road speed of a whole (horse-drawn) infantry division; its road spaces are reckoned 'at 5 kilometers or approximately 3 miles per hour' (3.d), so the handbook's 3 mph is probably the German 5 km/h in round miles. 3 mph is 4.83 km/h (the independent check of 2026-11-11 found the first entry, 4.8, rounded past the half per cent the bar allows a conversion, and the page one low)"
+      alternatives:
+        - {value: 4, unit: km/h, source: gtd-1942, locator: "Section X, 44: 'Large organizations with all weapons: (1) Including rest periods 4 km (2½ mi)'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 5, unit: km/h, source: gtd-1942, locator: "Section X, 44: '(2) Under stress, without rest periods 5 km (3 mi)'; 'Foot troops 5 km (3 mi)'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 5.6, unit: km/h, source: fm101-10-1941, locator: "para. 38 a, line 12 'Anl-d tns' (animal-drawn trains), on roads by day 3½ mph; by night 3; across country 1½ by day, 1 by night (p. 83)", retrieved: 2026-11-11, confidence: verified, note: "US doctrine for US animal-drawn trains; line 3, horse-drawn artillery, also 3½"}
+      preferred: >-
+        4.83 (3 mph): the handbook's own figure for the German horse-drawn infantry division, by day and by
+        night. It lies between German doctrine's 4 (with rests) and 5 (without). A wagon marching
+        with its division is held to the column's rate (fm101-10-1941, note 1: 'regulated by that
+        of the slowest element').
+    daily_march_km:
+      value: "19 to 24"
+      unit: km per day
+      source: tme30-451-hw
+      locator: "Chapter VI, Section III, 6.b (2), p. VI-17, animal-drawn columns (Fahrkolonnen): 'well cared for and trained horses can cover 12 to 15 miles per day and under favorable conditions up to 20 miles, with a day of rest following'"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "the columns use 'one-team wagons' (one team of two horses); 'If oxen are employed, the rate of movement is slower'"
+      alternatives:
+        - {value: 32, unit: km per day, source: tme30-451-hw, locator: "Chapter VI, Section VI, 3.c: 'The infantry division normally can march about 20 miles in a day; under adverse weather or road conditions the rate of march may fall to 10 miles a day'; near the combat zone 'road movements without motor transport average 10 to 15 miles a day'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 32, unit: km per day, source: fm101-10-1941, locator: "para. 38 a, line 12, animal-drawn trains: lengths of march 20 miles per day", retrieved: 2026-11-11, confidence: verified}
+      preferred: >-
+        19 to 24: German training instructions for horse-drawn columns, as the handbook reports them.
+        32 km is reached only under favourable conditions, with a day of rest following, and is the
+        whole division's normal day.

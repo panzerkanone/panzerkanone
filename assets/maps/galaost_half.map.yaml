@@ -1,0 +1,96 @@
+# Half board: Galaost and the long hill: a generated board. Original content: invented terrain from archetype
+# stamps and invented place names.
+# Regenerate: npm run genmap -- --seed 20 --country wooded --density 0.5 --cols 11 --rows 10 --woods sides --name "Half board: Galaost and the long hill" --out assets/maps/galaost_half.map.yaml
+
+format: map/1
+layout: flat-top
+id: galaost_half
+name: "Half board: Galaost and the long hill"
+cols: 11
+rows: 10
+artSeed: 318704150
+
+# The two layers: one text row per board row, top row first; one character per
+# column, column 01 first. On the board, even-numbered columns sit half a hex lower.
+#   elevation:  .  level ground   H  hilltop
+elevation: |
+  ...........
+  ...........
+  ...........
+  ...........
+  ...........
+  ..HH.......
+  ....HH.H...
+  ......H....
+  ...........
+  ...........
+#   cover:  .  open   w  woods   t  town   f  field   s  swamp   r  rough
+cover: |
+  ...........
+  ...........
+  ...........
+  ...........
+  .......t...
+  ...........
+  ...........
+  ...........
+  ...........
+  ...........
+
+# A hex is named by the label printed on it: column then row ("0412" is column 4, row 12).
+# A slope is not a hex. It is the hill area around a crest, and a crest is a hexside:
+# every edge of a hilltop is one, and a ridge is a chain of them across level ground.
+# ridges: each ridge is its chain of crest edges; an edge is the pair of hexes it runs between.
+ridges:
+  - [["0903", "0803"], ["0802", "0803"], ["0802", "0703"], ["0702", "0703"], ["0702", "0602"]]
+
+# roads and rivers run hex to hex. A road leaves the map at each exit; a river end on the
+# board edge runs off the map.
+roads:
+  - ["0108", "0208", "0309", "0408", "0509", "0609", "0710", "0809", "0909", "1008", "1108", "1107"]
+  - ["0701", "0601", "0502", "0503", "0603", "0704", "0804", "0805", "0906", "1006", "1107"]
+  - ["1106", "1107"]
+exits: ["0108", "1106", "0701"]
+rivers:
+  - ["1109", "1008", "1007", "1006", "1005", "0905", "1004", "1003", "1002", "1001"]
+bridges: ["1006", "1008"]
+
+towns:
+  - { name: "Galaost", hexes: ["0805"] }
+# spotHeights: the hill numbers printed on hilltops ("Hill 92").
+spotHeights:
+  - { hex: "0406", height: 87 }
+
+# trees: tree sides. Woods are a hexside feature, as slopes are: each entry sets one hexside
+# for trees, with a strength (above 0, at most 3; 1 is an ordinary side). A side is named by a
+# hex and one of its six sides, N NE SE S SW NW (N and S are the level ones): by the hex for
+# which it faces N, NE or SE, or on the board's own edge by the hex it belongs to. Nothing else
+# is stored: a hex is a tree hex when any of its sides is set, and the art derives the rest.
+trees:
+  - { hex: "0302", side: "N", strength: 0.9 }
+  - { hex: "0302", side: "NE", strength: 0.8 }
+  - { hex: "0302", side: "SE", strength: 1.3 }
+  - { hex: "0303", side: "N", strength: 1.1 }
+  - { hex: "0202", side: "NE", strength: 0.9 }
+  - { hex: "0201", side: "SE", strength: 1 }
+  - { hex: "0402", side: "N", strength: 1.1 }
+  - { hex: "0401", side: "SE", strength: 1 }
+  - { hex: "0802", side: "N", strength: 1 }
+  - { hex: "0801", side: "SE", strength: 1.3 }
+  - { hex: "0902", side: "N", strength: 1.2 }
+  - { hex: "0802", side: "NE", strength: 1 }
+  - { hex: "0702", side: "NE", strength: 1 }
+  - { hex: "1009", side: "N", strength: 1.1 }
+  - { hex: "1009", side: "NE", strength: 0.9 }
+  - { hex: "1009", side: "SE", strength: 0.9 }
+  - { hex: "1010", side: "N", strength: 1.2 }
+  - { hex: "0910", side: "NE", strength: 0.9 }
+  - { hex: "0909", side: "SE", strength: 1.3 }
+
+source:
+  generator: "mapgen/3"
+  seed: 20
+  country: wooded
+  density: 0.5
+  mirror: false
+  command: "npm run genmap -- --seed 20 --country wooded --density 0.5 --cols 11 --rows 10 --woods sides --name \"Half board: Galaost and the long hill\" --out assets/maps/galaost_half.map.yaml"

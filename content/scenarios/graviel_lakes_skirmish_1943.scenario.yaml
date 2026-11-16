@@ -1,0 +1,112 @@
+# The Graviel Lakes, November 1943: a skirmish, the battle's smaller level (docs/rules/rules-v1.md 1.3). The German
+# advance guard (two Pz IV H platoons, a StuG III G platoon, a grenadier company in its half-tracks and a machine-gun
+# platoon) races two Soviet rifle companies, a Maxim platoon, a ZiS-3 and a T-34 company for the way into Graviel:
+# the wood between the two lakes and the bridge into the town, both held by nobody at the start. Original content:
+# the situation and the forces are invented for this scenario from the unit types of roster v1
+# (content/units/v1.units.yaml, each value derived from cited public facts); the board is this project's own
+# generated board "graviel_lakes" (assets/maps/graviel_lakes.map.yaml), and the place names are the board's own
+# invented names, on no other board. No historical engagement is depicted, and no published scenario, board, order of
+# battle or victory rule is followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md). The German side moves first.
+# Levelled on 2026-11-14 between two planning opponents at `normal` (the whole side moving, the same side first
+# every turn; docs/review/M7/battles-handover.md). Drafts with Graviel itself as the objectives went 0% German (200
+# games each, four set-ups: the planning opponent's tanks keep out of reach of the rifle companies in the town, and
+# nothing else is worth its while), so the skirmish is the race for the way in. Both held by nobody, lead 30, break
+# share 0.7: 43.0%; 0.65: 45.5%; the bridge worth 1: 35.5%; the wood worth 3: 44.0%; a lead of 40, 46.5%; and break
+# share 0.6, 55.0%; 0.62, 55.0%; 7 turns, 55.0%. This file (a lead of 40, break share 0.65): German share 50.0% over
+# 400 games (45.1 to 54.9), mean last turn 5.2; ends by a break 57% (194 German wins to 35) and at the turn limit 43%
+# (6 to 165); losses 11.7 German and 16.6 Soviet points a game. `hard` on both sides (96 games): 47.9% German (38.2
+# to 57.8), mean last turn 5.3.
+
+format: impulse-scenario/1
+id: graviel-lakes-skirmish-november-1943
+name: "The Graviel Lakes, November 1943 (Skirmish)"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3).
+battle: graviel
+level: skirmish
+ruleset: v1
+units: v1
+map: { id: graviel_lakes, hash: "f8c342ca9f322354b56db1fc04d54227a11ee5e85df1f5b29ef236ee0a21888d" }
+initiative: german
+freeDeployment: false
+# Both held by nobody at the start: the advance guard must seize the way to the town before the Soviets close it.
+objectives:
+  - { hex: "0708", points: 2, holder: none }   # the wood between the lakes, astride the road to Graviel
+  - { hex: "0810", points: 2, holder: none }   # the bridge into Graviel
+ending: { turns: 6, suddenDeathLead: 40, breakShare: 0.65 }
+sides:
+  - id: german
+    name: "German advance guard"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "3305"]]
+    formations:
+      # Two Pz IV H platoons and a StuG III G platoon, north of Dovonov.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pz4h, hex: "0402" }
+          - { id: g1b, type: pz4h, hex: "0502" }
+          - { id: g1c, type: stug3g, hex: "0302" }
+      # A grenadier company in its half-tracks and a machine-gun platoon with a truck.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: grenadier_co, carriedBy: g2h }
+          - { id: g2b, type: mg42, carriedBy: g2t }
+          - { id: g2h, type: sdkfz251, hex: "0802" }
+          - { id: g2t, type: opel_blitz, hex: "0801" }
+  - id: soviet
+    name: "Soviet rifle battalion"
+    counters: stock-b
+    orders: 3
+    zone: [["0108", "3321"]]
+    formations:
+      # Graviel: two rifle companies and a Maxim platoon on the town side of the bridge.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: rifle_co, hex: "0811" }
+          - { id: s1b, type: rifle_co, hex: "0912" }
+          - { id: s1c, type: maxim, hex: "0711" }
+      # A ZiS-3 with a cart to move it, and a T-34 company behind the town.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: zis3, hex: "0913" }
+          - { id: s2b, type: t34_76, hex: "1016" }
+          - { id: s2c, type: cart, hex: "1013" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. Graviel and this action are
+# invented: the background is period color and claims no real engagement. Original text, written for this project.
+briefing:
+  title: "The Graviel Lakes"
+  date: "November 1943"
+  place: "the Eastern Front"
+  picture: engraving-ruined-town
+  background: >-
+    Late autumn, and the ground is still soft. Soviet riflemen broke into the town of Graviel last night. A
+    German advance guard is sent ahead to seize the way into the town before the Soviets can close it.
+  situation: >-
+    Two rivers cross the farmland above Graviel, and two lakes lie between them. West of the long lake, the
+    road runs past a wood to the bridge into Graviel. Nobody holds the wood or the bridge yet. Two Soviet rifle
+    companies hold the town, with a gun covering the bridge and a tank company behind it.
+  note: "The forces are of the kind that met that month. The place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Seize the wood between the lakes and the bridge into Graviel, and hold them for the battle group behind you."
+      formations:
+        - { id: g1, role: "tanks" }
+        - { id: g2, role: "grenadiers" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Keep the Germans out of the wood and off the bridge until the rest of the regiment arrives."
+      formations:
+        - { id: s1, role: "Graviel garrison" }
+        - { id: s2, role: "gun and tank" }
+  objectives:
+    - { hex: "0708", name: "The wood between the lakes" }
+    - { hex: "0810", name: "Graviel bridge" }

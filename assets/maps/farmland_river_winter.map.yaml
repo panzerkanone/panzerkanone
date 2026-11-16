@@ -1,0 +1,263 @@
+# Rolling farmland in winter: a generated board. Original content: invented terrain from archetype
+# stamps and invented place names.
+# Regenerate: npm run genmap -- --seed 13 --country rolling --density 0.5 --cols 33 --rows 21 --woods sides --season winter --name "Rolling farmland in winter" --out assets/maps/farmland_river_winter.map.yaml
+
+format: map/1
+layout: flat-top
+id: farmland_river_winter
+name: "Rolling farmland in winter"
+cols: 33
+rows: 21
+artSeed: 3400824150
+# season: the time of year the board is printed for, summer or winter (a map without the key is summer).
+season: winter
+
+# The two layers: one text row per board row, top row first; one character per
+# column, column 01 first. On the board, even-numbered columns sit half a hex lower.
+#   elevation:  .  level ground   H  hilltop
+elevation: |
+  .................................
+  ....................H............
+  ....................H............
+  ....................H.....H......
+  .............H......H...HHH......
+  .............H..........H........
+  .............H...................
+  ..............H..................
+  ..............................H..
+  .................................
+  .........H.......................
+  .........HH......................
+  .........HH........H.............
+  .................HH.H............
+  ..................H..............
+  .................................
+  .................................
+  .................................
+  .....H..................H....H...
+  .............................H...
+  ...........................HH....
+#   cover:  .  open   w  woods   t  town   f  field   s  swamp   r  rough
+cover: |
+  .................................
+  .s...............................
+  s................................
+  sss..........................f...
+  ............................ft...
+  ......................f.....t....
+  ....................fft.....f....
+  .................t..f.t..........
+  ...............fft...............
+  ................f................
+  .................................
+  .......................s.........
+  ......................s.s........
+  ...........t.....................
+  ..ftf....ft......................
+  ..t.f.....f......................
+  .................................
+  .................................
+  .................................
+  .................................
+  .................................
+
+# A hex is named by the label printed on it: column then row ("0412" is column 4, row 12).
+# A slope is not a hex. It is the hill area around a crest, and a crest is a hexside:
+# every edge of a hilltop is one, and a ridge is a chain of them across level ground.
+# ridges: each ridge is its chain of crest edges; an edge is the pair of hexes it runs between.
+ridges:
+  - [["1620", "1520"], ["1619", "1520"], ["1619", "1519"], ["1618", "1519"], ["1618", "1518"]]
+  - [["1513", "1612"], ["1512", "1612"], ["1512", "1611"]]
+  - [["3211", "3112"], ["3212", "3112"], ["3212", "3113"]]
+
+# roads and rivers run hex to hex. A road leaves the map at each exit; a river end on the
+# board edge runs off the map.
+roads:
+  - ["0115", "0215", "0316", "0415", "0515", "0615", "0715", "0814", "0915", "1015", "1115", "1214", "1314", "1413", "1412", "1411", "1511", "1610", "1710", "1809"]
+  - ["1201", "1302", "1402", "1403", "1504", "1604", "1605", "1606", "1707", "1807", "1808", "1809"]
+  - ["1809", "1910", "2009", "2109", "2208", "2308"]
+  - ["2308", "2307", "2306", "2305", "2304", "2403", "2402", "2401"]
+  - ["2308", "2408", "2509", "2608", "2708", "2807", "2907", "2906", "3005", "3105", "3204", "3304"]
+exits: ["0115", "3304", "2401", "1201"]
+rivers:
+  - ["0801", "0902", "1002", "1102", "1202", "1303", "1402", "1503", "1603", "1704", "1705", "1805", "1806", "1907", "1908", "2008", "2009", "2110", "2210", "2211", "2312", "2412", "2512", "2612", "2713", "2714", "2814", "2915", "3014", "3115", "3214", "3315"]
+  - ["0116", "0215", "0214", "0314", "0313", "0412", "0411", "0311", "0310", "0209", "0208", "0207", "0307", "0306", "0305", "0204", "0203", "0202", "0201"]
+bridges: ["0215", "1402", "2009"]
+
+towns:
+  - { name: "Galowick", hexes: ["2308", "2307"] }
+  - { name: "Keliach", hexes: ["1809", "1808"] }
+  - { name: "Nestgard", hexes: ["1115", "1214"] }
+  - { name: "Sortal", hexes: ["3005", "2906"] }
+  - { name: "Ulmanov", hexes: ["0316", "0415"] }
+# spotHeights: the hill numbers printed on hilltops ("Hill 92").
+spotHeights:
+  - { hex: "0619", height: 194 }
+  - { hex: "1012", height: 53 }
+  - { hex: "2605", height: 144 }
+  - { hex: "2519", height: 64 }
+  - { hex: "3109", height: 150 }
+
+# trees: tree sides. Woods are a hexside feature, as slopes are: each entry sets one hexside
+# for trees, with a strength (above 0, at most 3; 1 is an ordinary side). A side is named by a
+# hex and one of its six sides, N NE SE S SW NW (N and S are the level ones): by the hex for
+# which it faces N, NE or SE, or on the board's own edge by the hex it belongs to. Nothing else
+# is stored: a hex is a tree hex when any of its sides is set, and the art derives the rest.
+trees:
+  - { hex: "1102", side: "N", strength: 1.1 }
+  - { hex: "1103", side: "SE", strength: 1 }
+  - { hex: "1104", side: "NE", strength: 1.1 }
+  - { hex: "1104", side: "N", strength: 1.1 }
+  - { hex: "1003", side: "NE", strength: 1 }
+  - { hex: "1204", side: "N", strength: 1 }
+  - { hex: "3205", side: "N", strength: 1 }
+  - { hex: "3205", side: "NE", strength: 1.3 }
+  - { hex: "3205", side: "SE", strength: 1.1 }
+  - { hex: "3206", side: "N", strength: 1 }
+  - { hex: "3106", side: "NE", strength: 0.9 }
+  - { hex: "3105", side: "SE", strength: 1.3 }
+  - { hex: "3206", side: "NE", strength: 0.9 }
+  - { hex: "3206", side: "SE", strength: 1.3 }
+  - { hex: "3207", side: "N", strength: 1.3 }
+  - { hex: "3107", side: "NE", strength: 1.3 }
+  - { hex: "3106", side: "SE", strength: 1.1 }
+  - { hex: "3103", side: "N", strength: 1 }
+  - { hex: "3102", side: "N", strength: 1.1 }
+  - { hex: "3102", side: "NE", strength: 1.2 }
+  - { hex: "3102", side: "SE", strength: 1.2 }
+  - { hex: "3002", side: "NE", strength: 1 }
+  - { hex: "3001", side: "SE", strength: 0.9 }
+  - { hex: "3104", side: "NE", strength: 1.2 }
+  - { hex: "3107", side: "SE", strength: 1 }
+  - { hex: "3202", side: "N", strength: 1 }
+  - { hex: "3201", side: "SE", strength: 1 }
+  - { hex: "3202", side: "NE", strength: 1.2 }
+  - { hex: "3003", side: "SE", strength: 1.1 }
+  - { hex: "1007", side: "N", strength: 1 }
+  - { hex: "1007", side: "NE", strength: 1.1 }
+  - { hex: "1007", side: "SE", strength: 1.1 }
+  - { hex: "1008", side: "N", strength: 1.2 }
+  - { hex: "0908", side: "NE", strength: 1.3 }
+  - { hex: "0907", side: "SE", strength: 1.3 }
+  - { hex: "0907", side: "N", strength: 0.8 }
+  - { hex: "0907", side: "NE", strength: 1.3 }
+  - { hex: "0908", side: "N", strength: 1.4 }
+  - { hex: "0807", side: "NE", strength: 1.2 }
+  - { hex: "0806", side: "SE", strength: 1.1 }
+  - { hex: "1006", side: "SE", strength: 1 }
+  - { hex: "1008", side: "NE", strength: 1 }
+  - { hex: "1108", side: "N", strength: 1.3 }
+  - { hex: "1107", side: "SE", strength: 1 }
+  - { hex: "1108", side: "NE", strength: 1 }
+  - { hex: "2409", side: "N", strength: 1.2 }
+  - { hex: "2409", side: "NE", strength: 1.1 }
+  - { hex: "2409", side: "SE", strength: 0.9 }
+  - { hex: "2410", side: "N", strength: 1.1 }
+  - { hex: "2310", side: "NE", strength: 1.3 }
+  - { hex: "2309", side: "SE", strength: 1.1 }
+  - { hex: "2310", side: "N", strength: 1 }
+  - { hex: "2310", side: "SE", strength: 1 }
+  - { hex: "2311", side: "N", strength: 0.9 }
+  - { hex: "2210", side: "NE", strength: 1.1 }
+  - { hex: "2209", side: "SE", strength: 0.9 }
+  - { hex: "2410", side: "NE", strength: 1.3 }
+  - { hex: "2410", side: "SE", strength: 0.9 }
+  - { hex: "2411", side: "N", strength: 1.3 }
+  - { hex: "2311", side: "NE", strength: 1.2 }
+  - { hex: "2311", side: "SE", strength: 1.2 }
+  - { hex: "2312", side: "N", strength: 1.2 }
+  - { hex: "2211", side: "NE", strength: 1 }
+  - { hex: "2210", side: "SE", strength: 1.1 }
+  - { hex: "2510", side: "N", strength: 1.2 }
+  - { hex: "2510", side: "NE", strength: 0.9 }
+  - { hex: "2510", side: "SE", strength: 0.9 }
+  - { hex: "2511", side: "N", strength: 0.8 }
+  - { hex: "2209", side: "NE", strength: 1 }
+  - { hex: "2710", side: "N", strength: 1 }
+  - { hex: "2709", side: "SE", strength: 1.2 }
+  - { hex: "2709", side: "NE", strength: 1 }
+  - { hex: "2809", side: "N", strength: 1.1 }
+  - { hex: "2809", side: "NE", strength: 1 }
+  - { hex: "1911", side: "N", strength: 1.1 }
+  - { hex: "0213", side: "N", strength: 1.1 }
+  - { hex: "0213", side: "NE", strength: 1.2 }
+  - { hex: "0213", side: "SE", strength: 1.1 }
+  - { hex: "0214", side: "N", strength: 1.2 }
+  - { hex: "0114", side: "NE", strength: 1 }
+  - { hex: "0113", side: "SE", strength: 1 }
+  - { hex: "0212", side: "SE", strength: 1 }
+  - { hex: "0212", side: "NE", strength: 1 }
+  - { hex: "0412", side: "SE", strength: 1.2 }
+  - { hex: "0211", side: "SE", strength: 1 }
+  - { hex: "1414", side: "NE", strength: 0.9 }
+  - { hex: "1514", side: "N", strength: 1.1 }
+  - { hex: "1514", side: "NE", strength: 1.3 }
+  - { hex: "1514", side: "SE", strength: 0.9 }
+  - { hex: "1515", side: "N", strength: 1.3 }
+  - { hex: "1413", side: "SE", strength: 1.3 }
+  - { hex: "1515", side: "NE", strength: 1 }
+  - { hex: "1313", side: "N", strength: 1.2 }
+  - { hex: "1615", side: "N", strength: 1 }
+  - { hex: "1614", side: "N", strength: 1 }
+  - { hex: "1316", side: "N", strength: 1.1 }
+  - { hex: "0614", side: "NE", strength: 1.1 }
+  - { hex: "0814", side: "N", strength: 1 }
+  - { hex: "0714", side: "NE", strength: 1 }
+  - { hex: "0714", side: "N", strength: 1.2 }
+  - { hex: "1018", side: "N", strength: 1.1 }
+  - { hex: "0918", side: "SE", strength: 1.1 }
+  - { hex: "0919", side: "N", strength: 1 }
+  - { hex: "1018", side: "NE", strength: 1 }
+  - { hex: "1018", side: "SE", strength: 1.1 }
+  - { hex: "1020", side: "N", strength: 1.1 }
+  - { hex: "0920", side: "NE", strength: 1 }
+  - { hex: "0920", side: "N", strength: 0.9 }
+  - { hex: "0819", side: "SE", strength: 1 }
+  - { hex: "1019", side: "SE", strength: 1 }
+  - { hex: "0420", side: "N", strength: 1 }
+  - { hex: "0420", side: "NE", strength: 1.3 }
+  - { hex: "0420", side: "SE", strength: 1.3 }
+  - { hex: "0421", side: "N", strength: 1.1 }
+  - { hex: "0321", side: "NE", strength: 0.8 }
+  - { hex: "0320", side: "SE", strength: 1.1 }
+  - { hex: "0320", side: "N", strength: 0.9 }
+  - { hex: "0320", side: "NE", strength: 1.3 }
+  - { hex: "0321", side: "N", strength: 1.3 }
+  - { hex: "0220", side: "NE", strength: 1.3 }
+  - { hex: "0219", side: "SE", strength: 1.3 }
+  - { hex: "0220", side: "SE", strength: 1.1 }
+  - { hex: "0221", side: "N", strength: 1 }
+  - { hex: "0319", side: "SE", strength: 1.1 }
+  - { hex: "0419", side: "N", strength: 1 }
+  - { hex: "0418", side: "SE", strength: 1.1 }
+  - { hex: "0418", side: "NE", strength: 1 }
+  - { hex: "2120", side: "N", strength: 1.2 }
+  - { hex: "2120", side: "NE", strength: 1.3 }
+  - { hex: "2120", side: "SE", strength: 1.3 }
+  - { hex: "2121", side: "N", strength: 1 }
+  - { hex: "2020", side: "NE", strength: 1.3 }
+  - { hex: "2019", side: "SE", strength: 0.9 }
+  - { hex: "2220", side: "N", strength: 0.9 }
+  - { hex: "2220", side: "NE", strength: 0.9 }
+  - { hex: "2220", side: "SE", strength: 1 }
+  - { hex: "2221", side: "N", strength: 1 }
+  - { hex: "2121", side: "NE", strength: 1.1 }
+  - { hex: "2219", side: "N", strength: 1.3 }
+  - { hex: "2219", side: "NE", strength: 0.9 }
+  - { hex: "2219", side: "SE", strength: 1.3 }
+  - { hex: "2119", side: "SE", strength: 1.1 }
+  - { hex: "2119", side: "N", strength: 1 }
+  - { hex: "2119", side: "NE", strength: 1.3 }
+  - { hex: "2019", side: "NE", strength: 1.3 }
+  - { hex: "2018", side: "SE", strength: 0.9 }
+  - { hex: "2020", side: "SE", strength: 1 }
+  - { hex: "2019", side: "N", strength: 1 }
+  - { hex: "2018", side: "NE", strength: 1 }
+
+source:
+  generator: "mapgen/3"
+  seed: 13
+  country: rolling
+  density: 0.5
+  mirror: false
+  command: "npm run genmap -- --seed 13 --country rolling --density 0.5 --cols 33 --rows 21 --woods sides --season winter --name \"Rolling farmland in winter\" --out assets/maps/farmland_river_winter.map.yaml"

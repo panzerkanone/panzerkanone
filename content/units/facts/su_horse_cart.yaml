@@ -1,0 +1,144 @@
+schema: unit-facts/1
+id: su_horse_cart
+designation: One-horse cart (rifle battalion)
+full_name: >-
+  One-horse two-wheeled cart of the Soviet rifle battalion and rifle company, establishment
+  (shtat) 04/551 of 10 December 1942; the battalion also had two-horse wagons
+side: soviet
+kind: carrier
+setting: >-
+  Eastern Front, July 1943. The table names the cart only as 'Carts (one-horse)'; no model or
+  designation was found. A US report of May 1943 describes the Soviet two-wheeled cart and light
+  four-wheeled wagon. No Soviet march-rate figure was found: the speed entries are a horse's gaits,
+  German and US doctrine, and one Soviet gun manual's maximum.
+facts:
+  draught_horses:
+    value: 1
+    unit: horses
+    source: bs-rifle-bn-dec42
+    locator: "p. 2 summary table, Transport rows: 'Carts (one-horse)' 17 in the battalion; 'Wagons (two-horse)' 8"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: "the rifle company's own cart: p. 2, Total, Rifle Company, Draught horses 1, Carts (one-horse) 1. The company detail (p. 5, Machine Gun Squad) lists it as 'Wagon 1, Draught horse 1'"
+    alternatives:
+      - {value: 1, unit: horses, source: ttt25-1943, locator: "'The construction of the two-wheeled cart is very simple ... It is fitted with shafts and drawn by one horse.'", retrieved: 2026-11-11, confidence: verified}
+      - {value: 2, unit: horses, source: bs-rifle-bn-dec42, locator: "p. 2, 'Wagons (two-horse)': supply platoon 4, anti-tank rifle platoon 1, each machine-gun platoon 1 (8 in the battalion)", retrieved: 2026-11-11, confidence: secondary, note: "the battalion's two-horse wagon, the other vehicle of the same table"}
+      - {value: "1 to 4", unit: horses, source: ttt25-1943, locator: "'The four-wheeled wagon and the sled are about 2 feet longer and are drawn by one, two, three, or four horses in line.'", retrieved: 2026-11-11, confidence: verified, note: "the light four-wheeled wagon"}
+  payload_t:
+    value: "0.204 to 0.227"
+    unit: t
+    source: ttt25-1943
+    locator: "'it is built to carry 450 to 500 pounds ... It is 2 1/2 ft. deep and 4 ft. long.'"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: >-
+      Tactical and Technical Trends No. 25, 20 May 1943. The Russian horse 'is of small stature,
+      averaging less than 15 hands ... he is unable to pull the load of the larger draft animal'.
+      No payload for the four-wheeled wagon is printed.
+  crew:
+    total:
+      value: 1
+      unit: men
+      source: bs-rifle-bn-dec42
+      locator: "p. 3, Communication Platoon: 'Wagon driver, Private, 1 Carbine' with 'Cart 1, Draught horse 1'; p. 8, each 82-mm mortar squad: 'Wagon driver, Private, 1 Rifle' with 'Wagon 1, Draught horse 1'"
+      retrieved: 2026-11-11
+      confidence: secondary
+      note: "the rifle company's machine-gun cart has no driver of its own: its squad of 6 (p. 5) lists only the gun crew"
+  carries:
+    value: "the rifle company's heavy machine gun (Maxim); in the battalion, one 82 mm mortar per cart"
+    unit: description
+    source: bs-rifle-bn-dec42
+    locator: "p. 5, Machine Gun Squad (6 men): 'Heavy machine gun 1', 'Wagon 1', 'Draught horse 1'; p. 8, Mortar Company, three squads each: '82-mm mortar 1', 'Wagon driver', 'Wagon 1', 'Draught horse 1'"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: >-
+      In the 1941 regiment (table 04/401, via wp-ru-rifle-regt) each 82 mm mortar squad had 'повозочного
+      с миномётной двуколкой и повозочной лошадью', and the machine-gun company two-horse
+      machine-gun wagons ('пароконные пулемётные повозки'). No source says riflemen rode the carts;
+      the company marched (su_rifle_company, organic_transport). No troops_carried figure is recorded.
+  heavy_weapons_traction:
+    value: "ZiS-3: horse team with the unified limber of 1942, or truck; 120 mm mortar: four horses or truck; 45 mm gun: four horses with gun and caisson"
+    unit: description
+    source: wp-ru-zis3
+    locator: "'Для перемещения конной тягой ЗИС-3 комплектуется унифицированным передком обр. 1942 г. для полковых и дивизионных пушек'; towed by ZIS-5, GAZ-AA or GAZ-MM trucks or Dodge WC"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: >-
+      Each gun has its own limber and team; none is drawn by a cart. 120 mm mortar: 'приставной
+      колёсный ход, дающий возможность буксировки четвёркой лошадей или грузовиком' (wp-ru-pm38).
+      45 mm gun platoon of the battalion: per gun '45-mm gun 1, Caisson (ammunition) 1, Artillery
+      horse 4', two drivers (bs-rifle-bn-dec42, p. 8). The ZiS-3 article gives no team size; the
+      ZiS-2, whose 1943 guns used the same unified limber of 1942, 'могла использоваться и конная
+      тяга шестёркой лошадей' (wp-ru-zis2).
+  armour: {value: none, unit: description, source: ttt25-1943, locator: "'The construction of the two-wheeled cart is very simple'; 'These vehicles are not only used in the army, but also play a very important role in civilian transportation facilities'", retrieved: 2026-11-11, confidence: verified}
+  per_rifle_company:
+    value: 1
+    unit: carts
+    source: bs-rifle-bn-dec42
+    locator: "p. 2, Total, Rifle Company: Draught horses 1, Carts (one-horse) 1"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: "already recorded in su_rifle_company.yaml (organic_transport)"
+  per_rifle_battalion:
+    value: "17 one-horse carts, 8 two-horse wagons, 3 field kitchens; 39 draught and 8 artillery horses"
+    unit: description
+    source: bs-rifle-bn-dec42
+    locator: "p. 2 summary table, column 'Total, Rifle Battalion', Transport rows"
+    retrieved: 2026-11-11
+    confidence: secondary
+  speed:
+    walk_kmh:
+      value: 7
+      unit: km/h
+      source: wp-en-horse-gait
+      locator: "Walk: 'a four-beat gait that averages about 7 km/h' (cites Harris, Horse Gaits, Balance and Movement, 1993, pp. 32-33)"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "a horse's gait, not a measured cart speed; the same figure as de_horse_wagon. ttt25-1943 says the Soviet horse is small"
+    trot_kmh:
+      value: 10
+      unit: km/h
+      source: gtd-1942
+      locator: "Section X, 44, Rates of march: 'Mounted troops (trot) 10 km (6 mi)' per hour"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "a German doctrinal figure, used here because no Soviet column rate at the trot was found"
+      alternatives:
+        - {value: 15, unit: km/h, source: wp-ru-zis2, locator: "'Скорость буксировки по хорошей дороге составляла при использовании конной тяги до 15 км/ч' (cites 'Главное Артиллерийское Управление Красной Армии, 57-мм противотанковая пушка обр. 1941 г. Краткое руководство службы', 1942)", retrieved: 2026-11-11, confidence: verified, note: "the only Soviet figure found: 'up to', a six-horse gun team on a good road"}
+        - {value: 13, unit: km/h, source: wp-en-horse-gait, locator: "Trot: 'averages about 13 km/h'", retrieved: 2026-11-11, confidence: verified}
+      preferred: >-
+        10, the same figure as de_horse_wagon: no source shows Soviet horses trotting faster, and
+        ttt25-1943 says they are smaller than draught horses elsewhere. The Soviet 15 is a maximum
+        for a gun team, not a column average.
+    march_kmh:
+      value: 5.63
+      unit: km/h
+      source: fm101-10-1941
+      locator: "para. 38 a, line 12 'Anl-d tns' (animal-drawn trains), on roads by day 3½ mph; by night 3; across country 1½ by day, 1 by night (p. 83)"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: >-
+        US doctrine for US animal-drawn trains: the only march rate found that is stated for
+        animal-drawn vehicles as such. No Soviet march rate was found (TM 30-430 could not be
+        opened; README, gaps). ttt25-1943 reports that movement by these carts and wagons from
+        railhead to distributing point near Stalingrad 'was a slow process'.
+      alternatives:
+        - {value: 4.8, unit: km/h, source: tme30-451-hw, locator: "Chapter VI, Section VI, 3.b (1): Infantry division 3 mph by day and by night", retrieved: 2026-11-11, confidence: verified, note: "German, a whole horse-drawn infantry division"}
+      preferred: >-
+        5.6 for carts moving on their own; when they march with their rifle units the column's
+        foot pace governs (fm101-10-1941, note 1), for which the German division's 4.8 is the
+        nearest figure found.
+    daily_march_km:
+      value: 32
+      unit: km per day
+      source: fm101-10-1941
+      locator: "para. 38 a, line 12, animal-drawn trains: lengths of march 20 miles per day"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "US figure; no Soviet one found"
+      alternatives:
+        - {value: "19 to 24", unit: km per day, source: tme30-451-hw, locator: "Chapter VI, Section III, 6.b (2): German animal-drawn columns '12 to 15 miles per day and under favorable conditions up to 20 miles'", retrieved: 2026-11-11, confidence: verified}
+      preferred: >-
+        32, the US figure for animal-drawn trains, the same source as march_kmh. The German figure
+        for horse columns is lower: 19 to 24 km, and 32 km only under favourable conditions with a
+        day of rest following.

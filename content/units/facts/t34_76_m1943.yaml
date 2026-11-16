@@ -1,0 +1,146 @@
+schema: unit-facts/1
+id: t34_76_m1943
+designation: T-34/76
+full_name: T-34 Model 1943 (hexagonal turret; Soviet designation 'Model 1942'), 76.2 mm F-34
+side: soviet
+kind: tank
+setting: Eastern Front, 1943
+facts:
+  count_per_unit:
+    value: 10
+    unit: tanks
+    source: wp-ru-tank-brigade
+    locator: "'Организация разных танковых бригад на октябрь 1943 года': medium tank battalion '3 танковые роты (10-14 танков Т-34 в каждой)'; second pattern '1 рота средних танков (10 танков Т-34)' (cites Nafziger, 'Organization of various Russian Armored Brigades October 1943', US Army CARL)"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: >-
+      Establishment tables (shtat 010/270 and others) were not opened. The same article notes two
+      shtats, 10 or 14 T-34 per company. The company had three platoons of three plus the
+      commander's tank (research 2.4 [R]; the 'Why Three Tanks?' Armor article is cited by
+      wp-en-t34 but was not opened).
+    alternatives:
+      - {value: 14, unit: tanks, source: wp-ru-tank-brigade, locator: "same passage: 'В одном было 10 Т-34 на роту, в другом — 14.'", retrieved: 2026-11-11, confidence: secondary}
+    preferred: "10, the lead's ruling 8 and the more common figure in the article"
+
+  gun:
+    designation: {value: "76.2 mm F-34 (L/41.5)", unit: name, source: wp-en-f34, locator: "lead and comparison table: F-34 'L/41.5'", retrieved: 2026-11-11, confidence: verified}
+    calibre_mm: {value: 76.2, unit: mm, source: wp-en-f34, locator: "infobox caliber 76.2 mm", retrieved: 2026-11-11, confidence: verified}
+    ap_round: {value: "BR-350A (APHE, blunt-nosed with ballistic cap)", unit: name, source: wp-en-f34, locator: "comparison table, 'BR-350/BR-350A armour-piercing high explosive (APHE)'", retrieved: 2026-11-11, confidence: verified, note: "wp-ru-zis3 ammunition table: '53-БР-350А, тупоголовый с баллистическим наконечником'"}
+    ap_shot_origin: {value: soviet_wartime, unit: category, source: wp-en-f34, locator: "Soviet BR-350A", retrieved: 2026-11-11, confidence: verified, note: "the research applies q = 0.76 to Soviet wartime shot (section 3.2)"}
+    ap_shot_mass_kg: {value: 6.3, unit: kg, source: wp-en-f34, locator: "comparison table, BR-350/BR-350A, F-34 column, weight 6.3 kg", retrieved: 2026-11-11, confidence: verified}
+    ap_muzzle_velocity_ms:
+      value: 655
+      unit: m/s
+      source: wp-en-f34
+      locator: "comparison table, BR-350/BR-350A, F-34 column, muzzle velocity 655 m/s"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 662, unit: m/s, source: wp-ru-t34, locator: "Вооружение: F-34 'начальная скорость бронебойного снаряда — 662 м/с'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 680, unit: m/s, source: wp-en-f34, locator: "infobox velocity 680 m/s; comparison table, plain AP (6.3 kg) at 680", retrieved: 2026-11-11, confidence: verified, note: "the HE and solid-AP figure, not the BR-350A"}
+      preferred: "655, the round-specific figure the research used; 662 is 1% higher"
+    he_round: {value: "OF-350 (HE-fragmentation)", unit: name, source: wp-en-f34, locator: "comparison table, 'OF-350 high explosive fragmentation (HE-Frag)'", retrieved: 2026-11-11, confidence: verified}
+    he_shell_mass_kg: {value: 6.21, unit: kg, source: wp-en-f34, locator: "comparison table, OF-350, weight 6.21 kg", retrieved: 2026-11-11, confidence: verified, note: "wp-ru-zis3 table gives 53-ОФ-350 6,2 kg"}
+    published_effective_range_m: {value: 800, unit: m, source: wp-en-f34, locator: "infobox max_range: '2.0 km (effective 800m)' (cites armchairgeneral.com, dead link)", retrieved: 2026-11-11, confidence: verified, note: "check value only"}
+
+  machine_guns:
+    count: {value: 2, unit: guns, source: wp-en-t34, locator: "infobox secondary_armament: '2 x 7.62 mm DT machine guns'", retrieved: 2026-11-11, confidence: verified, note: "wp-ru-t34 table, T-34 обр. 1943: '2 x 7,62-мм ДТ'"}
+    type: {value: "DT, one coaxial, one in hull", unit: name, source: wp-ru-t34, locator: "TTX table, Пулемёты row", retrieved: 2026-11-11, confidence: verified}
+
+  armour:
+    hull_front:
+      thickness_mm: {value: 45, unit: mm, source: wp-ru-t34, locator: "infobox Лоб корпуса (верх) = '45 / 60°'; TTX table, T-34 обр. 1943 (Baryatinsky, p. 25), Лоб корпуса 45", retrieved: 2026-11-11, confidence: verified}
+      angle_from_vertical_deg: {value: 60, unit: degrees, source: wp-ru-t34, locator: "infobox '45 / 60°' (upper glacis); lower nose '45 / 53°'", retrieved: 2026-11-11, confidence: verified, note: "wp-en-t34 infobox also gives 45 mm/60°"}
+      cast: {value: false, unit: boolean, source: wp-ru-t34, locator: "Тип брони: 'стальная катаная гомогенная высокой твёрдости' (rolled)", retrieved: 2026-11-11, confidence: verified}
+    hull_side:
+      thickness_mm:
+        value: 45
+        unit: mm
+        source: wp-ru-t34
+        locator: "infobox Борт корпуса (верх): '40 / 40° ... (45 / 40° с 1942 года)'; TTX table, T-34 обр. 1943, sides 45"
+        retrieved: 2026-11-11
+        confidence: verified
+        note: "lower hull side 45 mm vertical (infobox Борт корпуса (низ) = 45 / 0°)"
+        alternatives:
+          - {value: 40, unit: mm, source: wp-en-t34, locator: "infobox (spec_label T-34 Model 1941): 'Hull side 40 mm/41° (upper part)'", retrieved: 2026-11-11, confidence: verified, note: "the 1941 figure; the research used it"}
+        preferred: "45 for the Model 1943"
+      angle_from_vertical_deg: {value: 40, unit: degrees, source: wp-ru-t34, locator: "'45 / 40° с 1942 года'", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 41, unit: degrees, source: wp-en-t34, locator: "'40 mm/41°(upper part)'", retrieved: 2026-11-11, confidence: verified}]}
+      cast: {value: false, unit: boolean, source: wp-ru-t34, locator: "rolled", retrieved: 2026-11-11, confidence: verified}
+    turret_front:
+      thickness_mm:
+        value: 52
+        unit: mm
+        source: wp-ru-t34
+        locator: "infobox Лоб башни = '45—52' (mantlet 40); Башня: cast turrets were thickened to 52 mm 'так как литая броня ... обладает меньшей снарядостойкостью'"
+        retrieved: 2026-11-11
+        confidence: verified
+        note: >-
+          The hexagonal turret was cast or pressed (wp-en-t34-variants, Model 1943); 52 mm is the
+          cast thickness, 45 mm the rolled or pressed one. wp-ru-t34's TTX table gives turret front
+          45 and sides 45 (52) for the 1943 model.
+        alternatives:
+          - {value: 70, unit: mm, source: wp-en-t34, locator: "comparison table (Zaloga and Grandsen 1984): Armour 'T-34 Model 1943: 20-70 mm'", retrieved: 2026-11-11, confidence: verified, note: "a range for the whole vehicle; the table does not say which face is 70 mm. The research used 70 for the turret"}
+          - {value: 45, unit: mm, source: wp-ru-t34, locator: "TTX table, T-34 обр. 1943, Лоб башни 45", retrieved: 2026-11-11, confidence: verified}
+        preferred: >-
+          52 cast. The 70 mm figure is unattributed to a face; no page opened today states a 70 mm
+          turret front for the hexagonal turret. This is the largest open question in this file.
+      angle_from_vertical_deg: {value: null, unit: degrees, source: null, locator: "no angle found for the hexagonal turret front", retrieved: 2026-11-11, confidence: unverified, note: "gap. The earlier turret front was 'a 45 mm plate bent into half a cylinder' (wp-ru-t34, Башня); a rounded face has no single angle"}
+      cast: {value: true, unit: boolean, source: wp-en-t34-variants, locator: "Model 1943: 'with a cast or pressed hexagonal turret'", retrieved: 2026-11-11, confidence: verified, note: "most were cast; pressed turrets from UZTM numbered about 2,050 (wp-ru-t34, Башня)"}
+    turret_side:
+      thickness_mm: {value: 52, unit: mm, source: wp-ru-t34, locator: "TTX table, T-34 обр. 1943, Борта и корма башни '45 (52)'; cast turret walls 52 mm", retrieved: 2026-11-11, confidence: verified}
+      angle_from_vertical_deg: {value: 30, unit: degrees, source: wp-ru-t34, locator: "infobox Борт башни = '45 / 30°'; Башня: early turret walls 'под углом в 30°'", retrieved: 2026-11-11, confidence: secondary, note: "the 30° belongs to the earlier turret; the hexagonal turret had 'меньшим наклоном бортов' (less sloped sides), angle not given. Treat as an upper bound"}
+      cast: {value: true, unit: boolean, source: wp-en-t34-variants, locator: "cast or pressed hexagonal turret", retrieved: 2026-11-11, confidence: verified}
+
+  mobility:
+    road_speed_max_kmh:
+      value: 54
+      unit: km/h
+      source: wp-ru-t34
+      locator: "TTX table, T-34 обр. 1943, Максимальная скорость по шоссе 54 (Baryatinsky, p. 25)"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 53, unit: km/h, source: wp-en-t34, locator: "infobox speed 53 km/h (spec_label Model 1941); 'Dimensions, road speed and engine horsepower of the various models did not vary significantly'", retrieved: 2026-11-11, confidence: verified}
+      preferred: "54, the figure given for the 1943 tank; 53 is 2% lower and changes nothing"
+    engine_power: {value: 500, unit: hp, source: wp-en-t34, locator: "infobox engine_power: '500 hp (370 kW)', V-2-34 diesel", retrieved: 2026-11-11, confidence: verified, note: "wp-ru-t34 table, all models: 'В-2, 500 л. с.'"}
+    combat_weight_t: {value: 30.9, unit: t, source: wp-en-t34, locator: "comparison table, T-34 Model 1943, weight 30.9 tonne", retrieved: 2026-11-11, confidence: verified, note: "wp-ru-t34 TTX table, T-34 обр. 1943, Боевая масса 30,9"}
+
+  crew:
+    total: {value: 4, unit: men, source: wp-en-t34, locator: "infobox crew: '4 (T-34)'", retrieved: 2026-11-11, confidence: verified}
+    in_turret: {value: 2, unit: men, source: wp-en-t34, locator: "'The two-man turret crew arrangement required the commander to aim and fire the gun'; Model 1943 turret 'still two-man'", retrieved: 2026-11-11, confidence: verified}
+    rate_note: {value: "German tanks 'could typically get off three rounds for every one fired by the T-34'", unit: quotation, source: wp-en-t34, locator: "Design, crew compartment paragraph (Zaloga 1994, p. 40)", retrieved: 2026-11-11, confidence: verified, note: "context for the research's two-man-turret factor; not itself an input"}
+
+  traits:
+    height_m:
+      value: 2.52
+      unit: m
+      source: wp-ru-t34
+      locator: "TTX table, T-34 обр. 1943, Высота 2,52"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 2.46, unit: m, source: wp-en-t34, locator: "infobox height 2.46 m (Model 1941)", retrieved: 2026-11-11, confidence: verified}
+        - {value: 2.405, unit: m, source: wp-ru-t34, locator: "infobox Высота 2405 (pre-series vehicle)", retrieved: 2026-11-11, confidence: verified}
+    ground_pressure_kg_cm2:
+      value: 0.79
+      unit: kg/cm2
+      source: wp-ru-t34
+      locator: "TTX table, T-34 обр. 1943, Удельное давление на грунт 0,79 (Baryatinsky, p. 25)"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 0.72, unit: kg/cm2, source: wp-en-t34, locator: "'The T-34-76's ground pressure was around 0.72 kg/cm²' (Kavalerchik 2015, p. 198; Zaloga 2019, p. 29)", retrieved: 2026-11-11, confidence: verified}
+        - {value: 0.62, unit: kg/cm2, source: wp-ru-t34, locator: "infobox and table, T-34 обр. 1940, 0,62", retrieved: 2026-11-11, confidence: verified, note: "the 26 t 1940 tank"}
+      preferred: >-
+        0.79 for the 30.9 t Model 1943 (pressure rises with weight on the same track). Both 0.72 and
+        0.79 are under the research's 0.8 wide-track line, so the trait does not depend on the choice.
+    radio:
+      value: "9-RM set fitted from 1943; not every tank until the T-34-85"
+      unit: description
+      source: wp-ru-t34
+      locator: "'С 1943 года Т-34 оснащались симплексной радиостанцией 9-РМ'; 'окончательно к полной радиофикации танков смогли перейти только во время выпуска Т-34-85'"
+      retrieved: 2026-11-11
+      confidence: verified
+      note: "for early T-34s 'Only company commanders' tanks could be fitted with radios' (wp-en-t34, Development; Zaloga and Grandsen 1983, p. 14)"
+    open_top: {value: false, unit: boolean, source: wp-ru-t34, locator: "turret roof 15-20 mm (TTX table, Крыша)", retrieved: 2026-11-11, confidence: verified}
+    turretless: {value: false, unit: boolean, source: wp-en-t34, locator: "turreted tank", retrieved: 2026-11-11, confidence: verified}

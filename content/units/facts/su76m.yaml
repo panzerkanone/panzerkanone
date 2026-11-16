@@ -1,0 +1,94 @@
+schema: unit-facts/1
+id: su76m
+designation: SU-76M
+full_name: SU-76M light self-propelled gun (factory index SU-15M), 76.2 mm ZiS-3Sh
+side: soviet
+kind: self_propelled_gun
+setting: "Eastern Front, second half of 1943 (SU-15M adopted as SU-76M in July 1943, wider production from autumn 1943; wp-en-su76, SU-76M)"
+facts:
+  count_per_unit:
+    value: 4
+    unit: self-propelled guns
+    source: wp-ru-sap
+    locator: "1943 table: light SAP, shtat 010/456 (April 1943): 'взвод управления (одна СУ-76, командира полка)' and '1-я ... 5-я батарея (четыре СУ-76)' (Kolomiets and Makarov, Frontovaya Illyustratsiya 4/2002)"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: "the text says light regiments had 'по 20 САУ СУ-76 (пять батарей по четыре САУ)'"
+    alternatives:
+      - {value: 5, unit: self-propelled guns, source: wp-ru-sap, locator: "1944 table: light SAP, shtat 010/484 (October 1943): regiment commander's SU-76 plus batteries of 'пять СУ-76'", retrieved: 2026-11-11, confidence: secondary, note: "21 per regiment either way; wp-en-su76: 'each light self-propelled artillery regiment was equipped with 21 SU-76Ms' (Chubachin 2009, p. 80); 1944-45 divisional battalions of 16 (wp-en-su76)"}
+    preferred: "4 for April-October 1943, 5 from October 1943. Pick by scenario date"
+
+  gun:
+    designation: {value: "76.2 mm ZiS-3 (ZiS-3Sh in the vehicle)", unit: name, source: wp-en-su76, locator: "infobox primary_armament: '76.2 mm ZIS-3 mod. 1942 divisional field gun'", retrieved: 2026-11-11, confidence: verified}
+    calibre_mm: {value: 76.2, unit: mm, source: wp-en-zis3, locator: "infobox caliber 76.2 mm", retrieved: 2026-11-11, confidence: verified}
+    ap_round: {value: "53-BR-350A (APHE, blunt-nosed with ballistic cap)", unit: name, source: wp-ru-zis3, locator: "ammunition table: '53-БР-350А, тупоголовый с баллистическим наконечником трассирующий'", retrieved: 2026-11-11, confidence: verified}
+    ap_shot_origin: {value: soviet_wartime, unit: category, source: wp-ru-zis3, locator: "Soviet BR-350A", retrieved: 2026-11-11, confidence: verified}
+    ap_shot_mass_kg: {value: 6.3, unit: kg, source: wp-ru-zis3, locator: "ammunition table, 53-БР-350А, 6,3 kg", retrieved: 2026-11-11, confidence: verified, note: "wp-en-zis3 table: BR-350A 6.3 kg"}
+    ap_muzzle_velocity_ms:
+      value: 662
+      unit: m/s
+      source: wp-ru-zis3
+      locator: "ammunition table, 53-БР-350А, Начальная скорость 662 м/с"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 700, unit: m/s, source: wp-en-zis3, locator: "ammunition table heading: 'Armour-piercing projectiles (muzzle velocity 700 m/s)'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 655, unit: m/s, source: wp-ru-zis3, locator: "53-БР-350Б and 53-БР-350СП (6.5 kg), 655 m/s", retrieved: 2026-11-11, confidence: verified, note: "different rounds"}
+      preferred: "662, the round-specific figure; the English heading is a rounded group label"
+    he_round: {value: "53-OF-350 (HE-fragmentation)", unit: name, source: wp-ru-zis3, locator: "ammunition table, Осколочно-фугасные снаряды", retrieved: 2026-11-11, confidence: verified}
+    he_shell_mass_kg: {value: 6.2, unit: kg, source: wp-ru-zis3, locator: "53-ОФ-350, 6,2 kg", retrieved: 2026-11-11, confidence: verified, note: "wp-en-zis3: OF-350 6.2 kg"}
+
+  machine_guns:
+    count: {value: 1, unit: guns, source: wp-en-su76, locator: "infobox secondary_armament: '7.62 mm DT tank machine gun'", retrieved: 2026-11-11, confidence: verified}
+    type: {value: "DT", unit: name, source: wp-en-su76, locator: "as above", retrieved: 2026-11-11, confidence: verified}
+
+  armour:
+    note: >-
+      wp-ru-su76's infobox is labelled 'СУ-76 образца 1942 года'; wp-en-su76 says the SU-76M kept the
+      layout and chassis of the SU-76 with a casemate 'open at the top and partly behind', and gives
+      front 25-35 mm, side 10-15 mm, consistent with the Russian figures. Plates taken from the
+      Russian infobox on that basis.
+    hull_front:
+      thickness_mm: {value: 25, unit: mm, source: wp-ru-su76, locator: "infobox Лоб корпуса (верх) = '25 / 60°'; (низ) '35 / 30°'", retrieved: 2026-11-11, confidence: verified}
+      angle_from_vertical_deg: {value: 60, unit: degrees, source: wp-ru-su76, locator: "'25 / 60°'", retrieved: 2026-11-11, confidence: verified}
+      cast: {value: false, unit: boolean, source: wp-ru-su76, locator: "Тип брони: 'стальная катаная'", retrieved: 2026-11-11, confidence: verified}
+    hull_side:
+      thickness_mm: {value: 15, unit: mm, source: wp-ru-su76, locator: "Борт корпуса = '15 / 0°'", retrieved: 2026-11-11, confidence: verified}
+      angle_from_vertical_deg: {value: 0, unit: degrees, source: wp-ru-su76, locator: "'15 / 0°'", retrieved: 2026-11-11, confidence: verified}
+      cast: {value: false, unit: boolean, source: wp-ru-su76, locator: "rolled", retrieved: 2026-11-11, confidence: verified}
+    turret_front:
+      note: "turretless: fighting compartment (casemate) front"
+      thickness_mm: {value: 35, unit: mm, source: wp-ru-su76, locator: "Лоб рубки = '35 / 25°'", retrieved: 2026-11-11, confidence: verified}
+      angle_from_vertical_deg: {value: 25, unit: degrees, source: wp-ru-su76, locator: "'35 / 25°'", retrieved: 2026-11-11, confidence: verified}
+      cast: {value: false, unit: boolean, source: wp-ru-su76, locator: "rolled", retrieved: 2026-11-11, confidence: verified}
+    turret_side:
+      note: "casemate side"
+      thickness_mm: {value: 10, unit: mm, source: wp-ru-su76, locator: "Борт рубки = '10 / 25°'", retrieved: 2026-11-11, confidence: verified}
+      angle_from_vertical_deg: {value: 25, unit: degrees, source: wp-ru-su76, locator: "'10 / 25°'", retrieved: 2026-11-11, confidence: verified}
+      cast: {value: false, unit: boolean, source: wp-ru-su76, locator: "rolled", retrieved: 2026-11-11, confidence: verified}
+
+  mobility:
+    road_speed_max_kmh: {value: 45, unit: km/h, source: wp-en-su76, locator: "infobox speed 45 km/h", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 44, unit: km/h, source: wp-ru-su76, locator: "Скорость по шоссе 44 (SU-76 1942)", retrieved: 2026-11-11, confidence: verified}]}
+    engine_power: {value: 140, unit: hp, source: wp-en-su76, locator: "infobox engine_power: '2 x 70 hp (2 x 51.5 kW)', GAZ-203", retrieved: 2026-11-11, confidence: verified, note: "two GAZ-202 engines in series (wp-en-su76, SU-76M)"}
+    combat_weight_t:
+      value: 10.5
+      unit: t
+      source: wp-en-su76
+      locator: "infobox mass 10,500 kg; Variants: 'Combat mass was 10,500 kg' (SU-15M)"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 11.2, unit: t, source: wp-ru-su76, locator: "infobox Масса 11,2 (SU-76 model 1942)", retrieved: 2026-11-11, confidence: verified, note: "the earlier roofed SU-76"}
+      preferred: "10.5 for the SU-76M"
+
+  crew:
+    total: {value: 4, unit: men, source: wp-en-su76, locator: "infobox crew 4", retrieved: 2026-11-11, confidence: verified}
+    in_turret: {value: 3, unit: men, source: wp-ru-su76, locator: "'Боезапас, орудие и рабочие места командира машины, наводчика и заряжающего располагались в открытой сверху и сзади боевой рубке.'", retrieved: 2026-11-11, confidence: verified, note: "casemate: men serving the gun"}
+
+  traits:
+    height_m: {value: 2.10, unit: m, source: wp-en-su76, locator: "infobox height 2.10 m", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 2.20, unit: m, source: wp-ru-su76, locator: "infobox Высота 2200 (SU-76 1942, roofed)", retrieved: 2026-11-11, confidence: verified}], note: "2.10 is under the research's 2.2 m low-profile line"}
+    ground_pressure_kg_cm2: {value: null, unit: kg/cm2, source: null, locator: "not found", retrieved: 2026-11-11, confidence: unverified, note: "gap. wp-en-su76 says only 'its light weight and low ground pressure gave it good maneuverability'; track width 300 mm (wp-ru-su76)"}
+    radio: {value: "some vehicles had a 9-R set", unit: description, source: wp-ru-su76, locator: "'часть машин оснащалась радиостанцией 9-Р'", retrieved: 2026-11-11, confidence: verified}
+    open_top: {value: true, unit: boolean, source: wp-en-su76, locator: "'the SU-76M had an armored casemate open at the top and partly behind'", retrieved: 2026-11-11, confidence: verified}
+    turretless: {value: true, unit: boolean, source: wp-en-su76, locator: "casemate vehicle", retrieved: 2026-11-11, confidence: verified}
+    indirect_capable: {value: "maximum indirect range nearly 13 km", unit: description, source: wp-en-su76, locator: "'The maximum indirect fire distance was nearly 13 km.'", retrieved: 2026-11-11, confidence: verified, note: "not a formula input in v1, which gives direct-fire units a range only"}

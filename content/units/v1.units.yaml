@@ -1,0 +1,25 @@
+# Unit types, roster v1, dated early July 1943. Written by `npm run units` (tools/units/)
+# from the unit facts and tools/units/data/; never edited by hand. Every value is derived step by
+# step in tools/units/report/v1.md.
+format: impulse-units/1
+id: v1
+types:
+  - { id: pz4h, name: "Pz IV H", kind: tank, count: 5, ap: 10, he: 7, range: 7, defense: 6, class: hard, move: 11, mover: tracked, close: 5, cost: 12, assaults: false, overruns: true, rides: false, carries: 0 }
+  - { id: tiger1e, name: "Tiger I E", kind: tank, count: 4, ap: 9, he: 6, range: 7, defense: 8, class: hard, move: 12, mover: tracked, close: 4, cost: 16, assaults: false, overruns: true, rides: false, carries: 0 }
+  - { id: stug3g, name: "StuG III G", kind: assault_gun, count: 3, ap: 9, he: 4, range: 7, defense: 6, class: hard, move: 11, mover: tracked, close: 3, cost: 10, assaults: false, overruns: true, rides: false, carries: 0 }
+  - { id: grenadier_co, name: "Grenadier company", kind: infantry, count: 142, ap: 0, he: 8, range: 2, defense: 6, class: soft, move: 4, mover: foot, close: 6, cost: 5, assaults: true, overruns: false, rides: true, carries: 0 }
+  - { id: mg42, name: "MG 42 platoon", kind: machine_gun, count: 55, ap: 0, he: 6, range: 8, defense: 4, class: soft, move: 1, mover: foot, close: 1, cost: 4, assaults: false, overruns: false, rides: true, carries: 0 }
+  - { id: pak40, name: "7.5 cm Pak 40", kind: towed_gun, count: 3, ap: 9, he: 3, range: 7, defense: 2, class: soft, move: 0, mover: towed, close: 1, cost: 5, assaults: false, overruns: false, rides: true, carries: 0 }
+  - { id: grw42, name: "12 cm GrW 42", kind: mortar, count: 4, ap: 0, he: 9, range: 24, defense: 2, class: soft, move: 0, mover: towed, close: 1, cost: 6, indirect: { minRange: 3 }, assaults: false, overruns: false, rides: true, carries: 0 }
+  - { id: opel_blitz, name: "Opel Blitz 3 t", kind: truck, count: 5, ap: 0, he: 0, range: 0, defense: 0, class: soft, move: 14, mover: wheeled, close: 1, cost: 1, assaults: false, overruns: false, rides: false, carries: 1 }
+  - { id: sdkfz251, name: "Sd.Kfz. 251", kind: half_track, count: 5, ap: 0, he: 1, range: 3, defense: 1, class: hard, move: 15, mover: tracked, close: 1, cost: 1, assaults: false, overruns: false, rides: false, carries: 1 }
+  - { id: t34_76, name: "T-34/76", kind: tank, count: 10, ap: 7, he: 7, range: 5, defense: 9, class: hard, move: 17, mover: tracked, close: 6, cost: 16, assaults: false, overruns: true, rides: false, carries: 0 }
+  - { id: kv1, name: "KV-1", kind: tank, count: 5, ap: 7, he: 7, range: 5, defense: 9, class: hard, move: 7, mover: tracked, close: 5, cost: 12, assaults: false, overruns: true, rides: false, carries: 0 }
+  - { id: su76m, name: "SU-76M", kind: self_propelled_gun, count: 4, ap: 7, he: 5, range: 5, defense: 4, class: hard, move: 13, mover: tracked, close: 1, cost: 7, assaults: false, overruns: false, rides: false, carries: 0 }
+  - { id: rifle_co, name: "Rifle company", kind: infantry, count: 143, ap: 0, he: 8, range: 2, defense: 6, class: soft, move: 4, mover: foot, close: 6, cost: 5, assaults: true, overruns: false, rides: true, carries: 0 }
+  - { id: maxim, name: "Maxim platoon", kind: machine_gun, count: 18, ap: 0, he: 2, range: 6, defense: 2, class: soft, move: 1, mover: foot, close: 1, cost: 2, assaults: false, overruns: false, rides: true, carries: 0 }
+  - { id: zis3, name: "ZiS-3", kind: towed_gun, count: 4, ap: 7, he: 5, range: 5, defense: 2, class: soft, move: 0, mover: towed, close: 1, cost: 5, assaults: false, overruns: false, rides: true, carries: 0 }
+  - { id: pm38, name: "120-PM-38", kind: mortar, count: 6, ap: 0, he: 11, range: 23, defense: 3, class: soft, move: 0, mover: towed, close: 1, cost: 8, indirect: { minRange: 2 }, assaults: false, overruns: false, rides: true, carries: 0 }
+  - { id: zis5, name: "ZIS-5", kind: truck, count: 5, ap: 0, he: 0, range: 0, defense: 0, class: soft, move: 10, mover: wheeled, close: 1, cost: 1, assaults: false, overruns: false, rides: false, carries: 1 }
+  - { id: hf1, name: "Hf. 1 wagon", kind: wagon, count: 5, ap: 0, he: 0, range: 0, defense: 0, class: soft, move: 2, mover: wheeled, close: 1, cost: 1, assaults: false, overruns: false, rides: false, carries: 1 }
+  - { id: cart, name: "One-horse cart", kind: wagon, count: 5, ap: 0, he: 0, range: 0, defense: 0, class: soft, move: 2, mover: wheeled, close: 1, cost: 1, assaults: false, overruns: false, rides: false, carries: 1 }

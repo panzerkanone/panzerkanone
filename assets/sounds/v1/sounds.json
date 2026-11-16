@@ -1,0 +1,593 @@
+{
+  "format": "sounds/1",
+  "voices": 10,
+  "families": [
+    {
+      "id": "table",
+      "about": "the counters and the dice: things handled on the table",
+      "measure": "momentary",
+      "targetLufs": -30,
+      "ceilingDb": -3
+    },
+    {
+      "id": "desk",
+      "about": "the panel: its buttons, the notebook, the folder, a stamp, a pencil",
+      "measure": "momentary",
+      "targetLufs": -30,
+      "ceilingDb": -3
+    },
+    {
+      "id": "heavy",
+      "about": "a gun firing and a vehicle blowing up: the loudest sounds of the game",
+      "measure": "momentary",
+      "targetLufs": -16,
+      "ceilingDb": -3
+    },
+    {
+      "id": "light",
+      "about": "small arms, a mortar's launch, a shell bursting, a round striking armour",
+      "measure": "momentary",
+      "targetLufs": -19,
+      "ceilingDb": -3
+    },
+    {
+      "id": "under",
+      "about": "what is heard under the main event: a round into soft ground, rounds coming in",
+      "measure": "momentary",
+      "targetLufs": -23,
+      "ceilingDb": -3
+    },
+    {
+      "id": "motor",
+      "about": "a vehicle on the move, under everything else",
+      "measure": "momentary",
+      "targetLufs": -24,
+      "ceilingDb": -6
+    }
+  ],
+  "cues": [
+    {
+      "id": "counter-lift",
+      "family": "table",
+      "plays": "a counter is lifted as its move begins",
+      "early": true,
+      "leastMs": 60,
+      "voices": 3,
+      "cents": 80,
+      "db": 1.5,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "counter-lift.opus",
+          "m4a": "counter-lift.m4a",
+          "seconds": 0.108,
+          "lufs": -30,
+          "peakDb": -9.3,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "counter-place",
+      "family": "table",
+      "plays": "a counter is set down as its move ends",
+      "early": true,
+      "leastMs": 60,
+      "voices": 3,
+      "cents": 70,
+      "db": 1.5,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "counter-place-1.opus",
+          "m4a": "counter-place-1.m4a",
+          "seconds": 0.28,
+          "lufs": -29.9,
+          "peakDb": -10.9,
+          "held": false
+        },
+        {
+          "opus": "counter-place-2.opus",
+          "m4a": "counter-place-2.m4a",
+          "seconds": 0.242,
+          "lufs": -29.9,
+          "peakDb": -4.9,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "counter-slide",
+      "family": "table",
+      "plays": "a counter is pushed across the board: a move of several hexes",
+      "early": true,
+      "leastMs": 250,
+      "voices": 2,
+      "cents": 60,
+      "db": 1.5,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "counter-slide-1.opus",
+          "m4a": "counter-slide-1.m4a",
+          "seconds": 0.88,
+          "lufs": -30,
+          "peakDb": -15.4,
+          "held": false
+        },
+        {
+          "opus": "counter-slide-2.opus",
+          "m4a": "counter-slide-2.m4a",
+          "seconds": 1.13,
+          "lufs": -30,
+          "peakDb": -17.5,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "counter-tray",
+      "family": "table",
+      "plays": "a destroyed counter comes to rest in the tray",
+      "early": true,
+      "leastMs": 90,
+      "voices": 3,
+      "cents": 60,
+      "db": 1.5,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "counter-tray.opus",
+          "m4a": "counter-tray.m4a",
+          "seconds": 0.66,
+          "lufs": -30.5,
+          "peakDb": -3.2,
+          "held": true
+        }
+      ]
+    },
+    {
+      "id": "dice",
+      "family": "table",
+      "plays": "the dice are rolled: the game shows a roll (the page is told by the game's `heard`)",
+      "early": true,
+      "leastMs": 300,
+      "voices": 2,
+      "cents": 30,
+      "db": 1,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "dice-1.opus",
+          "m4a": "dice-1.m4a",
+          "seconds": 1.265,
+          "lufs": -30,
+          "peakDb": -11.3,
+          "held": false
+        },
+        {
+          "opus": "dice-2.opus",
+          "m4a": "dice-2.m4a",
+          "seconds": 0.985,
+          "lufs": -30,
+          "peakDb": -7.8,
+          "held": false
+        },
+        {
+          "opus": "dice-3.opus",
+          "m4a": "dice-3.m4a",
+          "seconds": 1.265,
+          "lufs": -30,
+          "peakDb": -8.3,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "button",
+      "family": "desk",
+      "plays": "a button of the panel is clicked",
+      "early": true,
+      "leastMs": 50,
+      "voices": 3,
+      "cents": 25,
+      "db": 1,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "button.opus",
+          "m4a": "button.m4a",
+          "seconds": 0.178,
+          "lufs": -30,
+          "peakDb": -6.5,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "page-turn",
+      "family": "desk",
+      "plays": "the notebook is opened, shut, or turned to another page",
+      "early": true,
+      "leastMs": 150,
+      "voices": 2,
+      "cents": 40,
+      "db": 1,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "page-turn.opus",
+          "m4a": "page-turn.m4a",
+          "seconds": 0.715,
+          "lufs": -30,
+          "peakDb": -7.7,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "folder-open",
+      "family": "desk",
+      "plays": "the folder of groups is opened; a full sheet (the briefing, the rule book, the result) is laid open",
+      "early": true,
+      "leastMs": 150,
+      "voices": 2,
+      "cents": 40,
+      "db": 1,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "folder-open-1.opus",
+          "m4a": "folder-open-1.m4a",
+          "seconds": 0.38,
+          "lufs": -30,
+          "peakDb": -4.6,
+          "held": false
+        },
+        {
+          "opus": "folder-open-2.opus",
+          "m4a": "folder-open-2.m4a",
+          "seconds": 0.43,
+          "lufs": -30.1,
+          "peakDb": -9.8,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "folder-shut",
+      "family": "desk",
+      "plays": "the folder of groups is shut; a full sheet is put away",
+      "early": true,
+      "leastMs": 150,
+      "voices": 2,
+      "cents": 40,
+      "db": 1,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "folder-shut-1.opus",
+          "m4a": "folder-shut-1.m4a",
+          "seconds": 0.29,
+          "lufs": -29.9,
+          "peakDb": -7.2,
+          "held": false
+        },
+        {
+          "opus": "folder-shut-2.opus",
+          "m4a": "folder-shut-2.m4a",
+          "seconds": 0.3,
+          "lufs": -30,
+          "peakDb": -12,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "stamp",
+      "family": "desk",
+      "plays": "a badge is put on the table: a thing done, or what came of it",
+      "early": true,
+      "leastMs": 120,
+      "voices": 2,
+      "cents": 40,
+      "db": 1,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "stamp.opus",
+          "m4a": "stamp.m4a",
+          "seconds": 0.214,
+          "lufs": -29.9,
+          "peakDb": -8,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "family": "desk",
+      "plays": "a click is refused: the red X on the table",
+      "early": true,
+      "leastMs": 150,
+      "voices": 2,
+      "cents": 40,
+      "db": 1,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "refuse-1.opus",
+          "m4a": "refuse-1.m4a",
+          "seconds": 0.26,
+          "lufs": -30,
+          "peakDb": -15.9,
+          "held": false
+        },
+        {
+          "opus": "refuse-2.opus",
+          "m4a": "refuse-2.m4a",
+          "seconds": 0.275,
+          "lufs": -30,
+          "peakDb": -14.1,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "gun",
+      "family": "heavy",
+      "plays": "a tank gun or an anti-tank gun fires",
+      "early": false,
+      "leastMs": 80,
+      "voices": 3,
+      "cents": 40,
+      "db": 1,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "gun-1.opus",
+          "m4a": "gun-1.m4a",
+          "seconds": 2.415,
+          "lufs": -16,
+          "peakDb": -4.8,
+          "held": false
+        },
+        {
+          "opus": "gun-2.opus",
+          "m4a": "gun-2.m4a",
+          "seconds": 2.385,
+          "lufs": -16.1,
+          "peakDb": -5,
+          "held": false
+        },
+        {
+          "opus": "gun-3.opus",
+          "m4a": "gun-3.m4a",
+          "seconds": 2.355,
+          "lufs": -16,
+          "peakDb": -4.8,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "explosion",
+      "family": "heavy",
+      "plays": "a vehicle is destroyed and blows up",
+      "early": false,
+      "leastMs": 100,
+      "voices": 3,
+      "cents": 50,
+      "db": 1,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "explosion.opus",
+          "m4a": "explosion.m4a",
+          "seconds": 2.565,
+          "lufs": -17.2,
+          "peakDb": -3.3,
+          "held": true
+        }
+      ]
+    },
+    {
+      "id": "small-arms",
+      "family": "light",
+      "plays": "machine guns and rifles fire: a run of tracers",
+      "early": false,
+      "leastMs": 100,
+      "voices": 3,
+      "cents": 30,
+      "db": 1,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "small-arms-1.opus",
+          "m4a": "small-arms-1.m4a",
+          "seconds": 1.654,
+          "lufs": -19,
+          "peakDb": -11.1,
+          "held": false
+        },
+        {
+          "opus": "small-arms-2.opus",
+          "m4a": "small-arms-2.m4a",
+          "seconds": 1.297,
+          "lufs": -18.9,
+          "peakDb": -11.3,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "hit",
+      "family": "light",
+      "plays": "a round strikes armour",
+      "early": false,
+      "leastMs": 70,
+      "voices": 3,
+      "cents": 100,
+      "db": 1.5,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "hit.opus",
+          "m4a": "hit.m4a",
+          "seconds": 0.384,
+          "lufs": -19,
+          "peakDb": -8.8,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "mortar",
+      "family": "light",
+      "plays": "a mortar fires: the round is lobbed",
+      "early": false,
+      "leastMs": 100,
+      "voices": 2,
+      "cents": 50,
+      "db": 1,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "mortar.opus",
+          "m4a": "mortar.m4a",
+          "seconds": 0.242,
+          "lufs": -26.9,
+          "peakDb": -3.5,
+          "held": true
+        }
+      ]
+    },
+    {
+      "id": "blast",
+      "family": "light",
+      "plays": "a shell bursts: a mortar round or a round of a fire mission arrives, or a soft target is destroyed",
+      "early": false,
+      "leastMs": 80,
+      "voices": 3,
+      "cents": 80,
+      "db": 2,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "blast.opus",
+          "m4a": "blast.m4a",
+          "seconds": 1.7,
+          "lufs": -19,
+          "peakDb": -14.1,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "dirt",
+      "family": "under",
+      "plays": "a gun's round lands in soft ground",
+      "early": false,
+      "leastMs": 70,
+      "voices": 2,
+      "cents": 80,
+      "db": 1.5,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "dirt.opus",
+          "m4a": "dirt.m4a",
+          "seconds": 1.265,
+          "lufs": -23,
+          "peakDb": -3.8,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "incoming",
+      "family": "under",
+      "plays": "a fire mission arrives: the rounds coming in",
+      "early": false,
+      "leastMs": 600,
+      "voices": 1,
+      "cents": 60,
+      "db": 1,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "incoming.opus",
+          "m4a": "incoming.m4a",
+          "seconds": 0.89,
+          "lufs": -23,
+          "peakDb": -10.4,
+          "held": false
+        }
+      ]
+    },
+    {
+      "id": "vehicle",
+      "family": "motor",
+      "plays": "a vehicle moves: its engine as it starts, and again while it is still on its way",
+      "early": false,
+      "leastMs": 1100,
+      "voices": 2,
+      "cents": 40,
+      "db": 1,
+      "detune": 0,
+      "takes": [
+        {
+          "opus": "vehicle-1.opus",
+          "m4a": "vehicle-1.m4a",
+          "seconds": 1.5,
+          "lufs": -24,
+          "peakDb": -11.8,
+          "held": false
+        },
+        {
+          "opus": "vehicle-2.opus",
+          "m4a": "vehicle-2.m4a",
+          "seconds": 1.5,
+          "lufs": -24,
+          "peakDb": -11.1,
+          "held": false
+        }
+      ]
+    }
+  ],
+  "joins": {
+    "effects": {
+      "gun": "gun",
+      "small": "small-arms",
+      "lob": "mortar",
+      "hit": "hit",
+      "dirt": "dirt",
+      "explosion": "explosion",
+      "blast": "blast",
+      "fire": "none",
+      "screen": "none",
+      "mission": "incoming",
+      "dust": "vehicle",
+      "exhaust": "vehicle",
+      "wisp": "none"
+    },
+    "counters": {
+      "lift": "counter-lift",
+      "slide": "counter-slide",
+      "place": "counter-place",
+      "lost": "counter-tray",
+      "refused": "refuse",
+      "badge": "stamp",
+      "dice": "dice"
+    },
+    "panel": {
+      "button": "button",
+      "page": "page-turn",
+      "folder-open": "folder-open",
+      "folder-shut": "folder-shut",
+      "sheet-open": "folder-open",
+      "sheet-shut": "folder-shut"
+    },
+    "waiting": []
+  }
+}

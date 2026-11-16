@@ -1,0 +1,116 @@
+# Hill 87, September 1943: a patrol. A German reconnaissance patrol comes down the north road to find
+# the crossing at Galaost; a Soviet rifle company holds the village, and a Soviet tank company is
+# coming up the south road behind the long hill. Original content: the situation and the forces are
+# invented for this scenario from the unit types of roster v1 (content/units/v1.units.yaml, each value
+# derived from cited public facts); the board is this project's own generated half board
+# "galaost_half" (assets/maps/galaost_half.map.yaml, 11 x 10, half of one mounted board), and the
+# place names are the board's own invented names. No historical engagement is depicted, and no
+# published scenario, board, order of battle or victory rule is followed or adapted.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md): the German
+# patrol waits at the north edge, out of sight of the village behind the ridge and the woods, and the
+# Soviet tanks and the second rifle company are south of the long hill.
+# Levelled on 2026-11-14 between two planning opponents at `normal` (the whole side moving, the same
+# side first every turn; the opponent as it stood at 8146e8a): the first draft (5 turns, Galaost worth 2,
+# break 0.6) went 68% German with a mean last turn of 3.6; shipped with 6 turns, Galaost worth 1 and break
+# 0.7: German share 47.8% over 400 games (42.9 to 52.6), mean last turn 5.1; ends by a break 54%, at the
+# turn limit 27% (nearly all Soviet), by the lead 20% (all Soviet). At `hard` (96 games): 40.6% German.
+# Levelled again on 2026-11-14 for the planning opponent that no longer throws tanks beside rifle companies:
+# as it stood it went 63.7% German over 400 games (it breaks the outpost); a break share of 0.75 gave 63.0%,
+# a third rifle company in the south-east wood 62.0%, the T-34s farther west 63.0%, Galaost worth 2 57.5%;
+# Galaost worth 2 and Hill 87 worth 1: German share 49.8% over 400 games (44.9 to 54.6), mean last turn 5.4;
+# ends by a break 55% (mostly German wins), at the turn limit 33% (Soviet), by the lead 13% (Soviet).
+# (docs/review/M7/levels-handover.md.)
+# Levelled again on 2026-11-15 for the lead's rulings 84 (a side's units are made Ready when its own turn begins) and
+# 85 (heavy machine-gun platoons), with the planning opponent that sets its whole side's fire discipline alike
+# (docs/review/M7/levels2-handover.md): as it stood it went 7.0% German over 200 games at `normal` (4.2 to 11.4;
+# measured before that change of the opponent): the German side hardly fought (each side lost about 5 points a game),
+# for the outpost's reaction fire now costs it nothing. A weaker outpost made it worse (no ZiS-3 0.0%, the T-34 an
+# SU-76M 3.0%), an MG 42 platoon for the German side did nothing (7.5%) and Galaost worth 1 gave 12.5%; Hill 87, which
+# nobody holds, worth 2 gave 40.0% and worth 3 56.5% over 400. With Hill 87 worth 3 (it was 1) and a second rifle
+# company for the Soviet side in the south-east wood (s1e), this file: German share 54.3% over 400 games (49.4 to
+# 59.1), mean last turn 5.5; ends at the turn limit 56% (109:115), by a break 32% (107:22), by the lead 12% (1:46). At
+# `hard` on both sides 83.3% German (96 games). Forces 30 German points to 37 Soviet. The gun: the ZiS-3 stands by
+# Galaost (0906) with no truck of its own (the ZIS-5 carries the second rifle company).
+
+format: impulse-scenario/1
+id: galaost-patrol-september-1943
+name: "Hill 87, September 1943 (Patrol)"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3).
+battle: galaost
+level: patrol
+ruleset: v1
+units: v1
+map: { id: galaost_half, hash: "78221a02aa659e693a15f97227f0bac9e26d96f9fda7ce0ebde76af4aa1b89dc" }
+initiative: german
+freeDeployment: false
+objectives:
+  - { hex: "0406", points: 3, holder: none }     # Hill 87, the top of the long hill (1 until 2026-11-15)
+  - { hex: "0805", points: 2, holder: soviet }   # the village of Galaost, on the north road by the bridge
+# A patrol's ending: six turns, a lead of 20 (a Pz IV H lost is 6, a T-34 company 8), and a side that has
+# lost seven tenths of its cost has broken.
+ending: { turns: 6, suddenDeathLead: 20, breakShare: 0.7 }
+sides:
+  - id: german
+    name: "German reconnaissance patrol"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "1103"]]
+    formations:
+      # Two Pz IV H platoons on the north road, and a grenadier company in its half-track.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pz4h, hex: "0701" }
+          - { id: g1b, type: pz4h, hex: "0201" }
+          - { id: g1c, type: grenadier_co, carriedBy: g1h }
+          - { id: g1h, type: sdkfz251, hex: "0101" }
+  - id: soviet
+    name: "Soviet rifle outpost"
+    counters: stock-b
+    orders: 3
+    zone: [["0109", "1110"], ["0805", "0906"]]
+    formations:
+      # A rifle company in Galaost with a gun by the bridge road; a T-34 company and a second rifle
+      # company in its truck on the south road.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: rifle_co, hex: "0805" }
+          - { id: s1b, type: zis3, hex: "0906" }
+          - { id: s1c, type: t34_76, hex: "0710" }
+          - { id: s1e, type: rifle_co, hex: "1010" }
+          - { id: s1d, type: rifle_co, carriedBy: s1t }
+          - { id: s1t, type: zis5, hex: "0609" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. Galaost, Hill 87
+# and this action are invented: the background is period color and claims no real engagement.
+# Original text, written for this project.
+briefing:
+  title: "Hill 87"
+  date: "September 1943"
+  place: "the Eastern Front"
+  picture: engraving-long-column
+  background: >-
+    The front has moved west again, and nobody is sure where it is. A German patrol is sent down
+    the north road to find out whether the bridges at Galaost are still standing.
+  situation: >-
+    A Soviet rifle company reached Galaost in the night. Behind the long hill south of the village,
+    a Soviet tank company is coming up the other road. Hill 87 looks down on both roads and on the
+    bridges.
+  note: "The forces are of the kind that met that month. The place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Take Galaost and Hill 87, and bring your tanks back whole."
+      formations:
+        - { id: g1, role: "tanks and grenadiers" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Hold Galaost and take Hill 87 before the German tanks do."
+      formations:
+        - { id: s1, role: "rifle outpost and tanks" }
+  objectives:
+    - { hex: "0406", name: "Hill 87" }
+    - { hex: "0805", name: "Galaost" }

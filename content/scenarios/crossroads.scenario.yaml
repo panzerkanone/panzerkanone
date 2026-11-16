@@ -1,0 +1,96 @@
+# Crossroads at Holtargard: the first scenario for play of Formation Impulse (rules v1,
+# revision 2). Two invented forces of the placeholder unit types, four formations a side,
+# each with a half-track and a truck (one rifle company a side starts carried, 4.1), meet
+# across the standard test board for its town of Holtargard (1813), the hill at 1810 and the
+# woods at 2110. The forces and their set-up are those of the ruleset's own test scenario;
+# the ending is the one the rules give (8 turns; break at half a side's cost and sudden death
+# at a lead of 12 are the rules data's own, section 19). Original content; the map and its
+# place names are the generated test board's. Checked on load by the ruleset's own scenario
+# check (format impulse-scenario/1).
+# The same scenario with a free deployment is crossroads_free.scenario.yaml; on the board
+# whose woods are tree sides, crossroads_trees.scenario.yaml.
+
+format: impulse-scenario/1
+id: holtargard-crossroads
+name: "Crossroads at Holtargard"
+ruleset: v1
+units: placeholder
+map: { id: test_standard, hash: "bc56fc9b1f9dfe5471c26220d8605c5e66e90bbe3394dd24a24c8e03e6a43c5e" }
+initiative: north
+freeDeployment: false
+objectives:
+  - { hex: "1813", points: 3, holder: none }   # the town of Holtargard
+  - { hex: "1810", points: 2, holder: none }   # hilltop
+  - { hex: "2110", points: 2, holder: none }   # woods
+ending: { turns: 8 }
+sides:
+  - id: north
+    name: "North force"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "3311"]]
+    formations:
+      - id: n1
+        discipline: free
+        units:
+          - { id: n1a, type: medium_tank, hex: "1409" }
+          - { id: n1b, type: medium_tank, hex: "1509" }
+          - { id: n1c, type: medium_tank, hex: "1609" }
+      - id: n2
+        discipline: free
+        units:
+          - { id: n2a, type: fast_tank, hex: "2111" }
+          - { id: n2b, type: rifle_company, carriedBy: n2h }   # starts carried (4.1)
+          - { id: n2c, type: rifle_company, hex: "2211" }
+          - { id: n2d, type: rifle_company, hex: "2311" }
+          - { id: n2h, type: half_track, hex: "2109" }          # transports last (3.1)
+      - id: n3
+        discipline: free
+        units:
+          - { id: n3a, type: assault_gun, hex: "1308" }
+          - { id: n3b, type: antitank_gun, hex: "1408" }
+          - { id: n3c, type: field_battery, hex: "1407" }
+          - { id: n3d, type: mortar_section, hex: "1507" }
+          - { id: n3t, type: truck, hex: "1508" }
+      - id: n4
+        discipline: armor
+        units:
+          - { id: n4a, type: medium_tank, hex: "2410" }
+          - { id: n4b, type: medium_tank, hex: "2510" }
+          - { id: n4c, type: fast_tank, hex: "2411" }
+          - { id: n4d, type: rifle_company, hex: "2611" }
+  - id: south
+    name: "South force"
+    counters: stock-b
+    orders: 3
+    zone: [["0112", "1721"], ["1812", "3321"]]
+    formations:
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: medium_tank, hex: "1613" }
+          - { id: s1b, type: medium_tank, hex: "1713" }
+          - { id: s1c, type: medium_tank, hex: "1813" }
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: fast_tank, hex: "2412" }
+          - { id: s2b, type: rifle_company, carriedBy: s2h }   # starts carried (4.1)
+          - { id: s2c, type: rifle_company, hex: "2212" }
+          - { id: s2d, type: rifle_company, hex: "2312" }
+          - { id: s2h, type: half_track, hex: "2113" }          # transports last (3.1)
+      - id: s3
+        discipline: free
+        units:
+          - { id: s3a, type: assault_gun, hex: "1414" }
+          - { id: s3b, type: antitank_gun, hex: "1514" }
+          - { id: s3c, type: field_battery, hex: "1515" }
+          - { id: s3d, type: mortar_section, hex: "1615" }
+          - { id: s3t, type: truck, hex: "1614" }
+      - id: s4
+        discipline: armor
+        units:
+          - { id: s4a, type: medium_tank, hex: "2512" }
+          - { id: s4b, type: medium_tank, hex: "2612" }
+          - { id: s4c, type: fast_tank, hex: "2513" }
+          - { id: s4d, type: rifle_company, hex: "2712" }

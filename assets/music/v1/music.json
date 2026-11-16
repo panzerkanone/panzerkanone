@@ -1,0 +1,78 @@
+{
+  "format": "music/2",
+  "targetLufs": -18,
+  "leadIn": 3,
+  "tracks": [
+    {
+      "id": "measured-march",
+      "title": "Measured March",
+      "words": false,
+      "seconds": 117.61,
+      "lufs": -16.1,
+      "peakDb": -4.2,
+      "opus": "measured-march.opus",
+      "m4a": "measured-march.m4a"
+    },
+    {
+      "id": "march-of-resolute-sorrow",
+      "title": "March of Resolute Sorrow",
+      "words": false,
+      "seconds": 172.73,
+      "lufs": -16.7,
+      "peakDb": -4.1,
+      "opus": "march-of-resolute-sorrow.opus",
+      "m4a": "march-of-resolute-sorrow.m4a"
+    },
+    {
+      "id": "tikhiy-marsh-skorbi",
+      "title": "Тихий марш скорби",
+      "words": false,
+      "seconds": 178.77,
+      "lufs": -15.5,
+      "peakDb": -4.8,
+      "opus": "tikhiy-marsh-skorbi.opus",
+      "m4a": "tikhiy-marsh-skorbi.m4a"
+    },
+    {
+      "id": "der-blaue-schal",
+      "title": "Der blaue Schal",
+      "words": true,
+      "seconds": 190.01,
+      "lufs": -15.8,
+      "peakDb": -3.6,
+      "opus": "der-blaue-schal.opus",
+      "m4a": "der-blaue-schal.m4a"
+    }
+  ],
+  "ambient": {
+    "level": 0.6,
+    "fadeIn": 8,
+    "fadeOut": 8,
+    "spell": {
+      "least": 60,
+      "most": "whole"
+    },
+    "toEnd": 0.25,
+    "rest": 5,
+    "pieces": [
+      {
+        "id": "calm-vigilance",
+        "title": "Calm Vigilance",
+        "seconds": 184.01,
+        "lufs": -17.2,
+        "peakDb": -3.8,
+        "opus": "calm-vigilance.opus",
+        "m4a": "calm-vigilance.m4a"
+      },
+      {
+        "id": "frontline-fog",
+        "title": "Frontline Fog",
+        "seconds": 218.81,
+        "lufs": -15.5,
+        "peakDb": -3.5,
+        "opus": "frontline-fog.opus",
+        "m4a": "frontline-fog.m4a"
+      }
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+# Holtargard as the second battle of the campaign "The Long Summer", German side
+# (content/campaigns/long_summer_german.campaign.yaml). Original content: the forces are invented for this
+# game from the unit types of roster v1; the board is the standard test board with its woods placed as tree
+# sides, and its place names are the generated board's. No historical engagement is depicted and no
+# published scenario is followed.
+#
+# Level `campaign` (docs/review/M7/campaign/design.md): the German side is the campaign's force at full
+# strength; each game draws from it what the force has left (client/src/campaign/force.ts). The Soviet side,
+# the objectives and the ending are this battle's own, levelled at `normal` against the full-strength force.
+# Made from the Battle level (holtargard_1943_trees): its board, objectives, ending and the Soviet side's
+# starting places; the force stands in that level's German places.
+#
+# Levelled on 2026-11-14 (tools/balance/duel.ts --ai normal --ai-other normal --activation side --initiative fixed,
+# with ruling 84): with the Battle level's Soviet side whole (97 points) the force won 17.0% of 200 games; without one
+# T-34 company and one SU-76M platoon (74) 55.5%; without one T-34 company (81) 41.5%; shipped, without
+# one T-34 company and one rifle company (76): 48.0% on seeds 1 to 200 and 56.0% on 201 to 400, 52.0% over the 400
+# (47.1 to 56.9), mean last turn 7.3.
+
+format: impulse-scenario/1
+id: holtargard-campaign-german-1943
+name: "Holtargard, July 1943 (The Long Summer)"
+battle: holtargard
+level: campaign
+ruleset: v1
+units: v1
+map: { id: test_standard_trees, hash: "199d66239d98f21208175f6d352793be392f77e995eb8e0ec0d8e6b40f697932" }
+initiative: german
+freeDeployment: false
+objectives:
+  - { hex: "1813", points: 3, holder: none }   # the town of Holtargard
+  - { hex: "1810", points: 2, holder: none }   # Hill 91
+  - { hex: "2110", points: 1, holder: none }   # the wood
+ending: { turns: 8, suddenDeathLead: 40, breakShare: 0.75 }
+sides:
+  - id: german
+    name: "German battle group"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "3311"]]
+    formations:
+      # The tank company: the Pz IVs in the dead ground north of Hill 91, the Tiger behind the eastern ridge.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pz4h, hex: "1705" }
+          - { id: g1b, type: pz4h, hex: "1605" }
+          - { id: g1c, type: tiger1e, hex: "2407" }
+      # The grenadier battalion with its assault guns, in the wood; one company rides the half-tracks.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: stug3g, hex: "2409" }
+          - { id: g2b, type: grenadier_co, carriedBy: g2h }
+          - { id: g2c, type: grenadier_co, hex: "2209" }
+          - { id: g2d, type: grenadier_co, hex: "2310" }
+          - { id: g2h, type: sdkfz251, hex: "2410" }
+      # The support: antitank guns and machine guns at the wood's edge, mortars behind the hill, the trucks.
+      - id: g3
+        discipline: free
+        units:
+          - { id: g3a, type: pak40, hex: "2210" }
+          - { id: g3b, type: grw42, hex: "1805" }
+          - { id: g3c, type: mg42, hex: "2211" }
+          - { id: g3t, type: opel_blitz, hex: "1804" }
+  - id: soviet
+    name: "Soviet tank brigade"
+    counters: stock-b
+    orders: 3
+    zone: [["0112", "1721"], ["1812", "3321"]]
+    formations:
+      # A tank battalion: two companies of T-34, south-west of the town, out of sight of the hill.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: t34_76, hex: "1616" }
+          - { id: s1b, type: t34_76, hex: "1615" }
+      # Motor rifles beside the town with a battery of self-propelled guns; one company rides the trucks.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: su76m, hex: "1716" }
+          - { id: s2b, type: su76m, hex: "1717" }
+          - { id: s2c, type: rifle_co, carriedBy: s2t }
+          - { id: s2d, type: rifle_co, hex: "1714" }
+          - { id: s2t, type: zis5, hex: "1815" }
+      # The support: divisional guns forward, heavy mortars behind Hill 86, and trucks to move them.
+      - id: s3
+        discipline: free
+        units:
+          - { id: s3a, type: zis3, hex: "2214" }
+          - { id: s3b, type: zis3, hex: "1612" }
+          - { id: s3c, type: pm38, hex: "2017" }
+          - { id: s3t, type: zis5, hex: "2117" }
+
+# What a player is told before the first turn. No rule reads it. Holtargard is an invented place and this
+# action is invented. Original text, written for this project.
+briefing:
+  title: "Holtargard"
+  date: "July 1943"
+  place: "the Eastern Front"
+  picture: engraving-tank-riders
+  background: >-
+    High summer on the steppe. The great attack is burning to the south, and your battle group, across the
+    river since June, is sent on to take the crossroads town of Holtargard before a Soviet tank brigade can
+    dig in around it.
+  situation: >-
+    Both columns reach the town on the same morning. Whoever holds the town, the hill above it and the wood
+    beside the road when the day ends has the crossroads.
+  note: "The forces are of the kind that met that summer; the place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Take the town, the hill and the wood, and keep them."
+      formations:
+        - { id: g1, role: "tank company" }
+        - { id: g2, role: "grenadier battalion" }
+        - { id: g3, role: "support" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Hold the crossroads, and break the battle group against it."
+      formations:
+        - { id: s1, role: "tank battalion" }
+        - { id: s2, role: "motor rifles" }
+        - { id: s3, role: "support" }
+  objectives:
+    - { hex: "1813", name: "Holtargard town" }
+    - { hex: "1810", name: "Hill 91" }
+    - { hex: "2110", name: "The wood" }

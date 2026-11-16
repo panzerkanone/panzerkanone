@@ -1,0 +1,90 @@
+schema: unit-facts/1
+id: pm38_battery
+designation: 120-PM-38
+full_name: 120 mm regimental mortar M1938 (120-PM-38), regimental mortar battery
+side: soviet
+kind: mortar
+setting: Eastern Front, 1943 (the improved 120-PM-43 entered service in 1943; see note on min range)
+facts:
+  count_per_unit:
+    value: 6
+    unit: mortars
+    source: wp-ru-rifle-regt
+    locator: "1942: 'в полку — батарея 120-мм миномётов (6 миномётов). Позднее, приказом НКО № 306 от 8 октября 1942 года такая практика была официально закреплена.'"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: "establishment tables not opened (TM 30-430 Chapter III, which should cover this, was blocked: digitalcommons.unl.edu returned 403)"
+    alternatives:
+      - {value: 7, unit: mortars, source: wp-ru-rifle-regt, locator: "1942-1944, shtat 04/551 of 10 December 1942: 'в миномётной батарее полка добавился один 120-мм миномёт, таким образом их стало 7'", retrieved: 2026-11-11, confidence: secondary, note: "the same article; the seventh mortar may be a reserve or a reading error, unconfirmed"}
+      - {value: 6, unit: mortars, source: wp-ru-rifle-regt, locator: "Guards shtat 05/41 of 18 December 1944: 'Миномётная батарея 120-мм миномётов стала состоять из 6 миномётов'", retrieved: 2026-11-11, confidence: secondary}
+      - {value: 8, unit: mortars, source: wp-ru-rifle-regt, locator: "Guards rifle regiment shtat 04/501 (December 1942): 'количество полковых миномётов тоже было увеличено до 8'", retrieved: 2026-11-11, confidence: secondary}
+    preferred: "6 (the brief's figure and the October 1942 order); 7 under the December 1942 regimental table is the main open question"
+
+  mortar:
+    designation: {value: "120-PM-38 (M1938)", unit: name, source: wp-en-m1938-mortar, locator: "infobox name 120-PM-38", retrieved: 2026-11-11, confidence: verified}
+    calibre_mm: {value: 120, unit: mm, source: wp-en-m1938-mortar, locator: "infobox caliber 120 mm", retrieved: 2026-11-11, confidence: verified}
+    bomb_mass_kg:
+      value: 15.9
+      unit: kg
+      source: wp-en-m1938-mortar
+      locator: "Shells specifications table (Firing tables TS No. 104, 1967): 53-OF-843 HE/FRAG, 15.9 kg, max range 5.7 km"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 16.2, unit: kg, source: wp-en-m1938-mortar, locator: "same table, 53-F-843 HE, 16.2 kg, max range 4.1 km", retrieved: 2026-11-11, confidence: verified}
+        - {value: 16, unit: kg, source: wp-en-m1938-mortar, locator: "infobox cartridge 16 kg", retrieved: 2026-11-11, confidence: verified}
+      preferred: "15.9, the standard HE-fragmentation bomb (the research used 15.9)"
+    max_range_m:
+      value: 5700
+      unit: m
+      source: wp-en-m1938-mortar
+      locator: "Shells table, OF-843 max range 5.7 km; infobox range 6 km (Chamberlain and Gander 1975, p. 32)"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 5900, unit: m, source: wp-ru-pm38, locator: "Максимальная дальность, м = 'до 5900'; Эффективная дальность '460 — 5700'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 6000, unit: m, source: wp-en-m1938-mortar, locator: "infobox range 6 km", retrieved: 2026-11-11, confidence: verified}
+      preferred: "5700 with the OF-843 bomb"
+    min_range_m:
+      value: 460
+      unit: m
+      source: wp-ru-pm38
+      locator: "Эффективная дальность, м = '460 — 5700'"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 500, unit: m, source: wp-en-pm43, locator: "infobox range: '5700 m maximum, 500 m minimum' (the 120-PM-43)", retrieved: 2026-11-11, confidence: verified, note: "the research used this"}
+      preferred: "460 for the M1938; 500 for the M1943. One hex either way at 250 m per hex"
+    max_rate_rpm:
+      value: 10
+      unit: rounds per minute
+      source: wp-en-m1938-mortar
+      locator: "infobox rate: 10 rpm"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 15, unit: rounds per minute, source: wp-ru-pm38, locator: "Скорострельность, выстр/мин = 'до 15'; text 'Скорострельность достигала 15 выстрелов в минуту'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 9, unit: rounds per minute, source: wp-en-pm43, locator: "infobox rate: '9 rpm maximum, 70 rds/hr sustained' (120-PM-43)", retrieved: 2026-11-11, confidence: verified}
+      preferred: "10. The 15 is a peak; the research halves the published maximum, so 10 gives 5 a minute and 15 would give 7.5, a 50% swing in mortar HE. Flag for the deriver"
+
+  crew:
+    total: {value: 6, unit: men per mortar, source: wp-en-m1938-mortar, locator: "infobox crew 6", retrieved: 2026-11-11, confidence: verified, note: "wp-en-pm43 also 6"}
+  weight_in_action_kg:
+    value: 280
+    unit: kg
+    source: wp-en-m1938-mortar
+    locator: "infobox weight: 'travel: 477 kg; combat: 280 kg'"
+    retrieved: 2026-11-11
+    confidence: verified
+    alternatives:
+      - {value: 282, unit: kg, source: wp-ru-pm38, locator: "Масса в боевом положении, кг = 282 (походном 557)", retrieved: 2026-11-11, confidence: verified}
+      - {value: 275, unit: kg, source: wp-en-pm43, locator: "infobox weight 275 kg (120-PM-43)", retrieved: 2026-11-11, confidence: verified}
+  organic_transport:
+    value: "two-wheeled limber; towed by horse team or vehicle"
+    unit: description
+    source: wp-en-m1938-mortar
+    locator: "caption 'A 120-PM-38 on its two-wheeled limber'; 'M1938 on its limber attached to a caisson'"
+    retrieved: 2026-11-11
+    confidence: verified
+  traits:
+    indirect: {value: true, unit: boolean, source: wp-en-m1938-mortar, locator: "elevation +45° to +80°", retrieved: 2026-11-11, confidence: verified}

@@ -1,0 +1,96 @@
+schema: unit-facts/1
+id: pak40_platoon
+designation: 7.5 cm Pak 40
+full_name: 7.5 cm Panzerabwehrkanone 40, towed anti-tank gun platoon
+side: german
+kind: towed_gun
+setting: Eastern Front, 1943
+facts:
+  count_per_unit:
+    value: 3
+    unit: guns
+    source: tme30-451-hw
+    locator: "Chapter II, Figure 39, Antitank Company, Infantry Division, 1944 Type: '1st (75-mm AT) Plat (Mtz)' row, 75-mm AT Guns = 3"
+    retrieved: 2026-11-11
+    confidence: verified
+  platoon_men:
+    value: 33
+    unit: men
+    source: tme30-451-hw
+    locator: "Figure 39, '1st (75-mm AT) Plat (Mtz)': Offs 1, NCOs 4, Pvts 28; Rs or Cbns 25, Pistols 4, Sub-MGs 5, LMGs 3"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "whole platoon including drivers; 3 LMGs for local defence"
+  organic_transport:
+    value: "motorised: 5 motor vehicles and 1 motorcycle in the platoon"
+    unit: description
+    source: tme30-451-hw
+    locator: "Figure 39, '1st (75-mm AT) Plat (Mtz)': Mtr Vehicles 5, Mtrcls 1"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "the table does not name the vehicle type; tow speed of the carriage 'about 25 miles an hour' (tme30-451-hw, Chapter VII, Section IV, 6.e (1))"
+
+  gun:
+    designation: {value: "7.5 cm Pak 40 L/46", unit: name, source: wp-en-pak40, locator: "General characteristics: 'Barrel length: L/46'", retrieved: 2026-11-11, confidence: verified}
+    calibre_mm: {value: 75, unit: mm, source: wp-en-pak40, locator: "infobox caliber '75 mm (2.95 inch)'", retrieved: 2026-11-11, confidence: verified}
+    ap_round: {value: "Pzgr. 39 (APCBC)", unit: name, source: wp-en-pak40, locator: "Ammunition: 'Panzergranate 39 (PzGr. 39) An armour-piercing, capped, ballistic cap (APCBC) projectile'", retrieved: 2026-11-11, confidence: verified}
+    ap_shot_origin: {value: german_capped, unit: category, source: wp-en-pak40, locator: "APCBC", retrieved: 2026-11-11, confidence: verified}
+    ap_shot_mass_kg: {value: 6.80, unit: kg, source: wp-en-pak40, locator: "PzGr. 39: 'Weight of projectile: 6.80 kg'", retrieved: 2026-11-11, confidence: verified, alternatives: [{value: 6.80, unit: kg, source: tme30-451-hw, locator: "Chapter VII, Section IV, 6.e (3): 'APCBC, 15 pounds'", retrieved: 2026-11-11, confidence: verified}]}
+    ap_muzzle_velocity_ms:
+      value: 790
+      unit: m/s
+      source: wp-en-pak40
+      locator: "PzGr. 39: 'Muzzle velocity: 790 m/s'"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 792, unit: m/s, source: wp-en-pak40, locator: "table 'Penetration of armour 90 degrees incidence at 500 m' (marked citation needed): 792 m/s", retrieved: 2026-11-11, confidence: verified}
+        - {value: 770, unit: m/s, source: wp-en-pak40, locator: "'the Official Firing Table document for the 75 mm KwK 40, StuK 40 and the Pak 40 dated October, 1943, gives 770 m/s on one of the APCBC tables'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 776, unit: m/s, source: wp-en-pak40, locator: "'The first documented firing by the US of a Pak 40 recorded an average muzzle velocity of 776 m/s'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 771, unit: m/s, source: tme30-451-hw, locator: "Chapter VII, Section IV, 6.e (2): 'Muzzle velocity (APCBC) 2,530 feet per second'", retrieved: 2026-11-11, confidence: verified}
+      preferred: >-
+        790 (the article's ammunition section). The research used 792. A measured 770-776 m/s
+        (German October 1943 firing table, US test, the handbook) is 2-3% lower; penetration goes as
+        velocity^1.43, so the choice moves penetration by up to 4%. Record which one the deriver uses.
+    he_round: {value: "7.5 cm Sprgr. 34 (HE)", unit: name, source: tme30-451-hw, locator: "Chapter VII, Section IV, 6.e (3): 'Weights of projectiles fired from this gun are: HE, 12.54 pounds'", retrieved: 2026-11-11, confidence: verified, note: "the handbook does not name the shell; Sprgr. 34 is the 75 mm HE shell named in wp-en-kwk40"}
+    he_shell_mass_kg: {value: 5.69, unit: kg, source: tme30-451-hw, locator: "Chapter VII, Section IV, 6.e (3): 'HE, 12.54 pounds'", retrieved: 2026-11-11, confidence: verified}
+    he_muzzle_velocity_ms: {value: 549, unit: m/s, source: tme30-451-hw, locator: "'Muzzle velocity (HE). 1,800 feet per second'", retrieved: 2026-11-11, confidence: verified, note: "wp-en-pak40 table gives HE 550 m/s"}
+    published_effective_range_m: {value: 1800, unit: m, source: wp-en-pak40, locator: "infobox range: '1800 m direct fire'; General characteristics: 'Engagement range: 1800 m'", retrieved: 2026-11-11, confidence: verified, note: "the research calibrates its range constant on this figure"}
+    rate_of_fire_rpm: {value: 14, unit: rounds per minute, source: wp-en-pak40, locator: "infobox rate: '14 rounds per minute'", retrieved: 2026-11-11, confidence: verified, note: "nominal rate; the research derives a practical rate instead (section 2.6, 3.2). Recorded for reference only", alternatives: [{value: 15, unit: rounds per minute, source: wp-de-pak40, locator: "Kadenz = 15", retrieved: 2026-11-11, confidence: verified}]}
+
+  crew:
+    total:
+      value: 6
+      unit: men per gun
+      source: wp-en-pak40
+      locator: "infobox crew: 6 (Foss, Jane's Pocket Book of Towed Artillery, 1977)"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 5, unit: men per gun, source: wp-de-pak40, locator: "Mannschaft = 'fünf Soldaten'", retrieved: 2026-11-11, confidence: verified}
+        - {value: 11, unit: "men per gun (whole platoon / 3)", source: tme30-451-hw, locator: "Figure 39: 33 men in the 3-gun platoon including drivers and section leaders", retrieved: 2026-11-11, confidence: verified}
+      preferred: "6 for the gun detachment; the soft-defence formula may instead take the whole platoon (33 men), which is the more literal head count of the counter"
+  weight_in_action_kg:
+    value: 1425
+    unit: kg
+    source: wp-en-pak40
+    locator: "infobox weight: '1425 kg in action'"
+    retrieved: 2026-11-11
+    confidence: verified
+    alternatives:
+      - {value: 1422, unit: kg, source: tme30-451-hw, locator: "Chapter VII, Section IV, 6.e (2): 'Weight in action 3,136 pounds'", retrieved: 2026-11-11, confidence: verified}
+      - {value: 1500, unit: kg, source: wp-de-pak40, locator: "Gewicht in Feuerstellung = 1500", retrieved: 2026-11-11, confidence: verified}
+    preferred: "1425 (agrees with the handbook to 0.2%)"
+  traits:
+    height_m:
+      value: 1.25
+      unit: m
+      source: wp-en-pak40
+      locator: "General characteristics: 'Height: 1.25 m'"
+      retrieved: 2026-11-11
+      confidence: verified
+      alternatives:
+        - {value: 1.2, unit: m, source: wp-en-pak40, locator: "infobox height 1.2 m (Foss 1977)", retrieved: 2026-11-11, confidence: verified}
+        - {value: 1.245, unit: m, source: wp-de-pak40, locator: "Gesamthöhe = 1,245 m", retrieved: 2026-11-11, confidence: verified}
+    shield_mm: {value: "2 x 4, spaced about 25 mm", unit: mm, source: tme30-451-hw, locator: "Chapter VII, Section IV, 6.e (1): 'The shield consists of two 4-mm armor plates spaced about 1 inch apart.'", retrieved: 2026-11-11, confidence: verified, note: "not a formula input; the gun is a Soft target in the research"}
+    towed: {value: true, unit: boolean, source: tme30-451-hw, locator: "Chapter VII, Section IV, 6.e (2): 'Traction Motor-drawn.'", retrieved: 2026-11-11, confidence: verified}

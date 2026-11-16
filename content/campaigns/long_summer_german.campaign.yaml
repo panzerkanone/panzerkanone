@@ -1,0 +1,89 @@
+# The Long Summer, June to September 1943, played from the German side: a chain of four battles in their
+# own dates' order, one force carried through them (docs/review/M7/campaign/design.md). The Coast Road was its fifth
+# until 2026-11-14: as a rearguard against the full-strength force its Soviet column won 40% at best in every set-up
+# tried, so it was taken out (the lead's ruling) and the totals to win and draw set again for four battles.
+# Checked on load by client/src/campaign/format.ts (format campaign/1): every key required, no unknown key,
+# nothing defaulted. Original content: the force, its names and the story are invented for this game; the
+# battles' places are the game's own boards'. No historical engagement or order of battle is followed.
+
+format: campaign/1
+id: long_summer_german
+title: "The Long Summer"
+dates: "June to September 1943"
+# One or two sentences for the campaign list.
+blurb: >-
+  Command a German battle group through one summer: across a river, over the steppe, and on to the crossings.
+  Your units carry from battle to battle.
+side: german
+# The same campaign from the other side, when there is a file for it; none until then.
+otherSide: none
+# The list's picture (assets/scenarioart/v1/).
+picture: engraving-command-tent
+# The film loops (assets/film/v1/film.json) behind the briefing and at the end; the end's is none until it is cut.
+film: { briefing: summer-steppe, end: none }
+# What is said in the briefing room (assets/narration/v1/narration.json, the owner's own recordings): the opening
+# with the campaign's briefing, then one piece for each battle in order when it is next, and one for each way the
+# campaign can end.
+narration:
+  opening: long-summer-opening
+  battles: [long-summer-keliach, long-summer-holtargard, long-summer-marnov, long-summer-galaost]
+  end: { victory: long-summer-victory, draw: long-summer-draw, defeat: long-summer-defeat, broken: long-summer-broken }
+briefing:
+  # Both sides, the player's first: the clipboard's two columns.
+  sides:
+    - { side: german, name: "German battle group", mark: cross, stakes: "Take the crossings" }
+    - { side: soviet, name: "Soviet forces", mark: hammer-sickle, stakes: "Hold the crossings" }
+  story: >-
+    June 1943. Your battle group goes to the river at Keliach to take two bridges. In July and August it fights
+    for a town and a road on the steppe. In September it goes ahead of the army to take the crossing at Galaost.
+# The force at full strength: the places every battle is set up and levelled for. A battle may leave whole
+# formations out; those stay safe.
+force:
+  name: "The battle group"
+  formations:
+    - id: g1
+      name: "Tank Company"
+      units:
+        - { id: g1a, type: pz4h, name: "1st Platoon" }
+        - { id: g1b, type: pz4h, name: "2nd Platoon" }
+        - { id: g1c, type: tiger1e, name: "Heavy Platoon" }
+    - id: g2
+      name: "Grenadier Battalion"
+      units:
+        - { id: g2a, type: stug3g, name: "Assault Guns" }
+        - { id: g2b, type: grenadier_co, name: "4th Company" }
+        - { id: g2c, type: grenadier_co, name: "5th Company" }
+        - { id: g2d, type: grenadier_co, name: "6th Company" }
+        - { id: g2h, type: sdkfz251, name: "Half-tracks" }
+    - id: g3
+      name: "Support"
+      units:
+        - { id: g3a, type: pak40, name: "Antitank Platoon" }
+        - { id: g3b, type: grw42, name: "Mortar Platoon" }
+        - { id: g3c, type: mg42, name: "Machine Gun Platoon" }
+        - { id: g3t, type: opel_blitz, name: "Trucks" }
+# The battles in order, by their scenario files (content/scenarios/<id>.scenario.yaml, each at level campaign).
+battles:
+  - keliach_campaign_german_1943
+  - holtargard_campaign_german_1943
+  - marnov_campaign_german_1943
+  - galaost_campaign_german_1943
+replacements:
+  # Points earned after each battle, by its result for the player (provisional: the campaign simulator measures them).
+  earned: { decisive: 20, victory: 15, defeat: 10, heavy: 5 }
+  # What may fill a lost unit's place: its own type or another of its kind, at the type's cost.
+  kinds:
+    - [tiger1e, pz4h, stug3g]
+    - [grenadier_co, mg42]
+    - [pak40, grw42]
+    - [sdkfz251, opel_blitz]
+scoring:
+  # Campaign points a battle, by its result for the player.
+  points: { decisive: 3, victory: 2, defeat: 1, heavy: 0 }
+  # After the last battle: a total at or above `victory` wins the campaign, at or above `draw` draws it, below loses it.
+  # Of the 12 four battles can give: victory at 8 and a draw at 6, the shares of 9 and 7 of 15 (design.md 4).
+  victory: 8
+  draw: 6
+  # The force is broken, and the campaign lost at once, when with battles still to come its units left are worth
+  # less than this share of its full strength.
+  broken: [1, 3]

@@ -1,0 +1,35 @@
+# Ink table A2, version 1 (the lead's ruling 6 in docs/bars/M3a.md).
+#
+# The values are the lead's own, worked out for the value structure the owner
+# tuned (tan ground, olive wash, deep green canopy, pale cased roads); none is
+# sampled from anything. Plates multiply onto white stock in this order. The
+# key plate sits at offset 0; every other plate sits a little out of register,
+# 0.005 to 0.011 h (docs/art/map-art-spec.md, section 2).
+#
+# Checked on load by mapart/params.ts: every key is required and an unknown key
+# is refused.
+format: inks/1
+name: A2
+version: 1
+# The sheet's margin round the map, as the table shows it: bare white stock. (The grid and the hex
+# numbers the table prints are in the key plate's ink.)
+margin: "#FFFFFF"
+plates:
+  - { id: ground, ink: "#D9D3B2", offset: [0.006, 0.004] }
+  - { id: relief, ink: "#CFC68A", offset: [-0.005, 0.005] }
+  - { id: straw, ink: "#F3E3A6", offset: [0.004, -0.006] }
+  - { id: green, ink: "#47794A", offset: [-0.006, -0.004] }
+  - { id: blue, ink: "#5A9BC4", offset: [0.007, 0.002] }
+  - { id: red, ink: "#C4404A", offset: [-0.003, 0.007] }
+  - { id: brown, ink: "#96683C", offset: [0.005, 0.005] }
+  - { id: key, ink: "#2C2824", offset: [0, 0] }
+
+# Extra plates: each is printed from by one element only, and a display list carries it, after the
+# plates above, only when the board has that element. A board without it lists the eight plates
+# above and nothing else, exactly as it did before the plate existed.
+extraPlates:
+  # The green sides of woods placed as tree sides (the `trees` layer of a map; parameters
+  # treeSides.plate). The colour is the one Spike S7 settled on for its base setting (its `lineInk`,
+  # tools/spikes/S7-tree-points). It sits in register with the canopy's plate (green), because the
+  # canopy ink is knocked out under the stroke: the two offsets must be the same (checked on load).
+  - { id: olive, ink: "#A7B553", offset: [-0.006, -0.004] }

@@ -1,0 +1,152 @@
+# The Marnov Road, August 1943: a meeting engagement. A German battle group and a Soviet tank
+# brigade come up opposite ends of one steppe road on the same morning and fight for the hill
+# between them. Original content: the situation and the forces are invented for this scenario
+# from the unit types of roster v1 (content/units/v1.units.yaml, each value derived from cited
+# public facts); the board is this project's own generated board "open_steppe"
+# (assets/maps/open_steppe.map.yaml), and the place names are the board's own invented names.
+# No historical engagement is depicted, and no published scenario, board, order of battle or
+# victory rule is followed or adapted.
+# This was "The Korwick Gap" on a mirrored board until 2026-11-14 (the forces there were 65 German
+# points to 142 Soviet), when the owner ruled that no scenario is played on a mirrored board.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md): on this open
+# board the two columns hide on either side of Hill 161, the German one on the road west of the
+# wood, the Soviet one south of the road east of the hill. With the Korwick forces the German side
+# won 2.5% of 200 games between two planning opponents at `normal` here (on open steppe the T-34
+# companies close in with nothing to stop them), 5.5% with both sides started farther from the
+# hill, and 26% with the KV-1 and a T-34 company taken out; with two Tiger platoons added to the
+# German column (97 points to 142) it wins about half (docs/review/M6/scenarios-handover.md).
+# Balanced again on 2026-11-14 for ruling 82 (infantry companies move 4) and the planning opponent
+# taught rulings 80 and 81 (between two planning opponents at `normal`, the whole side moving, the same
+# side first every turn, 200 games): as it stood it went 69% German (13% before infantry moved 4). Changed:
+# the Soviet gun battery and heavy mortars start east of Marnov (3012, 3113; they were at 2711 and 2812):
+# German share 56.0% (49.1 to 62.7), mean last turn 6.2; ends by a break 91% (won by either side) and at the
+# turn limit 9%. Starting places move this scenario a long way: with the two rifle companies by the hill
+# three hexes farther back it went 13% German (docs/review/M2b/balance-82-handover.md).
+# Levelled again on 2026-11-14 for the planning opponent that no longer throws tanks beside rifle companies
+# (docs/review/M7/levels-handover.md): as it stood it went 78% German at `normal`. One Tiger platoon fewer gave
+# 58%, a break share of 0.7 76%, both rifle companies by the hill three hexes back 37%; one of them (s3b) three
+# hexes back, to 2612 (it was at 2312): German share 53.8% over 400 games (48.9 to 58.6), mean last turn 5.7;
+# ends by a break 95% (won by either side).
+
+format: impulse-scenario/1
+id: marnov-road-august-1943
+name: "The Marnov Road, August 1943"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3): the battle's Battle level.
+battle: marnov
+level: battle
+ruleset: v1
+units: v1
+map: { id: open_steppe, hash: "c36568cf7e2a57d9e6e7887fa3c9c358246309dad8053a16a4fb1059b3301454" }
+initiative: german
+freeDeployment: false
+objectives:
+  - { hex: "1808", points: 2, holder: none }   # the wood beside the road, on the German side of the hill
+  - { hex: "2111", points: 3, holder: none }   # Hill 161, beside the road between the two columns
+  - { hex: "2810", points: 2, holder: none }   # the village of Marnov, where the road from the south joins
+# The endings are the opening scenario's (ruling 79): a lead of 40 ends a rout and little else, and
+# a side that has lost six tenths of its cost has broken.
+ending: { turns: 8, suddenDeathLead: 40, breakShare: 0.6 }
+sides:
+  - id: german
+    name: "German battle group"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "1521"]]
+    formations:
+      # At the head of the column on the road: a tank company of three Pz IV H platoons, with two
+      # Tiger platoons attached.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pz4h, hex: "1210" }
+          - { id: g1b, type: pz4h, hex: "1310" }
+          - { id: g1c, type: pz4h, hex: "1311" }
+          - { id: g1d, type: tiger1e, hex: "1410" }
+          - { id: g1e, type: tiger1e, hex: "1409" }
+      # Armored infantry behind it, just over the bridge from Lunets: two grenadier companies in
+      # half-tracks, an assault gun platoon and the heavy mortars with their truck.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: stug3g, hex: "1110" }
+          - { id: g2b, type: grenadier_co, carriedBy: g2h }
+          - { id: g2c, type: grenadier_co, carriedBy: g2i }
+          - { id: g2d, type: grw42, hex: "1209" }
+          - { id: g2h, type: sdkfz251, hex: "1009" }
+          - { id: g2i, type: sdkfz251, hex: "1109" }
+          - { id: g2t, type: opel_blitz, hex: "1010" }
+  - id: soviet
+    name: "Soviet tank brigade"
+    counters: stock-b
+    orders: 3
+    zone: [["2201", "3321"]]
+    formations:
+      # Two tank battalions, five T-34 companies, south of the road behind Hill 161.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: t34_76, hex: "2411" }
+          - { id: s1b, type: t34_76, hex: "2511" }
+          - { id: s1c, type: t34_76, hex: "2611" }
+          - { id: s1d, type: t34_76, hex: "2412" }
+          - { id: s1e, type: t34_76, hex: "2512" }
+      # Self-propelled guns and motor rifles south and east of Marnov; the rifle companies ride the trucks.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: su76m, hex: "2911" }
+          - { id: s2b, type: su76m, hex: "3011" }
+          - { id: s2c, type: rifle_co, carriedBy: s2t }
+          - { id: s2d, type: rifle_co, carriedBy: s2u }
+          - { id: s2t, type: zis5, hex: "3110" }
+          - { id: s2u, type: zis5, hex: "3210" }
+      # The rifle battalion that reached Marnov in the night, with a company of KV-1 heavy tanks, and
+      # its gun battery and heavy mortars east of the village. No unit starts on an objective.
+      - id: s3
+        discipline: free
+        units:
+          - { id: s3a, type: rifle_co, hex: "2311" }
+          - { id: s3b, type: rifle_co, hex: "2612" }
+          - { id: s3c, type: zis3, hex: "3012" }
+          - { id: s3d, type: pm38, hex: "3113" }
+          - { id: s3k, type: kv1, hex: "2712" }
+          - { id: s3t, type: zis5, hex: "2811" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. The forces,
+# their points and the win conditions are not written here: the panel works them out from the units
+# above and from `ending` and `objectives`. Marnov, Lunets and this action are invented: the
+# background is period color and claims no real engagement. Original text, written for this project.
+briefing:
+  title: "The Marnov Road"
+  date: "August 1943"
+  place: "the Eastern Front"
+  picture: engraving-wrecks
+  background: >-
+    Late summer, and the front is moving again. A German battle group crosses the river at Lunets
+    and drives east along the steppe road to find the enemy. A Soviet tank brigade drives west along
+    the same road to do the same thing.
+  situation: >-
+    The two columns meet on open steppe west of the village of Marnov. There is almost nowhere to
+    hide. A small wood stands beside the road, and half a mile farther on Hill 161 looks out over
+    everything. Whoever holds the hill at the end of the day holds the road.
+  note: "The forces are of the kind that met that month. The place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Take Hill 161 and hold the wood by the road. Your guns reach farther than the enemy's, so make him cross the open steppe to get to you."
+      formations:
+        - { id: g1, role: "tank company and Tigers" }
+        - { id: g2, role: "armored infantry" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Hold Marnov and take Hill 161. You have more tanks, but his guns reach farther, so close in fast before you trade shots."
+      formations:
+        - { id: s1, role: "tank battalions" }
+        - { id: s2, role: "motor rifles" }
+        - { id: s3, role: "rifle battalion" }
+  objectives:
+    - { hex: "1808", name: "The wood by the road" }
+    - { hex: "2111", name: "Hill 161" }
+    - { hex: "2810", name: "Marnov" }

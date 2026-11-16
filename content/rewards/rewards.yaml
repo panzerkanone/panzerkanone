@@ -1,0 +1,81 @@
+# The rewards after every battle (the results and rewards screen, client/src/shell/rewards-screen.ts): which medal a
+# battle earns, and when a player is promoted. Read and checked by client/src/shell/rewards-rules.ts: every field is
+# required, nothing is filled in for a field left out, and a field this format does not have is refused.
+#
+# THE OUTCOME is the game's own: the game always names a winner (rule 15.5 settles level scores), so a battle is won or
+# lost, at the turn limit (a victory, a defeat) or before it, by breaking the enemy or by a commanding lead (a decisive
+# victory, a heavy defeat). There is no draw.
+#
+# NO MEDAL WITHOUT A DEED. A battle earns a medal only when the player's force did something in it: destroyed at least
+# `needs.enemyDestroyed` enemy units, or took at least `needs.objectivesTaken` objectives (held at the end, and not
+# the player's own at the start). A side that sits still and wins on what it held at the start is not decorated: it
+# gets no medal whatever its merit, and the citation says `needs.why`. (Found on 2026-11-14: ending every turn at once
+# as the Soviets in the Galaost patrol won 12 to 3 with light losses and earned the third medal each time.)
+#
+# THE MEDAL. With a deed done, a battle's merit is its outcome's merit, plus each deed below that holds, plus the
+# opponent's level. The medal is the highest tier whose `least` the merit reaches; under the first tier's, none. So a
+# victory with light losses (2 + 1) earns more than a victory bought dearly (2 - 1). Every tier is reachable against
+# the normal computer:
+#   tier 1   a victory bought dearly; or a defeat in which the enemy was shattered or every objective held
+#   tier 2   a victory
+#   tier 3   a victory with light losses; a decisive victory
+#   tier 4   a decisive victory with light losses, or with every objective held
+#   tier 5   a decisive victory with light losses, the enemy shattered or every objective held
+#
+# THE RANK. Every battle adds to the side's service points: the medal's tier, and one more for a victory (3 for a
+# plain victory, 4 with light losses, up to 6; a defeat 0 or 1; a victory without a deed 1). A rank is held from its
+# `points`. The first promotion comes in the second battle after two victories, at once after a decisive victory with
+# light losses, and by the third or fourth for a player who wins about half; Lieutenant around the fifth battle,
+# Colonel around the eighth to eleventh, General after some twelve to eighteen (a few evenings).
+#
+# The names are the game's own, plain and invented: no real decoration's name. The ranks are named for what each
+# pair of boards shows, in plain English, the same five words for both sides.
+format: rewards/1
+outcomes:
+  decisive: { words: "Decisive Victory", merit: 3, why: "A decisive victory." }
+  victory: { words: "Victory", merit: 2, why: "A victory." }
+  defeat: { words: "Defeat", merit: 0, why: "A defeat." }
+  heavy: { words: "Heavy Defeat", merit: -1, why: "A heavy defeat." }
+needs: { enemyDestroyed: 1, objectivesTaken: 1, why: "Nothing destroyed and no objective taken." }
+# How the battle was fought, after the outcomes each deed counts for (light losses earn nothing in a defeat:
+# a side that does nothing loses nothing). A share is of the side's whole force, by the points its units cost.
+deeds:
+  - { id: light-losses, test: own-losses-at-most, share: 0.25, add: 1, after: [decisive, victory], why: "Your losses were light." }
+  - { id: dear-losses, test: own-losses-at-least, share: 0.5, add: -1, after: [decisive, victory], why: "It was bought dearly." }
+  - { id: enemy-shattered, test: enemy-losses-at-least, share: 0.5, add: 1, after: [decisive, victory, defeat, heavy], why: "The enemy force was shattered." }
+  - { id: all-objectives, test: all-objectives-held, share: 1, add: 1, after: [decisive, victory, defeat, heavy], why: "Every objective was yours at the end." }
+# The computer's level; a battle against a person counts as normal.
+opponent: { easy: -1, normal: 0, hard: 1 }
+medalLeast: [1, 2, 3, 4, 5]
+promotion:
+  perMedalTier: 1
+  perVictory: 1
+sides:
+  german:
+    name: "German"
+    medals:
+      - { name: "Bronze Oak Medal", art: medal-german-1 }
+      - { name: "Armor Cross", art: medal-german-2 }
+      - { name: "Armor Cross with Oak", art: medal-german-3 }
+      - { name: "Armor Cross with Swords", art: medal-german-4 }
+      - { name: "Gold Armor Cross", art: medal-german-5 }
+    ranks:
+      - { name: "Corporal", points: 0, art: rank-german-1 }
+      - { name: "Sergeant", points: 5, art: rank-german-2 }
+      - { name: "Lieutenant", points: 13, art: rank-german-3 }
+      - { name: "Colonel", points: 26, art: rank-german-4 }
+      - { name: "General", points: 42, art: rank-german-5 }
+  soviet:
+    name: "Soviet"
+    medals:
+      - { name: "Silver Tank Medal", art: medal-soviet-1 }
+      - { name: "Soldier's Star", art: medal-soviet-2 }
+      - { name: "Star of the Front", art: medal-soviet-3 }
+      - { name: "Battle Banner", art: medal-soviet-4 }
+      - { name: "Diamond Star", art: medal-soviet-5 }
+    ranks:
+      - { name: "Corporal", points: 0, art: rank-soviet-1 }
+      - { name: "Sergeant", points: 5, art: rank-soviet-2 }
+      - { name: "Lieutenant", points: 13, art: rank-soviet-3 }
+      - { name: "Colonel", points: 26, art: rank-soviet-4 }
+      - { name: "General", points: 42, art: rank-soviet-5 }

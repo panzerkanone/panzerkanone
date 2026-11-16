@@ -1,0 +1,119 @@
+{
+  "format": "campaignart/1",
+  "stage": [
+    2752,
+    1536
+  ],
+  "pieces": {
+    "room": {
+      "file": "room.webp",
+      "place": [
+        0,
+        0,
+        2752,
+        1536
+      ],
+      "standIn": false
+    },
+    "bar": {
+      "file": "bar.webp",
+      "place": [
+        160,
+        296,
+        2440,
+        128
+      ],
+      "standIn": true
+    },
+    "projector": {
+      "file": "projector.webp",
+      "place": [
+        1559,
+        630,
+        293,
+        267
+      ],
+      "standIn": true
+    },
+    "projector-body": {
+      "file": "projector-body.webp",
+      "place": [
+        1559,
+        630,
+        293,
+        267
+      ],
+      "standIn": true
+    },
+    "paper": {
+      "file": "paper.webp",
+      "place": [
+        448,
+        458,
+        694,
+        466
+      ],
+      "standIn": false
+    },
+    "far": {
+      "file": "far.webp",
+      "place": [
+        0,
+        0,
+        2752,
+        1536
+      ],
+      "standIn": false
+    },
+    "roster-sheet": {
+      "file": "roster-sheet.webp",
+      "place": [
+        0,
+        0,
+        800,
+        586
+      ],
+      "standIn": true
+    },
+    "clipboard": {
+      "file": "clipboard.webp",
+      "place": [
+        1912,
+        236,
+        840,
+        1124
+      ],
+      "standIn": true
+    },
+    "plate-wide": {
+      "file": "plate-wide.webp",
+      "place": [
+        134,
+        1221,
+        1247,
+        268
+      ],
+      "standIn": false
+    },
+    "plate-mid": {
+      "file": "plate-mid.webp",
+      "place": [
+        1455,
+        1273,
+        698,
+        173
+      ],
+      "standIn": false
+    },
+    "plate-small": {
+      "file": "plate-small.webp",
+      "place": [
+        2227,
+        1293,
+        389,
+        153
+      ],
+      "standIn": false
+    }
+  }
+}

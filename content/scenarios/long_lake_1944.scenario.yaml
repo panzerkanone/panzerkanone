@@ -1,0 +1,161 @@
+# The Long Lake, February 1944: a meeting of two armored columns in the snow. Original content: the
+# situation and the forces are invented for this scenario from the unit types of roster v1
+# (content/units/v1.units.yaml, each value derived from cited public facts); the board is this
+# project's own generated board "long_lake_winter" (assets/maps/long_lake_winter.map.yaml, the ground
+# of "long_lake" printed for winter), and the place names are the board's own invented names.
+# No historical engagement is depicted, and no published scenario, board, order of battle or
+# victory rule is followed or adapted.
+# A meeting engagement: a German armored battle group from Lunatal in the west and a Soviet tank
+# brigade from Sorenyn in the east race for Lunafeld and Ulmau at the south end of the frozen lake.
+# Each side holds its own village at the start. On a winter board (the lead's ruling 83, rules-v1
+# 6.10) snow keeps the trucks to the roads, and the lake bears infantry and trucks but not tanks or
+# guns. The German side moves first.
+# The set-up puts no unit in sight of an enemy unit (ruling 72 in docs/bars/M2a.md). Battle size:
+# 15 units a side, 97 points to 121.
+# Levelled on 2026-11-14 between two planning opponents at `normal` (the whole side moving, the same
+# side first every turn, 200 games a measure; docs/review/M7/winter2-handover.md has every measure).
+# The German side, moving first, takes Lunafeld; the Soviet side takes Ulmau; most games go to the
+# turn limit. With the Soviet column east of Sorenyn: 92% German. With it south of Hill 145, as here,
+# and Lunafeld worth 2: 2% German (each side then scores 3 a turn for objectives, and a tie at the turn
+# limit goes to the side that moves second). With Lunafeld worth 3: 63% German at the usual kill share
+# (a point for every two of cost), 47.5% at two for three, 40% at one for one. This file (Lunafeld
+# worth 3, three points for every five of cost): German share 49.5% (42.6 to 56.4) on seeds 1 to 200
+# and 45.0% (38.3 to 51.9) on seeds 201 to 400, mean last turn 8.0. At `hard`: 54.0% German (100
+# games). The German infantry crosses the ice now and then, about one move in two games.
+
+format: impulse-scenario/1
+id: long-lake-february-1944
+name: "The Long Lake, February 1944"
+# The level of battle this scenario is (docs/rules/rules-v1.md 1.3): the battle's Battle level.
+battle: long-lake
+level: battle
+ruleset: v1
+units: v1
+map: { id: long_lake_winter, hash: "eb7393ab20261c24506ade27e5da6433ec3925495b4a7b23ea5e6eeb753dd99b" }
+initiative: german
+freeDeployment: false
+objectives:
+  - { hex: "0716", points: 1, holder: german }   # Lunatal, where the German column comes from
+  - { hex: "1819", points: 3, holder: none }     # Lunafeld, at the south end of the lake
+  - { hex: "2217", points: 2, holder: none }     # Ulmau, at the bridge east of the lake
+  - { hex: "2814", points: 1, holder: soviet }   # Sorenyn, where the Soviet column comes from
+ending: { turns: 8, suddenDeathLead: 40, breakShare: 0.6, killShare: [3, 5] }
+sides:
+  - id: german
+    name: "German armored battle group"
+    counters: stock-a
+    orders: 3
+    zone: [["0101", "1021"]]
+    formations:
+      # A tank company on the road east of Lunatal.
+      - id: g1
+        discipline: free
+        units:
+          - { id: g1a, type: pz4h, hex: "0816" }
+          - { id: g1b, type: pz4h, hex: "0817" }
+          - { id: g1c, type: pz4h, hex: "0917" }
+      # Heavy tanks.
+      - id: g2
+        discipline: free
+        units:
+          - { id: g2a, type: tiger1e, hex: "0615" }
+          - { id: g2b, type: stug3g, hex: "0616" }
+      # Armored infantry in half-tracks.
+      - id: g3
+        discipline: free
+        units:
+          - { id: g3a, type: grenadier_co, carriedBy: g3h }
+          - { id: g3b, type: grenadier_co, carriedBy: g3i }
+          - { id: g3h, type: sdkfz251, hex: "0715" }
+          - { id: g3i, type: sdkfz251, hex: "0614" }
+      # Lunatal: a company, an anti-tank gun and the heavy mortars, with trucks.
+      - id: g4
+        discipline: free
+        units:
+          - { id: g4a, type: grenadier_co, hex: "0716" }
+          - { id: g4b, type: pak40, carriedBy: g4t }
+          - { id: g4c, type: grw42, hex: "0515" }
+          - { id: g4d, type: grenadier_co, hex: "0516" }
+          - { id: g4t, type: opel_blitz, hex: "0716" }
+          - { id: g4u, type: opel_blitz, hex: "0516" }
+  - id: soviet
+    name: "Soviet tank brigade"
+    counters: stock-b
+    orders: 3
+    zone: [["2301", "3321"]]
+    formations:
+      # A tank battalion south of Hill 145, out of sight of the lake.
+      - id: s1
+        discipline: free
+        units:
+          - { id: s1a, type: t34_76, hex: "2516" }
+          - { id: s1b, type: t34_76, hex: "2616" }
+          - { id: s1c, type: t34_76, hex: "2716" }
+          - { id: s1d, type: t34_76, hex: "2617" }
+      # Heavy tank and self-propelled guns.
+      - id: s2
+        discipline: free
+        units:
+          - { id: s2a, type: kv1, hex: "2717" }
+          - { id: s2b, type: su76m, hex: "2618" }
+          - { id: s2c, type: su76m, hex: "2718" }
+      # Motor rifles in trucks.
+      - id: s3
+        discipline: free
+        units:
+          - { id: s3a, type: rifle_co, carriedBy: s3t }
+          - { id: s3b, type: rifle_co, carriedBy: s3u }
+          - { id: s3c, type: rifle_co, hex: "2515" }
+          - { id: s3t, type: zis5, hex: "2615" }
+          - { id: s3u, type: zis5, hex: "2815" }
+      # A gun and the heavy mortars, with their trucks.
+      - id: s4
+        discipline: free
+        units:
+          - { id: s4a, type: zis3, carriedBy: s4t }
+          - { id: s4b, type: pm38, hex: "2719" }
+          - { id: s4t, type: zis5, hex: "2819" }
+
+# What a player is told before the first turn (the briefing panel). No rule reads it. The forces,
+# their points and the win conditions are not written here: the panel works them out from the units
+# above and from `ending` and `objectives`. Lunatal, Lunafeld, Ulmau, Sorenyn and this action are
+# invented: the background is period color and claims no real engagement. Original text, written for
+# this project.
+briefing:
+  title: "The Long Lake"
+  date: "February 1944"
+  place: "the Eastern Front"
+  picture: engraving-winter-trench
+  background: >-
+    A thaw is a week away, but the lake is still frozen and the snow lies deep. A German battle group
+    and a Soviet tank brigade are both sent to hold the road around the south end of the lake, and
+    neither knows the other is coming.
+  situation: >-
+    The road from Lunatal in the west runs around the south end of the long lake through the village
+    of Lunafeld, crosses the river at Ulmau and goes on to Sorenyn in the east. In this snow, trucks
+    keep to the roads. The ice will carry infantry and trucks across the lake, but not tanks or guns.
+  note: "The forces are of the kind that met that winter. The place and this action are invented."
+  sides:
+    - side: german
+      short: "German"
+      mark: cross
+      aim: "Take Lunafeld and Ulmau and hold them, and keep Lunatal. You move first: get to Lunafeld before they do."
+      formations:
+        - { id: g1, role: "tank company" }
+        - { id: g2, role: "heavy tanks" }
+        - { id: g3, role: "armored infantry" }
+        - { id: g4, role: "Lunatal" }
+    - side: soviet
+      short: "Soviet"
+      mark: hammer-sickle
+      aim: "Take Ulmau and Lunafeld and hold them, and keep Sorenyn. Their guns reach farther than yours, so close in before you fight."
+      formations:
+        - { id: s1, role: "tank battalion" }
+        - { id: s2, role: "heavy tank and self-propelled guns" }
+        - { id: s3, role: "motor rifles" }
+        - { id: s4, role: "gun and mortars" }
+  objectives:
+    - { hex: "0716", name: "Lunatal" }
+    - { hex: "1819", name: "Lunafeld" }
+    - { hex: "2217", name: "Ulmau" }
+    - { hex: "2814", name: "Sorenyn" }

@@ -1,0 +1,216 @@
+# The unit cards of roster v1: for each type its name as the roster gives it, the short name its counter prints, a one-line role, a
+# short description written from the type's facts file (the ids of the facts used are listed),
+# and its pictures. Written by `npm run unitart` (tools/unitart/) from
+# tools/unitart/descriptions.yaml and tools/unitart/manifest.yaml; never edited by hand.
+#
+# The pictures here are cut from sheets the project's owner made himself (assets/LEDGER.yaml).
+# `standIn: true` means the card's painted picture shows something else than the type (`shows` says
+# what) and is used until the type has a picture of its own. `silhouetteFrom` says where the
+# counter's silhouette came from: `drawn`, a cell of the owner's own silhouette sheets (side views and
+# drawn symbols); `picture`, reduced from the painted picture; `own`, made by the project itself.
+#
+# Not listed here and in no build: a second, working set of silhouettes in
+# assets/units/v1-placeholder/ (git-ignored), drawn from the glyphs of a third party's font (the
+# one kept, git-ignored, under source_assets/), whose terms are not established. They are used in the dev
+# server only, at the owner's word of 2026-11-12, and only for a type the owner's silhouette sheets do
+# not show: since those sheets came to cover every type the font has, the folder holds nothing.
+# (This file is carried into the client's build as text: it must never spell that font's file,
+# family or folder name, which the build check refuses.)
+format: unit-cards/1
+roster: v1
+units:
+  pz4h:
+    name: "Pz IV H"
+    counter: "Pz IV H"
+    role: "Tank platoon: five Pz IV H"
+    description: >-
+      Five Panzerkampfwagen IV Ausf. H, a 25 t tank with a crew of five. Its 7.5 cm KwK 40 L/48
+      fires a capped armour-piercing shot at 750 m/s against armour, and a high-explosive shell
+      against everything else. The hull front is 80 mm thick.
+    facts: { file: content/units/facts/pz4h.yaml, ids: [count_per_unit, mobility.combat_weight_t, crew.total, gun.designation, gun.ap_round, gun.ap_muzzle_velocity_ms, gun.he_round, armour.hull_front.thickness_mm] }
+    picture: { card: pz4h.card.png, standIn: false, shows: "A Panzer IV with the long gun and side skirts, in grey", silhouette: pz4h.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A Panzer IV with the long gun, in side view" }
+  tiger1e:
+    name: "Tiger I E"
+    counter: "Tiger I E"
+    role: "Tank platoon: four Tiger I E"
+    description: >-
+      Four Panzerkampfwagen VI Tiger Ausf. E: 57 t, with 100 mm of armour on the hull and turret
+      fronts and 80 mm on their sides. Its 8.8 cm KwK 36 L/56 fires a 10.2 kg armour-piercing shot
+      at 773 m/s. A 700 PS engine takes it to 45.4 km/h on a road.
+    facts: { file: content/units/facts/tiger1e.yaml, ids: [count_per_unit, mobility.combat_weight_t, armour.hull_front.thickness_mm, armour.turret_front.thickness_mm, armour.hull_side.thickness_mm, armour.turret_side.thickness_mm, gun.designation, gun.ap_shot_mass_kg, gun.ap_muzzle_velocity_ms, mobility.engine_power, mobility.road_speed_max_kmh] }
+    picture: { card: tiger1e.card.png, standIn: false, shows: "A Tiger I, in grey", silhouette: tiger1e.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A Tiger I in side view" }
+  stug3g:
+    name: "StuG III G"
+    counter: "StuG III G"
+    role: "Assault gun platoon: three StuG III G"
+    description: >-
+      Three Sturmgeschütz III Ausf. G, an assault gun: no turret, the 7.5 cm StuK 40 L/48 carried
+      in the hull behind 80 mm of front armour, and only 2.16 m high. It fires a 6.8 kg
+      armour-piercing shot or a 5.76 kg high-explosive shell. A battery has ten of them.
+    facts: { file: content/units/facts/stug3g.yaml, ids: [count_per_unit, traits.turretless, gun.designation, armour.hull_front.thickness_mm, traits.height_m, gun.ap_shot_mass_kg, gun.he_shell_mass_kg, battery_strength] }
+    picture: { card: stug3g.card.png, standIn: false, shows: "A StuG III with the long gun, camouflaged", silhouette: stug3g.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A StuG III with the long gun, in side view" }
+  grenadier_co:
+    name: "Grenadier company"
+    counter: "Grenadiers"
+    role: "Rifle company: 142 men on foot"
+    description: >-
+      A German rifle company of 142 men, with 96 rifles or carbines, 28 submachine guns, 13 light
+      machine guns and 2 heavy ones. The Karabiner 98k is effective to 500 m, and the MG 42 on its
+      bipod has a practical rate of 154 rounds a minute. The company's own transport is
+      horse-drawn.
+    facts: { file: content/units/facts/de_rifle_company.yaml, ids: [count_per_unit, rifles, submachine_guns, light_machine_guns, heavy_machine_guns, weapons.rifle.designation, weapons.rifle.effective_range_m, weapons.light_machine_gun.designation, weapons.light_machine_gun.practical_rate_rpm, organic_transport] }
+    picture: { card: grenadier_co.card.png, standIn: false, shows: "Four German infantrymen standing: three with rifles, one with a machine gun", silhouette: grenadier_co.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A drawn symbol for infantry: a box with its diagonals, and a cross above it" }
+  mg42:
+    name: "MG 42 platoon"
+    counter: "MG 42"
+    role: "Heavy machine-gun platoon: six MG 42s"
+    description: >-
+      A German heavy machine-gun platoon of 55 men with six MG 42s on tripods, 31 rifles or
+      carbines and 10 submachine guns. From its tripod the MG 42 fires 500 rounds a minute in
+      practice and is effective to 2,000 to 2,500 yards. The platoon's own transport is
+      horse-drawn.
+    facts: { file: content/units/facts/de_hmg_platoon.yaml, ids: [count_per_unit, heavy_machine_guns, rifles, submachine_guns, weapons.heavy_machine_gun.designation, weapons.heavy_machine_gun.practical_rate_rpm, weapons.heavy_machine_gun.effective_range_m, organic_transport] }
+    picture: { card: mg42.card.png, standIn: true, shows: "A drawn symbol for a heavy machine-gun team: the infantry box with its diagonals and an arrow rising inside it (the Soviet DShK team's symbol, borrowed as a stand-in until the owner draws a German one; the lettering above and below the box is left out)", silhouette: mg42.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A drawn symbol for a heavy machine-gun team: the infantry box with its diagonals and an arrow rising inside it (the Soviet DShK team's symbol, borrowed as a stand-in until the owner draws a German one; the lettering above and below the box is left out)" }
+  pak40:
+    name: "7.5 cm Pak 40"
+    counter: "Pak 40"
+    role: "Anti-tank gun platoon: three 7.5 cm Pak 40"
+    description: >-
+      Three 7.5 cm Panzerabwehrkanone 40, a towed anti-tank gun served by six men. It fires a 6.8
+      kg armour-piercing shot at 790 m/s and is effective to 1,800 m. In action it weighs 1,425 kg
+      and stands 1.25 m high; the platoon's transport is motorised.
+    facts: { file: content/units/facts/pak40_platoon.yaml, ids: [count_per_unit, traits.towed, crew.total, gun.designation, gun.ap_shot_mass_kg, gun.ap_muzzle_velocity_ms, gun.published_effective_range_m, weight_in_action_kg, traits.height_m, organic_transport] }
+    picture: { card: pak40.card.png, standIn: true, shows: "A small anti-tank gun with a shield and a muzzle brake, and three crew; drawn smaller than a Pak 40 and not to be told for one", silhouette: pak40.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A drawn symbol for an anti-tank gun: a barrel with two cross-bars, a shield and a trail (the calibre lettered either side of it is left out)" }
+  grw42:
+    name: "12 cm GrW 42"
+    counter: "GrW 42"
+    role: "Heavy mortar platoon: four 12 cm GrW 42"
+    description: >-
+      Four 12 cm Granatwerfer 42, the heavy mortar platoon of an infantry heavy weapons company.
+      The mortar fires indirectly: a 15.6 kg bomb to between 600 m and 6,000 m, at up to 10 rounds
+      a minute. Each has a crew of six and weighs 280 kg in action.
+    facts: { file: content/units/facts/grw42_battery.yaml, ids: [count_per_unit, mortar.designation, traits.indirect, mortar.bomb_mass_kg, mortar.min_range_m, mortar.max_range_m, mortar.max_rate_rpm, crew.total, weight_in_action_kg] }
+    picture: { card: grw42.card.png, standIn: true, shows: "An infantry mortar on its bipod and base plate with two crew kneeling; by its size a light or medium mortar, not a 12 cm one", silhouette: grw42.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A drawn symbol for a mortar: an arrow with three cross-bars on a ball (the calibre lettered beside it is left out)" }
+  opel_blitz:
+    name: "Opel Blitz 3 t"
+    counter: "Opel Blitz"
+    role: "Truck: carries men or tows a gun"
+    description: >-
+      The Opel Blitz 3.6-36 S, an unarmoured 4x2 truck with a payload of 3.31 t. Its 68 PS engine
+      gives a top speed of 85 km/h, and it marches at about 35 km/h. Among other loads it tows the
+      7.5 cm Pak 40.
+    facts: { file: content/units/facts/opel_blitz.yaml, ids: [armour, drive, payload_t, engine_power, top_speed_kmh, march_speed_kmh, tow_role] }
+    picture: { card: opel_blitz.card.png, standIn: false, shows: "A German 3 t lorry with a canvas tilt, in grey", silhouette: opel_blitz.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A lorry with a tilt, in side view" }
+  sdkfz251:
+    name: "Sd.Kfz. 251"
+    counter: "SdKfz 251"
+    role: "Armoured half-track: carries infantry"
+    description: >-
+      The Sd.Kfz. 251/1, a medium armoured half-track with an open top, a crew of two and room for
+      ten men. Its plate, 14.5 mm at the front and 8 mm at the sides, is proof against rifle and
+      machine-gun bullets. It weighs 7.81 t and reaches 52.5 km/h.
+    facts: { file: content/units/facts/sdkfz251.yaml, ids: [open_top, crew.total, troops_carried, armour.front.thickness_mm, armour.side.thickness_mm, armour.protection_against, combat_weight_t, top_speed_kmh] }
+    picture: { card: sdkfz251.card.png, standIn: false, shows: "An Sd.Kfz. 251 half-track, in grey", silhouette: sdkfz251.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "An Sd.Kfz. 251 half-track in side view" }
+  t34_76:
+    name: "T-34/76"
+    counter: "T-34/76"
+    role: "Tank company: ten T-34/76"
+    description: >-
+      Ten T-34 Model 1943, the tank with the hexagonal turret and the 76.2 mm F-34 gun. Its 45 mm
+      hull front slopes at 60 degrees from the vertical, and with 500 hp for 30.9 t it reaches 54
+      km/h on a road. It has a crew of four, two of them in the turret.
+    facts: { file: content/units/facts/t34_76_m1943.yaml, ids: [count_per_unit, gun.designation, armour.hull_front.thickness_mm, armour.hull_front.angle_from_vertical_deg, mobility.engine_power, mobility.combat_weight_t, mobility.road_speed_max_kmh, crew.total, crew.in_turret] }
+    picture: { card: t34_76.card.png, standIn: false, shows: "A T-34 with the 76 mm gun", silhouette: t34_76.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A T-34 with the 76 mm gun, in side view" }
+  kv1:
+    name: "KV-1"
+    counter: "KV-1"
+    role: "Tank company: five KV-1"
+    description: >-
+      Five KV-1 Model 1942: 52 t, with 75 mm of plate on the hull front and sides and a cast
+      turret 95 mm thick. It carries the 76.2 mm ZiS-5 gun and a crew of five. Its 600 hp engine
+      gives it no more than 28 km/h on a road.
+    facts: { file: content/units/facts/kv1_m1942.yaml, ids: [count_per_unit, mobility.combat_weight_t, armour.hull_front.thickness_mm, armour.hull_side.thickness_mm, armour.turret_front.thickness_mm, armour.turret_front.cast, gun.designation, crew.total, mobility.engine_power, mobility.road_speed_max_kmh] }
+    picture: { card: kv1.card.png, standIn: false, shows: "A KV heavy tank", silhouette: kv1.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A KV-1 in side view" }
+  su76m:
+    name: "SU-76M"
+    counter: "SU-76M"
+    role: "Self-propelled gun battery: four SU-76M"
+    description: >-
+      Four SU-76M, a light self-propelled gun: the 76.2 mm ZiS-3 on a tracked chassis, in a
+      fighting compartment with no roof. It weighs 10.5 t, with 25 mm of plate on the hull front
+      and 15 mm on the sides. It can also fire indirectly, to nearly 13 km.
+    facts: { file: content/units/facts/su76m.yaml, ids: [count_per_unit, gun.designation, traits.open_top, mobility.combat_weight_t, armour.hull_front.thickness_mm, armour.hull_side.thickness_mm, traits.indirect_capable] }
+    picture: { card: su76m.card.png, standIn: false, shows: "A light self-propelled gun with an open-topped fighting compartment, two of its crew showing", silhouette: su76m.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A light self-propelled gun with its fighting compartment at the rear, in side view" }
+  rifle_co:
+    name: "Rifle company"
+    counter: "Rifles"
+    role: "Rifle company: 143 men on foot"
+    description: >-
+      A Soviet rifle company of 143 men under the establishment of December 1942, with 103 rifles,
+      12 submachine guns, 18 light machine guns, one heavy machine gun and two 50 mm mortars. The
+      Mosin-Nagant rifle is effective to 500 m and the DP light machine gun to 800 m. A one-horse
+      cart carries the heavy machine gun; the company has no motor vehicle.
+    facts: { file: content/units/facts/su_rifle_company.yaml, ids: [count_per_unit, rifles, submachine_guns, light_machine_guns, heavy_machine_guns, light_mortars, weapons.rifle.designation, weapons.rifle.effective_range_m, weapons.light_machine_gun.designation, weapons.light_machine_gun.effective_range_m, organic_transport] }
+    picture: { card: rifle_co.card.png, standIn: false, shows: "Four Soviet riflemen on a grass base", silhouette: rifle_co.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A drawn symbol for infantry: a box with its diagonals, and a cross above it (the flourishes and lettering under the box are left out)" }
+  maxim:
+    name: "Maxim platoon"
+    counter: "Maxim"
+    role: "Heavy machine-gun platoon: three Maxims"
+    description: >-
+      A Soviet machine-gun platoon of 18 men under the establishment of December 1942: three Maxim
+      M1910/30 guns on wheeled mounts, each with a crew of five, and 14 rifles. The Maxim fires
+      250 to 300 rounds a minute in practice, and its manual has the guns of a platoon firing
+      together out to 1,500 m. Two horse wagons carry the platoon.
+    facts: { file: content/units/facts/su_hmg_platoon.yaml, ids: [count_per_unit, heavy_machine_guns, rifles, weapons.heavy_machine_gun.designation, weapons.heavy_machine_gun.crew, weapons.heavy_machine_gun.practical_rate_rpm, weapons.heavy_machine_gun.effective_range_m, organic_transport] }
+    picture: { card: maxim.card.png, standIn: true, shows: "A drawn symbol for a machine-gun team: the infantry box with its diagonals, and a Maxim on its wheeled mount drawn in its lower part (the lettering above and below the box is left out)", silhouette: maxim.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A drawn symbol for a machine-gun team: the infantry box with its diagonals, and a Maxim on its wheeled mount drawn in its lower part (the lettering above and below the box is left out)" }
+  zis3:
+    name: "ZiS-3"
+    counter: "ZiS-3"
+    role: "Divisional gun battery: four ZiS-3"
+    description: >-
+      Four 76 mm divisional guns M1942 (ZiS-3), each served by seven men. The gun fires a 6.2 kg
+      high-explosive shell or a 6.3 kg armour-piercing shot, up to 25 rounds a minute, and the
+      shot pierces 67 mm at 1,000 m. It weighs 1,116 kg in action and is towed by truck or moved
+      by hand.
+    facts: { file: content/units/facts/zis3_battery.yaml, ids: [count_per_unit, gun.designation, crew.total, gun.he_shell_mass_kg, gun.ap_shot_mass_kg, gun.rate_of_fire_rpm, gun.published_penetration, weight_in_action_kg, organic_transport] }
+    picture: { card: zis3.card.png, standIn: false, shows: "A ZiS-3 divisional gun with two crew, on a grass base", silhouette: zis3.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A drawn symbol for a gun: a barrel with two cross-bars, a shield and a trail (the calibre and the word lettered either side of it are left out)" }
+  pm38:
+    name: "120-PM-38"
+    counter: "PM-38"
+    role: "Regimental mortar battery: six 120 mm mortars"
+    description: >-
+      Six 120 mm regimental mortars M1938, each with a crew of six. The mortar fires indirectly: a
+      15.9 kg bomb to between 460 m and 5,700 m, at up to 10 rounds a minute. It weighs 280 kg in
+      action and travels on a two-wheeled limber behind a horse team or a vehicle.
+    facts: { file: content/units/facts/pm38_battery.yaml, ids: [count_per_unit, mortar.designation, crew.total, traits.indirect, mortar.bomb_mass_kg, mortar.min_range_m, mortar.max_range_m, mortar.max_rate_rpm, weight_in_action_kg, organic_transport] }
+    picture: { card: pm38.card.png, standIn: true, shows: "The same infantry mortar and two kneeling crew as the German sheet has (the crew are drawn in German helmets); not a 120 mm mortar", silhouette: pm38.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A drawn symbol for a mortar: an arrow with three cross-bars on a ball (the title lettered across its tip and the calibre beside it are left out)" }
+  zis5:
+    name: "ZIS-5"
+    counter: "ZIS-5"
+    role: "Truck: carries men or tows a gun"
+    description: >-
+      The ZIS-5, an unarmoured truck with a payload of 3 t. Its 73 hp engine gives a top speed of
+      60 km/h. It carries 25 men, and serves as a tractor for light artillery.
+    facts: { file: content/units/facts/zis5_truck.yaml, ids: [armour, payload_t, engine_power, top_speed_kmh, troops_carried, tow_role] }
+    picture: { card: zis5.card.png, standIn: false, shows: "A Soviet 3 t lorry with an open body", silhouette: zis5.silhouette.png, silhouetteFrom: drawn, silhouetteShows: "A lorry with an open body, in side view" }
+  hf1:
+    name: "Hf. 1 wagon"
+    counter: "Hf. 1"
+    role: "Two-horse field wagon"
+    description: >-
+      The combat wagon of a German rifle company, which has three: the light field wagon Hf. 1,
+      drawn by two horses, with seats for two men. It weighs 0.61 t empty and carries half a
+      tonne, such as two MG 34 with their ammunition and a 5 cm mortar. Its horses walk at 7 km/h,
+      and a day's march is 19 to 24 km.
+    facts: { file: content/units/facts/de_horse_wagon.yaml, ids: [per_rifle_company, draught_horses, crew.seats, empty_weight_t, payload_t, carries, speed.walk_kmh, speed.daily_march_km] }
+    picture: { card: hf1.card.png, standIn: false, shows: "A two-horse, four-wheeled field wagon with its driver", silhouette: hf1.silhouette.png, silhouetteFrom: picture, silhouetteShows: "A two-horse, four-wheeled field wagon with its driver" }
+  cart:
+    name: "One-horse cart"
+    counter: "Cart"
+    role: "One-horse cart"
+    description: >-
+      The two-wheeled cart of the Soviet rifle battalion, drawn by one horse, with one driver. It
+      carries about 0.2 t: in a rifle company, the heavy machine gun. A battalion has seventeen of
+      them, and a day's march is 32 km.
+    facts: { file: content/units/facts/su_horse_cart.yaml, ids: [draught_horses, crew.total, payload_t, carries, per_rifle_battalion, speed.daily_march_km] }
+    picture: { card: cart.card.png, standIn: true, shows: "Two horses drawing a two-wheeled limber; the roster's cart has one horse", silhouette: cart.silhouette.png, silhouetteFrom: picture, silhouetteShows: "Two horses drawing a two-wheeled limber; the roster's cart has one horse" }

@@ -1,0 +1,84 @@
+schema: unit-facts/1
+id: opel_blitz
+designation: Opel Blitz 3 t
+full_name: Opel Blitz 3.6-36 S, 3-tonne 4x2 truck (4x4 version Blitz A, type 6700 A)
+side: german
+kind: carrier
+setting: Eastern Front, 1943
+facts:
+  top_speed_kmh:
+    value: 85
+    unit: km/h
+    source: wp-de-blitz36
+    locator: "infobox VMax = 85 km/h (cites Opel factory data, 'Werksangaben', and the vehicle manual D. 669/19)"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "a factory road figure; the research moves wheeled columns at half top speed on roads"
+  engine_power:
+    value: 68
+    unit: PS
+    source: wp-de-blitz36
+    locator: "infobox PMax = 68 PS"
+    retrieved: 2026-11-11
+    confidence: verified
+    alternatives:
+      - {value: 68, unit: hp (brake), source: tme30-451-hw, locator: "Chapter VIII, 3.a (2): 'developing about 68 brake horsepower'", retrieved: 2026-11-11, confidence: verified}
+  empty_weight_t: {value: 2.48, unit: t, source: wp-de-blitz36, locator: "Eigengewicht 2,48 t (3,6-36 S)", retrieved: 2026-11-11, confidence: verified}
+  payload_t: {value: 3.31, unit: t, source: wp-de-blitz36, locator: "Nutzlast 3,31 t (3,6-36 S); 'ein kleiner Lkw für 3 Tonnen Nutzlast'", retrieved: 2026-11-11, confidence: verified}
+  troops_carried:
+    value: null
+    unit: men
+    source: null
+    locator: "no figure in any page opened"
+    retrieved: 2026-11-11
+    confidence: unverified
+    note: >-
+      wp-de-blitz36 describes a troop-carrier body ('Mannschaftstransportwagen') with a bench along
+      each side but gives no seat count. Web-search summaries of model-kit and forum pages give 10 in
+      the back plus 2 in the cab, one gives 12; none is a usable source. Gap. Searched again on
+      2026-11-11: wp-de Opel Blitz (rev. 259703945), wp-en Opel Blitz, TM-E 30-451 Chapter VIII
+      3.a-b, the Catalog of Enemy Ordnance truck entries (coeo-1945; its Kfz. 70 personnel carrier
+      is a different chassis and leaves 'Seating capacity' blank) and MIS Special Series No. 4
+      (the motorised infantry regiment, whose organisation is drawn as charts). No seat count.
+  tow_capacity:
+    value: null
+    unit: kg
+    source: null
+    locator: "not found"
+    retrieved: 2026-11-11
+    confidence: unverified
+    note: "gap; the Pak 40 platoon table lists motor vehicles without naming them (pak40_platoon.yaml)"
+  tow_role:
+    value: "prime mover for the 7.5 cm Pak 40, among others"
+    unit: description
+    source: wp-en-pak40
+    locator: "'The usual prime movers were Opel Blitz lorry, Raupenschlepper Ost tracked tractor, SdKfz 11 medium halftrack and SdKfz 251 armoured halftrack.'"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "the tow capacity in kg remains a gap (tow_capacity)"
+  crew:
+    total:
+      value: null
+      unit: men
+      source: null
+      locator: "not found"
+      retrieved: 2026-11-11
+      confidence: unverified
+      note: >-
+        Gap. wp-de-blitz36 leaves the infobox's 'Besatzung' empty; no other source opened gives a
+        crew. A 1943 German table (Panzerworld's transcription of K.St.N. 1113, a different unit)
+        lists a 'Kraftwagenfahrer für Lkw' per truck and sometimes a 'Beifahrer für Lkw', but it
+        does not name the Opel Blitz and was not taken as a source.
+  march_speed_kmh:
+    value: 35.4
+    unit: km/h
+    source: tme30-451-hw
+    locator: "Chapter VI, Section VI, 3.b (2), p. VI-26, average speeds of march columns in miles per hour: 'Trucks 22'; 'Trucks with trailers 16'"
+    retrieved: 2026-11-11
+    confidence: verified
+    note: "German march columns in general, not the Opel Blitz alone. With a trailer or a towed gun: 25.7 km/h (16 mph)"
+    alternatives:
+      - {value: 25.7, unit: km/h, source: tme30-451-hw, locator: "same table: 'Trucks with trailers 16'", retrieved: 2026-11-11, confidence: verified}
+    preferred: "35.4 for a truck column carrying troops or loads; 25.7 when it tows"
+  armour: {value: none, unit: description, source: wp-de-blitz36, locator: "soft-skinned cargo truck ('Pritschen-Lastkraftwagen')", retrieved: 2026-11-11, confidence: verified}
+  drive: {value: "4x2 (Blitz A: 4x4)", unit: description, source: tme30-451-hw, locator: "Chapter VIII, 3.a 'The two rear wheels are the driving wheels'; 3.b 'OPEL BLITZ 3-TON TRUCK (TYPE 6700 A). This is essentially the four-wheel drive version'", retrieved: 2026-11-11, confidence: verified}

@@ -1,0 +1,25 @@
+{
+  "format": "fx-units/1",
+  "note": "Which effects a counter's unit sets off, by the kind its face carries (and, where one type differs from its kind, by the id of its picture: `art`). fire: how its fire is shown (gun: a flash, a hanging puff and a shell's streak; small: a run of tracers; lob: a thump of smoke and a round that arrives from above; none: it does not fire). armour: a round arriving on it strikes sparks (true) or throws up dirt beside it (false). dust: what it raises when it moves (tracked, wheeled, none). kill: how it ends (burn: a fireball, then a burning wreck under a column of smoke; blast: a burst of high explosive and smoke that hangs a few seconds). Kinds: the roster's (content/units/v1.units.yaml) and the reference ruleset's unit ids (its faces carry the id as their kind).",
+  "kinds": {
+    "tank": { "fire": "gun", "armour": true, "dust": "tracked", "kill": "burn" },
+    "assault_gun": { "fire": "gun", "armour": true, "dust": "tracked", "kill": "burn" },
+    "self_propelled_gun": { "fire": "gun", "armour": true, "dust": "tracked", "kill": "burn" },
+    "towed_gun": { "fire": "gun", "armour": false, "dust": "none", "kill": "blast" },
+    "infantry": { "fire": "small", "armour": false, "dust": "none", "kill": "blast" },
+    "machine_gun": { "fire": "small", "armour": false, "dust": "none", "kill": "blast" },
+    "mortar": { "fire": "lob", "armour": false, "dust": "none", "kill": "blast" },
+    "truck": { "fire": "none", "armour": false, "dust": "wheeled", "kill": "burn" },
+    "half_track": { "fire": "small", "armour": true, "dust": "tracked", "kill": "burn" },
+    "wagon": { "fire": "none", "armour": false, "dust": "none", "kill": "blast" },
+    "battle_tank": { "fire": "gun", "armour": true, "dust": "tracked", "kill": "burn" },
+    "light_tank": { "fire": "gun", "armour": true, "dust": "tracked", "kill": "burn" },
+    "tank_destroyer": { "fire": "gun", "armour": true, "dust": "tracked", "kill": "burn" },
+    "armoured_car": { "fire": "small", "armour": true, "dust": "wheeled", "kill": "burn" },
+    "rifle_platoon": { "fire": "small", "armour": false, "dust": "none", "kill": "blast" },
+    "mortar_section": { "fire": "lob", "armour": false, "dust": "none", "kill": "blast" },
+    "antitank_gun": { "fire": "gun", "armour": false, "dust": "none", "kill": "blast" }
+  },
+  "art": {},
+  "other": { "fire": "gun", "armour": false, "dust": "none", "kill": "blast" }
+}

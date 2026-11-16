@@ -1,0 +1,111 @@
+schema: unit-facts/1
+id: su_rifle_company
+designation: Rifle company (Soviet rifle regiment)
+full_name: Strelkovaya rota, rifle battalion of a rifle regiment, establishment (shtat) 04/551 of 10 December 1942
+side: soviet
+kind: infantry
+setting: Eastern Front, 1943
+facts:
+  count_per_unit:
+    value: 143
+    unit: men
+    source: bs-rifle-bn-dec42
+    locator: "p. 1: 'Three Rifle Companies, each 7 Officers, 136 men'; p. 2 summary table, 'Total, Rifle Company', Total all ranks 143"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: >-
+      The research asked for 'the December 1942 establishment'. Shtat 04/551 is the regiment's table
+      of 10 December 1942 (wp-ru-rifle-regt: 'утверждён штат № 04/551, в соответствии с которым
+      формировались ... стрелковые полки вплоть до конца 1944 года'); 04/550 is the division's. The
+      original table was not opened.
+    alternatives:
+      - {value: 141, unit: men, source: bs-rifle-bn-dec42-amended, locator: "p. 2 summary, 'early 1944 (as amended)', Total, Rifle Company 141", retrieved: 2026-11-11, confidence: secondary, note: "one political officer and one deputy removed; one rifle platoon re-armed as a submachine-gun platoon"}
+      - {value: 141, unit: men, source: at-rifle-co-04-551, locator: "'Итого в роте - 141 человек'", retrieved: 2026-11-11, confidence: secondary, note: "describes itself as the 04/551 company of 10.12.1942 but matches Kennedy's amended version"}
+    preferred: >-
+      143 (the table as issued in December 1942). wp-ru-rifle-regt says the 15 July 1943 change
+      'связанные с уменьшением количества винтовок и увеличением пистолетов-пулемётов', which
+      explains the amended table; use it for scenarios after mid-1943.
+  rifles:
+    value: 103
+    unit: rifles (97 rifles or carbines + 6 sniper rifles)
+    source: bs-rifle-bn-dec42
+    locator: "p. 2 summary, Total, Rifle Company: Rifles 97, Sniper rifles 6"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: "most rifles 'authorised an SVT-40 rifle' (p. 6 footnote); at-rifle-co-04-551 adds that in early 1943 Mosin rifles were what was actually available"
+    alternatives:
+      - {value: 68, unit: rifles (62 + 6 sniper), source: bs-rifle-bn-dec42-amended, locator: "p. 2, Total, Rifle Company: Rifles 62, Sniper rifles 6", retrieved: 2026-11-11, confidence: secondary}
+      - {value: 68, unit: rifles (62 + 6 sniper), source: at-rifle-co-04-551, locator: "'62 винтовки', '6 снайперских винтовок'", retrieved: 2026-11-11, confidence: secondary}
+  submachine_guns:
+    value: 12
+    unit: submachine guns
+    source: bs-rifle-bn-dec42
+    locator: "p. 2, Total, Rifle Company: Submachine guns 12 (4 per rifle platoon)"
+    retrieved: 2026-11-11
+    confidence: secondary
+    alternatives:
+      - {value: 51, unit: submachine guns, source: bs-rifle-bn-dec42-amended, locator: "p. 2, Total, Rifle Company: Submachine guns 51; note 'delete 23 rifles and increase submachine guns from 9 to 32'", retrieved: 2026-11-11, confidence: secondary}
+      - {value: 51, unit: submachine guns, source: at-rifle-co-04-551, locator: "'51 пистолет-пулемёт'", retrieved: 2026-11-11, confidence: secondary}
+    preferred: "12 as issued; 51 after the 1943 amendment. Matters only for close combat (the research weights submachine guns 2)"
+  light_machine_guns:
+    value: 18
+    unit: guns
+    source: bs-rifle-bn-dec42
+    locator: "p. 2, Total, Rifle Company: Light machine guns 18 (6 per rifle platoon)"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: "same 18 in the amended table and in at-rifle-co-04-551 ('18 ручных пулемётов ДП')"
+  heavy_machine_guns:
+    value: 1
+    unit: guns
+    source: bs-rifle-bn-dec42
+    locator: "p. 2, Machine Gun Squad: Heavy machine guns 1; Total, Rifle Company 1"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: "at-rifle-co-04-551: 'Станковый пулемёт \"максим\" - 1'. The battalion machine-gun company holds 9 more"
+  light_mortars:
+    value: 2
+    unit: 50 mm mortars
+    source: bs-rifle-bn-dec42
+    locator: "p. 1: 'Mortar Platoon (1 Officer, 6 men) - (two 50-mm mortars)'"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: "recorded because the company owns them; the research's formulas have no input for company mortars"
+  short_range_antitank_weapons:
+    value: 0
+    unit: weapons on the company table
+    source: bs-rifle-bn-dec42
+    locator: "p. 2, Total, Rifle Company: Anti-tank rifles 0; the battalion's Anti-tank Rifle Platoon holds 9"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: "the 1942 battalion AT rifle company was cut to a platoon of 9 rifles under 04/551 (wp-ru-rifle-regt, 1942-1944)"
+  organic_transport:
+    value: "horse-drawn: one one-horse cart for the heavy machine gun; no motor vehicles"
+    unit: description
+    source: bs-rifle-bn-dec42
+    locator: "p. 2, Transport rows, Total, Rifle Company: Draught horses 1, Carts 1"
+    retrieved: 2026-11-11
+    confidence: secondary
+    note: "the company marched; the ZIS-5 file records that the truck could seat 25 men"
+
+  weapons:
+    rifle:
+      designation: {value: "Mosin-Nagant M1891/30 (SVT-40 authorised)", unit: name, source: bs-rifle-bn-dec42, locator: "p. 6: '*authorised an SVT-40 rifle'", retrieved: 2026-11-11, confidence: secondary}
+      effective_range_m: {value: 500, unit: m, source: wp-en-mosin, locator: "infobox range: '500 m, 850 m with optical sights'", retrieved: 2026-11-11, confidence: verified}
+    light_machine_gun:
+      designation: {value: "DP (Degtyaryov)", unit: name, source: at-rifle-co-04-551, locator: "'пулемет ДП' in each squad", retrieved: 2026-11-11, confidence: secondary}
+      practical_rate_rpm:
+        value: 80
+        unit: rounds per minute
+        source: wp-ru-dp
+        locator: "infobox rate: '500—600; 80 (боевая)' (cites Краткое руководство службы, 7,62-мм ручные пулемёты ДП и ДПМ, 1946)"
+        retrieved: 2026-11-11
+        confidence: verified
+        note: "combat rate; cyclic 550 rpm (wp-en-dp). 47-round pan magazine (wp-en-dp)"
+      effective_range_m: {value: 800, unit: m, source: wp-ru-dp, locator: "infobox range 800; light bullet 'для поражения живой силы противника на дальности до 800 м'", retrieved: 2026-11-11, confidence: verified, note: "wp-en-dp infobox range 800 m"}
+    heavy_machine_gun:
+      designation: {value: "Maxim M1910/30", unit: name, source: at-rifle-co-04-551, locator: "'Станковый пулемёт \"максим\"'", retrieved: 2026-11-11, confidence: secondary}
+      practical_rate_rpm: {value: "250-300", unit: rounds per minute, source: wp-ru-maxim, locator: "'боевая скорострельность составляет 250—300 выстрелов в минуту'; cyclic 600", retrieved: 2026-11-11, confidence: verified}
+      effective_range_m: {value: 2700, unit: m, source: wp-en-pm1910, locator: "infobox range 2700 m, max 5000 m (cites the Quartermaster Section page)", retrieved: 2026-11-11, confidence: verified, note: "a sight-range figure; not comparable with the German 'effective range' of 1,829-2,286 m. Flag for the deriver"}
+    submachine_gun:
+      designation: {value: "PPSh-41", unit: name, source: null, locator: "the tables say 'submachine gun' without a model", retrieved: 2026-11-11, confidence: unverified, note: "the standard type (wp-en PPSh-41 was read: effective range 150-200 m, cyclic 1,250 rpm) but no table names it"}

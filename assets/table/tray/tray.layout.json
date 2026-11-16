@@ -1,0 +1,141 @@
+{
+  "format": "tray-layout/1",
+  "about": "The counter tray's numbers, written by tools/tray/build_tray.py from tools/tray/tray.json. Lengths in h. The tray's own frame: x along its length, y across, z up from its underside; the origin is the middle of its footprint. A rectangle is x0, y0, x1, y1.",
+  "size": [
+    6.66,
+    2.86,
+    0.42
+  ],
+  "cornerRadius": 0.11,
+  "rim": 0.42,
+  "walls": {
+    "outer": 0.15,
+    "divider": 0.12
+  },
+  "floor": 0.075,
+  "wells": [
+    {
+      "id": 0,
+      "column": 0,
+      "row": 0,
+      "rect": [
+        -3.18,
+        -1.28,
+        -2.18,
+        -0.06
+      ],
+      "floor": 0.075
+    },
+    {
+      "id": 1,
+      "column": 0,
+      "row": 1,
+      "rect": [
+        -3.18,
+        0.06,
+        -2.18,
+        1.28
+      ],
+      "floor": 0.075
+    },
+    {
+      "id": 2,
+      "column": 1,
+      "row": 0,
+      "rect": [
+        -2.06,
+        -1.28,
+        -1.06,
+        -0.06
+      ],
+      "floor": 0.075
+    },
+    {
+      "id": 3,
+      "column": 1,
+      "row": 1,
+      "rect": [
+        -2.06,
+        0.06,
+        -1.06,
+        1.28
+      ],
+      "floor": 0.075
+    },
+    {
+      "id": 4,
+      "column": 2,
+      "row": 0,
+      "rect": [
+        -0.94,
+        -1.28,
+        0.06,
+        -0.06
+      ],
+      "floor": 0.075
+    },
+    {
+      "id": 5,
+      "column": 2,
+      "row": 1,
+      "rect": [
+        -0.94,
+        0.06,
+        0.06,
+        1.28
+      ],
+      "floor": 0.075
+    },
+    {
+      "id": 6,
+      "column": 3,
+      "row": 0,
+      "rect": [
+        0.18,
+        -1.28,
+        1.18,
+        -0.06
+      ],
+      "floor": 0.075
+    },
+    {
+      "id": 7,
+      "column": 3,
+      "row": 1,
+      "rect": [
+        0.18,
+        0.06,
+        1.18,
+        1.28
+      ],
+      "floor": 0.075
+    }
+  ],
+  "columns": 4,
+  "rows": 2,
+  "felt": {
+    "rect": [
+      1.3,
+      -1.28,
+      3.18,
+      1.28
+    ],
+    "floor": 0.09,
+    "pad": 0.015
+  },
+  "counter": {
+    "side": 0.82,
+    "thickness": 0.095,
+    "stack": 3
+  },
+  "mesh": {
+    "file": "tray.mesh.json",
+    "vertices": 1644,
+    "triangles": 2250
+  },
+  "texture": {
+    "file": "tray.basecolor.png",
+    "size": 2048,
+    "side": 6.92709
+  }
+}

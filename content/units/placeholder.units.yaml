@@ -1,0 +1,38 @@
+# A placeholder unit file for Formation Impulse (format impulse-units/1), until package B's
+# roster, generated from cited facts, replaces it. Plain invented types and invented values,
+# named for what they are; no designation, no nation. Values are in steps, three to a
+# doubling (spec 2.2), and of the order the real roster will have (medium tank move 8,
+# fast tank 10, foot 4). Revision 2 of the rules: every type says whether it assaults,
+# overruns, rides and carries (2.1); the truck and the half-track are transports, units of
+# their own (section 14). Checked on load by engine/rulesets/impulse/units.ts.
+
+format: impulse-units/1
+id: placeholder
+types:
+  - { id: medium_tank, name: "Medium tank", kind: tank, count: 5,
+      ap: 8, he: 6, range: 8, defense: 8, class: hard, move: 8, mover: tracked, close: 4, cost: 10,
+      assaults: false, overruns: true, rides: false, carries: 0 }
+  - { id: fast_tank, name: "Fast tank", kind: tank, count: 5,
+      ap: 6, he: 5, range: 6, defense: 6, class: hard, move: 10, mover: tracked, close: 3, cost: 7,
+      assaults: false, overruns: true, rides: false, carries: 0 }
+  - { id: assault_gun, name: "Assault gun", kind: assault_gun, count: 4,
+      ap: 9, he: 7, range: 8, defense: 9, class: hard, move: 8, mover: tracked, close: 3, cost: 9,
+      assaults: false, overruns: true, rides: false, carries: 0 }
+  - { id: rifle_company, name: "Rifle company", kind: infantry, count: 100,
+      ap: 2, he: 7, range: 3, defense: 6, class: soft, move: 4, mover: foot, close: 8, cost: 6,
+      assaults: true, overruns: false, rides: true, carries: 0 }
+  - { id: antitank_gun, name: "Anti-tank gun", kind: towed_gun, count: 4,
+      ap: 10, he: 4, range: 8, defense: 5, class: soft, move: 0, mover: towed, close: 1, cost: 6,
+      assaults: false, overruns: false, rides: true, carries: 0 }
+  - { id: field_battery, name: "Field battery", kind: towed_gun, count: 4,
+      ap: 0, he: 9, range: 20, defense: 4, class: soft, move: 0, mover: towed, close: 0, cost: 8,
+      indirect: { minRange: 3 }, assaults: false, overruns: false, rides: true, carries: 0 }
+  - { id: mortar_section, name: "Mortar section", kind: mortar, count: 6,
+      ap: 0, he: 7, range: 10, defense: 5, class: soft, move: 2, mover: foot, close: 2, cost: 5,
+      indirect: { minRange: 1 }, assaults: false, overruns: false, rides: true, carries: 0 }
+  - { id: truck, name: "Truck", kind: truck, count: 10,
+      ap: 0, he: 0, range: 0, defense: 2, class: soft, move: 12, mover: wheeled, close: 0, cost: 2,
+      assaults: false, overruns: false, rides: false, carries: 1 }
+  - { id: half_track, name: "Half-track", kind: half_track, count: 10,
+      ap: 0, he: 3, range: 3, defense: 3, class: hard, move: 10, mover: tracked, close: 2, cost: 4,
+      assaults: false, overruns: false, rides: false, carries: 1 }

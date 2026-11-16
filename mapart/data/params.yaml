@@ -1,0 +1,315 @@
+# Map art parameters: the base of Milestone 3b (the plain quality of 3a with the owner's five changes).
+#
+# Every size is in h, one hex across flats (the distance between the centres of
+# two hexes that share a side). R is centre to corner. Angles are in
+# degrees. Tones run from 0 (bare stock) to 1 (the plate's full ink).
+#
+# Checked on load by mapart/params.ts: every key is required, an unknown key is
+# refused, and each problem is named with its place. Nothing here is code.
+format: mapart-params/1
+
+# Which ink plate carries each element (the starting assignment of ink table A2).
+plates:
+  ground: ground
+  wash: relief
+  fieldTint: straw
+  furrow: brown
+  swampTint: blue
+  swampWater: blue
+  swampReed: green
+  rough: brown
+  river: blue
+  canopy: green
+  buildingOutline: key
+  separator: brown
+  ridge: brown
+  crest: red
+  roadCasing: brown
+  bridge: key
+  spotHeight: red
+  townName: key
+  # The plates a road fill knocks out, besides the casing's own, so a road is bare stock.
+  roadKnockout: [ground, relief, straw, green, blue, red]
+
+# Decimal places kept for every coordinate in the list (5 is 0.00001 h).
+precision: 5
+
+ground:
+  bleed: 0.05            # the ground plate runs this far past the board rectangle
+
+wash:
+  ringOffset: 0.55       # the fill ring runs this far below the crest...
+  feather: 0.5           # ...with a soft band this wide centred on it: full to 0.3 h, gone by 0.8 h
+  eraseFeather: 0.06     # the cut-back over the hilltops is all but crisp: its soft band hides under the crest line
+  tone: 0.9
+  gridStep: 0.04         # sampling step for the outline of the wash
+  simplify: 0.003        # largest error allowed when the outline is thinned
+  mergeDistance: 1.2     # hills whose crests come this close share one wash op
+
+hillLines:
+  crestHalfWidth: 0.028
+  ridgeHalfWidth: 0.024
+  separatorHalfWidth: 0.022
+
+spotHeight:
+  triangleWidth: 0.15
+  triangleHeight: 0.13
+  numberSize: 0.2        # em size of the figures
+  gap: 0.035             # between triangle and number
+  clearance: 0.05        # no part of a canopy comes nearer the box round the mark than this
+  woodedClearance: 0.032 # ...but this near, for the trees added to fill a one-hex wooded hilltop that carries a number
+
+roads:
+  casingHalfWidth: 0.0475
+  fillHalfWidth: 0.029
+  tangentBlend: 0.5      # 0 follows the chord, 1 crosses every hexside square
+  handle: 0.38           # Bezier handle, as a share of the knot-to-knot distance
+  wobble: 0.012
+  segmentsPerHex: 16
+  offMapLength: 1.0      # how far a road or river runs on past the side where it leaves
+  casingTone: 1          # the casing, the two lines either side of the bare road, at the plate's full ink
+
+rivers:
+  bankHalfWidth: 0.044   # water half-width plus a bank 0.012 h wider on each side
+  waterHalfWidth: 0.032
+  bankTone: 1
+  waterTone: 0.62
+  tangentBlend: 0.5
+  handle: 0.38
+  meander: 0.05
+  segmentsPerHex: 20
+  tributaryWidth: 0.72   # a river that ends on another river (a junction) is drawn this share of a river's widths
+  confluence: 0.35       # ...and where it meets that river it has turned this far into the river's flow (0 straight in, 1 along it)
+  springWidth: 0.6       # a stream that rises at a spring (the map's springs) is drawn this share of a river's widths
+  springTaper: 1.2       # ...and widens from nothing over this length from its spring (h)
+
+# Standing water (a map's `water` cover; mapart/water.ts): a lake or a sea drawn as one body with a
+# shore, from the river's own plate. Read only by a map that has water.
+water:
+  # Which treatment is drawn. Each is flat tints of the river's ink inside a keyline shore.
+  #   flat    one tint
+  #   lines   a lighter tint, and fine lines along the shore, as old printed maps have
+  #   depth   two tones: a pale band along the shore, a deeper tone from a little way offshore
+  #   deep    three: those two, and a darker one for open water away from land (a sea; a lake only if it is broad)
+  treatment: deep
+  gridStep: 0.05         # sampling step of the shore's field
+  reach: 3.4             # the field is worked this far past a body's hexes: a sea closes out there, two hexes off the board
+  # Set on four boards (a lake, an isthmus, a coast, the test board; 286 water hexes): the loosest shore
+  # that still draws every water hex at least half water (the least is 0.57) and no land hex beside water
+  # more than a third water (the most is 0.25). A player reads a hex by what most of it is.
+  smooth: 0.4            # the field is blurred over this distance: the zigzag of the hex outline becomes a run of shore
+  wobble: 0.11           # the shore strays this far either way...
+  wobblePitch: 2.3       # ...over a reach of about this length
+  centreHold: 0.45       # but within this distance of a hex's middle the field is held to that hex: water there if the hex is water
+  centreLevel: 0.17      # ...at this level at the middle (the field falls by 2 a hex): more than twice the inset, less than twice the inset and the first offset offshore
+  inset: 0.02            # the shore lies this far inside the outline of the water hexes
+  simplify: 0.004        # largest error allowed when a ring is thinned
+  shoreHalfWidth: 0.018  # the keyline, centred on the shore; the tint covers its inner half
+  # The water's tones, each by name: tints of the river's ink (plates.river, the plate `blue` of the ink
+  # table), printed flat. With the ink table and the rivers' two tones above they are every colour water
+  # has; none is a number in the drawing code.
+  shoreTone: 1           # the keyline: a river's bank tone
+  flat: { tone: 0.5 }
+  lines: { tone: 0.4, offsets: [0.07, 0.16, 0.28], tones: [0.95, 0.8, 0.65], halfWidths: [0.007, 0.006, 0.005] }
+  depth:                 # treatments `depth` and `deep`
+    shallowTone: 0.36    # the pale band along the shore
+    offshoreFrom: 0.25   # ...which reaches this far offshore
+    offshoreTone: 0.52   # the water beyond it
+  deep:                  # treatment `deep`: open water, derived from the map's water hexes and never stored
+    tone: 0.68           # the same step darker again (0.36, 0.52, 0.68)
+    fromHexes: 2         # a water hex this many hexes or more from the nearest land hex is deep, where the water is open:
+                         # it or a hex beside it is one hex further out still, or it lies on the board's edge, where a sea runs on
+    smooth: 0.5          # the outline of those hexes is blurred over this distance...
+    wobble: 0.1          # ...and strays this far either way (over the shore's own wobblePitch)
+    clear: 0.3           # and deep water never comes nearer the shore than this (the pale band is 0.25 wide)
+
+bridges:
+  railGap: 0.012         # from the road casing to the rail
+  railLength: 0.11       # the whole symbol, the rails' half-width included, stays within 0.11 h of the crossing
+  railHalfWidth: 0.009
+  flare: 0.016
+
+woods:
+  latticePitch: 0.03     # one candidate canopy per lattice cell
+  spacing: 0.062         # nearest distance between two canopy centres
+  canopySize: 0.123      # canopy across, before variation
+  sizeVariation: 0.15
+  turn: 20
+  squash: 0.08           # canopies are up to this much wider than tall, or taller than wide
+  edgeMargin: 0.072      # canopy centres keep this far inside the wood's outline
+  edgeMarginVariation: 0.03
+  roadClearance: 0.252
+  riverClearance: 0.296
+  hillLineClearance: 0.03   # no part of a canopy as drawn comes nearer a crest, ridge or separator line than its half-width plus this
+  hilltopInset: 0.08        # in a hilltop hex, no part of a canopy comes nearer the hilltop's crest lines than this
+  numberedHilltopInset: 0.07   # ...and on a one-hex wooded hilltop that carries a hill number, the trees added to fill it come this near
+  outlineScale: 1.17
+  outlineTone: 1
+  bodyTone: 0.84
+  highlightScale: 0.5
+  highlightShift: 0.24   # as a share of the canopy size, towards the light (light.azimuth)
+  highlightTone: 0.55
+
+towns:
+  inset: 0.06            # the town's ground stays this far inside its outer sides
+  roadGap: 0.03          # from the road casing to a lot, and to the front of a building
+  riverClearance: 0.08   # from a river bank to a lot or a building
+  # ---- lots: a block is divided again and again until a piece is no larger than this ----
+  lotDepth: 0.17         # the first cut of a block that fronts a road lies about this far back from the road
+  lotDepthMax: 0.23      # a piece deeper than this (measured from the road's direction) is cut parallel to the road
+  lotDepthMin: 0.13      # ...unless a part would come out shallower than this: too shallow to build on
+  lotFrontMin: 0.26      # a piece longer along the road than a length between these is cut across
+  lotFrontMax: 0.4
+  bigLotShare: 0.2       # this share of pieces count half as large again: a lot for a large building or several
+  emptyShare: 0.04       # this share of lots stay open ground
+  edgeOpenShare: 0.5     # of the lots along a town's own edge and off any road, this share stay open (half as many in a village)
+  lotMargin: 0.01        # buildings stay this far inside their lot
+  buildingGap: 0.014     # between two buildings of one lot
+  frontageStretch: 1.6   # a lot on a road is this much longer along the road than a lot inside a block
+  rowShare: 0.8          # how often a house type on a road's frontage stands as a row of two or three (a fifth as often inside a block)
+  coverMin: 0.175        # a town hex with less built on than this has its open lots built on after all
+  coverMax: 0.34         # no more of a town hex than this is built on
+  # ---- buildings: the owner's building set (legacy/client/src/components/TownLayer.tsx, BUILDING_TYPES) ----
+  baseSize: 0.1212       # a type's width and height multiply this: 0.21 of the hex's centre-to-corner, as in the old client
+  scaleVariation: 0.1    # each building is this much larger or smaller, at most
+  # Each family's ink: a plate of the ink table at a tone (ruling 22); roofLine is the tone of its roof lines
+  # on the outline's plate. No value here is a colour of the old client: the families keep only their order
+  # from dark to light and from warm to cool.
+  inks:
+    brown: { plate: brown, tone: 0.78, roofLine: 0.62 }   # the brown houses of packed rows, single brown, shed
+    tan: { plate: brown, tone: 0.42, roofLine: 0.5 }      # tan houses
+    gray: { plate: key, tone: 0.46, roofLine: 0.78 }      # gray houses, town centre, church
+    green: { plate: green, tone: 0.5, roofLine: 0.6 }     # the long buildings and the warehouse
+  hipTopTone: 0.12       # the flat top of a hip roof is this much deeper than the roof round it
+  outlineTone: 0.92
+  outlineHalfWidth: 0.0055
+  roofLineWidth: 0.0065
+  # width and height as multiples of baseSize; first: weight as a lot's first building, on its frontage;
+  # other: weight as a building in a lot's interior; roof: gable (a ridge line), gable_ends (a ridge and a
+  # triangle at each end), hip (a flat top with a line to each corner), cross, flat (none).
+  types:
+    house_brown_med: { family: brown, width: 1.6, height: 0.8, first: 6, other: 3, roof: gable }
+    house_brown_short: { family: brown, width: 1.3, height: 0.75, first: 4, other: 5, roof: gable }
+    house_tan: { family: tan, width: 1.5, height: 0.8, first: 3, other: 3, roof: gable_ends }
+    house_gray_med: { family: gray, width: 1.5, height: 0.8, first: 8, other: 6, roof: gable_ends }
+    house_gray_short: { family: gray, width: 1.2, height: 0.7, first: 5, other: 8, roof: gable_ends }
+    long_green: { family: green, width: 2.5, height: 0.9, first: 12, other: 2, roof: gable_ends }
+    med_green: { family: green, width: 2.0, height: 0.85, first: 10, other: 3, roof: gable }
+    warehouse: { family: green, width: 2.8, height: 1.0, first: 6, other: 1, roof: gable_ends }
+    single_brown: { family: brown, width: 1.2, height: 1.0, first: 2, other: 10, roof: gable }
+    single_tan: { family: tan, width: 1.1, height: 0.9, first: 1, other: 8, roof: gable }
+    shed: { family: brown, width: 0.9, height: 0.7, first: 0, other: 4, roof: flat }
+    town_center: { family: gray, width: 1.6, height: 1.6, first: 2, other: 4, roof: hip }
+    church: { family: gray, width: 1.4, height: 2.0, first: 1, other: 0.5, roof: cross }
+
+fields:
+  inset: 0.036           # plots stay this far inside their hex
+  gap: 0.034             # between neighbouring plots
+  spacing: 0.05          # between furrows
+  strokeWidth: 0.012
+  minStroke: 0.05
+  tintTone: 0.85
+  furrowTone: 0.5
+  roadGap: 0.03          # plots keep this clear of a road casing or a river bank
+  layoutWeights: [0.4, 0.3, 0.3]   # two halves, three strips, an L of three
+
+swamp:
+  tintTone: 0.2
+  pitch: 0.15
+  inset: 0.04
+  dashLengthMin: 0.1
+  dashLengthMax: 0.19
+  dashHalfWidth: 0.008
+  dashTone: 0.8
+  reedShare: 0.6
+  reedHeight: 0.07
+  reedTone: 0.9
+  roadClearance: 0.11
+  riverClearance: 0.21
+
+rough:
+  pitch: 0.085
+  inset: 0.03
+  dotRadiusMin: 0.009
+  dotRadiusMax: 0.019
+  stoneShare: 0.12
+  stoneRadiusMin: 0.022
+  stoneRadiusMax: 0.038
+  tone: 0.75
+  roadClearance: 0.09
+  riverClearance: 0.08
+
+lettering:
+  townSize: 0.3          # em size of town names
+  tracking: 0.02         # extra space between letters
+  townOffset: 0.62       # how far from a hex centre a name is first tried
+  margin: 0.08           # names keep this far inside the board rectangle
+
+# Woods from tree sides (mapart/treeSides.ts): read only by a map that has a `trees` layer. Every
+# value is the base setting of Spike S7 (tools/spikes/S7-tree-points), number for number; the names
+# in brackets are the trial's own. A tree is drawn as `woods` above draws one (its canopy size,
+# variation, turn, squash, outline, body and highlight), and keeps off hill lines and hill numbers
+# by the same clearances.
+treeSides:
+  plate: olive               # the plate the green sides print from: one of the ink table's extra plates
+  # ---- the field: the sum over sources of strength * (1 - d^2 / r^2)^2 inside each source's radius r ----
+  threshold: 0.55            # the wood is where the field reaches this  [threshold]
+  sideStrength: 1.0          # a set side of strength k is a source of k * this * strengthScale at the side's middle  [edgeMidStrength]
+  helperStrength: 2.0        # a helper (a hex with all six sides set) is a source of the mean k of its six sides * this * strengthScale at the hex's centre  [hexCenterStrength]
+  strengthScale: 1.3         # [strengthMult]
+  sideRadius: 0.73           # a side source's radius, in R (a hex's centre to its corner): just short of the way from a side's middle to its hex's centre, so sides alone leave the middle of a hex open  [sideRadius]
+  helperRadius: 0.9          # a helper's radius, in R  [helperRadius]
+  # ---- the noise at a lattice point: threshold * (noiseLow + (noiseHigh - noiseLow) * v ^ noisePower), v a smooth seeded value from 0 to 1 ----
+  noiseLow: 0                # 0: no clump is ever stamped outside the threshold line  [noiseLo]
+  noiseHigh: 1.6             # the higher, the further over the threshold the field must be before every lattice point passes  [noiseHi]
+  noisePower: 2              # [noisePower]
+  noiseScale: 1              # the pitch of the noise, in lattice pitches  [noiseScale]
+  # ---- the mask beside roads and streams: the field is multiplied by it ----
+  roadCorridor: 0.15         # the field is nothing nearer a road's centre line than this...  [roadCorridor]
+  riverCorridor: 0.15        # ...or a stream's than this...  [riverCorridor]
+  maskSoft: 0.12             # ...and comes back to full over this width beyond  [maskSoft]
+  # ---- single trees left out (the guard): no part of a tree as drawn comes nearer than this ----
+  roadGap: 0.03              # to a road's casing  [roadGap]
+  riverGap: 0.03             # to a stream's bank  [riverGap]
+  buildingClearance: 0.03    # to a town building  [BUILDING_CLEAR]
+  labelClearance: 0.04       # to the box round a town name  [LABEL_CLEAR]
+  # ---- the draw pass: the centres of a hexagon tiling, each moved inside a disc ----
+  latticePitch: 0.2          # [pitch]
+  jitter: 0.3                # the disc's radius, as a share of the pitch  [jitter]
+  # ---- the clumps: one fixed set, whatever the board ----
+  clumps: 10                 # how many clumps the set holds  [clumps]
+  clumpSeed: 707             # the set's own seed: a stamp sheet, not part of a map  [CLUMP_SEED]
+  clumpTreesMin: 8           # trees in a clump, from this...  [trees]
+  clumpTreesMax: 10          # ...to this
+  clumpRadiusMin: 2.1        # a clump's tree centres lie inside an ellipse whose long half is from this...  [clumpRadius]
+  clumpRadiusMax: 2.6        # ...to this, in tree radii (half of woods.canopySize)
+  clumpAspect: 0.7           # the ellipse's short half as a share of the long one: from this to 1  [clumpAspect]
+  clumpSpacing: 1.45         # no two trees of a clump are nearer than this share of woods.spacing...  [clumpSpacing]
+  clumpSpacingVariation: 0.12   # ...made up to this much larger, clump by clump...
+  clumpSpacingEase: 0.94     # ...and multiplied by this, attempt after attempt, until the clump's trees fit
+  clumpAttempts: 12          # at most this many attempts for a clump
+  clumpTries: 400            # each of this many seeded places
+  # ---- the green sides: an opaque stroke along each set side, printed over the trees ----
+  sideHalfWidth: 0.017       # half the stroke's width without its edge  [lineHalfWidth]
+  sideEdge: 0.005            # a hairline edge this wide on each side of it, where a tone of canopy ink is kept  [lineEdge]
+  sideEdgeTone: 0.5          # that tone  [lineEdgeTone]
+  sideCrossReach: 0.05       # a road or a stream crosses a side when its centre line passes this near the side's middle
+  sideCrossGap: 0.02         # there the stroke stops this short of the casing or the bank
+  sideStubMin: 0.02          # ...and a stub shorter than this is not drawn
+
+paper:
+  amplitude: 0.0115      # the grain's standard deviation, as a share of white (about 0.9 L* on the ground tint)
+  scale: 0.03125         # its coarsest cell, in h; each finer bake level halves it down to one pixel
+  carry: 0.45            # the share of a cell's value that its four quarters keep
+
+# The six levers of Milestone 3b (docs/bars/M3b.md, ruling 2). 0 is off: the base, exactly.
+levers:
+  woodsBody: 0     # lever 1
+  hillForm: 0      # lever 2
+  lineQuality: 0   # lever 3
+  townDepth: 0     # lever 4
+  lettering: 0     # lever 5
+  print: 0         # lever 6
+
+light:
+  azimuth: 315     # the one light of the whole board, degrees clockwise from north (up, -y): 315 is north-west

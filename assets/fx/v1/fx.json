@@ -1,0 +1,219 @@
+{
+  "format": "fx/1",
+  "atlases": [
+    {
+      "file": "fx-a.webp",
+      "width": 2048,
+      "height": 2048,
+      "alpha": "straight"
+    },
+    {
+      "file": "fx-b.webp",
+      "width": 2048,
+      "height": 2048,
+      "alpha": "straight"
+    }
+  ],
+  "flipbooks": [
+    {
+      "id": "explosion",
+      "atlas": 0,
+      "at": [
+        0,
+        0
+      ],
+      "cell": [
+        320,
+        320
+      ],
+      "grid": [
+        5,
+        5
+      ],
+      "frames": 25,
+      "rate": 24,
+      "loop": false,
+      "blend": "emissive",
+      "pivot": [
+        0.5,
+        0.55
+      ],
+      "fill": 0.78
+    },
+    {
+      "id": "blast",
+      "atlas": 0,
+      "at": [
+        0,
+        1600
+      ],
+      "cell": [
+        148,
+        148
+      ],
+      "grid": [
+        10,
+        3
+      ],
+      "frames": 25,
+      "rate": 24,
+      "loop": false,
+      "blend": "emissive",
+      "pivot": [
+        0.5,
+        0.55
+      ],
+      "fill": 0.86
+    },
+    {
+      "id": "burst",
+      "atlas": 0,
+      "at": [
+        1600,
+        0
+      ],
+      "cell": [
+        148,
+        148
+      ],
+      "grid": [
+        3,
+        9
+      ],
+      "frames": 25,
+      "rate": 24,
+      "loop": false,
+      "blend": "over",
+      "pivot": [
+        0.5,
+        0.6
+      ],
+      "fill": 0.86
+    },
+    {
+      "id": "smoke",
+      "atlas": 1,
+      "at": [
+        0,
+        0
+      ],
+      "cell": [
+        128,
+        128
+      ],
+      "grid": [
+        8,
+        8
+      ],
+      "frames": 64,
+      "rate": 24,
+      "loop": true,
+      "blend": "over",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "fill": 0.8
+    },
+    {
+      "id": "flame",
+      "atlas": 1,
+      "at": [
+        1024,
+        0
+      ],
+      "cell": [
+        128,
+        256
+      ],
+      "grid": [
+        8,
+        4
+      ],
+      "frames": 32,
+      "rate": 15,
+      "loop": true,
+      "blend": "emissive",
+      "pivot": [
+        0.5,
+        0.92
+      ],
+      "fill": 0.7
+    },
+    {
+      "id": "cloud",
+      "atlas": 1,
+      "at": [
+        0,
+        1024
+      ],
+      "cell": [
+        128,
+        128
+      ],
+      "grid": [
+        8,
+        4
+      ],
+      "frames": 32,
+      "rate": 12,
+      "loop": true,
+      "blend": "over",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "fill": 0.9
+    },
+    {
+      "id": "fireball",
+      "atlas": 1,
+      "at": [
+        1024,
+        1024
+      ],
+      "cell": [
+        96,
+        96
+      ],
+      "grid": [
+        8,
+        8
+      ],
+      "frames": 64,
+      "rate": 30,
+      "loop": true,
+      "blend": "add",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "fill": 0.72
+    },
+    {
+      "id": "wisp",
+      "atlas": 1,
+      "at": [
+        0,
+        1536
+      ],
+      "cell": [
+        128,
+        128
+      ],
+      "grid": [
+        8,
+        4
+      ],
+      "frames": 32,
+      "rate": 12,
+      "loop": true,
+      "blend": "over",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "fill": 0.8
+    }
+  ]
+}

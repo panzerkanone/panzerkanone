@@ -1,0 +1,77 @@
+# Proving Ground: a generated board. Original content: invented terrain from archetype
+# stamps and invented place names.
+# Regenerate: npm run genmap -- --seed 41 --country rolling --density 0.5 --cols 33 --rows 10 --name "Proving Ground" --generator mapgen/2 --out assets/maps/proving_ground.map.yaml --legacy assets/maps/proving_ground.yaml
+
+format: map/1
+layout: flat-top
+id: proving_ground
+name: "Proving Ground"
+cols: 33
+rows: 10
+artSeed: 4029853060
+
+# The two layers: one text row per board row, top row first; one character per
+# column, column 01 first. On the board, even-numbered columns sit half a hex lower.
+#   elevation:  .  level ground   H  hilltop
+elevation: |
+  ...H.............................
+  ..H.HH.........................H.
+  ......................H.........H
+  .................................
+  .................................
+  .H.........H............H........
+  ..HH.......H.H...................
+  ...........HHHH..................
+  ..............H..................
+  .................................
+#   cover:  .  open   w  woods   t  town   f  field   s  swamp   r  rough
+cover: |
+  ...................ss...www......
+  ....................s...w.w......
+  ...........w............w........
+  .w.ww.......wwr........tff.......
+  w.wwwww......wr..f.t..f..........
+  ....ww............f.........tt...
+  ............................f.f..
+  ..............................f..
+  ....ww....................ss.....
+  ....www..........................
+
+# A hex is named by the label printed on it: column then row ("0412" is column 4, row 12).
+# A slope is not a hex. It is the hill area around a crest, and a crest is a hexside:
+# every edge of a hilltop is one, and a ridge is a chain of them across level ground.
+# ridges: each ridge is its chain of crest edges; an edge is the pair of hexes it runs between.
+ridges:
+  - [["2603", "2703"], ["2704", "2703"], ["2704", "2803"], ["2804", "2803"], ["2804", "2904"]]
+  - [["0708", "0808"], ["0709", "0808"], ["0709", "0809"]]
+
+# roads and rivers run hex to hex. A road leaves the map at each exit; a river end on the
+# board edge runs off the map.
+roads:
+  - ["0103", "0203", "0304", "0403", "0504", "0604", "0704", "0803", "0903", "1002"]
+  - ["1001", "1002"]
+  - ["1002", "1102", "1202", "1302", "1402", "1503", "1603", "1704", "1804", "1905", "2005", "2106", "2205", "2305", "2404", "2504", "2604", "2705", "2805", "2906", "3006", "3106", "3205", "3305"]
+exits: ["0103", "3305", "1001"]
+rivers:
+  - ["3010", "3009", "2909", "2808", "2709", "2608", "2509", "2408", "2308", "2207", "2206", "2106", "2105", "2004", "2003", "2002", "2001"]
+  - ["0801", "0902", "0903", "0904", "0804", "0805", "0806", "0907", "0908", "0909", "0910"]
+bridges: ["0903", "2106"]
+
+towns:
+  - { name: "Eldilach", hexes: ["2906", "3006"] }
+  - { name: "Veliwick", hexes: ["2005"] }
+  - { name: "Fenendorf", hexes: ["2404"] }
+# spotHeights: the hill numbers printed on hilltops ("Hill 92").
+spotHeights:
+  - { hex: "0307", height: 52 }
+  - { hex: "1308", height: 61 }
+  - { hex: "2303", height: 142 }
+  - { hex: "2506", height: 97 }
+
+source:
+  generator: "mapgen/2"
+  seed: 41
+  country: rolling
+  density: 0.5
+  mirror: false
+  command: "npm run genmap -- --seed 41 --country rolling --density 0.5 --cols 33 --rows 10 --name \"Proving Ground\" --generator mapgen/2 --out assets/maps/proving_ground.map.yaml --legacy assets/maps/proving_ground.yaml"
