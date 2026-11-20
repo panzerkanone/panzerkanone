@@ -352,6 +352,15 @@ export function startTable(
   /** A drag of the view: the board point taken hold of. */
   let drag: { anchor: [number, number] } | null = null;
   /**
+   * The fingers on a touch screen (a tablet's, a phone's), by pointer, where each is; and the pinch while two are down:
+   * the board point between them when it began, and the zoom and the fingers' spread then. A pinch is direct, as a drag
+   * is: the board point between the fingers stays between them, and the board grows as they spread.
+   */
+  const fingers = new Map<number, [number, number]>();
+  let pinch: { anchor: [number, number]; across: number; spread: number } | null = null;
+  /** A pinch has been made since the first finger came down: no finger lifted after it is a tap on the counters. */
+  let pinched = false;
+  /**
    * A glide of the view to a set of hexes (`goTo`): the centre play is drawn to (in the run-out to the whole table: the
    * centre it comes back in to), the zoom it runs out to, the centre's speed in h a second, whether the centre has
    * arrived (the zoom may still be easing), and how long it has run.
@@ -1301,10 +1310,60 @@ export function startTable(
   // No menu over the table: on a Mac, Ctrl with the main button is the secondary click and would raise the browser's
   // own. That click is a click here like any other; a true secondary click does nothing.
   canvas.addEventListener('contextmenu', e => e.preventDefault());
+  // Safari on a tablet may zoom the whole page on a pinch of its own: while a finger is on the board, the pinch is the
+  // board's (below). A Mac's trackpad pinch has no finger on the board, and is left as it was.
+  document.addEventListener('gesturestart', e => {
+    if (fingers.size > 0) e.preventDefault();
+  });
+
+  /** The two fingers' middle and how far apart they are (CSS pixels), while two are down. */
+  const twoFingers = (): { mid: { clientX: number; clientY: number }; spread: number } | null => {
+    const [a, b] = [...fingers.values()];
+    if (!a || !b) return null;
+    return { mid: { clientX: (a[0] + b[0]) / 2, clientY: (a[1] + b[1]) / 2 }, spread: Math.max(1, Math.hypot(a[0] - b[0], a[1] - b[1])) };
+  };
+  /** Two fingers are down: what the first began (a drag, a tap on a counter) gives way to the pinch. */
+  const startPinch = (): void => {
+    const two = twoFingers();
+    drag = null;
+    dragTrail = [];
+    pieces?.pointerLeave();
+    endGlide(false);
+    panVel = [0, 0];
+    zoomGoal = view.hexesAcross;
+    zoomRate = 0;
+    zoomAnchor = null;
+    returnView = null;
+    pinched = true;
+    const anchor = two ? boardUnder(ndcAt(two.mid)) : null;
+    pinch = two && anchor ? { anchor, across: view.hexesAcross, spread: two.spread } : null;
+  };
+  const movePinch = (): void => {
+    const two = twoFingers();
+    if (!two || !pinch || !layout) return;
+    const l = limits();
+    const across = Math.max(l.closest, Math.min(Math.max(l.farthest, l.overview), (pinch.across * pinch.spread) / two.spread));
+    place(across, centreFor(pinch.anchor, ndcAt(two.mid), across));
+    // Nothing eases after the fingers: the zoom is where they put it.
+    zoomGoal = view.hexesAcross;
+    zoomRate = 0;
+    zoomAnchor = null;
+    schedule();
+  };
+
   canvas.addEventListener('pointerdown', e => {
     // The main button; and the secondary one when it is Ctrl with the main button on a Mac, which some browsers report so.
     const main = e.button === 0 || (e.button === 2 && e.ctrlKey && ON_MAC);
     if (!main || !layout || free) return;
+    if (e.pointerType === 'touch') {
+      if (fingers.size === 0) pinched = false;
+      fingers.set(e.pointerId, [e.clientX, e.clientY]);
+      // (A finger on a touch screen holds its pointer by itself: it is not captured.)
+      if (fingers.size >= 2) {
+        startPinch();
+        return;
+      }
+    }
     canvas.setPointerCapture(e.pointerId);
     // With Alt held the press is a physical gesture on the counters, and the view does not pan.
     if (pieces && pieces.pointerDown(e)) return;
@@ -1323,6 +1382,13 @@ export function startTable(
     canvas.style.cursor = 'grabbing';
   });
   canvas.addEventListener('pointermove', e => {
+    if (e.pointerType === 'touch' && fingers.has(e.pointerId)) {
+      fingers.set(e.pointerId, [e.clientX, e.clientY]);
+      if (pinch) {
+        movePinch();
+        return;
+      }
+    }
     pointer = [e.clientX, e.clientY];
     pieces?.pointerMove(e);
     if (drag && layout) {
@@ -1361,6 +1427,22 @@ export function startTable(
     canvas.style.cursor = restCursor();
   };
   const endPress = (e: PointerEvent): void => {
+    if (e.pointerType === 'touch' && fingers.delete(e.pointerId) && pinched) {
+      // A finger lifted during a pinch, or after one: never a tap. Two still down go on pinching from where they are; one
+      // left takes the board on from where it is, as a drag (let go, it stays where it was put).
+      pinch = null;
+      dragTrail = [];
+      const [rest] = [...fingers.values()];
+      if (fingers.size >= 2) startPinch();
+      else if (rest && layout && !free) {
+        const anchor = boardUnder(ndcAt({ clientX: rest[0], clientY: rest[1] }));
+        drag = anchor ? { anchor } : null;
+      } else {
+        drag = null;
+        canvas.style.cursor = restCursor();
+      }
+      return;
+    }
     // A press let go without having moved is a click on the counters; a physical gesture ends here too.
     pieces?.pointerUp(e);
     endDrag();
